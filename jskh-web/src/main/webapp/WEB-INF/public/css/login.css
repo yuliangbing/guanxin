@@ -1,0 +1,129 @@
+html,body{
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			padding: 0;
+		}
+		label{
+			color: #FFFFFF;
+		}
+		input::-webkit-input-placeholder{
+            color:#FFFFFF;
+        }
+        input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+            color:#FFFFFF;
+        }
+        input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+            color:#FFFFFF;
+        }
+        input:-ms-input-placeholder{  /* Internet Explorer 10-11 */ 
+            color:#FFFFFF;
+        }
+		.container{
+			width: 100%;
+			height: 100%;
+		}
+		.header{
+			width: 100%;
+			height: 12%;
+		}
+		.header .logo{
+			width: 50%;
+			height: 100%;
+		}
+		.header .logo img{
+			height: 70%;
+			margin: 2% 1%;
+		}
+		.content{
+			width: 100%;
+			height: 88%;
+			background-image: url(../images/2.jpg);
+			background-size: 100% 100%;
+		}
+		.form{
+			width: 350px;
+			float: right;
+			margin-right: 5%;
+			margin-top: 3%;
+			background: rgba(0,0,0,.4);
+			border-radius:8px ;
+		}
+		.one{
+			width: 90%;
+			height: 80px;
+			margin: auto;
+		}
+		.one img{
+			float: left;
+			width: 10%;
+			height: 45%;
+			margin-top: 5%;
+		}
+		.one input{
+		    width: 84%;
+			height: 42%;
+			border-left-style: none;
+			border-right-style: none;
+			border-top-style: none;
+			background: transparent;
+			margin-top: 4%;
+			color: #fff;
+			outline: none;
+		}
+		.two{
+			width: 90%;
+			height: 80px;
+			margin: auto;
+		}
+		.two img{
+			float: left;
+			width: 10%;
+			height: 42%;
+			margin-top: 5%;
+		}
+		.two input{
+		    width: 84%;
+			height: 42%;
+			border-left-style: none;
+			border-right-style: none;
+			border-top-style: none;
+			background: transparent;
+			margin-top: 4%;
+			color: #fff;
+			outline: none;
+		}
+		.three{
+			width: 90%;
+			height: 50px;
+			margin: auto;
+		}
+		.three input{
+			width: 56%;
+			height: 80%;
+			float: left;
+		}
+		.three img{
+			width: 39%;
+			height: 87%;
+			margin-left: 3%;
+		}
+		.four{
+			width: 90%;
+			height: 50px;
+			margin: auto;
+		}
+		.five{
+			width: 90%;
+			height: 70px;
+			margin: auto;
+		}
+		.five input{
+			width: 80%;
+			height: 70%;
+			background: orange;
+			color: #FFFFFF;
+			border: none;
+			outline: none;
+			cursor: pointer;
+		}

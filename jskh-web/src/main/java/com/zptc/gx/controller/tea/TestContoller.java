@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.zptc.gx.controller.BaseController;
 
 @Controller
-@RequestMapping("/tea")
+@RequestMapping("/test")
 public class TestContoller extends BaseController {
 	private static Logger logger = Logger.getLogger(TestContoller.class);
 	
-	@RequestMapping("/index")
+	@RequestMapping("/page")
 	public String index(HttpServletRequest request) {
-		return "index";
+		String page = request.getParameter("page");
+		return page;
 	}
 }
