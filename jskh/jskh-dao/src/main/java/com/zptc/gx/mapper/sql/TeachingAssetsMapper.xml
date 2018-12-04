@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zptc.gx.mapper.TeachingAssetsMapper" >
+
+    <resultMap id="BaseResultMap" type="com.zptc.gx.entity.TeachingAssets" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="cate_code" property="cateCode" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="model_num" property="modelNum" jdbcType="VARCHAR" />
+        <result column="specification" property="specification" jdbcType="VARCHAR" />
+        <result column="sources" property="sources" jdbcType="VARCHAR" />
+        <result column="date" property="date" jdbcType="TIMESTAMP" />
+        <result column="total_amount" property="totalAmount" jdbcType="DECIMAL" />
+        <result column="country_code" property="countryCode" jdbcType="VARCHAR" />
+        <result column="code" property="code" jdbcType="VARCHAR" />
+        <result column="manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+        <result column="use_person" property="usePerson" jdbcType="VARCHAR" />
+        <result column="status_code" property="statusCode" jdbcType="VARCHAR" />
+        <result column="training_room" property="trainingRoom" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+        <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+        <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+        <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+        <result column="ext4" property="ext4" jdbcType="VARCHAR" />
+        <result column="ext5" property="ext5" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, cate_code, name, model_num, specification, sources, date, total_amount, country_code, 
+        code, manufacturer, use_person, status_code, training_room, remark, specialty_id, 
+        create_time, create_user, modify_time, modify_user, ext1, ext2, ext3, ext4, ext5
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from teaching_assets
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from teaching_assets
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.zptc.gx.entity.TeachingAssets" >
+        insert into teaching_assets (id, cate_code, name, 
+            model_num, specification, sources, 
+            date, total_amount, country_code, 
+            code, manufacturer, use_person, 
+            status_code, training_room, remark, 
+            specialty_id, create_time, create_user, 
+            modify_time, modify_user, ext1, 
+            ext2, ext3, ext4, 
+            ext5)
+        values (#{id,jdbcType=BIGINT}, #{cateCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+            #{modelNum,jdbcType=VARCHAR}, #{specification,jdbcType=VARCHAR}, #{sources,jdbcType=VARCHAR}, 
+            #{date,jdbcType=TIMESTAMP}, #{totalAmount,jdbcType=DECIMAL}, #{countryCode,jdbcType=VARCHAR}, 
+            #{code,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{usePerson,jdbcType=VARCHAR}, 
+            #{statusCode,jdbcType=VARCHAR}, #{trainingRoom,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+            #{specialtyId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+            #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
+            #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, 
+            #{ext5,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.zptc.gx.entity.TeachingAssets" >
+        insert into teaching_assets
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="cateCode != null" >
+                cate_code,
+            </if>
+            <if test="name != null" >
+                name,
+            </if>
+            <if test="modelNum != null" >
+                model_num,
+            </if>
+            <if test="specification != null" >
+                specification,
+            </if>
+            <if test="sources != null" >
+                sources,
+            </if>
+            <if test="date != null" >
+                date,
+            </if>
+            <if test="totalAmount != null" >
+                total_amount,
+            </if>
+            <if test="countryCode != null" >
+                country_code,
+            </if>
+            <if test="code != null" >
+                code,
+            </if>
+            <if test="manufacturer != null" >
+                manufacturer,
+            </if>
+            <if test="usePerson != null" >
+                use_person,
+            </if>
+            <if test="statusCode != null" >
+                status_code,
+            </if>
+            <if test="trainingRoom != null" >
+                training_room,
+            </if>
+            <if test="remark != null" >
+                remark,
+            </if>
+            <if test="specialtyId != null" >
+                specialty_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createUser != null" >
+                create_user,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+            <if test="modifyUser != null" >
+                modify_user,
+            </if>
+            <if test="ext1 != null" >
+                ext1,
+            </if>
+            <if test="ext2 != null" >
+                ext2,
+            </if>
+            <if test="ext3 != null" >
+                ext3,
+            </if>
+            <if test="ext4 != null" >
+                ext4,
+            </if>
+            <if test="ext5 != null" >
+                ext5,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="cateCode != null" >
+                #{cateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="modelNum != null" >
+                #{modelNum,jdbcType=VARCHAR},
+            </if>
+            <if test="specification != null" >
+                #{specification,jdbcType=VARCHAR},
+            </if>
+            <if test="sources != null" >
+                #{sources,jdbcType=VARCHAR},
+            </if>
+            <if test="date != null" >
+                #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalAmount != null" >
+                #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="countryCode != null" >
+                #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null" >
+                #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="manufacturer != null" >
+                #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="usePerson != null" >
+                #{usePerson,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null" >
+                #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingRoom != null" >
+                #{trainingRoom,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="specialtyId != null" >
+                #{specialtyId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null" >
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUser != null" >
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ext1 != null" >
+                #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null" >
+                #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="ext3 != null" >
+                #{ext3,jdbcType=VARCHAR},
+            </if>
+            <if test="ext4 != null" >
+                #{ext4,jdbcType=VARCHAR},
+            </if>
+            <if test="ext5 != null" >
+                #{ext5,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.entity.TeachingAssets" >
+        update teaching_assets
+        <set >
+            <if test="cateCode != null" >
+                cate_code = #{cateCode,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="modelNum != null" >
+                model_num = #{modelNum,jdbcType=VARCHAR},
+            </if>
+            <if test="specification != null" >
+                specification = #{specification,jdbcType=VARCHAR},
+            </if>
+            <if test="sources != null" >
+                sources = #{sources,jdbcType=VARCHAR},
+            </if>
+            <if test="date != null" >
+                date = #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="totalAmount != null" >
+                total_amount = #{totalAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="countryCode != null" >
+                country_code = #{countryCode,jdbcType=VARCHAR},
+            </if>
+            <if test="code != null" >
+                code = #{code,jdbcType=VARCHAR},
+            </if>
+            <if test="manufacturer != null" >
+                manufacturer = #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="usePerson != null" >
+                use_person = #{usePerson,jdbcType=VARCHAR},
+            </if>
+            <if test="statusCode != null" >
+                status_code = #{statusCode,jdbcType=VARCHAR},
+            </if>
+            <if test="trainingRoom != null" >
+                training_room = #{trainingRoom,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null" >
+                remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="specialtyId != null" >
+                specialty_id = #{specialtyId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null" >
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUser != null" >
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ext1 != null" >
+                ext1 = #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null" >
+                ext2 = #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="ext3 != null" >
+                ext3 = #{ext3,jdbcType=VARCHAR},
+            </if>
+            <if test="ext4 != null" >
+                ext4 = #{ext4,jdbcType=VARCHAR},
+            </if>
+            <if test="ext5 != null" >
+                ext5 = #{ext5,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.zptc.gx.entity.TeachingAssets" >
+        update teaching_assets
+        set cate_code = #{cateCode,jdbcType=VARCHAR},
+            name = #{name,jdbcType=VARCHAR},
+            model_num = #{modelNum,jdbcType=VARCHAR},
+            specification = #{specification,jdbcType=VARCHAR},
+            sources = #{sources,jdbcType=VARCHAR},
+            date = #{date,jdbcType=TIMESTAMP},
+            total_amount = #{totalAmount,jdbcType=DECIMAL},
+            country_code = #{countryCode,jdbcType=VARCHAR},
+            code = #{code,jdbcType=VARCHAR},
+            manufacturer = #{manufacturer,jdbcType=VARCHAR},
+            use_person = #{usePerson,jdbcType=VARCHAR},
+            status_code = #{statusCode,jdbcType=VARCHAR},
+            training_room = #{trainingRoom,jdbcType=VARCHAR},
+            remark = #{remark,jdbcType=VARCHAR},
+            specialty_id = #{specialtyId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            create_user = #{createUser,jdbcType=VARCHAR},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            modify_user = #{modifyUser,jdbcType=VARCHAR},
+            ext1 = #{ext1,jdbcType=VARCHAR},
+            ext2 = #{ext2,jdbcType=VARCHAR},
+            ext3 = #{ext3,jdbcType=VARCHAR},
+            ext4 = #{ext4,jdbcType=VARCHAR},
+            ext5 = #{ext5,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>

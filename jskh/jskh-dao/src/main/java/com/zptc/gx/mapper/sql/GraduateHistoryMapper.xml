@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zptc.gx.mapper.GraduateHistoryMapper" >
+
+    <resultMap id="BaseResultMap" type="com.zptc.gx.entity.GraduateHistory" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="date" property="date" jdbcType="TIMESTAMP" />
+        <result column="graduate_num" property="graduateNum" jdbcType="INTEGER" />
+        <result column="employed_num" property="employedNum" jdbcType="INTEGER" />
+        <result column="entrepreneurs_num" property="entrepreneursNum" jdbcType="INTEGER" />
+        <result column="employment rate" property="employmentRate" jdbcType="DECIMAL" />
+        <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+        <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+        <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+        <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+        <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+        <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+        <result column="ext4" property="ext4" jdbcType="VARCHAR" />
+        <result column="ext5" property="ext5" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, date, graduate_num, employed_num, entrepreneurs_num, "employment rate", specialty_id, 
+        create_time, create_user, modify_time, modify_user, ext1, ext2, ext3, ext4, ext5
+    </sql>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select 
+        <include refid="Base_Column_List" />
+        from graduate_history
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from graduate_history
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <insert id="insert" parameterType="com.zptc.gx.entity.GraduateHistory" >
+        insert into graduate_history (id, date, graduate_num, 
+            employed_num, entrepreneurs_num, "employment rate", 
+            specialty_id, create_time, create_user, 
+            modify_time, modify_user, ext1, 
+            ext2, ext3, ext4, 
+            ext5)
+        values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{graduateNum,jdbcType=INTEGER}, 
+            #{employedNum,jdbcType=INTEGER}, #{entrepreneursNum,jdbcType=INTEGER}, #{employmentRate,jdbcType=DECIMAL}, 
+            #{specialtyId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+            #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
+            #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, 
+            #{ext5,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.zptc.gx.entity.GraduateHistory" >
+        insert into graduate_history
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="date != null" >
+                date,
+            </if>
+            <if test="graduateNum != null" >
+                graduate_num,
+            </if>
+            <if test="employedNum != null" >
+                employed_num,
+            </if>
+            <if test="entrepreneursNum != null" >
+                entrepreneurs_num,
+            </if>
+            <if test="employmentRate != null" >
+                "employment rate",
+            </if>
+            <if test="specialtyId != null" >
+                specialty_id,
+            </if>
+            <if test="createTime != null" >
+                create_time,
+            </if>
+            <if test="createUser != null" >
+                create_user,
+            </if>
+            <if test="modifyTime != null" >
+                modify_time,
+            </if>
+            <if test="modifyUser != null" >
+                modify_user,
+            </if>
+            <if test="ext1 != null" >
+                ext1,
+            </if>
+            <if test="ext2 != null" >
+                ext2,
+            </if>
+            <if test="ext3 != null" >
+                ext3,
+            </if>
+            <if test="ext4 != null" >
+                ext4,
+            </if>
+            <if test="ext5 != null" >
+                ext5,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="date != null" >
+                #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="graduateNum != null" >
+                #{graduateNum,jdbcType=INTEGER},
+            </if>
+            <if test="employedNum != null" >
+                #{employedNum,jdbcType=INTEGER},
+            </if>
+            <if test="entrepreneursNum != null" >
+                #{entrepreneursNum,jdbcType=INTEGER},
+            </if>
+            <if test="employmentRate != null" >
+                #{employmentRate,jdbcType=DECIMAL},
+            </if>
+            <if test="specialtyId != null" >
+                #{specialtyId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null" >
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUser != null" >
+                #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ext1 != null" >
+                #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null" >
+                #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="ext3 != null" >
+                #{ext3,jdbcType=VARCHAR},
+            </if>
+            <if test="ext4 != null" >
+                #{ext4,jdbcType=VARCHAR},
+            </if>
+            <if test="ext5 != null" >
+                #{ext5,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.entity.GraduateHistory" >
+        update graduate_history
+        <set >
+            <if test="date != null" >
+                date = #{date,jdbcType=TIMESTAMP},
+            </if>
+            <if test="graduateNum != null" >
+                graduate_num = #{graduateNum,jdbcType=INTEGER},
+            </if>
+            <if test="employedNum != null" >
+                employed_num = #{employedNum,jdbcType=INTEGER},
+            </if>
+            <if test="entrepreneursNum != null" >
+                entrepreneurs_num = #{entrepreneursNum,jdbcType=INTEGER},
+            </if>
+            <if test="employmentRate != null" >
+                "employment rate" = #{employmentRate,jdbcType=DECIMAL},
+            </if>
+            <if test="specialtyId != null" >
+                specialty_id = #{specialtyId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null" >
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="createUser != null" >
+                create_user = #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyTime != null" >
+                modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyUser != null" >
+                modify_user = #{modifyUser,jdbcType=VARCHAR},
+            </if>
+            <if test="ext1 != null" >
+                ext1 = #{ext1,jdbcType=VARCHAR},
+            </if>
+            <if test="ext2 != null" >
+                ext2 = #{ext2,jdbcType=VARCHAR},
+            </if>
+            <if test="ext3 != null" >
+                ext3 = #{ext3,jdbcType=VARCHAR},
+            </if>
+            <if test="ext4 != null" >
+                ext4 = #{ext4,jdbcType=VARCHAR},
+            </if>
+            <if test="ext5 != null" >
+                ext5 = #{ext5,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.zptc.gx.entity.GraduateHistory" >
+        update graduate_history
+        set date = #{date,jdbcType=TIMESTAMP},
+            graduate_num = #{graduateNum,jdbcType=INTEGER},
+            employed_num = #{employedNum,jdbcType=INTEGER},
+            entrepreneurs_num = #{entrepreneursNum,jdbcType=INTEGER},
+            "employment rate" = #{employmentRate,jdbcType=DECIMAL},
+            specialty_id = #{specialtyId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            create_user = #{createUser,jdbcType=VARCHAR},
+            modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+            modify_user = #{modifyUser,jdbcType=VARCHAR},
+            ext1 = #{ext1,jdbcType=VARCHAR},
+            ext2 = #{ext2,jdbcType=VARCHAR},
+            ext3 = #{ext3,jdbcType=VARCHAR},
+            ext4 = #{ext4,jdbcType=VARCHAR},
+            ext5 = #{ext5,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
