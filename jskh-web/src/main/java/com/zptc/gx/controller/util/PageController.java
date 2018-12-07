@@ -1,4 +1,4 @@
-package com.zptc.gx.controller.tea;
+package com.zptc.gx.controller.util;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.zptc.gx.controller.BaseController;
 
 @Controller
-@RequestMapping("/test")
-public class TestContoller extends BaseController {
-	private static Logger logger = Logger.getLogger(TestContoller.class);
+@RequestMapping("/page")
+public class PageController extends BaseController {
+	private static Logger logger = Logger.getLogger(PageController.class);
 	
-	@RequestMapping("/page")
+	@RequestMapping("/toPage")
 	public String index(HttpServletRequest request) {
-		String page = request.getParameter("page");
-		return page;
+		String pageName = request.getParameter("pageName");
+		return pageName;
 	}
 }
