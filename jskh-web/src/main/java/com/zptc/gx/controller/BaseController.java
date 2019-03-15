@@ -3,6 +3,8 @@ package com.zptc.gx.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 
 public class BaseController {
@@ -14,5 +16,9 @@ public class BaseController {
 	
 	public Map<String, Object> getMap(){
 		return new HashMap<String, Object>();
+	}
+	
+	public String getParam(HttpServletRequest request, String name){
+		return request.getParameter(name);
 	}
 }

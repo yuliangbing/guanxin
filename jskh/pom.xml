@@ -13,7 +13,7 @@
   <dependencies>
   	<dependency>
   		<groupId>com.zptc.gx</groupId>
-  		<artifactId>common</artifactId>
+  		<artifactId>common-util</artifactId>
   		<version>${project.version}</version>
   	</dependency>
   </dependencies>

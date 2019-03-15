@@ -1,14 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8"%>
-
 <!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/Taglib.jsp"%>
-<html lang="zh">
+<html>
 <head>
-<%@ include file="/WEB-INF/Common.jsp"%>
-<title>登录页</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet"	href="${path}/static/public/lib/layui/css/layui.css">
+
+<script type="text/javascript" src="${path}/static/public/jquery/jquery-1.10.2.min.js"></script>
+<script type="text/javascript"	src="${path}/static/public/lib/layui/layui.js"></script>
+
 <link rel="stylesheet" type="text/css" href="${path}/static/public/css/login.css" />
 <script src="${path}/static/js/login.js" type="text/javascript" charset="utf-8"></script>
-<title>浙江邮电职业技术学院管理系统</title>
+<title>浙江邮电职业技术学院${systemName}</title>
+<link rel="icon" href="${path}/public/img/title.ico" type="image/x-icon" />
 <style type="text/css">
 	.layui-form-radio * {
 	    font-size: 20px;
@@ -24,10 +28,11 @@
 		<div class="header">
 			<div class="logo">
 				<img src="${path}/static/public/images/logo.png"/>
-				<div style="font-size:40px;margin-left:10px;display:inline-block">
-					<div style="position: relative;top: 8px;">教师管理系统</div>
-				</div>
+				<div style="font-size:35px;margin-left:10px;display:inline-block">
+					<div style="position: relative;top: 8px;">${systemName}</div>
+				</div>	
 			</div>
+			
 		</div>
 		<div class="content">
 			<div class="form">	
@@ -46,10 +51,11 @@
 				</div>
 				<div class="five">
 					<a class="layui-btn layui-btn-normal layui-btn-fluid" id="login" style="height:50px;line-height:50px">立即登录</a>
-					<!-- <input style="margin: 4% 10%;" type="button" id="login" value="立即登录" /> -->
 				</div>
 			</div>
 		</div>
+		<div class="footer">Copyright © 2018 浙江邮电职业技术学院${systemName} v1.0.0</div>
+	
 	</div>
 </body>
 <script>

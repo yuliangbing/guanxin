@@ -8,10 +8,3 @@
 <script type="text/javascript">
     window.path = "${path}";
 </script>
-<%--<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%> 
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles-extras" prefix="tilesx"%>--%>
-<%--<%@ taglib uri="http://SpringExt/tags/message" prefix="message" %>
-<%@ taglib uri="http://SpringExt/tags/htmlescape" prefix="htmlEscape" %>
-<%@ taglib uri="http://SpringExt/tags/paging" prefix="paging" %>
-<%@ taglib uri="http://ejisc/tags/topicpath" prefix="topicpath" %>--%>
