@@ -6,21 +6,10 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <groupId>com.zptc.gx</groupId>
-  <artifactId>jskh</artifactId>
+  <artifactId>common</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  
-  <dependencies>
-  	<dependency>
-  		<groupId>com.zptc.gx</groupId>
-  		<artifactId>common-facade</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
-  </dependencies>
-  
   <modules>
-  	<module>jskh-pojo</module>
-  	<module>jskh-dao</module>
-  	<module>jskh-service</module>
+  	<module>common-facade</module>
   </modules>
 </project>

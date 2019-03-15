@@ -9,6 +9,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.zptc.gx.common.util.Constant;
+
 @Controller
 public class LoginController extends BaseController {
 	private Logger logger = Logger.getLogger(LoginController.class);
@@ -16,7 +18,7 @@ public class LoginController extends BaseController {
 	@RequestMapping("/toLogin")
 	public ModelAndView login(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
 		ModelAndView view = new ModelAndView();
-		model.put("systemName", "guanxin");
+		model.put("systemName", Constant.systemName);
 		view.setViewName("login");
 		return view;
 	}
