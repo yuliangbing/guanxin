@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zptc.gx.mapper.BranchIntroductionMapper" >
+<mapper namespace="com.zptc.gx.branch.mapper.BranchIntroductionMapper" >
 
-    <resultMap id="BaseResultMap" type="com.zptc.gx.entity.BranchIntroduction" >
+    <resultMap id="BaseResultMap" type="com.zptc.gx.branch.entity.BranchIntroduction" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="code" property="code" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
@@ -36,7 +36,7 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="com.zptc.gx.entity.BranchIntroduction" >
+    <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
         insert into branch_introduction (id, code, name, 
             introduction, date, create_time, 
             create_user, modify_time, modify_user, 
@@ -49,7 +49,7 @@
             #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSelective" parameterType="com.zptc.gx.entity.BranchIntroduction" >
+    <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
         insert into branch_introduction
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >
@@ -141,7 +141,7 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.entity.BranchIntroduction" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
         update branch_introduction
         <set >
             <if test="code != null" >
@@ -187,7 +187,7 @@
         where id = #{id,jdbcType=BIGINT}
     </update>
 
-    <update id="updateByPrimaryKey" parameterType="com.zptc.gx.entity.BranchIntroduction" >
+    <update id="updateByPrimaryKey" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
         update branch_introduction
         set code = #{code,jdbcType=VARCHAR},
             name = #{name,jdbcType=VARCHAR},

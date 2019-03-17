@@ -1,4 +1,4 @@
-package com.zptc.gx.entity;
+package com.zptc.branch.entity;
 
 import java.util.Date;
 
