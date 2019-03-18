@@ -1,6 +1,6 @@
 package com.zptc.gx.branch.mapper;
 
-import com.zptc.branch.entity.BranchIntroduction;
+import com.zptc.gx.branch.entity.BranchIntroduction;
 
 public interface BranchIntroductionMapper {
     int deleteByPrimaryKey(Long id);
