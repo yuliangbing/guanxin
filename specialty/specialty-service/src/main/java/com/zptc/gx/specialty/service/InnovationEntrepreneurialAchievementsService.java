@@ -1,0 +1,15 @@
+package com.zptc.gx.specialty.service;
+
+import com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements;
+
+public interface InnovationEntrepreneurialAchievementsService {
+
+	public void addInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements);
+
+	public void modifyInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements);
+
+	public void deleteInnovationEntrepreneurialAchievementsById(Long id);
+
+	public InnovationEntrepreneurialAchievements findInnovationEntrepreneurialAchievementsById(Long id);
+
+}

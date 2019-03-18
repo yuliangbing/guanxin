@@ -15,7 +15,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.zptc.gx</groupId>
-			<artifactId>jskh-service</artifactId>
+			<artifactId>branch-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zptc.gx</groupId>
+			<artifactId>specialty-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!-- JSP相关 -->
