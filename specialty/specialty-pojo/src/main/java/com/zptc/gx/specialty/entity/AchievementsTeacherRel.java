@@ -1,12 +1,5 @@
 package com.zptc.gx.specialty.entity;
 
-/**
- * null
- * 
- * @author wcyong
- * 
- * @date 2018-12-03
- */
 public class AchievementsTeacherRel {
     private Long id;
 

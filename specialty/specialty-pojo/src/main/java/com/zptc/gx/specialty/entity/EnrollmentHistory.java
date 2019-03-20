@@ -3,13 +3,6 @@ package com.zptc.gx.specialty.entity;
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * null
- * 
- * @author wcyong
- * 
- * @date 2018-12-03
- */
 public class EnrollmentHistory {
     private Long id;
 

@@ -2,13 +2,6 @@ package com.zptc.gx.specialty.entity;
 
 import java.util.Date;
 
-/**
- * null
- * 
- * @author wcyong
- * 
- * @date 2018-12-03
- */
 public class Specialty {
     private Long id;
 

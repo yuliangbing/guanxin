@@ -2,21 +2,12 @@ package com.zptc.gx.branch.entity;
 
 import java.util.Date;
 
-/**
- * null
- * 
- * @author wcyong
- * 
- * @date 2018-12-03
- */
 public class BranchIntroduction {
     private Long id;
 
     private String code;
 
     private String name;
-
-    private String introduction;
 
     private Date date;
 
@@ -37,6 +28,8 @@ public class BranchIntroduction {
     private String ext4;
 
     private String ext5;
+
+    private String introduction;
 
     public Long getId() {
         return id;
@@ -60,14 +53,6 @@ public class BranchIntroduction {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
     }
 
     public Date getDate() {
@@ -148,5 +133,13 @@ public class BranchIntroduction {
 
     public void setExt5(String ext5) {
         this.ext5 = ext5 == null ? null : ext5.trim();
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction == null ? null : introduction.trim();
     }
 }

@@ -2,15 +2,10 @@ package com.zptc.gx.specialty.entity;
 
 import java.util.Date;
 
-/**
- * null
- * 
- * @author wcyong
- * 
- * @date 2018-12-03
- */
 public class Teachers {
     private Long id;
+
+    private String name;
 
     private String code;
 
@@ -58,6 +53,14 @@ public class Teachers {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getCode() {
