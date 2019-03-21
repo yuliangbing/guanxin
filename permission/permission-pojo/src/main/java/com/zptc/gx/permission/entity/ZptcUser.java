@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.entity;
 
+import java.util.Date;
+
 public class ZptcUser {
     private Long id;
 
@@ -9,13 +11,15 @@ public class ZptcUser {
 
     private String tel;
 
-    private String registerTime;
+    private Date registerTime;
 
-    private String modifyTime;
+    private Date modifyTime;
 
-    private String roleId;
+    private Long roleId;
 
     private String roleName;
+    
+    private String password;
 
     public Long getId() {
         return id;
@@ -49,28 +53,28 @@ public class ZptcUser {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public String getRegisterTime() {
+    public Date getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(String registerTime) {
-        this.registerTime = registerTime == null ? null : registerTime.trim();
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
     }
 
-    public String getModifyTime() {
+    public Date getModifyTime() {
         return modifyTime;
     }
 
-    public void setModifyTime(String modifyTime) {
-        this.modifyTime = modifyTime == null ? null : modifyTime.trim();
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
     }
 
-    public String getRoleId() {
+    public Long getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(String roleId) {
-        this.roleId = roleId == null ? null : roleId.trim();
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     public String getRoleName() {
@@ -80,4 +84,12 @@ public class ZptcUser {
     public void setRoleName(String roleName) {
         this.roleName = roleName == null ? null : roleName.trim();
     }
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 }

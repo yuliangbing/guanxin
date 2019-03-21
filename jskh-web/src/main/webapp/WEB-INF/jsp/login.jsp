@@ -1,18 +1,15 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/Taglib.jsp"%>
+<%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link rel="stylesheet"	href="${path}/static/public/lib/layui/css/layui.css">
-
-<script type="text/javascript" src="${path}/static/public/jquery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript"	src="${path}/static/public/lib/layui/layui.js"></script>
 
 <link rel="stylesheet" type="text/css" href="${path}/static/public/css/login.css" />
 <script src="${path}/static/js/login.js" type="text/javascript" charset="utf-8"></script>
 <title>浙江邮电职业技术学院${systemName}</title>
-<link rel="icon" href="${path}/public/img/title.ico" type="image/x-icon" />
+<link rel="icon" href="${path}/static/public/images/title.ico" type="image/x-icon" />
 <style type="text/css">
 	.layui-form-radio * {
 	    font-size: 20px;
@@ -58,7 +55,7 @@
 	
 	</div>
 </body>
-<script>
+<script>	
 layui.use(['form', 'layedit', 'laydate'], function(){
   var form = layui.form
   ,layer = layui.layer

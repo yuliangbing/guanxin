@@ -23,6 +23,11 @@
 			<artifactId>specialty-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.zptc.gx</groupId>
+			<artifactId>permission-service</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<!-- JSP相关 -->
 		<dependency>
 			<groupId>jstl</groupId>
@@ -42,6 +47,16 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>${fastjson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -1,5 +1,8 @@
 package com.zptc.gx.permission.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.zptc.gx.permission.entity.ZptcUser;
 
 public interface ZptcUserMapper {
@@ -14,4 +17,6 @@ public interface ZptcUserMapper {
     int updateByPrimaryKeySelective(ZptcUser record);
 
     int updateByPrimaryKey(ZptcUser record);
+    
+    List<ZptcUser> findByParam(Map<String, Object> par);
 }
