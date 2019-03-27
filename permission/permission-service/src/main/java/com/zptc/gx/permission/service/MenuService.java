@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.service;
 
+import java.util.List;
+
 import com.zptc.gx.permission.entity.Menu;
 
 public interface MenuService {
@@ -11,5 +13,7 @@ public interface MenuService {
 	public void deleteMenuById(Long id);
 
 	public Menu findMenuById(Long id);
+	
+	public List<Menu> findMenuByRoleId(Long roleId);
 
 }

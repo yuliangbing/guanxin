@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.CollectionUtils;
@@ -26,12 +25,13 @@ import com.zptc.gx.util.RandomValidateCodeUtil;
 import com.zptc.gx.util.ToolUtil;
 
 @Controller
+@RequestMapping("/home")
 public class LoginController extends BaseController {
 	private Logger logger = Logger.getLogger(LoginController.class);
-	
+
 	@Autowired
 	private ZptcUserService zptcUserService;
-	
+
 	/**
 	 * 登陆页
 	 * 
@@ -41,7 +41,7 @@ public class LoginController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/toLogin")
-	public ModelAndView login(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
+	public ModelAndView toLogin(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
 		ModelAndView view = new ModelAndView();
 		model.put("systemName", Constant.systemName);
 		view.setViewName("login");
@@ -64,43 +64,43 @@ public class LoginController extends BaseController {
 			logger.error("获取验证码失败>>>>   ", e);
 		}
 	}
-	
+
 	@RequestMapping("/login")
 	@ResponseBody
 	public JsonResult login(HttpServletRequest request, HttpServletResponse response) {
-		//获取参数
-		String username = ToolUtil.str("username", request);
+		// 获取参数
+		String teaCode = ToolUtil.str("username", request);
 		String password = ToolUtil.str("password", request);
-		String verify = ToolUtil.str("verify", request);
-		
-		//验证码
+		String valiDate = ToolUtil.str("valiDate", request);
+
+		// 验证码
 		String sessionVerify = (String) request.getSession().getAttribute(RandomValidateCodeUtil.RANDOMCODEKEY);
-		if (!verify.equals(sessionVerify)) {
+		if (!valiDate.equals(sessionVerify)) {
 			return JsonResult.build(FLAG_FAILED, "验证码错误！");
 		}
-		
-		//参数写入map
+
+		// 参数写入map
 		Map<String, Object> par = new HashMap<>();
-		par.put("username", username);
+		par.put("teaCode", teaCode);
 		par.put("password", MD5Util.encodeAsString(password));
 		List<ZptcUser> userList = zptcUserService.findByParam(par);
-		
+
 		if (!CollectionUtils.isEmpty(userList)) {
 			ZptcUser zptcUser = userList.get(0);
-			//user存入session
+			// user存入session
 			request.getSession().setAttribute(Constant.USER_SESSION, zptcUser);
 		} else {
 			return JsonResult.build(FLAG_FAILED, "用户名或密码错误！");
 		}
 		return JsonResult.build(FLAG_SUCCESS);
 	}
-	
+
 	@RequestMapping("/register")
 	@ResponseBody
 	public JsonResult register(HttpServletRequest request, HttpServletResponse response) {
-		String teaCode = ToolUtil.str("teaCode", request);
+		String teaCode = ToolUtil.str("username", request);
 		String password = ToolUtil.str("password", request);
-		
+
 		ZptcUser zptcUser = new ZptcUser();
 		zptcUser.setTeaCode(teaCode);
 		zptcUser.setPassword(MD5Util.encodeAsString(password));
@@ -109,6 +109,34 @@ public class LoginController extends BaseController {
 			return JsonResult.build(FLAG_SUCCESS);
 		} else {
 			return JsonResult.build(FLAG_FAILED, "注册成功！");
+		}
+	}
+
+	/**
+	 * 获取系统名称
+	 * 
+	 * @param req
+	 * @param response
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/getSystem")
+	@ResponseBody
+	public JsonResult getSystem(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
+		try {
+			Map<String, Object> par = new HashMap<>();
+			
+			String systemName = Constant.systemName;
+			
+			String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort();
+			
+			par.put("systemName", systemName);
+			par.put("systemLink", basePath);
+			return JsonResult.build(FLAG_SUCCESS, null, par);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
 		}
 	}
 }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.zptc.gx.common.util.Constant;
+import com.zptc.gx.permission.entity.ZptcUser;
 
 public class ControllerInterprecetor extends HandlerInterceptorAdapter {
 	private Logger logger = Logger.getLogger(ControllerInterprecetor.class);
@@ -19,11 +20,11 @@ public class ControllerInterprecetor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		// TODO Auto-generated method stub
-		Map<String, Object> userSession = (Map<String, Object>) request.getSession().getAttribute(Constant.USER_SESSION);
-		if (!CollectionUtils.isEmpty(userSession)) {
+		ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+		if (user != null) {
 			return true;
 		} else {
-			response.sendRedirect(request.getContextPath() + "/toLogin");
+			response.sendRedirect(request.getContextPath() + "/home/toLogin");
 			return false;
 		}
 	}

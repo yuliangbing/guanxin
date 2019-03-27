@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.mapper;
 
+import java.util.List;
+
 import com.zptc.gx.permission.entity.Menu;
 
 public interface MenuMapper {
@@ -14,4 +16,6 @@ public interface MenuMapper {
     int updateByPrimaryKeySelective(Menu record);
 
     int updateByPrimaryKey(Menu record);
+    
+    List<Menu> findMenuByRoleId(Long roleId);
 }

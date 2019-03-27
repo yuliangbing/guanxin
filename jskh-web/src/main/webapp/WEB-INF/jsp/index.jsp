@@ -16,7 +16,7 @@
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="#">X-admin v2.0</a></div>
+        <div class="logo"><a href="#" id="systemName"></a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
@@ -289,5 +289,6 @@
       s.parentNode.insertBefore(hm, s);
     })();
     </script>
+    <script src="${path}/static/js/index.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

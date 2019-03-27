@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +31,10 @@ public class MenuServiceImpl implements MenuService {
 	public Menu findMenuById(Long id){
 		Menu menu = menuMapper.selectByPrimaryKey(id);
 		return menu;
+	}
+	@Override
+	public List<Menu> findMenuByRoleId(Long roleId) {
+		// TODO Auto-generated method stub
+		return menuMapper.findMenuByRoleId(roleId);
 	}
 }
