@@ -16,16 +16,16 @@ public class MenuServiceImpl implements MenuService {
 	private MenuMapper menuMapper;
 
 	@Override
-	public void addMenu(Menu menu){
-		menuMapper.insertSelective(menu);
+	public int addMenu(Menu menu){
+		return menuMapper.insertSelective(menu);
 	}
 	@Override
-	public void modifyMenu(Menu menu){
-		menuMapper.updateByPrimaryKeySelective(menu);
+	public int modifyMenu(Menu menu){
+		return menuMapper.updateByPrimaryKeySelective(menu);
 	}
 	@Override
-	public void deleteMenuById(Long id){
-		menuMapper.deleteByPrimaryKey(id);
+	public int deleteMenuById(Long id){
+		return menuMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public Menu findMenuById(Long id){

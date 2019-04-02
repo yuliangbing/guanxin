@@ -14,16 +14,16 @@ public class RoleServiceImpl implements RoleService {
 	private RoleMapper roleMapper;
 
 	@Override
-	public void addRole(Role role){
-		roleMapper.insertSelective(role);
+	public int addRole(Role role){
+		return roleMapper.insertSelective(role);
 	}
 	@Override
-	public void modifyRole(Role role){
-		roleMapper.updateByPrimaryKeySelective(role);
+	public int modifyRole(Role role){
+		return roleMapper.updateByPrimaryKeySelective(role);
 	}
 	@Override
-	public void deleteRoleById(Long id){
-		roleMapper.deleteByPrimaryKey(id);
+	public int deleteRoleById(Long id){
+		return roleMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public Role findRoleById(Long id){

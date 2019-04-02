@@ -4,11 +4,11 @@ import com.zptc.gx.permission.entity.Role;
 
 public interface RoleService {
 
-	public void addRole(Role role);
+	public int addRole(Role role);
 
-	public void modifyRole(Role role);
+	public int modifyRole(Role role);
 
-	public void deleteRoleById(Long id);
+	public int deleteRoleById(Long id);
 
 	public Role findRoleById(Long id);
 

@@ -32,6 +32,9 @@ public class Menu {
     private String modifyUser;
 
     private Date modifyTime;
+    
+    //1为显示，2为不显示
+    private Integer showType;
 
     public Long getId() {
         return id;
@@ -152,4 +155,12 @@ public class Menu {
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
     }
+
+	public Integer getShowType() {
+		return showType;
+	}
+
+	public void setShowType(Integer showType) {
+		this.showType = showType;
+	}
 }
