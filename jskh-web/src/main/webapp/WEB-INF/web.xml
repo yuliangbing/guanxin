@@ -6,7 +6,7 @@
 	<display-name></display-name>
 	<description>jskh</description>
 	<welcome-file-list>
-        <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/jsp/login.jsp</welcome-file>
     </welcome-file-list>
     <!-- 错误页面配置 -->
 	<error-page>
