@@ -139,4 +139,33 @@ public class LoginController extends BaseController {
 			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
 		}
 	}
+	
+	@RequestMapping("/getUser")
+	@ResponseBody
+	public JsonResult getUser(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
+		try {
+			Map<String, Object> par = new HashMap<>();
+			
+			ZptcUser user = (ZptcUser) req.getSession().getAttribute(Constant.USER_SESSION);
+			par.put("user", user);
+			return JsonResult.build(FLAG_SUCCESS, null, par);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
+		}
+	}
+	
+	@RequestMapping("/logout")
+	@ResponseBody
+	public JsonResult logout(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
+		try {
+			req.getSession().removeAttribute(Constant.USER_SESSION);
+			return JsonResult.build(FLAG_SUCCESS);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
+		}
+	}
 }
