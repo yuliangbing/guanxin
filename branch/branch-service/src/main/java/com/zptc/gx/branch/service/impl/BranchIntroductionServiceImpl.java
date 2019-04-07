@@ -14,16 +14,16 @@ public class BranchIntroductionServiceImpl implements BranchIntroductionService 
 	private BranchIntroductionMapper branchIntroductionMapper;
 
 	@Override
-	public void addBranchIntroduction(BranchIntroduction branchIntroduction){
-		branchIntroductionMapper.insertSelective(branchIntroduction);
+	public int addBranchIntroduction(BranchIntroduction branchIntroduction){
+		return branchIntroductionMapper.insertSelective(branchIntroduction);
 	}
 	@Override
-	public void modifyBranchIntroduction(BranchIntroduction branchIntroduction){
-		branchIntroductionMapper.updateByPrimaryKeySelective(branchIntroduction);
+	public int  modifyBranchIntroduction(BranchIntroduction branchIntroduction){
+		return branchIntroductionMapper.updateByPrimaryKeySelective(branchIntroduction);
 	}
 	@Override
-	public void deleteBranchIntroductionById(Long id){
-		branchIntroductionMapper.deleteByPrimaryKey(id);
+	public int deleteBranchIntroductionById(Long id){
+		return branchIntroductionMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public BranchIntroduction findBranchIntroductionById(Long id){
