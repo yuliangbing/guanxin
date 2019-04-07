@@ -26,7 +26,7 @@ import com.zptc.gx.util.ToolUtil;
 
 @Controller
 @RequestMapping("/branch")
-public class BrachControll extends BaseController {
+public class BrachController extends BaseController {
 	private Logger logger = Logger.getLogger(MenuController.class);
 	
 	@Autowired
