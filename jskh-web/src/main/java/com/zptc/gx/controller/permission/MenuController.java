@@ -28,15 +28,19 @@ public class MenuController extends BaseController {
 	@Autowired
 	private MenuService menuService;
 
-	@RequestMapping("/getUserMenu")
+	/**
+	 * 获取菜单列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/getMenuList")
 	@ResponseBody
-	public JsonResult getUserMenu(HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult getMenuList(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			Long roleId = user.getRoleId();
-			List<Menu> menuList = menuService.findMenuByRoleId(roleId);
+			List<Menu> menuList = menuService.queryMenuList(null);
 			jsonResult = JsonResult.build(FLAG_SUCCESS, menuList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

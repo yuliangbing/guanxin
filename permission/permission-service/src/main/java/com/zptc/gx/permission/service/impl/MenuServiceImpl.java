@@ -1,6 +1,7 @@
 package com.zptc.gx.permission.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,5 +37,10 @@ public class MenuServiceImpl implements MenuService {
 	public List<Menu> findMenuByRoleId(Long roleId) {
 		// TODO Auto-generated method stub
 		return menuMapper.findMenuByRoleId(roleId);
+	}
+	@Override
+	public List<Menu> queryMenuList(Map<String, Object> par) {
+		// TODO Auto-generated method stub
+		return menuMapper.queryMenuList(par);
 	}
 }

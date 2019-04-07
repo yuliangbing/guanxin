@@ -1,5 +1,6 @@
 package com.zptc.gx.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,11 +19,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
+import com.zptc.gx.permission.entity.Menu;
 import com.zptc.gx.permission.entity.ZptcUser;
+import com.zptc.gx.permission.service.MenuService;
 import com.zptc.gx.permission.service.ZptcUserService;
 import com.zptc.gx.util.MD5Util;
 import com.zptc.gx.util.RandomValidateCodeUtil;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.helper.menu.MenuVOHelper;
+import com.zptc.gx.vo.menu.MenuVO1;
 
 @Controller
 @RequestMapping("/home")
@@ -31,6 +36,9 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private ZptcUserService zptcUserService;
+	
+	@Autowired
+	private MenuService menuService;
 
 	/**
 	 * 登陆页
@@ -65,6 +73,12 @@ public class LoginController extends BaseController {
 		}
 	}
 
+	/**
+	 * 登陆
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/login")
 	@ResponseBody
 	public JsonResult login(HttpServletRequest request, HttpServletResponse response) {
@@ -89,12 +103,40 @@ public class LoginController extends BaseController {
 			ZptcUser zptcUser = userList.get(0);
 			// user存入session
 			request.getSession().setAttribute(Constant.USER_SESSION, zptcUser);
+			
+			long roleId = zptcUser.getRoleId();
+			
+			//获取menuList
+			List<MenuVO1> menuVO1List = new ArrayList<MenuVO1>();
+			List<Menu> menuList = menuService.findMenuByRoleId(roleId);
+			if (!CollectionUtils.isEmpty(menuList)) {
+				for (Menu menu : menuList) {
+					MenuVO1 menuVO1 = MenuVOHelper.getMenuVO1FromMenu(menu);
+					Map<String, Object> menuPar = new HashMap<>();
+					menuPar.put("parentId", menu.getId());
+					List<Menu> subMenuList = menuService.queryMenuList(menuPar);
+					if (!CollectionUtils.isEmpty(subMenuList)) {
+						menuVO1.setHasSubMenu(true);
+						menuVO1.setSubMenuList(MenuVOHelper.getMenuVO1ListFromMenuList(subMenuList));
+					} else {
+						menuVO1.setHasSubMenu(false);
+					}
+					menuVO1List.add(menuVO1);
+				}
+				request.getSession().setAttribute(Constant.USER_MENU, menuVO1List);
+			}
 		} else {
 			return JsonResult.build(FLAG_FAILED, "用户名或密码错误！");
 		}
 		return JsonResult.build(FLAG_SUCCESS);
 	}
 
+	/**
+	 * 注册
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/register")
 	@ResponseBody
 	public JsonResult register(HttpServletRequest request, HttpServletResponse response) {
@@ -140,6 +182,13 @@ public class LoginController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 获取用户信息
+	 * @param req
+	 * @param response
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/getUser")
 	@ResponseBody
 	public JsonResult getUser(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
@@ -156,6 +205,13 @@ public class LoginController extends BaseController {
 		}
 	}
 	
+	/**
+	 * 退出
+	 * @param req
+	 * @param response
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	@ResponseBody
 	public JsonResult logout(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
@@ -167,5 +223,25 @@ public class LoginController extends BaseController {
 			e.printStackTrace();
 			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
 		}
+	}
+	
+	@RequestMapping("/getUserMenu")
+	@ResponseBody
+	public JsonResult getUserMenu(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		
+		try {
+			List<MenuVO1> menuVO1List = (List<MenuVO1>) request.getSession().getAttribute(Constant.USER_MENU);
+			if (!CollectionUtils.isEmpty(menuVO1List)) {
+				jsonResult = JsonResult.build(FLAG_SUCCESS, menuVO1List);
+			} else {
+				jsonResult = JsonResult.build(FLAG_FAILED, "没有菜单！");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
 	}
 }
