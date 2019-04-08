@@ -1,5 +1,7 @@
 package com.zptc.gx.specialty.mapper;
 
+import java.util.List;
+
 import com.zptc.gx.specialty.entity.SpecialtyConstructionMeasures;
 
 public interface SpecialtyConstructionMeasuresMapper {
@@ -14,4 +16,6 @@ public interface SpecialtyConstructionMeasuresMapper {
     int updateByPrimaryKeySelective(SpecialtyConstructionMeasures record);
 
     int updateByPrimaryKey(SpecialtyConstructionMeasures record);
+
+	List<SpecialtyConstructionMeasures> getSpecialtyIdList(Long specialtyId);
 }

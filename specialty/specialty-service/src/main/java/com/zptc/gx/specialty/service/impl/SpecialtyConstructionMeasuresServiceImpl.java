@@ -1,5 +1,7 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,22 +14,37 @@ public class SpecialtyConstructionMeasuresServiceImpl implements SpecialtyConstr
 
 	@Autowired
 	private SpecialtyConstructionMeasuresMapper specialtyConstructionMeasuresMapper;
-
+	//新增
 	@Override
-	public void addSpecialtyConstructionMeasures(SpecialtyConstructionMeasures specialtyConstructionMeasures){
-		specialtyConstructionMeasuresMapper.insertSelective(specialtyConstructionMeasures);
+	public int addSpecialtyConstructionMeasures(SpecialtyConstructionMeasures specialtyConstructionMeasures){
+		return specialtyConstructionMeasuresMapper.insertSelective(specialtyConstructionMeasures);
 	}
+	//带if修改
 	@Override
-	public void modifySpecialtyConstructionMeasures(SpecialtyConstructionMeasures specialtyConstructionMeasures){
-		specialtyConstructionMeasuresMapper.updateByPrimaryKeySelective(specialtyConstructionMeasures);
+	public int modifySpecialtyConstructionMeasures(SpecialtyConstructionMeasures specialtyConstructionMeasures){
+		return  specialtyConstructionMeasuresMapper.updateByPrimaryKeySelective(specialtyConstructionMeasures);
 	}
+	//根据id删除数据
 	@Override
-	public void deleteSpecialtyConstructionMeasuresById(Long id){
-		specialtyConstructionMeasuresMapper.deleteByPrimaryKey(id);
+	public int deleteSpecialtyConstructionMeasuresById(Long id){
+		return  specialtyConstructionMeasuresMapper.deleteByPrimaryKey(id);
 	}
+	//根据id来查询
 	@Override
 	public SpecialtyConstructionMeasures findSpecialtyConstructionMeasuresById(Long id){
 		SpecialtyConstructionMeasures specialtyConstructionMeasures = specialtyConstructionMeasuresMapper.selectByPrimaryKey(id);
 		return specialtyConstructionMeasures;
+	}
+	//获取列表数据
+	@Override
+	public int modifySpecialtyConstructionAchievementsKey(SpecialtyConstructionMeasures specialtyConstructionMeasures) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionMeasuresMapper.updateByPrimaryKey(specialtyConstructionMeasures);
+	}
+	//不带if修改
+	@Override
+	public List<SpecialtyConstructionMeasures> getSpecialtyIdList(Long specialtyId) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionMeasuresMapper.getSpecialtyIdList(specialtyId);
 	}
 }

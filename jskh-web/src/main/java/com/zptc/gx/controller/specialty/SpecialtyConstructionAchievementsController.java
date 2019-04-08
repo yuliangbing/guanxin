@@ -98,7 +98,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 		@ResponseBody
 		public JsonResult updateSpecialtyConstructionAchievementsIf(HttpServletRequest request, HttpServletResponse response) {
 			JsonResult jsonResult = new JsonResult();
-			System.out.println("启用updateSpecialtyConstructionAchievements方法");
+			System.out.println("启用updateSpecialtyConstructionAchievementsIf方法");
 			try {
 				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 				
@@ -168,7 +168,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    specialtyConstructionAchievements.setDate(date);
 			    specialtyConstructionAchievements.setModifyUser(user.getTeaName());
 			    specialtyConstructionAchievements.setModifyTime(new Date());
-			    int result = specialtyConstructionAchievementsService.modifySpecialtyConstructionAchievements(specialtyConstructionAchievements);
+			    int result = specialtyConstructionAchievementsService.modifySpecialtyConstructionAchievementsKey(specialtyConstructionAchievements);
 			    if (result > 0) {
 			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
 				} else {
