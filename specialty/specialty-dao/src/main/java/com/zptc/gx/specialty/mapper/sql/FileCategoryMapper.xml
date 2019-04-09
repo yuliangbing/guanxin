@@ -5,19 +5,14 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
-    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
-    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
-    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
-    <result column="ext4" property="ext4" jdbcType="VARCHAR" />
-    <result column="ext5" property="ext5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, create_time, create_user, modify_time, modify_user, ext1, ext2, ext3, 
-    ext4, ext5
+    id, code, name, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -31,13 +26,11 @@
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.FileCategory" >
     insert into file_category (id, code, name, 
-      create_time, create_user, modify_time, 
-      modify_user, ext1, ext2, 
-      ext3, ext4, ext5)
+      status, create_time, create_user, 
+      modify_time, modify_user)
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{modifyUser,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
-      #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR})
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.FileCategory" >
     insert into file_category
@@ -51,6 +44,9 @@
       <if test="name != null" >
         name,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -63,21 +59,6 @@
       <if test="modifyUser != null" >
         modify_user,
       </if>
-      <if test="ext1 != null" >
-        ext1,
-      </if>
-      <if test="ext2 != null" >
-        ext2,
-      </if>
-      <if test="ext3 != null" >
-        ext3,
-      </if>
-      <if test="ext4 != null" >
-        ext4,
-      </if>
-      <if test="ext5 != null" >
-        ext5,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -88,6 +69,9 @@
       </if>
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
@@ -101,21 +85,6 @@
       <if test="modifyUser != null" >
         #{modifyUser,jdbcType=VARCHAR},
       </if>
-      <if test="ext1 != null" >
-        #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        #{ext5,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.specialty.entity.FileCategory" >
@@ -126,6 +95,9 @@
       </if>
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -139,21 +111,6 @@
       <if test="modifyUser != null" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
       </if>
-      <if test="ext1 != null" >
-        ext1 = #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        ext2 = #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        ext3 = #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        ext4 = #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        ext5 = #{ext5,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -161,15 +118,11 @@
     update file_category
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      modify_user = #{modifyUser,jdbcType=VARCHAR},
-      ext1 = #{ext1,jdbcType=VARCHAR},
-      ext2 = #{ext2,jdbcType=VARCHAR},
-      ext3 = #{ext3,jdbcType=VARCHAR},
-      ext4 = #{ext4,jdbcType=VARCHAR},
-      ext5 = #{ext5,jdbcType=VARCHAR}
+      modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

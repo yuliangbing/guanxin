@@ -11,6 +11,7 @@
     <result column="menu_order" property="menuOrder" jdbcType="INTEGER" />
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_id" property="createId" jdbcType="BIGINT" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -21,7 +22,8 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, menu_str, menu_num, parent_id, parent_str, parent_num, menu_order, url, remark, 
-    create_id, create_user, create_time, modify_id, modify_user, modify_time, show_type
+    status, create_id, create_user, create_time, modify_id, modify_user, modify_time, 
+    show_type
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -37,17 +39,15 @@
     insert into menu (id, menu_str, menu_num, 
       parent_id, parent_str, parent_num, 
       menu_order, url, remark, 
-      create_id, create_user, create_time, 
-      modify_id, modify_user, modify_time,
-      show_type
-      )
+      status, create_id, create_user, 
+      create_time, modify_id, modify_user, 
+      modify_time, show_type)
     values (#{id,jdbcType=BIGINT}, #{menuStr,jdbcType=VARCHAR}, #{menuNum,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{parentStr,jdbcType=VARCHAR}, #{parentNum,jdbcType=VARCHAR}, 
       #{menuOrder,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
-      #{showType,jdbcType=INTEGER}
-      )
+      #{status,jdbcType=INTEGER}, #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{showType,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu
@@ -78,6 +78,9 @@
       </if>
       <if test="remark != null" >
         remark,
+      </if>
+      <if test="status != null" >
+        status,
       </if>
       <if test="createId != null" >
         create_id,
@@ -129,6 +132,9 @@
       <if test="remark != null" >
         #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
       <if test="createId != null" >
         #{createId,jdbcType=BIGINT},
       </if>
@@ -179,6 +185,9 @@
       <if test="remark != null" >
         remark = #{remark,jdbcType=VARCHAR},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
       <if test="createId != null" >
         create_id = #{createId,jdbcType=BIGINT},
       </if>
@@ -213,6 +222,7 @@
       menu_order = #{menuOrder,jdbcType=INTEGER},
       url = #{url,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
       create_id = #{createId,jdbcType=BIGINT},
       create_user = #{createUser,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

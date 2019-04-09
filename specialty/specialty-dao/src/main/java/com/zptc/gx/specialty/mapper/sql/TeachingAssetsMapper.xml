@@ -18,20 +18,16 @@
     <result column="training_room" property="trainingRoom" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
-    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
-    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
-    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
-    <result column="ext4" property="ext4" jdbcType="VARCHAR" />
-    <result column="ext5" property="ext5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, cate_code, name, model_num, specification, sources, date, total_amount, country_code, 
     code, manufacturer, use_person, status_code, training_room, remark, specialty_id, 
-    create_time, create_user, modify_time, modify_user, ext1, ext2, ext3, ext4, ext5
+    status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -49,18 +45,16 @@
       date, total_amount, country_code, 
       code, manufacturer, use_person, 
       status_code, training_room, remark, 
-      specialty_id, create_time, create_user, 
-      modify_time, modify_user, ext1, 
-      ext2, ext3, ext4, ext5
+      specialty_id, status, create_time, 
+      create_user, modify_time, modify_user
       )
     values (#{id,jdbcType=BIGINT}, #{cateCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{modelNum,jdbcType=VARCHAR}, #{specification,jdbcType=VARCHAR}, #{sources,jdbcType=VARCHAR}, 
       #{date,jdbcType=TIMESTAMP}, #{totalAmount,jdbcType=DECIMAL}, #{countryCode,jdbcType=VARCHAR}, 
       #{code,jdbcType=VARCHAR}, #{manufacturer,jdbcType=VARCHAR}, #{usePerson,jdbcType=VARCHAR}, 
       #{statusCode,jdbcType=VARCHAR}, #{trainingRoom,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{specialtyId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
-      #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR}
+      #{specialtyId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.TeachingAssets" >
@@ -114,6 +108,9 @@
       <if test="specialtyId != null" >
         specialty_id,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -125,21 +122,6 @@
       </if>
       <if test="modifyUser != null" >
         modify_user,
-      </if>
-      <if test="ext1 != null" >
-        ext1,
-      </if>
-      <if test="ext2 != null" >
-        ext2,
-      </if>
-      <if test="ext3 != null" >
-        ext3,
-      </if>
-      <if test="ext4 != null" >
-        ext4,
-      </if>
-      <if test="ext5 != null" >
-        ext5,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -191,6 +173,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -202,21 +187,6 @@
       </if>
       <if test="modifyUser != null" >
         #{modifyUser,jdbcType=VARCHAR},
-      </if>
-      <if test="ext1 != null" >
-        #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        #{ext5,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -268,6 +238,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -279,21 +252,6 @@
       </if>
       <if test="modifyUser != null" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
-      </if>
-      <if test="ext1 != null" >
-        ext1 = #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        ext2 = #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        ext3 = #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        ext4 = #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        ext5 = #{ext5,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -315,15 +273,11 @@
       training_room = #{trainingRoom,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      modify_user = #{modifyUser,jdbcType=VARCHAR},
-      ext1 = #{ext1,jdbcType=VARCHAR},
-      ext2 = #{ext2,jdbcType=VARCHAR},
-      ext3 = #{ext3,jdbcType=VARCHAR},
-      ext4 = #{ext4,jdbcType=VARCHAR},
-      ext5 = #{ext5,jdbcType=VARCHAR}
+      modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

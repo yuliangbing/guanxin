@@ -11,15 +11,17 @@ public class ZptcUser {
 
     private String tel;
 
+    private Long roleId;
+
+    private String roleName;
+
+    private String password;
+
     private Date registerTime;
 
     private Date modifyTime;
 
-    private Long roleId;
-
-    private String roleName;
-    
-    private String password;
+    private Integer status;
 
     public Long getId() {
         return id;
@@ -53,22 +55,6 @@ public class ZptcUser {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public Date getRegisterTime() {
-        return registerTime;
-    }
-
-    public void setRegisterTime(Date registerTime) {
-        this.registerTime = registerTime;
-    }
-
-    public Date getModifyTime() {
-        return modifyTime;
-    }
-
-    public void setModifyTime(Date modifyTime) {
-        this.modifyTime = modifyTime;
-    }
-
     public Long getRoleId() {
         return roleId;
     }
@@ -85,11 +71,35 @@ public class ZptcUser {
         this.roleName = roleName == null ? null : roleName.trim();
     }
 
-	public String getPassword() {
-		return password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public Date getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public Date getModifyTime() {
+        return modifyTime;
+    }
+
+    public void setModifyTime(Date modifyTime) {
+        this.modifyTime = modifyTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 }

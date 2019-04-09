@@ -2,20 +2,12 @@ package com.zptc.gx.specialty.entity;
 
 import java.util.Date;
 
-public class SpecialtyFiles {
+public class OrganizationMember {
     private Long id;
 
-    private Date date;
-
-    private String code;
+    private String position;
 
     private String name;
-
-    private String cateName;
-
-    private String reviser;
-
-    private Long specialtyId;
 
     private Integer status;
 
@@ -35,20 +27,12 @@ public class SpecialtyFiles {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public String getPosition() {
+        return position;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+    public void setPosition(String position) {
+        this.position = position == null ? null : position.trim();
     }
 
     public String getName() {
@@ -57,30 +41,6 @@ public class SpecialtyFiles {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getCateName() {
-        return cateName;
-    }
-
-    public void setCateName(String cateName) {
-        this.cateName = cateName == null ? null : cateName.trim();
-    }
-
-    public String getReviser() {
-        return reviser;
-    }
-
-    public void setReviser(String reviser) {
-        this.reviser = reviser == null ? null : reviser.trim();
-    }
-
-    public Long getSpecialtyId() {
-        return specialtyId;
-    }
-
-    public void setSpecialtyId(Long specialtyId) {
-        this.specialtyId = specialtyId;
     }
 
     public Integer getStatus() {

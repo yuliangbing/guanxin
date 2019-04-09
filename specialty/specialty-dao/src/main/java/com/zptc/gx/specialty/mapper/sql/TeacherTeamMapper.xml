@@ -10,20 +10,15 @@
     <result column="specialty_teachers" property="specialtyTeachers" jdbcType="VARCHAR" />
     <result column="part_time_teachers" property="partTimeTeachers" jdbcType="VARCHAR" />
     <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="latest" property="latest" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
-    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
-    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
-    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
-    <result column="ext4" property="ext4" jdbcType="VARCHAR" />
-    <result column="ext5" property="ext5" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, specialty_id, specialty_code, specialty_name, date, specialty_teachers, part_time_teachers, 
-    director, create_time, create_user, modify_time, modify_user, ext1, ext2, ext3, ext4, 
-    ext5
+    director, latest, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -38,16 +33,14 @@
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.TeacherTeam" >
     insert into teacher_team (id, specialty_id, specialty_code, 
       specialty_name, date, specialty_teachers, 
-      part_time_teachers, director, create_time, 
-      create_user, modify_time, modify_user, 
-      ext1, ext2, ext3, ext4, 
-      ext5)
+      part_time_teachers, director, latest, 
+      create_time, create_user, modify_time, 
+      modify_user)
     values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{specialtyCode,jdbcType=VARCHAR}, 
       #{specialtyName,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{specialtyTeachers,jdbcType=VARCHAR}, 
-      #{partTimeTeachers,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
-      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, 
-      #{ext5,jdbcType=VARCHAR})
+      #{partTimeTeachers,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{latest,jdbcType=CHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.TeacherTeam" >
     insert into teacher_team
@@ -76,6 +69,9 @@
       <if test="director != null" >
         director,
       </if>
+      <if test="latest != null" >
+        latest,
+      </if>
       <if test="createTime != null" >
         create_time,
       </if>
@@ -87,21 +83,6 @@
       </if>
       <if test="modifyUser != null" >
         modify_user,
-      </if>
-      <if test="ext1 != null" >
-        ext1,
-      </if>
-      <if test="ext2 != null" >
-        ext2,
-      </if>
-      <if test="ext3 != null" >
-        ext3,
-      </if>
-      <if test="ext4 != null" >
-        ext4,
-      </if>
-      <if test="ext5 != null" >
-        ext5,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -129,6 +110,9 @@
       <if test="director != null" >
         #{director,jdbcType=VARCHAR},
       </if>
+      <if test="latest != null" >
+        #{latest,jdbcType=CHAR},
+      </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -140,21 +124,6 @@
       </if>
       <if test="modifyUser != null" >
         #{modifyUser,jdbcType=VARCHAR},
-      </if>
-      <if test="ext1 != null" >
-        #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        #{ext5,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -182,6 +151,9 @@
       <if test="director != null" >
         director = #{director,jdbcType=VARCHAR},
       </if>
+      <if test="latest != null" >
+        latest = #{latest,jdbcType=CHAR},
+      </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -193,21 +165,6 @@
       </if>
       <if test="modifyUser != null" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
-      </if>
-      <if test="ext1 != null" >
-        ext1 = #{ext1,jdbcType=VARCHAR},
-      </if>
-      <if test="ext2 != null" >
-        ext2 = #{ext2,jdbcType=VARCHAR},
-      </if>
-      <if test="ext3 != null" >
-        ext3 = #{ext3,jdbcType=VARCHAR},
-      </if>
-      <if test="ext4 != null" >
-        ext4 = #{ext4,jdbcType=VARCHAR},
-      </if>
-      <if test="ext5 != null" >
-        ext5 = #{ext5,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -221,15 +178,11 @@
       specialty_teachers = #{specialtyTeachers,jdbcType=VARCHAR},
       part_time_teachers = #{partTimeTeachers,jdbcType=VARCHAR},
       director = #{director,jdbcType=VARCHAR},
+      latest = #{latest,jdbcType=CHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      modify_user = #{modifyUser,jdbcType=VARCHAR},
-      ext1 = #{ext1,jdbcType=VARCHAR},
-      ext2 = #{ext2,jdbcType=VARCHAR},
-      ext3 = #{ext3,jdbcType=VARCHAR},
-      ext4 = #{ext4,jdbcType=VARCHAR},
-      ext5 = #{ext5,jdbcType=VARCHAR}
+      modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

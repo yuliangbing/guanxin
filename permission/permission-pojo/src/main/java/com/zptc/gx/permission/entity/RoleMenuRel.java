@@ -9,6 +9,8 @@ public class RoleMenuRel {
 
     private Long menuId;
 
+    private Integer status;
+
     private Long createId;
 
     private String createUser;
@@ -43,6 +45,14 @@ public class RoleMenuRel {
 
     public void setMenuId(Long menuId) {
         this.menuId = menuId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getCreateId() {

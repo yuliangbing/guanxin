@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zptc.gx.specialty.mapper.InnovationEntrepreneurialAchievementsMapper" >
-  <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements" >
+<mapper namespace="com.zptc.gx.specialty.mapper.OrganizationTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.OrganizationType" >
     <id column="id" property="id" jdbcType="BIGINT" />
-    <result column="date" property="date" jdbcType="TIMESTAMP" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="participants" property="participants" jdbcType="VARCHAR" />
-    <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -14,46 +11,34 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, date, content, participants, specialty_id, status, create_time, create_user, 
-    modify_time, modify_user
+    id, name, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from innovation_entrepreneurial_achievements
+    from organization_type
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from innovation_entrepreneurial_achievements
+    delete from organization_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements" >
-    insert into innovation_entrepreneurial_achievements (id, date, content, 
-      participants, specialty_id, status, 
+  <insert id="insert" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+    insert into organization_type (id, name, status, 
       create_time, create_user, modify_time, 
       modify_user)
-    values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
-      #{participants,jdbcType=VARCHAR}, #{specialtyId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements" >
-    insert into innovation_entrepreneurial_achievements
+  <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+    insert into organization_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="date != null" >
-        date,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-      <if test="participants != null" >
-        participants,
-      </if>
-      <if test="specialtyId != null" >
-        specialty_id,
+      <if test="name != null" >
+        name,
       </if>
       <if test="status != null" >
         status,
@@ -75,17 +60,8 @@
       <if test="id != null" >
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="date != null" >
-        #{date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="participants != null" >
-        #{participants,jdbcType=VARCHAR},
-      </if>
-      <if test="specialtyId != null" >
-        #{specialtyId,jdbcType=BIGINT},
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -104,20 +80,11 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements" >
-    update innovation_entrepreneurial_achievements
+  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+    update organization_type
     <set >
-      <if test="date != null" >
-        date = #{date,jdbcType=TIMESTAMP},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="participants != null" >
-        participants = #{participants,jdbcType=VARCHAR},
-      </if>
-      <if test="specialtyId != null" >
-        specialty_id = #{specialtyId,jdbcType=BIGINT},
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -137,12 +104,9 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.InnovationEntrepreneurialAchievements" >
-    update innovation_entrepreneurial_achievements
-    set date = #{date,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=VARCHAR},
-      participants = #{participants,jdbcType=VARCHAR},
-      specialty_id = #{specialtyId,jdbcType=BIGINT},
+  <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+    update organization_type
+    set name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},

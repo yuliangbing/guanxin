@@ -21,6 +21,8 @@ public class Menu {
 
     private String remark;
 
+    private Integer status;
+
     private Long createId;
 
     private String createUser;
@@ -32,8 +34,7 @@ public class Menu {
     private String modifyUser;
 
     private Date modifyTime;
-    
-    //1为显示，2为不显示
+
     private Integer showType;
 
     public Long getId() {
@@ -108,6 +109,14 @@ public class Menu {
         this.remark = remark == null ? null : remark.trim();
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Long getCreateId() {
         return createId;
     }
@@ -156,11 +165,11 @@ public class Menu {
         this.modifyTime = modifyTime;
     }
 
-	public Integer getShowType() {
-		return showType;
-	}
+    public Integer getShowType() {
+        return showType;
+    }
 
-	public void setShowType(Integer showType) {
-		this.showType = showType;
-	}
+    public void setShowType(Integer showType) {
+        this.showType = showType;
+    }
 }

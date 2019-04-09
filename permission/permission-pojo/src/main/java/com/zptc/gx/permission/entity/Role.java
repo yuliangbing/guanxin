@@ -13,6 +13,8 @@ public class Role {
 
     private Integer roleOrder;
 
+    private Integer status;
+
     private Long createId;
 
     private String createUser;
@@ -63,6 +65,14 @@ public class Role {
 
     public void setRoleOrder(Integer roleOrder) {
         this.roleOrder = roleOrder;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public Long getCreateId() {
