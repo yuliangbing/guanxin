@@ -12,25 +12,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.fabric.xmlrpc.base.Data;
-import com.zptc.gx.branch.entity.BranchIntroduction;
-import com.zptc.gx.branch.service.BranchIntroductionService;
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
 import com.zptc.gx.controller.BaseController;
-import com.zptc.gx.controller.permission.MenuController;
-import com.zptc.gx.permission.entity.Menu;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.specialty.entity.Specialty;
-import com.zptc.gx.specialty.service.SpecialtyConstructionMeasuresService;
 import com.zptc.gx.specialty.service.SpecialtyService;
-import com.zptc.gx.util.MD5Util;
 import com.zptc.gx.util.ToolUtil;
 
 @Controller
 @RequestMapping("/specialty")
-public class SpecialtyControll extends BaseController {
-	private Logger logger = Logger.getLogger(SpecialtyControll.class);
+public class SpecialtyController extends BaseController {
+	private Logger logger = Logger.getLogger(SpecialtyController.class);
 	
 	@Autowired
 	private SpecialtyService specialtyService; 
