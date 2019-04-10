@@ -38,8 +38,8 @@ public class SpecialtyController extends BaseController {
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//Long roleId = user.getRoleId();
-			Long specialtyId = user.getRoleId();
-			List<Specialty> specialtyList = specialtyService.getSpecialtyIdList(specialtyId);
+//			Long specialtyId = user.getRoleId();
+			List<Specialty> specialtyList = specialtyService.getSpecialtyIdList(null);
 			jsonResult = JsonResult.build(FLAG_SUCCESS, specialtyList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
