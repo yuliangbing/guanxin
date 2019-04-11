@@ -35,6 +35,7 @@ function login(){
 		$.ajax({ 
 		     type : "POST", //提交方式 
 		     url : window.path +"/home/login",//路径 
+		     //url:window.path+"/specialtyFiles/getSpecialtyFilesList",
 		     data : { 
 		    	 "username": username,
 			     "password": password,
@@ -42,8 +43,9 @@ function login(){
 		     },//数据，这里使用的是Json格式进行传输 
 		     dataType:"json",
 		     success : function(result) {//返回数据根据结果进行相应的处理 
-		    	 if (result.status == "200") { 
+		    	 if (result.code == "0") { 
 		    		window.location.href="/toPage?page=index"; 
+		    		//window.location.href="/toPage?page=/specialty_files/specialty_filesList"; 
 			     } else { 
 			    	layer.msg(result.msg);
 			    	$("#imgVerify").attr('src', window.path+"/home/getVerify?"+Math.random());

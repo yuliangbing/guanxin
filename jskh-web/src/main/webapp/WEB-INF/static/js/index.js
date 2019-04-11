@@ -11,7 +11,7 @@ function getSystemName() {
 		data : {},// 数据，这里使用的是Json格式进行传输
 		dataType : "json",
 		success : function(result) {// 返回数据根据结果进行相应的处理
-			if (result.status == "200") {
+			if (result.code == "0") {
 				$("#systemName").html(result.data.systemName);
 				$("#systemName").attr("href", result.data.systemLink);
 			} else {
@@ -31,7 +31,7 @@ function getUser() {
 		data : {},// 数据，这里使用的是Json格式进行传输
 		dataType : "json",
 		success : function(result) {// 返回数据根据结果进行相应的处理
-			if (result.status == "200" && result.data.user != null) {
+			if (result.code == "0" && result.data.user != null) {
 				$("#username").html(result.data.user.teaName);
 			} else {
 				layer.msg(result.msg);
@@ -50,7 +50,7 @@ function logout() {
 		data : {},// 数据，这里使用的是Json格式进行传输
 		dataType : "json",
 		success : function(result) {// 返回数据根据结果进行相应的处理
-			if (result.status == "200") {
+			if (result.code == "0") {
 				layer.alert("退出成功!", function(){
 					window.location.href="/home/toLogin";
 				});       
@@ -71,7 +71,7 @@ function getUserMenu() {
 		data : {},// 数据，这里使用的是Json格式进行传输
 		dataType : "json",
 		success : function(result) {// 返回数据根据结果进行相应的处理
-			if (result.status == "200") {
+			if (result.code == "0") {
 				$('#nav').empty();
 				var menuList = result.data;
 				var html_ = "";
