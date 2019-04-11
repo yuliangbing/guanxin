@@ -5,6 +5,8 @@ import java.util.List;
 import com.zptc.gx.permission.entity.Menu;
 
 public class MenuVO1 {
+	private Long id;
+	
     private String menuStr;
 
     private String menuNum;
@@ -14,6 +16,14 @@ public class MenuVO1 {
     private boolean hasSubMenu;
     
     private List<MenuVO1> subMenuList;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getMenuStr() {
 		return menuStr;

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
 import com.zptc.gx.permission.entity.Menu;
@@ -107,23 +108,11 @@ public class LoginController extends BaseController {
 			long roleId = zptcUser.getRoleId();
 			
 			//获取menuList
-			List<MenuVO1> menuVO1List = new ArrayList<MenuVO1>();
-			List<Menu> menuList = menuService.findMenuByRoleId(roleId);
+			List<Menu> menuList = menuService.findParentMenuByRoleId(roleId);
 			if (!CollectionUtils.isEmpty(menuList)) {
-				for (Menu menu : menuList) {
-					MenuVO1 menuVO1 = MenuVOHelper.getMenuVO1FromMenu(menu);
-					Map<String, Object> menuPar = new HashMap<>();
-					menuPar.put("parentId", menu.getId());
-					List<Menu> subMenuList = menuService.queryMenuList(menuPar);
-					if (!CollectionUtils.isEmpty(subMenuList)) {
-						menuVO1.setHasSubMenu(true);
-						menuVO1.setSubMenuList(MenuVOHelper.getMenuVO1ListFromMenuList(subMenuList));
-					} else {
-						menuVO1.setHasSubMenu(false);
-					}
-					menuVO1List.add(menuVO1);
-				}
-				request.getSession().setAttribute(Constant.USER_MENU, menuVO1List);
+				List<MenuVO1> menuVOList = getMenuVOList(menuList);
+				System.out.println("+++++++++++++menuVOList:"+JSON.toJSONString(menuVOList));
+				request.getSession().setAttribute(Constant.USER_MENU, menuVOList);
 			}
 		} else {
 			return JsonResult.build(FLAG_FAILED, "用户名或密码错误！");
@@ -243,5 +232,24 @@ public class LoginController extends BaseController {
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
 		return jsonResult;
+	}
+	
+	private List<MenuVO1> getMenuVOList(List<Menu> menuList){
+		List<MenuVO1> menuVOList = new ArrayList<>();
+		for (Menu parentMenu : menuList) {
+			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
+			Map<String, Object> menuPar = new HashMap<>();
+			menuPar.put("parentId", parentMenu.getId());
+			List<Menu> subMenuList = menuService.queryMenuList(menuPar);
+			if (!CollectionUtils.isEmpty(subMenuList)) {
+				parentMenuVO.setHasSubMenu(true);
+				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList);
+				parentMenuVO.setSubMenuList(subMenuVOList);
+			} else {
+				parentMenuVO.setHasSubMenu(false);
+			}
+			menuVOList.add(parentMenuVO);
+		}
+		return menuVOList;
 	}
 }

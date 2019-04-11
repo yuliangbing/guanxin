@@ -34,9 +34,9 @@ public class MenuServiceImpl implements MenuService {
 		return menu;
 	}
 	@Override
-	public List<Menu> findMenuByRoleId(Long roleId) {
+	public List<Menu> findParentMenuByRoleId(Long roleId) {
 		// TODO Auto-generated method stub
-		return menuMapper.findMenuByRoleId(roleId);
+		return menuMapper.findParentMenuByRoleId(roleId);
 	}
 	@Override
 	public List<Menu> queryMenuList(Map<String, Object> par) {
