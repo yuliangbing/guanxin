@@ -10,85 +10,61 @@ public class JsonResult {
     // 定义jackson对象
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    // 响应业务状态
-    private Integer status;
-
     // 响应消息
     private String msg;
 
     // 响应中的数据
     private Object data;
-
-    public static JsonResult build(Integer status, String msg, Object data) {
-        return new JsonResult(status, msg, data);
-    }
     
-    public static JsonResult build(Integer status, Object data) {
-        return new JsonResult(status, null, data);
-    }
+    private Integer code;
     
-    public static JsonResult build(Integer status) {
-        return new JsonResult(status, null, null);
-    }
-
-    public static JsonResult ok(Object data) {
-        return new JsonResult(data);
-    }
-
-    public static JsonResult ok() {
-        return new JsonResult(null);
-    }
+    private Integer count;
 
     public JsonResult() {
 
     }
-
-    public static JsonResult build(Integer status, String msg) {
-        return new JsonResult(status, msg, null);
+    
+    public JsonResult(Integer code) {
+    	this.code = code;
     }
-
-    public JsonResult(Integer status, String msg, Object data) {
-        this.status = status;
-        this.msg = msg;
-        this.data = data;
+    
+    public JsonResult(String msg) {
+    	this.msg = msg;
     }
-
-    public JsonResult(Object data) {
-        this.status = 200;
-        this.msg = "OK";
-        this.data = data;
+    
+    public JsonResult(Integer code, Object data, String msg, Integer count) {
+    	this.code = code;
+    	this.data = data;
+    	this.msg = msg;
+    	this.count = count;
     }
-
-//    public Boolean isOK() {
-//        return this.status == 200;
-//    }
-
-    public Integer getStatus() {
-        return status;
+    
+    public static JsonResult success(Integer code) {
+        return new JsonResult(code);
     }
-
-    public void setStatus(Integer status) {
-        this.status = status;
+    
+    public static JsonResult success(String msg) {
+        return new JsonResult(msg);
     }
-
-    public String getMsg() {
-        return msg;
+    
+    public static JsonResult build(Integer code) {
+        return new JsonResult(code, null, null, null);
     }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
+    
+    public static JsonResult build(Integer code, String msg) {
+        return new JsonResult(code, null, msg, null);
     }
-
-    public Object getData() {
-        return data;
+    
+    public static JsonResult build(Integer code, Object data) {
+        return new JsonResult(code, data, null, null);
     }
-
-    public void setData(Object data) {
-        this.data = data;
+    
+    public static JsonResult build(Integer code, Object data, String msg, Integer count) {
+        return new JsonResult(code, data, msg, count);
     }
 
     /**
-     * 将json结果集转化为TaotaoResult对象
+     * 将json结果集转化为JsonResult对象
      * 
      * @param jsonData json数据
      * @param clazz TaotaoResult中的object类型
@@ -109,7 +85,7 @@ public class JsonResult {
                     obj = MAPPER.readValue(data.asText(), clazz);
                 }
             }
-            return build(jsonNode.get("status").intValue(), jsonNode.get("msg").asText(), obj);
+            return build(jsonNode.get("code").intValue(), obj, jsonNode.get("msg").asText(), jsonNode.get("count").intValue());
         } catch (Exception e) {
             return null;
         }
@@ -146,10 +122,41 @@ public class JsonResult {
                 obj = MAPPER.readValue(data.traverse(),
                         MAPPER.getTypeFactory().constructCollectionType(List.class, clazz));
             }
-            return build(jsonNode.get("status").intValue(), jsonNode.get("msg").asText(), obj);
+            return build(jsonNode.get("code").intValue(), obj, jsonNode.get("msg").asText(), jsonNode.get("count").intValue());
         } catch (Exception e) {
             return null;
         }
     }
 
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
+	public Integer getCode() {
+		return code;
+	}
+
+	public void setCode(Integer code) {
+		this.code = code;
+	}
+
+	public Integer getCount() {
+		return count;
+	}
+
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 }

@@ -174,11 +174,11 @@ public class LoginController extends BaseController {
 			
 			par.put("systemName", systemName);
 			par.put("systemLink", basePath);
-			return JsonResult.build(FLAG_SUCCESS, null, par);
+			return JsonResult.build(FLAG_SUCCESS, par);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
 	
@@ -197,11 +197,11 @@ public class LoginController extends BaseController {
 			
 			ZptcUser user = (ZptcUser) req.getSession().getAttribute(Constant.USER_SESSION);
 			par.put("user", user);
-			return JsonResult.build(FLAG_SUCCESS, null, par);
+			return JsonResult.build(FLAG_SUCCESS, par);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
 	
@@ -221,7 +221,7 @@ public class LoginController extends BaseController {
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR, e.getMessage());
+			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
 	

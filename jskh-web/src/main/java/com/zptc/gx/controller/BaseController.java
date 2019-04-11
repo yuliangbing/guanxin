@@ -11,7 +11,7 @@ public class BaseController {
 
 	private Logger logger = Logger.getLogger(BaseController.class);
 	
-	public static final Integer FLAG_SUCCESS = 200;// 请求响应成功
+	public static final Integer FLAG_SUCCESS = 0;// 请求响应成功
 	public static final Integer FLAG_FAILED = 500;// 请求响应失败
 	
 	public Map<String, Object> getMap(){
