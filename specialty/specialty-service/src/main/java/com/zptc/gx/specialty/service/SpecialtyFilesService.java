@@ -1,15 +1,25 @@
 package com.zptc.gx.specialty.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.zptc.gx.specialty.entity.SpecialtyFiles;
 
 public interface SpecialtyFilesService {
-
-	public void addSpecialtyFiles(SpecialtyFiles specialtyFiles);
-
-	public void modifySpecialtyFiles(SpecialtyFiles specialtyFiles);
-
-	public void deleteSpecialtyFilesById(Long id);
-
+	//添加专业文件
+	public int addSpecialtyFiles(SpecialtyFiles specialtyFiles);
+	//修改专业文件
+	//带if条件
+	public int modifySpecialtyFiles(SpecialtyFiles specialtyFiles);
+	//不带if条件
+	public int modifySpecialtyFilesKey(SpecialtyFiles specialtyFiles);
+	//删除专业文件
+	public int deleteSpecialtyFilesById(Long id);
+	//根据id查询专业文件数据
 	public SpecialtyFiles findSpecialtyFilesById(Long id);
+	//获取专业文件全部数据
+	public List<SpecialtyFiles> getSpecialtyFilesList(Object object);
+	
+	public List<Map<String, Object>> getSpecialtyFilesListMap(Object object);
 
 }

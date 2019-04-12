@@ -174,4 +174,13 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  
+    <!-- 自定义 -->
+  <!-- 查询列表数据 -->
+  <select id="getSpecialtyFilesList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select
+    <include refid="Base_Column_List" />
+    from specialty_files
+  </select>
 </mapper>

@@ -34,24 +34,30 @@
 				//第一个表格
 				var tableIns = table.render({
 					elem: '#demoList'
-					//,url: 'http://47.111.23.192:82/hmBack/adminApi/examination/getExaminationListById?id=1' //数据接口
-					,data:data
+					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
+					//,data:data
 					,parseData: function(res) { //res 即为原始返回的数据
 						console.log(res);
 						return {
 							"code": res.code, //解析接口状态
-							"msg": res.success, //解析提示文本
-							"count": res.counts, //解析数据长度
-							"data": res.examinationList //解析数据列表
+							"msg": res.msg, //解析提示文本
+							"count": res.count, //解析数据长度
+							"data": res.data //解析数据列表
 						};
-					},
+					}
+						,
 					page: true,
+					toolbar: '#toolbarDemo',
 					limits: [10, 20, 30] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 						// ,toolbar:true//开启表格头部工具栏区域
 						,
 					loading: true,
 					cols: [
 						[ //表头
+							{
+								type:'checkbox'
+								,fixed:'left'
+							},
 							{
 								field: 'id',
 								title: '主键',
@@ -121,37 +127,37 @@
 								sort: true,
 								align: 'center'
 							},{
-								field: 'right',
+								fixed: 'right',
 								title: '操作',
 								toolbar: '#barDemo',
-								width: '30%',
+								width: '15%',
 								sort: false,
 								align: 'center'
 							}
 						]
 					],
-					response: {
-						statusName: 'code' //数据状态的字段名称，默认：code
-							,
-						statusCode: 0 //成功的状态码，默认：0
-							,
-						msgName: 'msg' //状态信息的字段名称，默认：msg
-							,
-						countName: 'count' //数据总数的字段名称，默认：count
-							,
-						dataName: 'data' //数据列表的字段名称，默认：data
-					},
-					done: function(res, curr, count) {
-						//如果是异步请求数据方式，res即为你接口返回的信息。
-						//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-						console.log(res);
-
-						//得到当前页码
-						console.log(curr);
-
-						//得到数据总量
-						console.log(count);
-					}
+//					response: {
+//						statusName: 'code' //数据状态的字段名称，默认：code
+//							,
+//						statusCode: 0 //成功的状态码，默认：0
+//							,
+//						msgName: 'msg' //状态信息的字段名称，默认：msg
+//							,
+//						countName: 'count' //数据总数的字段名称，默认：count
+//							,
+//						dataName: 'data' //数据列表的字段名称，默认：data
+//					},
+//					done: function(res, curr, count) {
+//						//如果是异步请求数据方式，res即为你接口返回的信息。
+//						//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+//						console.log(res);
+//
+//						//得到当前页码
+//						console.log(curr);
+//
+//						//得到数据总量
+//						console.log(count);
+//					}
 					//,id: 'idTest'
 				});
 				/*
@@ -164,11 +170,12 @@
 //						data.field.paymentDt2 = data.field.paymentDt.split('~')[1];
 //					}
 					//layer.msg(JSON.stringify(data.field));
-					var username = $('#username').val();
+					var code = $('#code').val();
+					
 					tableIns.reload({
 			
 						where: {
-							'name':username
+							'code':code
 						},
 						page: {
 							curr: 1
@@ -193,24 +200,44 @@
 									type: 2,
 									title: '修改窗口',
 									area:['90%','90%'],
-									content: '/jsp/specialty_update.jsp'
+									content:  window.location.href="/toPage?page=specialty_files/specialty_update"
 							});
 					} else if(layEvent==='check'){
+						layer.msg('用户名：'+ data.tea_name + ' 的查看操作');
 						layer.open({
 							type:2,
 							title:'查看',
 							area:['90%','90%'],
 							anim:0,
-							content:'/jsp/specialty_check.jsp'
+							content: window.location.href="/toPage?page=specialty_files/specialty_check",
+
 						});
-					} else if(layEvent==='insert'){
-						layer.open({
-							type:2,
-							title:'新增',
-							area:['90%','90%'],
-							anim:0,
-							content:'/jsp/specialty_insert.jsp'
-						});
-					}
+					} 
+//					else if(layEvent==='insert'){
+//						layer.open({
+//							type:2,
+//							title:'新增',
+//							area:['90%','90%'],
+//							anim:0,
+//							content:'/jsp/specialty_insert.jsp'
+//						});
+//					}
 				});
+				//头工具栏事件
+				  table.on('toolbar(test)', function(obj){
+				    var checkStatus = table.checkStatus(obj.config.id);
+				    switch(obj.event){
+				      case 'getCheckData':
+				        var data = checkStatus.data;
+				        layer.alert(JSON.stringify(data));
+				      break;
+				      case 'getCheckLength':
+				        var data = checkStatus.data;
+				        layer.msg('选中了：'+ data.length + ' 个');
+				      break;
+				      case 'isAll':
+				        layer.msg(checkStatus.isAll ? '全选': '未全选');
+				      break;
+				    };
+				  });
 			});

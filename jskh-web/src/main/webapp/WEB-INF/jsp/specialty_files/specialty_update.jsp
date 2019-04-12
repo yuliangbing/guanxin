@@ -17,7 +17,7 @@
 		<form class="layui-form" action="" onsubmit="return false;">
 			<div class="layui-form-item">
 				<fieldset class="layui-elem-field">
-					<legend>新增专业文件</legend>
+					<legend>修改专业文件</legend>
 					<div class="layui-form-item">
 					    <label class="layui-form-label" for="date">文件时间</label>
 					    <div class="layui-input-block">
