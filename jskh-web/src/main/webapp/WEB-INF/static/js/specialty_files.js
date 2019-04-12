@@ -7,7 +7,8 @@
 
 			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
-
+				var table = layui.table;
+				
 				/*
 				 实现时间选择
 				 */
@@ -23,36 +24,30 @@
 				/*
 				 表格
 				 */
-				var table = layui.table;
-				//data数据
-				var data = [
-				{id:1,'code':'管理员菜单','cate_name':'1111'},{id:2,'code':'root菜单','menu_num':'2222'},{id:3,'code':'psd','menu_num':'333'}
-				,{id:4,'code':'管理员菜单','cate_name':'1111'},{id:5,'code':'root菜单','menu_num':'2222'},{id:6,'code':'psd','menu_num':'333'}
-				,{id:7,'code':'管理员菜单','cate_name':'1111'},{id:8,'code':'root菜单','menu_num':'2222'},{id:9,'code':'psd','menu_num':'333'}
-				,{id:10,'code':'菜单','menu_num':'1111000'},{id:12,'code':'root菜单','menu_num':'2222'},{id:53,'code':'psd','menu_num':'333'}
-				]
 				//第一个表格
 				var tableIns = table.render({
 					elem: '#demoList'
+					,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
 					//,data:data
-					,parseData: function(res) { //res 即为原始返回的数据
-						console.log(res);
-						return {
-							"code": res.code, //解析接口状态
-							"msg": res.msg, //解析提示文本
-							"count": res.count, //解析数据长度
-							"data": res.data //解析数据列表
-						};
-					}
-						,
+//					,parseData: function(res) { //res 即为原始返回的数据
+//						console.log(res);
+//						return {
+//							"code": res.code, //解析接口状态
+//							"msg": res.msg, //解析提示文本
+//							"count": res.count, //解析数据长度
+//							"data": res.data //解析数据列表
+//						};
+//					}
+					,
+//					page: true,
+					//额外条件
 					page: true,
 					toolbar: '#toolbarDemo',
-					limits: [10, 20, 30] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
-						// ,toolbar:true//开启表格头部工具栏区域
-						,
-					loading: true,
-					cols: [
+					limits: [5, 10, 15,20] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
+					,loading: true
+					,limit: 5
+					,cols: [
 						[ //表头
 							{
 								type:'checkbox'
@@ -183,12 +178,12 @@
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
+				
 				//监听工具条
 				table.on('tool(test)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 					var data = obj.data; //获得当前行数据
 					var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 					var tr = obj.tr; //获得当前行 tr 的DOM对象
-					console.log(layEvent+"111");
 					if(layEvent === 'del') { //删除
 						layer.confirm('真的删除行么', function(index) {
 							obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
@@ -196,21 +191,36 @@
 							//向服务端发送删除指令
 						});
 					} else if(layEvent === 'update') { //审核
+						
 						layer.open({
 									type: 2,
 									title: '修改窗口',
 									area:['90%','90%'],
-									content:  window.location.href="/toPage?page=specialty_files/specialty_update"
+									content:'/toPage?page=specialty_files/specialty_update',
+									success : function(layero, index) {
+										// 获取子页面的iframe
+										var iframe = window['layui-layer-iframe' + index];
+										// 向子页面的全局函数child传参
+										iframe.init(data);
+									}
+									
 							});
 					} else if(layEvent==='check'){
-						layer.msg('用户名：'+ data.tea_name + ' 的查看操作');
+						layer.msg('用户名：'+ data.code + ' 的查看操作');
 						layer.open({
 							type:2,
-							title:'查看',
+							title:'查看窗口',
 							area:['90%','90%'],
 							anim:0,
-							content: window.location.href="/toPage?page=specialty_files/specialty_check",
-
+							content: "/toPage?page=specialty_files/specialty_check",
+							success : function(layero, index) {
+								// 获取子页面的iframe
+								alert(index);
+								var iframe = window['layui-layer-iframe' + index];
+								// 向子页面的全局函数child传参
+								iframe.init(data);
+							}
+							
 						});
 					} 
 //					else if(layEvent==='insert'){
@@ -241,3 +251,4 @@
 				    };
 				  });
 			});
+		

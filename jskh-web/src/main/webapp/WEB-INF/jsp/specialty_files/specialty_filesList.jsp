@@ -80,6 +80,9 @@
 							</div>
 							</fieldset>
 							</div>
+							<a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
+								<i class="layui-icon layui-icon-refresh-3"></i>
+							</a>
 							<button class="layui-btn layui-right" lay-submit lay-filter="formDemo">搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 						</form>
@@ -102,11 +105,12 @@
 		</script>
 		<script type="text/html" id="barDemo" >
 			<a class="layui-btn layui-btn-xs" lay-event="check">查看</a>
-			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-			<a class="layui-btn layui-btn-xs" lay-event="insert">新增</a>
 			<a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		
+		
 		</script>
 		<script src="${path}/static/js/specialty_files.js"></script>
-		
+			<!-- <a class="layui-btn layui-btn-xs" lay-event="insert">新增</a> -->
 	</body>
 </html>

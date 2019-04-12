@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="/static/public/lib/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
-		<!--<div class="layui-layout layui-layout-admin">-->
-				<!--<div class="layui-row layui-col-space15">-->
-					<!-- 内容主体区域 -->
 	<div class="layui-col-md12 layui-content-white">
 
 		<form class="layui-form" action="" onsubmit="return false;">
@@ -86,6 +83,17 @@
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
    	<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
+	// 初始化
+	function init(data) {
+		$("#specialtyFilesId").val(data.id);
+		$("#date").val(data.date);
+		$("#code").val(data.code);
+		$("#name").val(data.name);
+		$("#cate_name").val(data.cate_name);
+		$("#reviser").val(data.reviser);
+		$("#specialty_id").val(data.specialty_id);
+	}
+
 		//关闭监听
 		function exit(){
 		    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -99,55 +107,7 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
-			
-			/*
-			 实现文件时间选择
-			 */
-			var laydate = layui.laydate;
-			//执行一个laydate实例
-			laydate.render({
-				elem: '#date' //指定元素
-				//,range: '~' //或 range: '~' 来自定义分割字符
-			});
-			// 提交功能
-			
-			form.on('submit(submit)', function(data) {
-				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
-				    $.ajax({
-					        type:"PUT",
-					       // url:"http://47.111.23.192:82/hmBack/adminApi/examination/updateExaminationDetailsById",
-							data:data.field,
-					        //预期服务器返回数据的类型
-					        dataType:"json", 
-					        success:function(err,msg){
-					        	if(err,msg){
-									console.log(err);
-									console.log(msg);
-									if (msg.code == 0) {
-										layer.msg("11"+msg_000000004);
-										setTimeout(function(){
-												parent.window.location.reload();
-										},500);
-									} else {
-										layer.msg("22"+msg.code);
-									}
-								}else{
-									console.log(err);
-									layer.msg(msg_000000001);
-								}
-							} ,error:function(err,msg){
-					           alert("发生错误");
-					        }
-					});
-
-				  
-				  layer.close(index);
-				});
-									
-				//return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-			});
-			
-			
+	
 		});
 	</script>
 	</body>
