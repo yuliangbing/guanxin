@@ -18,8 +18,11 @@ public interface SpecialtyFilesService {
 	//根据id查询专业文件数据
 	public SpecialtyFiles findSpecialtyFilesById(Long id);
 	//获取专业文件全部数据
-	public List<SpecialtyFiles> getSpecialtyFilesList(Object object);
+	public List<SpecialtyFiles> getSpecialtyFilesList(Object data);
 	
 	public List<Map<String, Object>> getSpecialtyFilesListMap(Object object);
+	//统计数据条数
+	public int selectCounts(int counts);
+	
 
 }

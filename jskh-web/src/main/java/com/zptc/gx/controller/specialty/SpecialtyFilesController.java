@@ -39,31 +39,33 @@ public class SpecialtyFilesController extends BaseController {
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse responses) {
 		JsonResult jsonResult = new JsonResult();
-		jsonResult.setCode(0);
-		List<Map<String, Object>> returnmap = new ArrayList<Map<String,Object>>();
+		//jsonResult.setCode(0);
+//		List<Map<String, Object>> returnmap = new ArrayList<Map<String,Object>>();
 		Map<String, Object> data = new HashMap<>();
-//		data.put("reviser","222");
-//		data.put("name", "value");
-//		data.put("reviser","22112");
-//		data.put("name", "value2");
-//		returnmap.add(data);
-//	
-//		jsonResult.setData(returnmap);
-//		jsonResult.setMsg("");
-//		jsonResult.setCount(20);
-//	
-//		System.out.println("获取专业文件列表信息");
-//		
-//			System.out.println(jsonResult.getData());
-		
-		
+		String code = ToolUtil.str("code", request);
+	    String name = ToolUtil.str("name", request);
+	    String cateName = ToolUtil.str("cateName", request);
+	    String reviser = ToolUtil.str("reviser", request);
+	    Long specialtyId = ToolUtil.lon("specialtyId", request);
+	    Integer status = ToolUtil.integer("status", request);
+	    Date date1 = ToolUtil.date1("date", request);
+	    data.put("code", code);
+	    data.put("name", name);
+		int limit = ToolUtil.integer("limit", request);
+		int page = ToolUtil.integer("page", request);
+		int counts = 0 ;
+		page = (page - 1) * limit;
+		data.put("limit", limit);
+		data.put("page", page);
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//Long roleId = user.getRoleId();
-			List<SpecialtyFiles> specialtyFilesList = specialtyFilesService.getSpecialtyFilesList(null);
+			List<SpecialtyFiles> specialtyFilesList = specialtyFilesService.getSpecialtyFilesList(data);
+			counts = specialtyFilesService.selectCounts(counts);
 			String msg = "msg";
-			int counts = specialtyFilesList.size();
-//			jsonResult = JsonResult.build(FLAG_SUCCESS,msg ,specialtyFilesList,counts);
+			System.out.println(page);
+			System.out.println("map的data数据："+data);
+			System.out.println("count值为："+counts);
 			jsonResult = jsonResult.build(0, specialtyFilesList, msg, counts);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -231,5 +233,6 @@ public class SpecialtyFilesController extends BaseController {
 		}
 		return jsonResult;
 	}
+	/*根据id获取当前所选的数据*/
 	
 }

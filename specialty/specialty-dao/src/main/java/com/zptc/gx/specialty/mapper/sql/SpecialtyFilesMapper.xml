@@ -178,9 +178,17 @@
   
     <!-- 自定义 -->
   <!-- 查询列表数据 -->
-  <select id="getSpecialtyFilesList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="getSpecialtyFilesList" resultType="map" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from specialty_files
+    limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="int">
+		select
+			count(*)
+		from
+			specialty_files
+	</select>
 </mapper>

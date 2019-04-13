@@ -18,5 +18,7 @@ public interface SpecialtyFilesMapper {
     //不带if的修改
     int updateByPrimaryKey(SpecialtyFiles record);
     //获取全部列表数据
-	List<SpecialtyFiles> getSpecialtyFilesList(Object object);
+	List<SpecialtyFiles> getSpecialtyFilesList(Object data);
+	//统计数据条数
+	int selectCounts(int counts);
 }

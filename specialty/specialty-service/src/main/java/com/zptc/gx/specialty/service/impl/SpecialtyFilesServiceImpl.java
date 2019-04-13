@@ -45,13 +45,19 @@ public class SpecialtyFilesServiceImpl implements SpecialtyFilesService {
 	}
 	//获取专业文件列表数据
 	@Override
-	public List<SpecialtyFiles> getSpecialtyFilesList(Object object) {
+	public List<SpecialtyFiles> getSpecialtyFilesList(Object data) {
 		// TODO Auto-generated method stub
-		return specialtyFilesMapper.getSpecialtyFilesList(object);
+		return specialtyFilesMapper.getSpecialtyFilesList(data);
 	}
 	@Override
 	public List<Map<String, Object>> getSpecialtyFilesListMap(Object object) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	//统计数据条数
+	@Override
+	public int selectCounts(int counts) {
+		// TODO Auto-generated method stub
+		return specialtyFilesMapper.selectCounts(counts);
 	}
 }

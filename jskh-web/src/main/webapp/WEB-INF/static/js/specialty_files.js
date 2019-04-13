@@ -29,20 +29,8 @@
 					elem: '#demoList'
 					,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
-					//,data:data
-//					,parseData: function(res) { //res 即为原始返回的数据
-//						console.log(res);
-//						return {
-//							"code": res.code, //解析接口状态
-//							"msg": res.msg, //解析提示文本
-//							"count": res.count, //解析数据长度
-//							"data": res.data //解析数据列表
-//						};
-//					}
-					,
-//					page: true,
 					//额外条件
-					page: true,
+					,page: true,
 					toolbar: '#toolbarDemo',
 					limits: [5, 10, 15,20] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 					,loading: true
@@ -130,55 +118,32 @@
 								align: 'center'
 							}
 						]
-					],
-//					response: {
-//						statusName: 'code' //数据状态的字段名称，默认：code
-//							,
-//						statusCode: 0 //成功的状态码，默认：0
-//							,
-//						msgName: 'msg' //状态信息的字段名称，默认：msg
-//							,
-//						countName: 'count' //数据总数的字段名称，默认：count
-//							,
-//						dataName: 'data' //数据列表的字段名称，默认：data
-//					},
-//					done: function(res, curr, count) {
-//						//如果是异步请求数据方式，res即为你接口返回的信息。
-//						//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-//						console.log(res);
-//
-//						//得到当前页码
-//						console.log(curr);
-//
-//						//得到数据总量
-//						console.log(count);
-//					}
-					//,id: 'idTest'
+					]
 				});
 				/*
 				 搜索功能
 				 * */
 				form.on('submit(formDemo)', function(data) {
-
-//					if(data.field.paymentDt != "" && data.field.paymentDt != null) {
-//						data.field.paymentDt1 = data.field.paymentDt.split('~')[0];
-//						data.field.paymentDt2 = data.field.paymentDt.split('~')[1];
-//					}
-					//layer.msg(JSON.stringify(data.field));
-					var code = $('#code').val();
-					
+					alert(data.code);
 					tableIns.reload({
-			
-						where: {
-							'code':code
-						},
+						where:data.field,
 						page: {
 							curr: 1
 						}
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
-				
+				/*新增功能*/
+				form.on('submit(insertAdd)', function(data) {
+					layer.open({
+						type:2,
+						title:'查看窗口',
+						area:['90%','90%'],
+						anim:0,
+						content: "/toPage?page=specialty_files/specialty_insert"
+					});
+					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				});
 				//监听工具条
 				table.on('tool(test)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 					var data = obj.data; //获得当前行数据
@@ -215,7 +180,7 @@
 							content: "/toPage?page=specialty_files/specialty_check",
 							success : function(layero, index) {
 								// 获取子页面的iframe
-								alert(index);
+//								alert(index);
 								var iframe = window['layui-layer-iframe' + index];
 								// 向子页面的全局函数child传参
 								iframe.init(data);
@@ -223,15 +188,7 @@
 							
 						});
 					} 
-//					else if(layEvent==='insert'){
-//						layer.open({
-//							type:2,
-//							title:'新增',
-//							area:['90%','90%'],
-//							anim:0,
-//							content:'/jsp/specialty_insert.jsp'
-//						});
-//					}
+
 				});
 				//头工具栏事件
 				  table.on('toolbar(test)', function(obj){
