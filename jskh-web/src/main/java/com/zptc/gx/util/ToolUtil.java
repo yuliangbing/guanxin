@@ -555,4 +555,38 @@ public class ToolUtil {
 	public static String[] str2StrArray(String str) {
 		return str2StrArray(str, ",");
 	}
+	//自定义
+	//判断是否存在
+	public static boolean equalBool(String str) {
+		Boolean flag = false;
+		if(!str.equals("") &&str != null) {
+			flag = true;
+		}
+		else {
+			flag = flag;
+		}
+		return flag;
+	}
+	
+	public static boolean equalBool(Date date) {
+		Boolean flag = false;
+		if(!date.equals("") && date == null) {
+			flag = true;
+		}
+		else {
+			flag = flag;
+		}
+		return flag;
+	}
+	
+	public static boolean equalBool(Long long1) {
+		Boolean flag = false;
+		if(!long1.equals("") &&long1 != null) {
+			flag = true;
+		}
+		else {
+			flag = flag;
+		}
+		return flag;
+	}
 }

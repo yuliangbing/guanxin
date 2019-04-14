@@ -133,7 +133,6 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									layer.alert(data.code);
 									if (data.code == 0) {
 										layer.msg("成功");
 										setTimeout(function(){

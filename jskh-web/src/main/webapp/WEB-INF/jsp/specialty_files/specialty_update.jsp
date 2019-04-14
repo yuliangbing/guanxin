@@ -143,7 +143,6 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									alert(data.code);
 									console.log($.param(params));
 									if (data.code == 0) {
 										layer.msg("成功");

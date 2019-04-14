@@ -32,9 +32,9 @@
 					//额外条件
 					,page: true,
 					toolbar: '#toolbarDemo',
-					limits: [5, 10, 15,20] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
+					limits: [10, 15, 20,25] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 					,loading: true
-					,limit: 5
+					,limit: 10
 					,cols: [
 						[ //表头
 							{
@@ -120,13 +120,17 @@
 						]
 					]
 				});
-				/*
-				 搜索功能
-				 * */
-				form.on('submit(formDemo)', function(data) {
-					alert(data.code);
+				/* 搜索功能 */
+				form.on('submit(search)', function(data) {
+					//layer.alert(JSON.stringify(data.field));
+					let arr = {};
+					arr = data.field;
+					if(arr.date != "" && arr.date != null){
+						arr.date = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+					}
+					//alert(JSON.stringify(arr));
 					tableIns.reload({
-						where:data.field,
+						where:arr,
 						page: {
 							curr: 1
 						}
@@ -192,6 +196,7 @@
 				});
 				//头工具栏事件
 				  table.on('toolbar(test)', function(obj){
+					  alert("11obj"+obj);
 				    var checkStatus = table.checkStatus(obj.config.id);
 				    switch(obj.event){
 				      case 'getCheckData':

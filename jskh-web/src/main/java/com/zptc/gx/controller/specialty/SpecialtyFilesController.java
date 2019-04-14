@@ -48,20 +48,31 @@ public class SpecialtyFilesController extends BaseController {
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialtyId = ToolUtil.lon("specialtyId", request);
 	    Integer status = ToolUtil.integer("status", request);
-	    Date date1 = ToolUtil.date1("date", request);
+	    Date date = ToolUtil.date1("date", request);
 	    data.put("code", code);
 	    data.put("name", name);
+	    data.put("cateName", cateName);
+	    data.put("reviser", reviser);
+	    data.put("specialtyId", specialtyId);
+	    data.put("date", date);
 		int limit = ToolUtil.integer("limit", request);
 		int page = ToolUtil.integer("page", request);
 		int counts = 0 ;
 		page = (page - 1) * limit;
 		data.put("limit", limit);
 		data.put("page", page);
+		System.out.println("初始化data"+data);
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			//Long roleId = user.getRoleId();
 			List<SpecialtyFiles> specialtyFilesList = specialtyFilesService.getSpecialtyFilesList(data);
-			counts = specialtyFilesService.selectCounts(counts);
+			if ((ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser)) == true) {			
+				counts = specialtyFilesList.size();
+			}
+			else {
+				counts = specialtyFilesService.selectCounts(counts);
+			}
+			System.out.println("id1"+(ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser)||ToolUtil.equalBool(specialtyId)) );
+			System.out.println("id2"+(ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser) ));
 			String msg = "msg";
 			System.out.println(page);
 			System.out.println("map的data数据："+data);

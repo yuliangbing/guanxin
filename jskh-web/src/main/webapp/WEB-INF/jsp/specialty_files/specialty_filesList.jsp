@@ -83,7 +83,7 @@
 							<a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
 								<i class="layui-icon layui-icon-refresh-3"></i>
 							</a>
-							<button class="layui-btn layui-right" lay-submit lay-filter="formDemo">搜索</button>
+							<button class="layui-btn layui-right" lay-submit lay-filter="search">搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 							<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>
 						</form>

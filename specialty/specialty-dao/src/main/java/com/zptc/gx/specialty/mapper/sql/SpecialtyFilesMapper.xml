@@ -175,13 +175,34 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
   
-  
+  <!--  id, date, code, name, cate_name, reviser, specialty_id, status, create_time, create_user, 
+    modify_time, modify_user -->
     <!-- 自定义 -->
   <!-- 查询列表数据 -->
   <select id="getSpecialtyFilesList" resultType="map" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from specialty_files
+    <where>
+    	<if test="date != null and date != '' and date != 'isNull'">
+			and date like '%${date}%'
+		</if>
+		<if test="code != null and code != '' and code != 'isNull'">
+			and code like '%${code}%'
+		</if>
+		<if test="name != null and name != '' and name != 'isNull'">
+			and name like '%${name}%'
+		</if>
+		<if test="cate_name != null and cate_name != '' and cate_name != 'isNull'">
+			and cate_name like '%${cate_name}%'
+		</if>
+		<if test="reviser != null and reviser != '' and reviser != 'isNull'">
+			and reviser like '%${reviser}%'
+		</if>
+		<if test="specialty_id != null and specialty_id != '' and specialty_id != 'isNull'">
+			and specialty_id like '%${specialty_id}%'
+		</if>
+	</where>
     limit #{page,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->
