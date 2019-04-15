@@ -1,6 +1,7 @@
 package com.zptc.gx.specialty.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zptc.gx.specialty.entity.SpecialtyFiles;
 
@@ -20,5 +21,7 @@ public interface SpecialtyFilesMapper {
     //获取全部列表数据
 	List<SpecialtyFiles> getSpecialtyFilesList(Object data);
 	//统计数据条数
-	int selectCounts(int counts);
+	int selectCounts(Map<String,Object> counts);
+	//根据status修改状态（删除）
+	int updateByPrimaryKeyDel(SpecialtyFiles specialtyFilesId);
 }

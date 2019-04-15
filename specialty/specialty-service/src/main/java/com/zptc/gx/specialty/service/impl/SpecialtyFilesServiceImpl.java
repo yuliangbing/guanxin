@@ -37,7 +37,7 @@ public class SpecialtyFilesServiceImpl implements SpecialtyFilesService {
 		SpecialtyFiles specialtyFiles = specialtyFilesMapper.selectByPrimaryKey(id);
 		return specialtyFiles;
 	}
-	//不带if查询专业文件
+	//不带if修改专业文件
 	@Override
 	public int modifySpecialtyFilesKey(SpecialtyFiles specialtyFiles) {
 		// TODO Auto-generated method stub
@@ -56,8 +56,14 @@ public class SpecialtyFilesServiceImpl implements SpecialtyFilesService {
 	}
 	//统计数据条数
 	@Override
-	public int selectCounts(int counts) {
+	public int selectCounts(Map<String,Object> count) {
 		// TODO Auto-generated method stub
-		return specialtyFilesMapper.selectCounts(counts);
+		return specialtyFilesMapper.selectCounts(count);
+	}
+	//根据status修改状态（删除）
+	@Override
+	public int modifSpecialtyFilesDel(SpecialtyFiles specialtyFiles) {
+		// TODO Auto-generated method stub
+		return specialtyFilesMapper.updateByPrimaryKeyDel(specialtyFiles);
 	}
 }

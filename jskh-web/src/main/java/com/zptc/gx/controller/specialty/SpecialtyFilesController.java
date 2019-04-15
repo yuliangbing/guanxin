@@ -38,46 +38,61 @@ public class SpecialtyFilesController extends BaseController {
 	
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse responses) {
+		System.out.println("获取专业文件列表接口");
 		JsonResult jsonResult = new JsonResult();
-		//jsonResult.setCode(0);
-//		List<Map<String, Object>> returnmap = new ArrayList<Map<String,Object>>();
 		Map<String, Object> data = new HashMap<>();
+		//获取请求参数
 		String code = ToolUtil.str("code", request);
 	    String name = ToolUtil.str("name", request);
 	    String cateName = ToolUtil.str("cateName", request);
 	    String reviser = ToolUtil.str("reviser", request);
-	    Long specialtyId = ToolUtil.lon("specialtyId", request);
+	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    Integer status = ToolUtil.integer("status", request);
 	    Date date = ToolUtil.date1("date", request);
+	    Integer limit = ToolUtil.integer("limit", request);
+	    Integer page = ToolUtil.integer("page", request);
+	    
+	    Integer pages = page;
+	    Integer limits = 0;
+		//用于分页的数据
+		page = (page - 1) * limit;
+		limits = limit*pages;
+		//存入data,用于获取表格数据
 	    data.put("code", code);
 	    data.put("name", name);
 	    data.put("cateName", cateName);
 	    data.put("reviser", reviser);
-	    data.put("specialtyId", specialtyId);
+	    data.put("specialty_id", specialty_id);
 	    data.put("date", date);
-		int limit = ToolUtil.integer("limit", request);
-		int page = ToolUtil.integer("page", request);
-		int counts = 0 ;
-		page = (page - 1) * limit;
-		data.put("limit", limit);
+		data.put("limits", limits);
 		data.put("page", page);
-		System.out.println("初始化data"+data);
+		data.put("status", 1);
+	
+		System.out.println("page:"+page);
+		System.out.println("limits:"+limits);
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+		count.put("counts", count);
+		count.put("code", code);
+		count.put("name", name);
+		count.put("cateName", cateName);
+		count.put("reviser", reviser);
+		count.put("specialty_id", specialty_id);
+		count.put("date", date);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		String msg = "msg";
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//获取所有status == 1 的所有数据
 			List<SpecialtyFiles> specialtyFilesList = specialtyFilesService.getSpecialtyFilesList(data);
-			if ((ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser)) == true) {			
-				counts = specialtyFilesList.size();
-			}
-			else {
-				counts = specialtyFilesService.selectCounts(counts);
-			}
-			System.out.println("id1"+(ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser)||ToolUtil.equalBool(specialtyId)) );
-			System.out.println("id2"+(ToolUtil.equalBool(code)||ToolUtil.equalBool(name)||ToolUtil.equalBool(cateName)||ToolUtil.equalBool(reviser) ));
-			String msg = "msg";
-			System.out.println(page);
-			System.out.println("map的data数据："+data);
-			System.out.println("count值为："+counts);
+			//获取所有status == 1的数据条总数
+			counts = specialtyFilesService.selectCounts(count);
+			//返回接口的具体数据
 			jsonResult = jsonResult.build(0, specialtyFilesList, msg, counts);
+			System.out.println("获得的数据："+data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +107,7 @@ public class SpecialtyFilesController extends BaseController {
 	@ResponseBody
 	public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用addSpecialtyFiles方法");
+		System.out.println("启用addSpecialty方法");
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
@@ -100,20 +115,20 @@ public class SpecialtyFilesController extends BaseController {
 		    String name = ToolUtil.str("name", request);
 		    String cateName = ToolUtil.str("cateName", request);
 		    String reviser = ToolUtil.str("reviser", request);
-		    Long specialtyId = ToolUtil.lon("specialtyId", request);
-		    //
+		    Long specialty_id = ToolUtil.lon("specialty_id", request);
 		    Integer status = ToolUtil.integer("status", request);
 		    Date date = ToolUtil.date1("date", request);
-		    
+		    specialty_id = (long) -1;
 		    SpecialtyFiles specialtyFiles = new SpecialtyFiles();
 		    specialtyFiles.setCode(code);
 		    specialtyFiles.setName(name);
 		    specialtyFiles.setCateName(cateName);
 		    specialtyFiles.setReviser(reviser);
-		    specialtyFiles.setSpecialtyId(specialtyId);
+		    specialtyFiles.setSpecialtyId(specialty_id);
 		    specialtyFiles.setStatus(status);
 		    specialtyFiles.setCreateTime(new Date());
 		    specialtyFiles.setCreateUser(user.getTeaName());
+		    System.out.println("addSpecialty方法拿到的数据："+specialtyFiles.toString());
 		    int result = specialtyFilesService.addSpecialtyFiles(specialtyFiles);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
@@ -244,6 +259,38 @@ public class SpecialtyFilesController extends BaseController {
 		}
 		return jsonResult;
 	}
-	/*根据id获取当前所选的数据*/
-	
+	/*根据id进行软删除（修改status状态码）*/
+	@RequestMapping("/delSpecialtyFiles")
+	@ResponseBody
+	public JsonResult delSpecialtyFiles(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		System.out.println("启用delSpecialtyFiles方法");
+		try {
+			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			int status = ToolUtil.integer("status", request);
+			status = 2;
+			Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
+			System.out.println("id"+specialtyFilesId);
+		    //判断是否有该专业
+			SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
+			if (specialtyFiles == null) {
+				jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+				return jsonResult;
+			}
+			specialtyFiles.setStatus(status);
+		    int result = specialtyFilesService.modifSpecialtyFilesDel(specialtyFiles);
+		    System.out.println("status："+status);
+		    System.out.println("result"+result);
+		    if (result > 0) {
+		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
+			} else {
+				jsonResult = JsonResult.build(FLAG_FAILED);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
 }

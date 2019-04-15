@@ -22,7 +22,8 @@ public interface SpecialtyFilesService {
 	
 	public List<Map<String, Object>> getSpecialtyFilesListMap(Object object);
 	//统计数据条数
-	public int selectCounts(int counts);
+	public int selectCounts(Map<String, Object> count);
 	
-
+	//根据status修改状态（删除）
+	public int modifSpecialtyFilesDel(SpecialtyFiles specialtyFiles);
 }

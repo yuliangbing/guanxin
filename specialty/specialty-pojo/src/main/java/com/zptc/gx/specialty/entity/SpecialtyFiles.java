@@ -122,4 +122,12 @@ public class SpecialtyFiles {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SpecialtyFiles [id=" + id + ", date=" + date + ", code=" + code + ", name=" + name + ", cateName="
+				+ cateName + ", reviser=" + reviser + ", specialtyId=" + specialtyId + ", status=" + status
+				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
+				+ ", modifyUser=" + modifyUser + "]";
+	}
 }

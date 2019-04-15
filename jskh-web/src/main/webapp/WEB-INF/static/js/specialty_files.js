@@ -155,10 +155,31 @@
 					var tr = obj.tr; //获得当前行 tr 的DOM对象
 					if(layEvent === 'del') { //删除
 						layer.confirm('真的删除行么', function(index) {
-							obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+							/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 							layer.close(index);
-							//向服务端发送删除指令
-						});
+							//向服务端发送删除指令*/	
+							
+							$.ajax({
+								url:'/specialtyFiles/delSpecialtyFiles',
+								type:"POST",
+								data:{specialtyFilesId:data.id},
+								dataType:"json",
+								success:function(data){
+									var nowPage = tableIns.config.page.curr;//返回当前页数
+						        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+						        	//console.log((nowPage-1));
+						        	console.log(reloadPage);
+									layer.msg("删除成功");
+									layer.close(index);
+					    			tableIns.reload({
+					    				page:{
+					    					curr:reloadPage
+					    				}
+					    			});
+								}
+							});
+							});
+						
 					} else if(layEvent === 'update') { //审核
 						
 						layer.open({
@@ -175,7 +196,7 @@
 									
 							});
 					} else if(layEvent==='check'){
-						layer.msg('用户名：'+ data.code + ' 的查看操作');
+						//layer.msg('用户名：'+ data.code + ' 的查看操作');
 						layer.open({
 							type:2,
 							title:'查看窗口',
@@ -184,7 +205,6 @@
 							content: "/toPage?page=specialty_files/specialty_check",
 							success : function(layero, index) {
 								// 获取子页面的iframe
-//								alert(index);
 								var iframe = window['layui-layer-iframe' + index];
 								// 向子页面的全局函数child传参
 								iframe.init(data);

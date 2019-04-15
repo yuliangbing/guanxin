@@ -18,7 +18,8 @@
 			<div class="layui-form-item">
 				<fieldset class="layui-elem-field">
 					<legend>修改专业文件</legend>
-					<input type="hidden" id="specialtyFilesId" name="id" >
+					<!-- <input type="hidden" id="specialtyFilesId" name="id" > -->
+					<input type="hidden" id="status" name="status" value="1" >
 					<div class="layui-form-item">
 					    <label class="layui-form-label" for="date">文件时间</label>
 					    <div class="layui-input-block">
@@ -116,7 +117,7 @@
 			form.on('submit(submit)', function(data) {
 				/*获取$值存入params */
 				var params = {};
-				params.id = $("#specialtyFilesId").val();
+				params.status = $("#status").val();
 				params.date = $("#date").val();
 				params.code = $("#code").val();
 				params.name = $("#name").val();
