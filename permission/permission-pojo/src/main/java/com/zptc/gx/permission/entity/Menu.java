@@ -36,6 +36,8 @@ public class Menu {
     private Date modifyTime;
 
     private Integer showType;
+    
+    private Integer isInit;
 
     public Long getId() {
         return id;
@@ -172,4 +174,12 @@ public class Menu {
     public void setShowType(Integer showType) {
         this.showType = showType;
     }
+
+	public Integer getIsInit() {
+		return isInit;
+	}
+
+	public void setIsInit(Integer isInit) {
+		this.isInit = isInit;
+	}
 }

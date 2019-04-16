@@ -19,11 +19,12 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="show_type" property="showType" jdbcType="INTEGER" />
+    <result column="is_init" property="isInit" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, menu_str, menu_num, parent_id, parent_str, parent_num, menu_order, url, remark, 
     status, create_id, create_user, create_time, modify_id, modify_user, modify_time, 
-    show_type
+    show_type,is_init
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -33,7 +34,7 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from menu
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT} and (is_init != 1 or is_init is null)
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu (id, menu_str, menu_num, 
@@ -41,13 +42,13 @@
       menu_order, url, remark, 
       status, create_id, create_user, 
       create_time, modify_id, modify_user, 
-      modify_time, show_type)
+      modify_time, show_type, is_init)
     values (#{id,jdbcType=BIGINT}, #{menuStr,jdbcType=VARCHAR}, #{menuNum,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{parentStr,jdbcType=VARCHAR}, #{parentNum,jdbcType=VARCHAR}, 
       #{menuOrder,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{showType,jdbcType=INTEGER})
+      #{modifyTime,jdbcType=TIMESTAMP}, #{showType,jdbcType=INTEGER}, #{isInit,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu
@@ -103,6 +104,9 @@
       <if test="showType != null" >
         show_type,
       </if>
+      <if test="isInit != null" >
+        is_init,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -155,6 +159,9 @@
       </if>
       <if test="showType != null" >
         #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="isInit != null" >
+        #{isInit,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -209,6 +216,9 @@
       <if test="showType != null" >
         show_type = #{showType,jdbcType=INTEGER},
       </if>
+      <if test="isInit != null" >
+        is_init = #{isInit,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -229,7 +239,8 @@
       modify_id = #{modifyId,jdbcType=BIGINT},
       modify_user = #{modifyUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      show_type = #{showType,jdbcType=INTEGER}
+      show_type = #{showType,jdbcType=INTEGER},
+      is_init = #{isInit,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -251,6 +262,9 @@
     where 1=1
     <if test="parentId != null and parentId != ''">
     	And parent_id = #{parentId,jdbcType=BIGINT}
+    </if>
+    <if test="parentIsNull != null and parentIsNull == 1">
+    	And parent_id is null
     </if>
   </select>
 </mapper>

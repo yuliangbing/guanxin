@@ -12,9 +12,13 @@ import com.zptc.gx.vo.menu.MenuVO1;
 public class MenuVOHelper {
 	public static MenuVO1 getMenuVO1FromMenu(Menu menu) {
 		MenuVO1 menuVO1 = new MenuVO1();
+		menuVO1.setId(menu.getId());
 		menuVO1.setMenuNum(menu.getMenuNum());
 		menuVO1.setMenuStr(menu.getMenuStr());
+		menuVO1.setParentId(menu.getParentId());
 		menuVO1.setUrl(menu.getUrl());
+		menuVO1.setParentNum(menu.getParentNum());
+		menuVO1.setParentStr(menu.getParentStr());
 		return menuVO1;
 	}
 	

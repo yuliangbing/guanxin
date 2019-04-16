@@ -110,7 +110,7 @@ public class LoginController extends BaseController {
 			//获取menuList
 			List<Menu> menuList = menuService.findParentMenuByRoleId(roleId);
 			if (!CollectionUtils.isEmpty(menuList)) {
-				List<MenuVO1> menuVOList = getMenuVOList(menuList);
+				List<MenuVO1> menuVOList = getMenuVOList(menuList,MENU_LEVEL);
 				System.out.println("+++++++++++++menuVOList:"+JSON.toJSONString(menuVOList));
 				request.getSession().setAttribute(Constant.USER_MENU, menuVOList);
 			}
@@ -232,24 +232,5 @@ public class LoginController extends BaseController {
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
 		return jsonResult;
-	}
-	
-	private List<MenuVO1> getMenuVOList(List<Menu> menuList){
-		List<MenuVO1> menuVOList = new ArrayList<>();
-		for (Menu parentMenu : menuList) {
-			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
-			Map<String, Object> menuPar = new HashMap<>();
-			menuPar.put("parentId", parentMenu.getId());
-			List<Menu> subMenuList = menuService.queryMenuList(menuPar);
-			if (!CollectionUtils.isEmpty(subMenuList)) {
-				parentMenuVO.setHasSubMenu(true);
-				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList);
-				parentMenuVO.setSubMenuList(subMenuVOList);
-			} else {
-				parentMenuVO.setHasSubMenu(false);
-			}
-			menuVOList.add(parentMenuVO);
-		}
-		return menuVOList;
 	}
 }
