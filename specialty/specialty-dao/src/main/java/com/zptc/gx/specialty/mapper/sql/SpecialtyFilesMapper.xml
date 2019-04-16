@@ -184,24 +184,25 @@
     <include refid="Base_Column_List" />
     from specialty_files
     <where>
-    	<if test="date != null and date != ''">
-			and date like '%${date}%'
+    	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
 		<if test="code != null and code != ''">
-			and code like '%${code}%'
+			and instr(code,#{code,jdbcType=VARCHAR})
 		</if>
 		<if test="name != null and name != ''">
-			and name like '%${name}%'
+			and instr(name,#{name,jdbcType=VARCHAR})
 		</if>
 		<if test="cate_name != null and cate_name != ''">
-			and cate_name like '%${cate_name}%'
+			and instr(cate_name,#{cate_name,jdbcType=VARCHAR})
 		</if>
 		<if test="reviser != null and reviser != ''">
-			and reviser like '%${reviser}%'
+			and instr(reviser,#{reviser,jdbcType=VARCHAR})
 		</if>
-		<if test="specialty_id != null and specialty_id != ''">
+		<!-- <if test="specialty_id != null and specialty_id != ''">
 			and specialty_id like '%${specialty_id}%'
-		</if>
+		</if> -->
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
@@ -215,17 +216,21 @@
 		from
 			specialty_files
 			<where>
+				<if test="date != null and date != ''">
+					<!-- and date like '%${date}%' -->
+					and datediff(date,#{date,jdbcType=TIMESTAMP})
+				</if>
 				<if test="code != null and code != ''">
-					and code like '%${code}%'
+					and instr(code,#{code,jdbcType=VARCHAR})
 				</if>
 				<if test="name != null and name != ''">
-					and name like '%${name}%'
+					and instr(name,#{name,jdbcType=VARCHAR})
 				</if>
 				<if test="cate_name != null and cate_name != ''">
-					and cate_name like '%${cate_name}%'
+					and instr(cate_name,#{cate_name,jdbcType=VARCHAR})
 				</if>
 				<if test="reviser != null and reviser != ''">
-					and reviser like '%${reviser}%'
+					and instr(reviser,#{reviser,jdbcType=VARCHAR})
 				</if>
 				<if test="specialty_id != null and specialty_id != ''">
 					and specialty_id like '%${specialty_id}%'

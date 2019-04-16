@@ -35,7 +35,6 @@ public class SpecialtyFilesController extends BaseController {
 	
 	/*获取列表*/
 	@RequestMapping("/getSpecialtyFilesList")
-	
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse responses) {
 		System.out.println("获取专业文件列表接口");
@@ -48,7 +47,8 @@ public class SpecialtyFilesController extends BaseController {
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    Integer status = ToolUtil.integer("status", request);
-	    Date date = ToolUtil.date1("date", request);
+	    String date1 = ToolUtil.str("date1", request);
+	    String date2 = ToolUtil.str("date2", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    
@@ -63,7 +63,8 @@ public class SpecialtyFilesController extends BaseController {
 	    data.put("cateName", cateName);
 	    data.put("reviser", reviser);
 	    data.put("specialty_id", specialty_id);
-	    data.put("date", date);
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 		data.put("limits", limits);
 		data.put("page", page);
 		data.put("status", 1);
@@ -78,7 +79,8 @@ public class SpecialtyFilesController extends BaseController {
 		count.put("cateName", cateName);
 		count.put("reviser", reviser);
 		count.put("specialty_id", specialty_id);
-		count.put("date", date);
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
@@ -117,10 +119,11 @@ public class SpecialtyFilesController extends BaseController {
 		    String reviser = ToolUtil.str("reviser", request);
 		    Long specialty_id = ToolUtil.lon("specialty_id", request);
 		    Integer status = ToolUtil.integer("status", request);
-		    Date date = ToolUtil.date1("date", request);
+		    Date date = ToolUtil.date2("date", request);
 		    specialty_id = (long) -1;
 		    SpecialtyFiles specialtyFiles = new SpecialtyFiles();
 		    specialtyFiles.setCode(code);
+		    specialtyFiles.setDate(date);
 		    specialtyFiles.setName(name);
 		    specialtyFiles.setCateName(cateName);
 		    specialtyFiles.setReviser(reviser);
@@ -149,45 +152,50 @@ public class SpecialtyFilesController extends BaseController {
 	public JsonResult updateSpecialtyIf(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用updateSpecialtyFilesIf方法");
-		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			
-			Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
-			String code = ToolUtil.str("code", request);
-		    String name = ToolUtil.str("name", request);
-		    String cateName = ToolUtil.str("cateName", request);
-		    String reviser = ToolUtil.str("reviser", request);
-		    Long specialtyId = ToolUtil.lon("specialtyId", request);
-		    //
-		    Integer status = ToolUtil.integer("status", request);
-		    Date date = ToolUtil.date1("date", request);
-		    
-		    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
-		    if (specialtyFiles == null) {
-		    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-				return jsonResult;
-			}
-		    
-		    specialtyFiles.setCode(code);
-		    specialtyFiles.setName(name);
-		    specialtyFiles.setCateName(cateName);
-		    specialtyFiles.setReviser(reviser);
-		    specialtyFiles.setSpecialtyId(specialtyId);
-		    specialtyFiles.setStatus(status);
-		    specialtyFiles.setModifyTime(new Date());
-		    specialtyFiles.setModifyUser(user.getTeaName());
-		    int result = specialtyFilesService.modifySpecialtyFiles(specialtyFiles);
-		    if (result > 0) {
-		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
-			} else {
-				jsonResult = JsonResult.build(FLAG_FAILED);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
+		String code = ToolUtil.str("code", request);
+	    String name = ToolUtil.str("name", request);
+	    String cateName = ToolUtil.str("cateName", request);
+	    String reviser = ToolUtil.str("reviser", request);
+	    Long specialty_id = ToolUtil.lon("specialty_id", request);
+	    Integer status = ToolUtil.integer("status", request);
+	    Date date = ToolUtil.date1("date", request);
+	    //判断传入的值是否为空或""
+	    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date) == false)) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+	    	return jsonResult;
 		}
-		return jsonResult;
+	    else {
+			try {
+				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+				//根据specialtyFilesId查询
+			    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
+			    if (specialtyFiles == null) {
+			    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+					return jsonResult;
+				}
+			   
+			    specialtyFiles.setCode(code);
+			    specialtyFiles.setName(name);
+			    specialtyFiles.setCateName(cateName);
+			    specialtyFiles.setReviser(reviser);
+			    specialtyFiles.setSpecialtyId(specialty_id);
+			    specialtyFiles.setStatus(status);
+			    specialtyFiles.setModifyTime(new Date());
+			    specialtyFiles.setModifyUser(user.getTeaName());
+			    int result = specialtyFilesService.modifySpecialtyFiles(specialtyFiles);
+			    if (result > 0) {
+			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
+				} else {
+					jsonResult = JsonResult.build(FLAG_FAILED);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+			}
+			return jsonResult;
+	    }
 	}
 	/*不带if的修改*/
 	@RequestMapping("/updateSpecialtyFiles")
@@ -235,7 +243,7 @@ public class SpecialtyFilesController extends BaseController {
 		}
 		return jsonResult;
 	}
-	/*删除专业文件*/
+	/*删除专业文件(数据库删除)*/
 	@RequestMapping("/deleteSpecialtyFiles")
 	@ResponseBody
 	public JsonResult deleteSpecialty(HttpServletRequest request, HttpServletResponse response) {
@@ -280,7 +288,7 @@ public class SpecialtyFilesController extends BaseController {
 			specialtyFiles.setStatus(status);
 		    int result = specialtyFilesService.modifSpecialtyFilesDel(specialtyFiles);
 		    System.out.println("status："+status);
-		    System.out.println("result"+result);
+		    System.out.println("result:"+result);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
 			} else {
@@ -293,4 +301,5 @@ public class SpecialtyFilesController extends BaseController {
 		}
 		return jsonResult;
 	}
+	
 }

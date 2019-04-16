@@ -137,7 +137,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/specialtyFiles/updateSpecialtyFiles?specialtyFilesId='+params.id,
+					        url:'/specialtyFiles/updateSpecialtyFilesIf?specialtyFilesId='+params.id,
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

@@ -144,7 +144,7 @@
 									}
 								}
 							} ,error:function(code1){
-					           alert("发生错误,请联系管理员");
+					           layer.alert("发生错误,请联系管理员");
 					        }
 					});
 

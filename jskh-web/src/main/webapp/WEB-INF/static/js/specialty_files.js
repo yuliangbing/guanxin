@@ -1,5 +1,17 @@
 //JavaScript代码区域
 
+			//获取文件类型名称
+	/*		$.ajax({
+				url:'',
+				type:"POST",
+				data:,
+				dataType:"json",
+				success:function(data){
+					layer.msg("获取成功");
+					
+				}
+			});*/
+
 			layui.use('element', function() {
 				var element = layui.element;
 
@@ -16,9 +28,8 @@
 
 				//执行一个laydate实例
 				laydate.render({
-					elem: '#date' //指定元素
-				
-					//,range: '~' //或 range: '~' 来自定义分割字符
+					elem: '#date' //指定元素	
+					,range: '~' //或 range: '~' 来自定义分割字符
 				});
 
 				/*
@@ -125,10 +136,11 @@
 					//layer.alert(JSON.stringify(data.field));
 					let arr = {};
 					arr = data.field;
-					if(arr.date != "" && arr.date != null){
-						arr.date = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+					if(arr.data != "" && arr.date != null){
+						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+						arr.date2 = data.field.date.split('~')[1];
 					}
-					//alert(JSON.stringify(arr));
+					console.log(arr.date1+"yyy"+arr.date2);
 					tableIns.reload({
 						where:arr,
 						page: {
