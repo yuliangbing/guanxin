@@ -8,12 +8,13 @@
 <link rel="stylesheet"
 	href="${path}/static/public/lib/layui/css/layui.css">
 <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/menu/menu_add.js"></script>
+<script type="text/javascript" src="${path}/static/js/menu/menu_edit.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
 	<div class="x-body layui-anim layui-anim-up">
 		<form class="layui-form">
+			<input type="hidden" id="menuId" />
 			<div class="layui-form-item" id="parentMenu" style="display: none;">
 				<input type="hidden" id="parentId" /> <input type="hidden"
 					id="parentNum" /> <label for="parentStr" class="layui-form-label">

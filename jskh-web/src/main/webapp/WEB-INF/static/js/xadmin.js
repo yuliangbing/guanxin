@@ -32,7 +32,7 @@ $(function () {
 
     tableCheck = {
         init:function  () {
-            $(".layui-form-checkbox").click(function(event) {
+            $(document).on("click",".layui-form-checkbox",function(event) {
                 if($(this).hasClass('layui-form-checked')){
                     $(this).removeClass('layui-form-checked');
                     if($(this).hasClass('header')){
@@ -86,24 +86,24 @@ $(function () {
         $('.layui-tab-title li').eq(0).find('i').remove();
     });
 
-   $("tbody.x-cate tr[fid!='0']").hide();
+    $("tbody.x-cate tr[fid!='0']").hide();
     // 栏目多级显示效果
-    $('.x-show').click(function () {
-        if($(this).attr('status')=='true'){
-            $(this).html('&#xe625;'); 
-            $(this).attr('status','false');
-            cateId = $(this).parents('tr').attr('cate-id');
-            $("tbody tr[fid="+cateId+"]").show();
-       }else{
-            cateIds = [];
-            $(this).html('&#xe623;');
-            $(this).attr('status','true');
-            cateId = $(this).parents('tr').attr('cate-id');
-            getCateId(cateId);
-            for (var i in cateIds) {
-                $("tbody tr[cate-id="+cateIds[i]+"]").hide().find('.x-show').html('&#xe623;').attr('status','true');
-            }
-       }
+    $(document).on("click",".x-show",function () {
+    	if ($(this).attr('status') == 'true') {
+			$(this).html('&#xe61a;');
+			$(this).attr('status', 'false');
+			cateId = $(this).parents('tr').attr('cate-id');
+			$("tbody tr[fid=" + cateId + "]").show();
+		} else {
+			cateIds = [];
+			$(this).html('&#xe603;');
+			$(this).attr('status', 'true');
+			cateId = $(this).parents('tr').attr('cate-id');
+			getCateId(cateId);
+			for ( var i in cateIds) {
+				$("tbody tr[cate-id=" + cateIds[i] + "]").hide().find('.x-show').html('&#xe603;').attr('status','true');
+			}
+		}
     })
 
     //左侧菜单效果

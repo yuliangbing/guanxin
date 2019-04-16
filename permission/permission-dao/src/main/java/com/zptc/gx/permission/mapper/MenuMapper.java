@@ -21,4 +21,6 @@ public interface MenuMapper {
     List<Menu> findParentMenuByRoleId(Long roleId);
     
     List<Menu> queryMenuList(Map<String, Object> par);
+    
+    int deleteByParentId(Long parentId);
 }

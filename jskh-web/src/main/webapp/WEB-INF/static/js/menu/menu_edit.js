@@ -4,17 +4,43 @@ $(document).ready(function() {
 	})
 })
 
-function addInit(parentId,parentStr){
-	if (parentId != null && parentStr != null) {
-		$("#parentId").val(parentId);
-		$("#parentStr").val(parentStr);
-		$("#parentNum").val(parentStr);
-		$("#parentMenu").show();
-	}
+function editInit(id){
+	$("#menuId").val(id);
+	$.ajax({
+		type: "post",
+		url: "/menu/getMenuById",
+		data: {
+			"menuId": id
+		},
+		dataType: "json",
+		success: function(result) {
+			if(result.code == 0) {
+				var menu = result.data;
+				if (menu.parentId != null) {
+					$("#parentMenu").show();
+					$("#parentId").val(menu.parentId);
+					$("#parentStr").val(menu.parentStr);
+					$("#parentNum").val(menu.parentNum);
+				}
+				$("#menuStr").val(menu.menuStr);
+				$("#menuNum").val(menu.menuNum);
+				$("#url").val(menu.url);
+				$("#menuOrder").val(menu.menuOrder);
+				$("#showType").val(menu.showType);
+				$("#remark").val(menu.remark);
+			}else{
+				layer.msg("初始化失败!");
+			}
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			parent.layer.msg("系统异常，请联系管理员！");
+		}
+	});
 }
 
-function addConfirm() {
+function editConfirm() {
 	var params = {};
+	params.menuId = $("#menuId").val();
 	params.parentId = $("#parentId").val();
 	params.parentStr = $("#parentStr").val();
 	params.parentNum = $("#parentNum").val();
@@ -44,7 +70,7 @@ function addConfirm() {
 	// 数据保存
 	$.ajax({
 		type: "post",
-		url: "/menu/addMenu",
+		url: "/menu/updateMenu",
 		data: $.param(params),
 		dataType: "json",
 		success: function(result) {

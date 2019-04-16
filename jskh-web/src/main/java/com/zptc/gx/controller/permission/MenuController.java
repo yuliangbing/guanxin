@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -57,6 +59,12 @@ public class MenuController extends BaseController {
 		return jsonResult;
 	}
 	
+	/**
+	 * 添加菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/addMenu")
 	@ResponseBody
 	public JsonResult addMenu(HttpServletRequest request, HttpServletResponse response) {
@@ -101,6 +109,12 @@ public class MenuController extends BaseController {
 		return jsonResult;
 	}
 	
+	/**
+	 * 修改菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/updateMenu")
 	@ResponseBody
 	public JsonResult updateMenu(HttpServletRequest request, HttpServletResponse response) {
@@ -111,10 +125,10 @@ public class MenuController extends BaseController {
 			Long menuId = ToolUtil.lon("menuId", request);
 			String menuStr = ToolUtil.str("menuStr", request);
 		    String menuNum = ToolUtil.str("menuNum", request);
-		    Long parentId = ToolUtil.lon("parentId", request);
+		    Long parentId = ToolUtil.lonWithNull("parentId", request);
 		    String parentStr = ToolUtil.str("parentStr", request);
 		    String parentNum = ToolUtil.str("parentNum", request);
-		    Integer menuOrder = ToolUtil.integer("menuOrder", request);
+		    Integer menuOrder = ToolUtil.intWithNull("menuOrder", request);
 		    String url = ToolUtil.str("url", request);
 		    String remark = ToolUtil.str("remark", request);
 		    
@@ -149,6 +163,12 @@ public class MenuController extends BaseController {
 		return jsonResult;
 	}
 	
+	/**
+	 * 删除菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/deleteMenu")
 	@ResponseBody
 	public JsonResult deleteMenu(HttpServletRequest request, HttpServletResponse response) {
@@ -157,7 +177,8 @@ public class MenuController extends BaseController {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
 			Long menuId = ToolUtil.lon("menuId", request);
-		    
+			
+			//删除菜单
 		    int result = menuService.deleteMenuById(menuId);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
@@ -172,6 +193,12 @@ public class MenuController extends BaseController {
 		return jsonResult;
 	}
 	
+	/**
+	 * 菜单软删除
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/removeMenu")
 	@ResponseBody
 	public JsonResult removeMenu(HttpServletRequest request, HttpServletResponse response) {
@@ -197,6 +224,29 @@ public class MenuController extends BaseController {
 			} else {
 				jsonResult = JsonResult.build(FLAG_FAILED);
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
+	/**
+	 * 根据id获取菜单
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/getMenuById")
+	@ResponseBody
+	public JsonResult getMenuById(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		
+		try {
+			Long id = ToolUtil.lon("menuId", request);
+			Menu menu = menuService.findMenuById(id);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, menu);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

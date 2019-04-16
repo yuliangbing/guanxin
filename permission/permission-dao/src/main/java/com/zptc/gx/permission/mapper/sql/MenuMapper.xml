@@ -267,4 +267,9 @@
     	And parent_id is null
     </if>
   </select>
+  
+  <delete id="deleteByParentId" parameterType="java.lang.Long" >
+    delete from menu
+    where parent_id = #{parentId,jdbcType=BIGINT}
+  </delete>
 </mapper>
