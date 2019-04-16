@@ -252,5 +252,8 @@
     <if test="parentId != null and parentId != ''">
     	And parent_id = #{parentId,jdbcType=BIGINT}
     </if>
+    <if test="parentIsNull != null and parentIsNull == 1">
+    	And parent_id is null
+    </if>
   </select>
 </mapper>

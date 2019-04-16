@@ -89,6 +89,19 @@ public class ToolUtil {
 		}
 		return r;
 	}
+	
+	public static Integer intWithNull(String key, HttpServletRequest req) {
+		String val = str(key, req);
+		Integer r = null;
+		if (!StringUtils.isEmpty(val)) {
+			try {
+				r = Integer.parseInt(val, 10);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return r;
+	}
 
 	public static long lon(String val) {
 		long r = -1;
@@ -103,6 +116,19 @@ public class ToolUtil {
 	}
 
 	public static Long lonWithNull(String val) {
+		Long r = null;
+		if (!StringUtils.isEmpty(val)) {
+			try {
+				r = Long.parseLong(val, 10);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return r;
+	}
+	
+	public static Long lonWithNull(String key, HttpServletRequest req) {
+		String val = str(key, req);
 		Long r = null;
 		if (!StringUtils.isEmpty(val)) {
 			try {

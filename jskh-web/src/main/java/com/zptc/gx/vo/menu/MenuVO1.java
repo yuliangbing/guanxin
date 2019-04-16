@@ -10,12 +10,20 @@ public class MenuVO1 {
     private String menuStr;
 
     private String menuNum;
+    
+    private Long parentId;
+    
+    private String parentStr;
+
+    private String parentNum;
 
     private String url;
     
     private boolean hasSubMenu;
     
     private List<MenuVO1> subMenuList;
+    
+    private Integer level;
 
 	public Long getId() {
 		return id;
@@ -41,6 +49,30 @@ public class MenuVO1 {
 		this.menuNum = menuNum;
 	}
 
+	public Long getParentId() {
+		return parentId;
+	}
+
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+
+	public String getParentStr() {
+		return parentStr;
+	}
+
+	public void setParentStr(String parentStr) {
+		this.parentStr = parentStr;
+	}
+
+	public String getParentNum() {
+		return parentNum;
+	}
+
+	public void setParentNum(String parentNum) {
+		this.parentNum = parentNum;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -63,5 +95,13 @@ public class MenuVO1 {
 
 	public void setSubMenuList(List<MenuVO1> subMenuList) {
 		this.subMenuList = subMenuList;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 }

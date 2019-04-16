@@ -1,7 +1,9 @@
 package com.zptc.gx.controller.permission;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +17,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
 import com.zptc.gx.controller.BaseController;
+import com.zptc.gx.controller.LoginController;
 import com.zptc.gx.permission.entity.Menu;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.permission.service.MenuService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.menu.MenuVO1;
 
 @Controller
 @RequestMapping("/menu")
@@ -40,8 +44,11 @@ public class MenuController extends BaseController {
 		JsonResult jsonResult = new JsonResult();
 		
 		try {
-			List<Menu> menuList = menuService.queryMenuList(null);
-			jsonResult = JsonResult.build(FLAG_SUCCESS, menuList);
+			Map<String, Object> par = new HashMap<>();
+			par.put("parentIsNull", 1);
+			List<Menu> menuList = menuService.queryMenuList(par);
+			List<MenuVO1> menuVOList = getMenuVOList(menuList,MENU_LEVEL);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, menuVOList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,10 +66,10 @@ public class MenuController extends BaseController {
 			
 			String menuStr = ToolUtil.str("menuStr", request);
 		    String menuNum = ToolUtil.str("menuNum", request);
-		    Long parentId = ToolUtil.lon("parentId", request);
+		    Long parentId = ToolUtil.lonWithNull("parentId", request);
 		    String parentStr = ToolUtil.str("parentStr", request);
 		    String parentNum = ToolUtil.str("parentNum", request);
-		    Integer menuOrder = ToolUtil.integer("menuOrder", request);
+		    Integer menuOrder = ToolUtil.intWithNull("menuOrder", request);
 		    String url = ToolUtil.str("url", request);
 		    String remark = ToolUtil.str("remark", request);
 		    
@@ -75,6 +82,8 @@ public class MenuController extends BaseController {
 		    menu.setMenuOrder(menuOrder);
 		    menu.setUrl(url);
 		    menu.setRemark(remark);
+		    //显示
+		    menu.setShowType(1);
 		    menu.setCreateId(user.getId());
 		    menu.setCreateTime(new Date());
 		    menu.setCreateUser(user.getTeaName());
