@@ -9,6 +9,7 @@
 
 <link rel="stylesheet" href="/static/public/lib/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/specialty_files.css">
+<link rel="stylesheet" href="/static/public/css/xadmin.css">
 </head>
 		<body class="layui-layout-body">
 		<div class="layui-layout layui-layout-admin">
@@ -80,39 +81,34 @@
 							</div>
 							</fieldset>
 							</div>
-							<a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
+							<!-- <a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
 								<i class="layui-icon layui-icon-refresh-3"></i>
-							</a>
+							</a> -->
 							<button class="layui-btn layui-right" lay-submit lay-filter="search">搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
-							<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>
+							<!--<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>   -->
+							<script type="text/html" id="toolbarDemo">
+			 				  <button class="layui-btn layui-btn-danger" lay-event="delData""><i class="layui-icon"></i>批量删除</button>
+			 				  <button class="layui-btn" lay-submit lay-filter="insertAdd"><i class="layui-icon"></i>添加</button>
+							</script>
 						</form>
 					</div>
 					<!--table表格部分 -->
 					<div class="layui-col-md12 layui-content-white">
-
-						<table class="layui-hide" id="demoList" lay-filter="test"></table>
+						<table class="layui-hide" id="demoList" lay-filter="demoList"></table>
 					</div>
 				</div>
 			<!--</div>-->
 		</div>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-   		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-   		<script type="text/html" id="toolbarDemo">
-		  <div class="layui-btn-container">
-		    <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-		    <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-		    <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-		  </div>
-		</script>
+   		<%-- <script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script> --%>
+   		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+   		<script src="${path}/static/js/specialty_files.js"></script>
+   		
 		<script type="text/html" id="barDemo" >
 			<a class="layui-btn layui-btn-xs" lay-event="check">查看</a>
 			<a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-		
-		
 		</script>
-		<script src="${path}/static/js/specialty_files.js"></script>
-			<!-- <a class="layui-btn layui-btn-xs" lay-event="insert">新增</a> -->
 	</body>
 </html>
