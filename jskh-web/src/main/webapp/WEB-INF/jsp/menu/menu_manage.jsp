@@ -12,7 +12,7 @@
 	src="${path}/static/js/menu/menu_manage.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
-<body>
+<body class="layui-layout-body">
 	<div class="x-body">
 		<xblock>
 		<button class="layui-btn" onclick="add()">
