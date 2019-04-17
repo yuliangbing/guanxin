@@ -88,8 +88,10 @@
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 							<!--<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>   -->
 							<script type="text/html" id="toolbarDemo">
+							<div style="margin:-5px -1px;">
 			 				  <button class="layui-btn layui-btn-danger" lay-event="delData""><i class="layui-icon"></i>批量删除</button>
 			 				  <button class="layui-btn" lay-submit lay-filter="insertAdd"><i class="layui-icon"></i>添加</button>
+							</div>
 							</script>
 						</form>
 					</div>

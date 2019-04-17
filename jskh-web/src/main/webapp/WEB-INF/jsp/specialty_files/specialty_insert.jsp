@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="/static/public/lib/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
-		<!--<div class="layui-layout layui-layout-admin">-->
-				<!--<div class="layui-row layui-col-space15">-->
-					<!-- 内容主体区域 -->
 	<div class="layui-col-md12 layui-content-white">
 
 		<form class="layui-form" action="" onsubmit="return false;">
@@ -21,27 +18,27 @@
 					<!-- <input type="hidden" id="specialtyFilesId" name="id" > -->
 					<input type="hidden" id="status" name="status" value="1" >
 					<div class="layui-form-item">
-					    <label class="layui-form-label" for="date">文件时间</label>
-					    <div class="layui-input-block">
-								<input  type="text" id="date" name="date" lay-verify="" placeholder="请选择文件时间" class="layui-input">
-						</div>
-				    </div>
-				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="code">文件编号</label>
 					    <div class="layui-input-block">
-								<input  type="text" id="code" name="code" lay-verify="" placeholder="请输入文件编号" class="layui-input" value="${list[0].code}">
+								<input  type="text" id="code" name="code" lay-verify="required" placeholder="请输入文件编号" class="layui-input" value="${list[0].code}">
+						</div>
+				    </div>
+					<div class="layui-form-item">
+					    <label class="layui-form-label" for="date">文件时间</label>
+					    <div class="layui-input-block">
+								<input  type="text" id="date" name="date" lay-verify="date" placeholder="请选择文件时间" class="layui-input">
 						</div>
 				    </div>
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="name">文件名称</label>
 					    <div class="layui-input-block">
-								<input  type="text" id="name" name="name" lay-verify="" placeholder="请输入文件名称" class="layui-input">
+								<input  type="text" id="name" name="name" lay-verify="required" placeholder="请输入文件名称" class="layui-input">
 						</div>
 				    </div>
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="cate_name">文件类型名称</label>
 					    <div class="layui-input-block">
-							<select  type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
+							<select  type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
 								<option value="0">已报名</option>
 								<option value="1">已缴费</option>
@@ -56,13 +53,13 @@
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="reviser">修订人</label>
 					    <div class="layui-input-block">
-								<input  type="text" id="reviser" name="reviser" lay-verify="" placeholder="请输入文件名称" class="layui-input">
+								<input  type="text" id="reviser" name="reviser" lay-verify="required" placeholder="请输入文件名称" class="layui-input">
 						</div>
 				    </div>
 				    <div class="layui-form-item">
-					    <label class="layui-form-label" for="specialty_id">文件类型名称</label>
+					    <label class="layui-form-label" for="specialty_id">专业id</label>
 					    <div class="layui-input-block">
-							<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
+							<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
 								<option value="0">已报名</option>
 								<option value="1">已缴费</option>
@@ -76,9 +73,12 @@
 				    </div>
 				</fieldset>
 			</div>
-			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
-			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
-			<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
+			<div style="margin:1px 533px;">
+				<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
+				<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
+			</div>
+			
 
 		</form>
 	<!--</div>-->
@@ -140,10 +140,10 @@
 												parent.window.location.reload();
 										},500);
 									} else if(data.code != 0) {
-										layer.msg("失败");
+										layer.msg("失败,可能为数据填写错误或缺少必要数据！");
 									}
 								}
-							} ,error:function(code1){
+							} ,error:function(code){
 					           layer.alert("发生错误,请联系管理员");
 					        }
 					});

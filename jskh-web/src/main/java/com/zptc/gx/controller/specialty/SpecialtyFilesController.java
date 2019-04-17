@@ -131,6 +131,15 @@ public class SpecialtyFilesController extends BaseController {
 		    specialtyFiles.setStatus(status);
 		    specialtyFiles.setCreateTime(new Date());
 		    specialtyFiles.setCreateUser(user.getTeaName());
+		    //判断传入的值是否为空或""
+		    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)) == false) {
+		    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+		    	System.out.println("错误，传入数据错误");
+		    	 //接口拿到的数据
+			    System.out.println("addSpecialty方法拿到的数据："+specialtyFiles.toString());
+		    	return jsonResult;
+			}
+		    System.out.println("传入数据成功");
 		    System.out.println("addSpecialty方法拿到的数据："+specialtyFiles.toString());
 		    int result = specialtyFilesService.addSpecialtyFiles(specialtyFiles);
 		    if (result > 0) {
@@ -159,30 +168,56 @@ public class SpecialtyFilesController extends BaseController {
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    Integer status = ToolUtil.integer("status", request);
-	    Date date = ToolUtil.date1("date", request);
+	    Date date = ToolUtil.date2("date", request);
+	    status = 1;
+	    System.out.println("判断返回的值"+(ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)));
+	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+//		//根据specialtyFilesId查询
+	    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
+	    if (specialtyFiles == null) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+			return jsonResult;
+		}
+	    specialtyFiles.setDate(date);
+	    specialtyFiles.setCode(code);
+	    specialtyFiles.setName(name);
+	    specialtyFiles.setCateName(cateName);
+	    specialtyFiles.setReviser(reviser);
+	    specialtyFiles.setSpecialtyId(specialty_id);
+	    specialtyFiles.setStatus(status);
+	    specialtyFiles.setModifyTime(new Date());
+	    specialtyFiles.setModifyUser(user.getTeaName());
+	   
 	    //判断传入的值是否为空或""
-	    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date) == false)) {
+	    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+	    	System.out.println("错误，传入数据错误");
+	    	 //接口拿到的数据
+		    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyFiles.toString());
 	    	return jsonResult;
 		}
 	    else {
+	    	System.out.println("传入数据成功");
 			try {
-				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-				//根据specialtyFilesId查询
-			    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
-			    if (specialtyFiles == null) {
-			    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-					return jsonResult;
-				}
-			   
-			    specialtyFiles.setCode(code);
-			    specialtyFiles.setName(name);
-			    specialtyFiles.setCateName(cateName);
-			    specialtyFiles.setReviser(reviser);
-			    specialtyFiles.setSpecialtyId(specialty_id);
-			    specialtyFiles.setStatus(status);
-			    specialtyFiles.setModifyTime(new Date());
-			    specialtyFiles.setModifyUser(user.getTeaName());
+				
+//				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+//				//根据specialtyFilesId查询
+//			    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
+//			    if (specialtyFiles == null) {
+//			    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+//					return jsonResult;
+//				}
+//			    specialtyFiles.setDate(date);
+//			    specialtyFiles.setCode(code);
+//			    specialtyFiles.setName(name);
+//			    specialtyFiles.setCateName(cateName);
+//			    specialtyFiles.setReviser(reviser);
+//			    specialtyFiles.setSpecialtyId(specialty_id);
+//			    specialtyFiles.setStatus(status);
+//			    specialtyFiles.setModifyTime(new Date());
+//			    specialtyFiles.setModifyUser(user.getTeaName());
+			    //接口拿到的数据
+			    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyFiles.toString());
 			    int result = specialtyFilesService.modifySpecialtyFiles(specialtyFiles);
 			    if (result > 0) {
 			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
