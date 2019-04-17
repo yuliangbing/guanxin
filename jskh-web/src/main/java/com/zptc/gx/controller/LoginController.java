@@ -37,7 +37,7 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	private ZptcUserService zptcUserService;
-	
+
 	@Autowired
 	private MenuService menuService;
 
@@ -76,6 +76,7 @@ public class LoginController extends BaseController {
 
 	/**
 	 * 登陆
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
@@ -104,14 +105,17 @@ public class LoginController extends BaseController {
 			ZptcUser zptcUser = userList.get(0);
 			// user存入session
 			request.getSession().setAttribute(Constant.USER_SESSION, zptcUser);
-			
+
 			long roleId = zptcUser.getRoleId();
-			
-			//获取menuList
-			List<Menu> menuList = menuService.findParentMenuByRoleId(roleId);
+
+			// 获取menuList
+			Map<String, Object> menuPar = new HashMap<>();
+			menuPar.put("roleId", roleId);
+			menuPar.put("parentIsNull", 1);
+			List<Menu> menuList = menuService.findUserMenu(menuPar);
 			if (!CollectionUtils.isEmpty(menuList)) {
-				List<MenuVO1> menuVOList = getMenuVOList(menuList,MENU_LEVEL);
-				System.out.println("+++++++++++++menuVOList:"+JSON.toJSONString(menuVOList));
+				List<MenuVO1> menuVOList = getMenuVOList(menuList, MENU_LEVEL, roleId);
+				System.out.println("+++++++++++++menuVOList:" + JSON.toJSONString(menuVOList));
 				request.getSession().setAttribute(Constant.USER_MENU, menuVOList);
 			}
 		} else {
@@ -122,6 +126,7 @@ public class LoginController extends BaseController {
 
 	/**
 	 * 注册
+	 * 
 	 * @param request
 	 * @param response
 	 * @return
@@ -156,11 +161,11 @@ public class LoginController extends BaseController {
 	public JsonResult getSystem(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
 		try {
 			Map<String, Object> par = new HashMap<>();
-			
+
 			String systemName = Constant.systemName;
-			
-			String basePath = req.getScheme()+"://"+req.getServerName()+":"+req.getServerPort();
-			
+
+			String basePath = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort();
+
 			par.put("systemName", systemName);
 			par.put("systemLink", basePath);
 			return JsonResult.build(FLAG_SUCCESS, par);
@@ -170,9 +175,10 @@ public class LoginController extends BaseController {
 			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
-	
+
 	/**
 	 * 获取用户信息
+	 * 
 	 * @param req
 	 * @param response
 	 * @param model
@@ -183,7 +189,7 @@ public class LoginController extends BaseController {
 	public JsonResult getUser(HttpServletRequest req, HttpServletResponse response, ModelMap model) {
 		try {
 			Map<String, Object> par = new HashMap<>();
-			
+
 			ZptcUser user = (ZptcUser) req.getSession().getAttribute(Constant.USER_SESSION);
 			par.put("user", user);
 			return JsonResult.build(FLAG_SUCCESS, par);
@@ -193,9 +199,10 @@ public class LoginController extends BaseController {
 			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
-	
+
 	/**
 	 * 退出
+	 * 
 	 * @param req
 	 * @param response
 	 * @param model
@@ -213,12 +220,12 @@ public class LoginController extends BaseController {
 			return JsonResult.build(FLAG_FAILED, Constant.SYS_ERR);
 		}
 	}
-	
+
 	@RequestMapping("/getUserMenu")
 	@ResponseBody
 	public JsonResult getUserMenu(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
-		
+
 		try {
 			List<MenuVO1> menuVO1List = (List<MenuVO1>) request.getSession().getAttribute(Constant.USER_MENU);
 			if (!CollectionUtils.isEmpty(menuVO1List)) {
@@ -232,5 +239,28 @@ public class LoginController extends BaseController {
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
 		return jsonResult;
+	}
+
+	// 获取菜单列表
+	private List<MenuVO1> getMenuVOList(List<Menu> menuList, int level, long roleId) {
+		int nextLevel = level + 1;
+		List<MenuVO1> menuVOList = new ArrayList<>();
+		for (Menu parentMenu : menuList) {
+			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
+			parentMenuVO.setLevel(level);
+			Map<String, Object> menuPar = new HashMap<>();
+			menuPar.put("parentId", parentMenu.getId());
+			menuPar.put("roleId", roleId);
+			List<Menu> subMenuList = menuService.findUserMenu(menuPar);
+			if (!CollectionUtils.isEmpty(subMenuList)) {
+				parentMenuVO.setHasSubMenu(true);
+				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList, nextLevel, roleId);
+				parentMenuVO.setSubMenuList(subMenuVOList);
+			} else {
+				parentMenuVO.setHasSubMenu(false);
+			}
+			menuVOList.add(parentMenuVO);
+		}
+		return menuVOList;
 	}
 }

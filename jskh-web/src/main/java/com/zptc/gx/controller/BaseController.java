@@ -38,26 +38,4 @@ public class BaseController {
 	public void setSession(HttpServletRequest request, String name, Object sessionObj) {
 		request.getSession().setAttribute(name, sessionObj);
 	}
-	
-	//获取菜单列表
-	public List<MenuVO1> getMenuVOList(List<Menu> menuList,int level){
-		int nextLevel = level+1;
-		List<MenuVO1> menuVOList = new ArrayList<>();
-		for (Menu parentMenu : menuList) {
-			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
-			parentMenuVO.setLevel(level);
-			Map<String, Object> menuPar = new HashMap<>();
-			menuPar.put("parentId", parentMenu.getId());
-			List<Menu> subMenuList = menuService.queryMenuList(menuPar);
-			if (!CollectionUtils.isEmpty(subMenuList)) {
-				parentMenuVO.setHasSubMenu(true);
-				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList,nextLevel);
-				parentMenuVO.setSubMenuList(subMenuVOList);
-			} else {
-				parentMenuVO.setHasSubMenu(false);
-			}
-			menuVOList.add(parentMenuVO);
-		}
-		return menuVOList;
-	}
 }

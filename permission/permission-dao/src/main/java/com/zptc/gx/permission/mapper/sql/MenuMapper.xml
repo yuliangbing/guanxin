@@ -245,14 +245,23 @@
   </update>
   
   <!-- 自定义sql -->
-  <select id="findParentMenuByRoleId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="findUserMenu" resultMap="BaseResultMap" parameterType="map" >
     select 
     m.id, m.menu_str, m.menu_num, m.parent_id, m.parent_str, m.parent_num, m.menu_order, 
     m.url, m.remark, m.show_type
     from menu m
     LEFT JOIN role_menu_rel rm ON rm.menu_id = m.id
     LEFT JOIN role r ON rm.role_id = r.id
-    where r.id = #{roleId,jdbcType=BIGINT} AND m.show_type = 1 AND parent_id is null
+    where m.show_type = 1
+    <if test="roleId != null">
+    	and r.id = #{roleId,jdbcType=BIGINT}
+    </if>
+    <if test="parentId != null and parentId != ''">
+    	And m.parent_id = #{parentId,jdbcType=BIGINT}
+    </if>
+    <if test="parentIsNull != null and parentIsNull == 1">
+    	And m.parent_id is null
+    </if>
   </select>
   
   <select id="queryMenuList" resultMap="BaseResultMap" parameterType="map" >
