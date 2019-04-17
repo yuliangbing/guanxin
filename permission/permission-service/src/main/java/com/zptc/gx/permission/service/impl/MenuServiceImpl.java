@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.permission.entity.Menu;
 import com.zptc.gx.permission.mapper.MenuMapper;
@@ -25,8 +26,16 @@ public class MenuServiceImpl implements MenuService {
 		return menuMapper.updateByPrimaryKeySelective(menu);
 	}
 	@Override
+	@Transactional
 	public int deleteMenuById(Long id){
-		return menuMapper.deleteByPrimaryKey(id);
+		int result = 0;
+		
+		//删除子菜单
+		result += menuMapper.deleteByParentId(id);
+		
+		//删除菜单
+		result += menuMapper.deleteByPrimaryKey(id);
+		return result;
 	}
 	@Override
 	public Menu findMenuById(Long id){
