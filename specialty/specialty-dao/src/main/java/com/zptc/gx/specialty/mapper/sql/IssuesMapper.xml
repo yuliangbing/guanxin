@@ -196,4 +196,112 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+<!--   id, date, code, name, sources, awards_construction, host, participants, specialty_id, 
+    status, create_time, create_user, modify_time, modify_user -->
+    <!-- 查询列表数据 -->
+    <select id="getIssuesList" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from issues
+    <where>
+<!--     	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if> -->
+		<if test="id != null and id != ''">
+			and instr(id,#{id,jdbcType=BIGINT})
+		</if>
+		<if test="date != null and date != ''">
+			and instr(date,#{date,jdbcType=datetime})
+		</if>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="sources != null and sources != ''">
+			and instr(sources,#{sources,jdbcType=VARCHAR})
+		</if>
+		<if test="awards_construction != null and awards_construction != ''">
+			and instr(awards_construction,#{awards_construction,jdbcType=VARCHAR})
+		</if>
+		<if test="host != null and host != ''">
+			and instr(host,#{host,jdbcType=VARCHAR})
+		</if>
+		<if test="participants != null and participants != ''">
+			and instr(participants,#{participants,jdbcType=VARCHAR})
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+		</if>
+		<if test="status != null and status != ''">
+			and instr(status,#{status,jdbcType=INTEGER})
+		</if>
+		<if test="create_time != null and create_time != ''">
+			and instr(create_time,#{create_time,jdbcType=DATETIME})
+		</if>		
+		<if test="create_user != null and create_user != ''">
+			and instr(create_user,#{create_user,jdbcType=VARCHAR})
+		</if>
+		<if test="modify_time != null and modify_time != ''">
+			and instr(modify_time,#{modify_time,jdbcType=DATETIME})
+		</if>
+		<!-- <if test="specialty_id != null and specialty_id != ''">
+			and specialty_id like '%${specialty_id}%'
+		</if> -->
+		<if test="modify_user !=null and modify_user != ''">
+			and modify_user = #{modify_user,jdbcType=VARCHAR}
+		</if>
+	</where>
+    limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_files
+			<where>
+				<if test="date != null and date != ''">
+					and instr(date,#{date,jdbcType=datetime})
+				</if>
+				<if test="code != null and code != ''">
+					and instr(code,#{code,jdbcType=VARCHAR})
+				</if>
+				<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+				</if>
+				<if test="sources != null and sources != ''">
+					and instr(sources,#{sources,jdbcType=VARCHAR})
+				</if>
+				<if test="awards_construction != null and awards_construction != ''">
+					and instr(awards_construction,#{awards_construction,jdbcType=VARCHAR})
+				</if>
+				<if test="host != null and host != ''">
+					and instr(host,#{host,jdbcType=VARCHAR})
+				</if>
+				<if test="participants != null and participants != ''">
+					and instr(participants,#{participants,jdbcType=VARCHAR})
+				</if>
+<!-- 				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+				</if> -->
+				<if test="status != null and status != ''">
+					and instr(status,#{status,jdbcType=INTEGER})
+				</if>
+				<if test="create_time != null and create_time != ''">
+					and instr(create_time,#{create_time,jdbcType=DATETIME})
+				</if>		
+				<if test="create_user != null and create_user != ''">
+					and instr(create_user,#{create_user,jdbcType=VARCHAR})
+				</if>
+				<if test="modify_time != null and modify_time != ''">
+					and instr(modify_time,#{modify_time,jdbcType=DATETIME})
+				</if>
+				<!-- <if test="specialty_id != null and specialty_id != ''">
+					and specialty_id like '%${specialty_id}%'
+				</if> -->
+		</where>
+	</select>
 </mapper>

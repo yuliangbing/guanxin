@@ -1,5 +1,8 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +32,15 @@ public class IssuesServiceImpl implements IssuesService {
 	public Issues findIssuesById(Long id){
 		Issues issues = issuesMapper.selectByPrimaryKey(id);
 		return issues;
+	}
+	@Override
+	public List<Issues> getIssuesList(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return issuesMapper.getIssuesList(data);
+	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return issuesMapper.selectCounts(count);
 	}
 }
