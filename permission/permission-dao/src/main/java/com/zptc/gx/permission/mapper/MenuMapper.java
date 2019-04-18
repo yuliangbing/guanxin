@@ -18,7 +18,7 @@ public interface MenuMapper {
 
     int updateByPrimaryKey(Menu record);
     
-    List<Menu> findParentMenuByRoleId(Long roleId);
+    List<Menu> findUserMenu(Map<String, Object> par);
     
     List<Menu> queryMenuList(Map<String, Object> par);
     

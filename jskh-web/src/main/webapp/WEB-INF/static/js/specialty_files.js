@@ -38,12 +38,14 @@
 				//第一个表格
 				var tableIns = table.render({
 					elem: '#demoList'
-					,id:'idTest'
+					//,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
+					,height: 515
 					//额外条件
-					,page: true,
-					toolbar: '#toolbarDemo',
-					limits: [10, 15, 20,25] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
+					,page: true
+					//toolbar: '<div class="layui-btn-container"> <button class="layui-btn layui-btn-sm" lay-submit lay-filter="delCheckData">批量删除</button></div>',
+				    ,toolbar:'#toolbarDemo'
+					,limits: [10, 15, 20,25] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 					,loading: true
 					,limit: 10
 					,cols: [
@@ -124,7 +126,7 @@
 								fixed: 'right',
 								title: '操作',
 								toolbar: '#barDemo',
-								width: '15%',
+								width: '14%',
 								sort: false,
 								align: 'center'
 							}
@@ -140,7 +142,6 @@
 						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 						arr.date2 = data.field.date.split('~')[1];
 					}
-					console.log(arr.date1+"yyy"+arr.date2);
 					tableIns.reload({
 						where:arr,
 						page: {
@@ -161,16 +162,16 @@
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
 				//监听工具条
-				table.on('tool(test)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+				table.on('tool(demoList)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 					var data = obj.data; //获得当前行数据
+					//alert(JSON.stringify(data));
 					var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 					var tr = obj.tr; //获得当前行 tr 的DOM对象
 					if(layEvent === 'del') { //删除
 						layer.confirm('真的删除行么', function(index) {
 							/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 							layer.close(index);
-							//向服务端发送删除指令*/	
-							
+							//向服务端发送删除指令*/		
 							$.ajax({
 								url:'/specialtyFiles/delSpecialtyFiles',
 								type:"POST",
@@ -180,7 +181,7 @@
 									var nowPage = tableIns.config.page.curr;//返回当前页数
 						        	var reloadPage = (nowPage-1) > 0? nowPage:1;
 						        	//console.log((nowPage-1));
-						        	console.log(reloadPage);
+						        	//console.log(reloadPage);
 									layer.msg("删除成功");
 									layer.close(index);
 					    			tableIns.reload({
@@ -226,23 +227,65 @@
 					} 
 
 				});
-				//头工具栏事件
-				  table.on('toolbar(test)', function(obj){
-					  alert("11obj"+obj);
-				    var checkStatus = table.checkStatus(obj.config.id);
-				    switch(obj.event){
-				      case 'getCheckData':
-				        var data = checkStatus.data;
-				        layer.alert(JSON.stringify(data));
-				      break;
-				      case 'getCheckLength':
-				        var data = checkStatus.data;
-				        layer.msg('选中了：'+ data.length + ' 个');
-				      break;
-				      case 'isAll':
-				        layer.msg(checkStatus.isAll ? '全选': '未全选');
-				      break;
-				    };
-				  });
+				
+				 //批量删除
+				 table.on('toolbar(demoList)', function(obj){
+					    var checkStatus = table.checkStatus(obj.config.id);
+//					    alert(JSON.stringify(checkStatus.data.id));
+					    
+					    switch(obj.event){
+					      case 'delData':
+					        var data = checkStatus.data;
+					        var param = [{}];
+					       // layer.alert(JSON.stringify(data));
+					        for(var i=0;i< data.length;i++){
+					        	param = data[i].id;
+//					        	layer.alert(JSON.stringify(data[i].id));
+					        	console.log(param);
+					        	//向服务端发送删除指令*/		
+								$.ajax({
+									url:'/specialtyFiles/delSpecialtyFiles',
+									type:"POST",
+									data:{specialtyFilesId:param},
+									dataType:"json",
+									success:function(data){
+										var nowPage = tableIns.config.page.curr;//返回当前页数
+							        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+										layer.msg("删除成功");
+										//layer.close(index);
+						    			tableIns.reload({
+						    				page:{
+						    					curr:reloadPage
+						    				}
+						    			});
+									}
+								});
+					        	
+					        	
+					        }
+					       //layer.alert(JSON.stringify(param));
+					        
+					      break;
+					    };
+					    
+					  });
+				
+			
+//					function delAll(argument) {
+//						
+//						var data = tableCheck.getData();
+//						alert(data);
+//						layer.confirm('确认要删除吗？' + data, function(index) {
+//							//捉到所有被选中的，发异步进行删除
+//							layer.msg('删除成功', {
+//								icon : 1
+//							});
+//							$(".layui-form-checked").not('.header').parents('tr').remove();
+//						});
+//					}
+//					
+				
+				  
 			});
+				
 		

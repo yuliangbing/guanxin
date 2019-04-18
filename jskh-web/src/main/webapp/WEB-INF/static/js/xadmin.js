@@ -109,6 +109,8 @@ $(function () {
     //左侧菜单效果
     // $('#content').bind("click",function(event){
     $('.left-nav #nav').on("click","li",function (event) {
+    	$('.left-nav #nav a').removeClass("active");
+    	$(this).children('a').addClass("active");
 
         if($(this).children('.sub-menu').length){
             if($(this).hasClass('open')){

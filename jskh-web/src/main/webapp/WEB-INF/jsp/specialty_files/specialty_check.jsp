@@ -74,7 +74,9 @@
 			</div>
 			<!--<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>-->
-			<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
+			<div style="margin:1px 533px;">
+				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
+			</div>
 		</form>
 	<!--</div>-->
 <!--</div>-->

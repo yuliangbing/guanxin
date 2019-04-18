@@ -15,7 +15,7 @@ public interface MenuService {
 
 	public Menu findMenuById(Long id);
 	
-	public List<Menu> findParentMenuByRoleId(Long roleId);
+	public List<Menu> findUserMenu(Map<String, Object> par);
 	
 	public List<Menu> queryMenuList(Map<String, Object> par);
 

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.mapper.SpecialtyFilesMapper;
@@ -60,8 +61,9 @@ public class SpecialtyFilesServiceImpl implements SpecialtyFilesService {
 		// TODO Auto-generated method stub
 		return specialtyFilesMapper.selectCounts(count);
 	}
-	//根据status修改状态（删除）
+	//根据status修改状态（删除，@Transactional是回滚）
 	@Override
+	@Transactional
 	public int modifSpecialtyFilesDel(SpecialtyFiles specialtyFiles) {
 		// TODO Auto-generated method stub
 		return specialtyFilesMapper.updateByPrimaryKeyDel(specialtyFiles);
