@@ -1,4 +1,4 @@
-package com.zptc.controller.file_category;
+package com.zptc.gx.controller.file;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,8 +40,6 @@ public class FileCategoryController extends BaseController {
 		String code = ToolUtil.str("code", request);
 	    String name = ToolUtil.str("name", request);
 	    Integer status = ToolUtil.integer("status", request);
-	  /*  String date1 = ToolUtil.str("date1", request);
-	    String date2 = ToolUtil.str("date2", request);*/
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    
@@ -53,8 +51,6 @@ public class FileCategoryController extends BaseController {
 		//存入data,用于获取表格数据
 	    data.put("code", code);
 	    data.put("name", name);
-	   /* data.put("date1", date1);
-	    data.put("date2", date2);*/
 		data.put("limits", limits);
 		data.put("page", page);
 		data.put("status", 1);
@@ -75,6 +71,7 @@ public class FileCategoryController extends BaseController {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据
 			List<FileCategory> fileCategories = fileCategoryService.getFileCategoryList(data);
+			System.out.println("获得"+fileCategories.size()+"个数据");
 			//获取所有status == 1的数据条总数
 			counts = fileCategoryService.selectCounts(count);
 			//返回接口的具体数据

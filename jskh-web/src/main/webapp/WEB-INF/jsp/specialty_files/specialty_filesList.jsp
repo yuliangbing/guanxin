@@ -45,18 +45,20 @@
 								<div class="layui-inline">
 									<label class="layui-form-label alignment">文件类型名称</label>
 									<div class="layui-input-inline">
-										<select type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
-											<option value="">请选择</option>
-											<option value="0">已报名</option>
-											<option value="1">已缴费</option>
-											<option value="2">已上传</option>
-											<option value="3">审核中</option>
-											<option value="4">视频不合格</option>
-											<option value="5">体检合格</option>
-											<option value="6">体检不合格</option>
+										<select id="cate_name" class="layui-select" lay-search>
+											<option value=""></option>
+											
 										</select>
 									</div>
 								</div>
+								<!-- <div class="layui-inline">
+						      		<label class="layui-form-label">状态</label>
+								    <div class="layui-input-inline">
+									    <select name="status" lay-search="" id="status">
+										    <option value=""></option>
+									    </select>
+								    </div>
+							    </div> -->
 								<div class="layui-inline">
 									<label class="layui-form-label" for="reviser">修订人</label>
 									<div class="layui-input-inline">

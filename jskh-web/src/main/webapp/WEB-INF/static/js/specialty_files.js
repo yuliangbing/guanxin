@@ -11,15 +11,68 @@
 					
 				}
 			});*/
-
-			layui.use('element', function() {
-				var element = layui.element;
-
-			});
-
+			function ajax_h(form){
+				//获取状态
+				$.ajax({
+					url:'/fileCategory/getFileCategoryList',
+					type:"POST",
+//					data:{specialtyFilesId:data.id},
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						layer.msg("获取成功");
+						console.log(data.data.length);
+						if (data.code == 0) {
+							
+							let option = "";
+							for (let i=0;i<data.data.length;i++) {
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+								
+							}
+							$("#cate_name").append(option);
+							form.render('select');
+//							layui.use('form', function() {
+//						        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+//						        form.render();
+//						    });
+						} else {
+							layer.msg(data.msg);
+						}
+						
+					} ,error:function(code){
+			           layer.alert("发生错误,请联系管理员");
+			        }
+				});
+			}
 			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				ajax_h(form);
+			
+				//获取体检状态
+				/*	var url = "/api/admin/common/second/dictionary";
+					var param = {
+							fatherCode:"014000"
+						};
+					var met="GET";
+					ajax_hm(url,param,met,function(err,data){
+						if(err,data){
+							console.log(data);
+							if (data.code == 0) {
+								let option = "";
+								for (let i=0;i<data.dictionaryListByFatherCode.length;i++) {
+									option += "<option value='"+data.dictionaryListByFatherCode[i].code+"'>"+data.dictionaryListByFatherCode[i].name+"</option>";
+								}
+								$("#status").append(option);
+								form.render('select');
+							} else {
+								layer.msg(data.msg);
+							}
+						}else{
+							console.log(err);
+							layer.msg(msg_000000001);
+						}
+					});	*/
 				
 				/*
 				 实现时间选择
@@ -268,24 +321,8 @@
 					      break;
 					    };
 					    
-					  });
+					  });		
 				
-			
-//					function delAll(argument) {
-//						
-//						var data = tableCheck.getData();
-//						alert(data);
-//						layer.confirm('确认要删除吗？' + data, function(index) {
-//							//捉到所有被选中的，发异步进行删除
-//							layer.msg('删除成功', {
-//								icon : 1
-//							});
-//							$(".layui-form-checked").not('.header').parents('tr').remove();
-//						});
-//					}
-//					
-				
-				  
 			});
 				
 		

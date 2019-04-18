@@ -9,16 +9,14 @@
 <link rel="stylesheet" href="/static/public/lib/layui/css/layui.css">
 </head>
 <body class="layui-layout-body">
-		<!--<div class="layui-layout layui-layout-admin">-->
-				<!--<div class="layui-row layui-col-space15">-->
-					<!-- 内容主体区域 -->
 	<div class="layui-col-md12 layui-content-white">
 
 		<form class="layui-form" action="" onsubmit="return false;">
 			<div class="layui-form-item">
 				<fieldset class="layui-elem-field">
 					<legend>修改专业文件</legend>
-					<input type="hidden" id="specialtyFilesId" name="id" >
+					<!-- 隐藏text,用于存放入参的id -->
+					<input type="hidden" id="specialtyFilesId" name="specialtyFilesId" >
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="code">文件编号</label>
 					    <div class="layui-input-block">
@@ -81,8 +79,6 @@
 				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
 			</div>
 		</form>
-	<!--</div>-->
-<!--</div>-->
 	</div>
 		
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
