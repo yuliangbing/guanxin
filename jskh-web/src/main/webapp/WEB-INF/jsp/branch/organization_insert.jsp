@@ -35,7 +35,7 @@
 				</div>
 			
 			<div >
-            <span>创建人&emsp;</span>
+            <lable>创建人&emsp;</lable>
 			<div class="layui-inline">
 				<div class="layui-input-inline">
 					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 			
-			<div style="margin-left: -5%;">
+			<div style="margin-right: -5%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit="" lay-filter="demo1">增加</button>
