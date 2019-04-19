@@ -115,7 +115,8 @@ public class SpecialtyFilesController extends BaseController {
 			
 			String code = ToolUtil.str("code", request);
 		    String name = ToolUtil.str("name", request);
-		    String cateName = ToolUtil.str("cateName", request);
+		    String cateName = ToolUtil.str("cate_name", request);
+		    System.out.println("cateName"+cateName);
 		    String reviser = ToolUtil.str("reviser", request);
 		    Long specialty_id = ToolUtil.lon("specialty_id", request);
 		    Integer status = ToolUtil.integer("status", request);
@@ -164,7 +165,7 @@ public class SpecialtyFilesController extends BaseController {
 		Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
 		String code = ToolUtil.str("code", request);
 	    String name = ToolUtil.str("name", request);
-	    String cateName = ToolUtil.str("cateName", request);
+	    String cateName = ToolUtil.str("cate_name", request);
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    Integer status = ToolUtil.integer("status", request);

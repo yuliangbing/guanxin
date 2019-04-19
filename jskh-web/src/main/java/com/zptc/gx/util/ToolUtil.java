@@ -596,7 +596,7 @@ public class ToolUtil {
 	
 	public static boolean equalBool(Date date) {
 		Boolean flag = false;
-		if(!date.equals("") && date == null) {
+		if(!date.equals("") && date != null) {
 			flag = true;
 		}
 		else {

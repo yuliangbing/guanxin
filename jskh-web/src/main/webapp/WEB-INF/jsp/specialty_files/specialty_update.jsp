@@ -12,9 +12,9 @@
 	<div class="layui-col-md12 layui-content-white">
 
 		<form class="layui-form" action="" onsubmit="return false;">
-			<div class="layui-form-item">
+			<!-- <div class="layui-form-item">
 				<fieldset class="layui-elem-field">
-					<legend>修改专业文件</legend>
+					<legend>修改专业文件</legend> -->
 					<!-- 隐藏text,用于存放入参的id -->
 					<input type="hidden" id="specialtyFilesId" name="specialtyFilesId" >
 				    <div class="layui-form-item">
@@ -38,15 +38,8 @@
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="cate_name">文件类型名称</label>
 					    <div class="layui-input-block">
-							<select  type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+							<select  id="cate_name" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
-								<option value="0">已报名</option>
-								<option value="1">已缴费</option>
-								<option value="2">已上传</option>
-								<option value="3">审核中</option>
-								<option value="4">视频不合格</option>
-								<option value="5">体检合格</option>
-								<option value="6">体检不合格</option>
 							</select>
 						</div>
 				    </div>
@@ -59,7 +52,7 @@
 				    <div class="layui-form-item">
 					    <label class="layui-form-label" for="specialty_id">专业id</label>
 					    <div class="layui-input-block">
-							<select  type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+							<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
 								<option value="0">已报名</option>
 								<option value="1">已缴费</option>
@@ -71,9 +64,9 @@
 							</select>
 						</div>
 				    </div>
-				</fieldset>
-			</div>
-			<div style="margin:1px 533px;">
+				<!-- </fieldset>
+			</div> -->
+			<div style="margin:1px 533px 1px 1px;">
 				<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 				<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
@@ -84,16 +77,51 @@
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
+	var cate_name = "";
 	// 初始化
 	function init(data) {
 		$("#specialtyFilesId").val(data.id);
 		$("#date").val(data.date);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-		$("#cate_name").val(data.cate_name);
+		cate_name = data.cate_name;
 		$("#reviser").val(data.reviser);
 		$("#specialty_id").val(data.specialty_id);
 	}
+	
+	function ajax_h(form,cate_name){
+		//获取状态
+		$.ajax({
+			url:'/fileCategory/getFileCategoryList',
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				layer.msg("获取成功");
+				console.log(data.data.length);
+				if (data.code == 0) {
+					let option = "";
+					for (let i=0;i<data.data.length;i++) {
+						if(data.data[i].name == cate_name){
+							option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+						}
+						else{
+							option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+						}
+						
+					}
+					console.log("option:"+option);
+					$("#cate_name").append(option);
+					form.render('select');
+				} else {
+					layer.msg(data.msg);
+				}
+				
+			} ,error:function(code){
+	           layer.alert("发生错误,请联系管理员");
+	        }
+		});
+	}
+
 		//关闭监听
 		function exit(){
 		    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -107,7 +135,9 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
-			
+			//获取select值
+			console.log("1catenamede值为："+cate_name);
+			ajax_h(form,cate_name);
 			/*
 			 实现文件时间选择
 			 */
@@ -127,7 +157,7 @@
 				params.date = $("#date").val();
 				params.code = $("#code").val();
 				params.name = $("#name").val();
-				params.cate_name = $("#cate_name").val();
+				params.cate_name =  $("#cate_name option:checked").text();
 				params.reviser = $("#reviser").val();
 				params.specialty_id = $("#specialty_id").val();
 			
@@ -162,11 +192,6 @@
 				//return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 			});
 			
-			
-				
-			
-			
-		
 		});
 	</script>
 	</body>
