@@ -12,9 +12,6 @@
 	<div class="layui-col-md12 layui-content-white">
 
 		<form class="layui-form" action="" onsubmit="return false;">
-			<div class="layui-form-item">
-				<fieldset class="layui-elem-field">
-					<legend>查看专业文件</legend>
 				<div class="layui-form-item">
 				    <label class="layui-form-label" for="date">文件时间</label>
 				    <div class="layui-input-block">
@@ -35,17 +32,8 @@
 			    </div>
 			    <div class="layui-form-item">
 				    <label class="layui-form-label" for="cate_name">文件类型名称</label>
-				    <div class="layui-input-block">
-						<select disabled type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
-							<option value="">请选择</option>
-							<option value="0">已报名</option>
-							<option value="1">已缴费</option>
-							<option value="2">已上传</option>
-							<option value="3">审核中</option>
-							<option value="4">视频不合格</option>
-							<option value="5">体检合格</option>
-							<option value="6">体检不合格</option>
-						</select>
+				     <div class="layui-input-block">
+							<input disabled type="text" id="cate_name" name="cate_name" class="layui-input">
 					</div>
 			    </div>
 			    <div class="layui-form-item">
@@ -57,29 +45,13 @@
 			    <div class="layui-form-item">
 				    <label class="layui-form-label" for="specialty_id">文件类型名称</label>
 				    <div class="layui-input-block">
-						<select disabled type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
-							<option value="">请选择</option>
-							<option value="0">已报名</option>
-							<option value="1">已缴费</option>
-							<option value="2">已上传</option>
-							<option value="3">审核中</option>
-							<option value="4">视频不合格</option>
-							<option value="5">体检合格</option>
-							<option value="6">体检不合格</option>
-						</select>
+							<input disabled type="text" id="specialty_id" name="specialty_id" class="layui-input">
 					</div>
 			    </div>
-			     
-			</fieldset>
-			</div>
-			<!--<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
-			<button type="reset" class="layui-btn layui-btn-danger">重置</button>-->
 			<div style="margin:1px 533px;">
 				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
 			</div>
 		</form>
-	<!--</div>-->
-<!--</div>-->
 	</div>
 		
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -109,7 +81,6 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
-	
 		});
 	</script>
 	</body>

@@ -6,12 +6,12 @@
 <head>
 <meta charset="utf-8">
 <title>专业文件</title>
-
-<link rel="stylesheet" href="/static/public/lib/layui/css/layui.css">
-<link rel="stylesheet" href="/static/public/css/specialty_files.css">
+<link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
+<link rel="stylesheet" href="/static/public/css/specialty_files.css">
+
 </head>
-		<body class="layui-layout-body">
+		<body class="layui-layout-body" style="background-color: #ffff;padding: 10px;"  >
 		<div class="layui-layout layui-layout-admin">
 
 			<!--<div class="layui-body">-->
@@ -19,10 +19,7 @@
 					<!-- 内容主体区域 -->
 					<div class="layui-col-md12 layui-content-white">
 
-						<form class="layui-form" action="" onsubmit="return false;">
-							<div class="layui-form-item">
-		 					<fieldset class="layui-elem-field">
-		 						<legend>专业文件</legend>
+						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
 								<div class="layui-inline">
 									<label class="layui-form-label" for="date">文件时间</label>
@@ -43,7 +40,7 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label alignment">文件类型名称</label>
+									<label class="layui-form-label alignment">文件类型</label>
 									<div class="layui-input-inline">
 										<select id="cate_name" class="layui-select" lay-search>
 											<option value=""></option>
@@ -81,20 +78,13 @@
 									</div>
 								</div>
 							</div>
-							</fieldset>
-							</div>
 							<!-- <a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
 								<i class="layui-icon layui-icon-refresh-3"></i>
 							</a> -->
 							<button class="layui-btn layui-right" lay-submit lay-filter="search">搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 							<!--<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>   -->
-							<script type="text/html" id="toolbarDemo">
-							<div style="margin:-5px -1px;">
-			 				  <button class="layui-btn layui-btn-danger" lay-event="delData""><i class="layui-icon"></i>批量删除</button>
-			 				  <button class="layui-btn" lay-submit lay-filter="insertAdd"><i class="layui-icon"></i>添加</button>
-							</div>
-							</script>
+							
 						</form>
 					</div>
 					<!--table表格部分 -->
@@ -107,8 +97,13 @@
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
    		<%-- <script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script> --%>
    		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-   		<script src="${path}/static/js/specialty_files.js"></script>
-   		
+   		<script src="${path}/static/js/specialty_files.js" type="text/javascript" charset="utf-8"></script>
+   		<script type="text/html" id="toolbarDemo">
+			<div style="margin:-5px -1px;">
+			 	 <button class="layui-btn layui-btn-danger" lay-event="delData""><i class="layui-icon"></i>批量删除</button>
+			 	 <button class="layui-btn" lay-submit lay-filter="insertAdd"><i class="layui-icon"></i>添加</button>
+			</div>
+		</script>
 		<script type="text/html" id="barDemo" >
 			<a class="layui-btn layui-btn-xs" lay-event="check">查看</a>
 			<a class="layui-btn layui-btn-xs" lay-event="update">修改</a>

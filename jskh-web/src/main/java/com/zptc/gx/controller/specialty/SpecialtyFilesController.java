@@ -43,7 +43,7 @@ public class SpecialtyFilesController extends BaseController {
 		//获取请求参数
 		String code = ToolUtil.str("code", request);
 	    String name = ToolUtil.str("name", request);
-	    String cateName = ToolUtil.str("cateName", request);
+	    String cate_name = ToolUtil.str("cate_name", request);
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    Integer status = ToolUtil.integer("status", request);
@@ -51,7 +51,6 @@ public class SpecialtyFilesController extends BaseController {
 	    String date2 = ToolUtil.str("date2", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
-	    
 	    Integer pages = page;
 	    Integer limits = 0;
 		//用于分页的数据
@@ -60,7 +59,7 @@ public class SpecialtyFilesController extends BaseController {
 		//存入data,用于获取表格数据
 	    data.put("code", code);
 	    data.put("name", name);
-	    data.put("cateName", cateName);
+	    data.put("cate_name", cate_name);
 	    data.put("reviser", reviser);
 	    data.put("specialty_id", specialty_id);
 	    data.put("date1", date1);
@@ -76,7 +75,7 @@ public class SpecialtyFilesController extends BaseController {
 		count.put("counts", count);
 		count.put("code", code);
 		count.put("name", name);
-		count.put("cateName", cateName);
+		count.put("cate_name", cate_name);
 		count.put("reviser", reviser);
 		count.put("specialty_id", specialty_id);
 		count.put("date1", date1);
@@ -116,6 +115,7 @@ public class SpecialtyFilesController extends BaseController {
 			String code = ToolUtil.str("code", request);
 		    String name = ToolUtil.str("name", request);
 		    String cateName = ToolUtil.str("cate_name", request);
+		    System.out.println("cate_name"+cateName);
 		    System.out.println("cateName"+cateName);
 		    String reviser = ToolUtil.str("reviser", request);
 		    Long specialty_id = ToolUtil.lon("specialty_id", request);

@@ -200,9 +200,9 @@
 		<if test="reviser != null and reviser != ''">
 			and instr(reviser,#{reviser,jdbcType=VARCHAR})
 		</if>
-		<!-- <if test="specialty_id != null and specialty_id != ''">
-			and specialty_id like '%${specialty_id}%'
-		</if> -->
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+		</if>
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
@@ -216,9 +216,8 @@
 		from
 			specialty_files
 			<where>
-				<if test="date != null and date != ''">
-					<!-- and date like '%${date}%' -->
-					and datediff(date,#{date,jdbcType=TIMESTAMP})
+				<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 				</if>
 				<if test="code != null and code != ''">
 					and instr(code,#{code,jdbcType=VARCHAR})
@@ -233,7 +232,8 @@
 					and instr(reviser,#{reviser,jdbcType=VARCHAR})
 				</if>
 				<if test="specialty_id != null and specialty_id != ''">
-					and specialty_id like '%${specialty_id}%'
+					<!-- and specialty_id like '%${specialty_id}%' -->
+					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
 				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
