@@ -1,18 +1,6 @@
 //JavaScript代码区域
-
-			//获取文件类型名称
-	/*		$.ajax({
-				url:'',
-				type:"POST",
-				data:,
-				dataType:"json",
-				success:function(data){
-					layer.msg("获取成功");
-					
-				}
-			});*/
 			function ajax_h(form){
-				//获取状态
+				//获取文件类型
 				$.ajax({
 					url:'/fileCategory/getFileCategoryList',
 					type:"POST",
@@ -94,7 +82,7 @@
 					,method:'post'
 					,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
-					,height: 515
+				
 					//额外条件
 					,page: true
 					//toolbar: '<div class="layui-btn-container"> <button class="layui-btn layui-btn-sm" lay-submit lay-filter="delCheckData">批量删除</button></div>',
@@ -143,7 +131,8 @@
 								title: '专业id',
 								width: '10%',
 								sort: false,
-								align: 'center'
+								align: 'center',
+								hide:true
 							}, {
 								field: 'status',
 								title: '状态',

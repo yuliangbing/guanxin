@@ -34,6 +34,7 @@ public class SpecialtyFilesController extends BaseController {
 	private SpecialtyFilesService specialtyFilesService; 
 	
 	/*获取列表*/
+	
 	@RequestMapping("/getSpecialtyFilesList")
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse responses) {
@@ -51,11 +52,9 @@ public class SpecialtyFilesController extends BaseController {
 	    String date2 = ToolUtil.str("date2", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
-	    Integer pages = page;
-	    Integer limits = 0;
+	    Integer pages = 0;
 		//用于分页的数据
-		page = (page - 1) * limit;
-		limits = limit*pages;
+		pages = (page - 1) * limit;
 		//存入data,用于获取表格数据
 	    data.put("code", code);
 	    data.put("name", name);
@@ -64,12 +63,11 @@ public class SpecialtyFilesController extends BaseController {
 	    data.put("specialty_id", specialty_id);
 	    data.put("date1", date1);
 	    data.put("date2", date2);
-		data.put("limits", limits);
-		data.put("page", page);
+		data.put("limit", limit);
+		data.put("pages", pages);
 		data.put("status", 1);
 	
-		System.out.println("page:"+page);
-		System.out.println("limits:"+limits);
+		System.out.println("pages:"+pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 		count.put("counts", count);
@@ -115,10 +113,10 @@ public class SpecialtyFilesController extends BaseController {
 			String code = ToolUtil.str("code", request);
 		    String name = ToolUtil.str("name", request);
 		    String cateName = ToolUtil.str("cate_name", request);
-		    System.out.println("cate_name"+cateName);
 		    System.out.println("cateName"+cateName);
 		    String reviser = ToolUtil.str("reviser", request);
 		    Long specialty_id = ToolUtil.lon("specialty_id", request);
+		    System.out.println();
 		    Integer status = ToolUtil.integer("status", request);
 		    Date date = ToolUtil.date2("date", request);
 		    specialty_id = (long) -1;

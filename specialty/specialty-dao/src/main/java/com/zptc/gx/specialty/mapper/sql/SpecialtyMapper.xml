@@ -141,9 +141,55 @@
   
   <!-- 自定义 -->
   <!-- 查询列表数据 -->
-  <select id="getSpecialtyIdList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <select id="getSpecialtyList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select
     <include refid="Base_Column_List" />
     from specialty
+     <where>
+    	<if test="setup_date1 != null and setup_date1 != ''and setup_date2 != null and setup_date2 !=''">
+			and setup_date between #{setup_date1,jdbcType=VARCHAR} and #{setup_date2,jdbcType=VARCHAR}
+		</if>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	 </where>
+     <!-- limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER}; -->
   </select>
+   <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty
+			<where>
+				<if test="setup_date1 != null and setup_date1 != ''and setup_date2 != null and setup_date2 !=''">
+					and setup_date between #{setup_date1,jdbcType=VARCHAR} and #{setup_date2,jdbcType=VARCHAR}
+				</if>
+				<if test="code != null and code != ''">
+					and instr(code,#{code,jdbcType=VARCHAR})
+				</if>
+				<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+			</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
+	    update specialty
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+ 	</update>
 </mapper>

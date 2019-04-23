@@ -1,6 +1,7 @@
 package com.zptc.gx.specialty.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zptc.gx.specialty.entity.Specialty;
 
@@ -18,7 +19,13 @@ public interface SpecialtyService {
 	public Specialty findSpecialtyById(Long id);
 	
 	public List<Specialty> findSpecialtyByRoleId(Long roleId);
-	//根据specialtyId查询专业全部数据(不需要specialtyId)
-	public List<Specialty> getSpecialtyIdList(Long specialtyId);
 	
+	//根据specialtyId查询专业全部数据
+	public List<Specialty> getSpecialtyList(Object data);
+	
+	//统计数据条数
+	public int selectCounts(Map<String, Object> count);
+	
+	//根据status修改状态（删除）
+	public int modifSpecialtyFilesDel(Specialty specialty);
 }

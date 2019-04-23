@@ -1,9 +1,11 @@
 package com.zptc.gx.specialty.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.Specialty;
 import com.zptc.gx.specialty.mapper.SpecialtyMapper;
@@ -46,10 +48,23 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 		// TODO Auto-generated method stub
 		return specialtyMapper.findSpecialtyByRoleId(roleId);
 	}
-	//根据specialtyId查询专业全部数据(不需要specialtyId)
+	//根据specialtyId查询专业全部数据
 	@Override
-	public List<Specialty> getSpecialtyIdList(Long specialtyId) {
+	public List<Specialty> getSpecialtyList(Object data) {
 		// TODO Auto-generated method stub
-		return specialtyMapper.getSpecialtyIdList(specialtyId);
+		return specialtyMapper.getSpecialtyList(data);
+	}
+	//统计数据条数
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyMapper.selectCounts(count);
+	}
+	//根据status修改状态（删除，@Transactional是回滚）
+	@Override
+	@Transactional
+	public int modifSpecialtyFilesDel(Specialty specialty) {
+		// TODO Auto-generated method stub
+		return specialtyMapper.updateByPrimaryKeyDel(specialty);
 	}
 }

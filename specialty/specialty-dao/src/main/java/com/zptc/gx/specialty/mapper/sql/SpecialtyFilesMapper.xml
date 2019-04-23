@@ -200,14 +200,14 @@
 		<if test="reviser != null and reviser != ''">
 			and instr(reviser,#{reviser,jdbcType=VARCHAR})
 		</if>
-		<if test="specialty_id != null and specialty_id != ''">
+		<!-- <if test="specialty_id != null and specialty_id != ''">
 			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
-		</if>
+		</if> -->
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
 	</where>
-    limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER};
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->
   <select id="selectCounts" resultType="int" parameterType="map">
@@ -231,10 +231,10 @@
 				<if test="reviser != null and reviser != ''">
 					and instr(reviser,#{reviser,jdbcType=VARCHAR})
 				</if>
-				<if test="specialty_id != null and specialty_id != ''">
-					<!-- and specialty_id like '%${specialty_id}%' -->
+				<!-- <if test="specialty_id != null and specialty_id != ''">
+					and specialty_id like '%${specialty_id}%'
 					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
-				</if>
+				</if> -->
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
 				</if>

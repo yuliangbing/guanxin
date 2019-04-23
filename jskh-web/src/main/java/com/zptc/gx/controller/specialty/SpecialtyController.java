@@ -1,7 +1,9 @@
 package com.zptc.gx.controller.specialty;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,17 +32,55 @@ public class SpecialtyController extends BaseController {
 	
 	/*获取列表*/
 	
-	@RequestMapping("/getSpecialty")
+	@RequestMapping("/getSpecialtyList")
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("获取专业信息列表接口");
 		JsonResult jsonResult = new JsonResult();
-		System.out.println("列表信息");
+		Map<String, Object> data = new HashMap<>();
+		//获取请求参数
+		String code = ToolUtil.str("code", request);
+	    String name = ToolUtil.str("name", request);
+	    Integer status = ToolUtil.integer("status", request);
+	    String setup_date = ToolUtil.str("setup_date", request);
+	    Integer limit = ToolUtil.integer("limit", request);
+	    Integer page = ToolUtil.integer("page", request);
+//	    Integer pages = page;
+	    Integer limits = 0;
+		//用于分页的数据
+		page = (page - 1) * limit;
+		limits = limit*page;
+		//存入data,用于获取表格数据
+	    data.put("code", code);
+	    data.put("name", name);
+	    data.put("setup_date", setup_date);
+		data.put("limits", limits);
+		data.put("page", page);
+		data.put("status", 1);
+		System.out.println("page:"+page);
+		System.out.println("limits:"+limits);
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+//		count.put("counts", count);
+		count.put("code", code);
+		count.put("name", name);
+		count.put("setup_date", setup_date);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		String msg = "success";
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			//Long roleId = user.getRoleId();
-//			Long specialtyId = user.getRoleId();
-			List<Specialty> specialtyList = specialtyService.getSpecialtyIdList(null);
-			jsonResult = JsonResult.build(FLAG_SUCCESS, specialtyList);
+			//获取所有status == 1 的所有数据
+			List<Specialty> specialtyList = specialtyService.getSpecialtyList(data);
+			//获取所有status == 1的数据条总数
+			counts = specialtyService.selectCounts(count);
+			System.out.println("返回条数："+counts);
+			//返回接口的具体数据
+			//jsonResult = JsonResult.build(FLAG_SUCCESS, specialtyList);
+			jsonResult = jsonResult.build(0, specialtyList, msg, counts);
+			System.out.println("获得的数据："+data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,6 +1,7 @@
 package com.zptc.gx.specialty.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zptc.gx.specialty.entity.Specialty;
 
@@ -20,5 +21,9 @@ public interface SpecialtyMapper {
 
 	List<Specialty> findSpecialtyByRoleId(Long roleId);
 	//获取全部列表数据
-	List<Specialty> getSpecialtyIdList(Long specialtyId);
+	List<Specialty> getSpecialtyList(Object data);
+	//统计数据条数
+	int selectCounts(Map<String,Object> counts);
+	//根据status修改状态（删除）
+	int updateByPrimaryKeyDel(Specialty specialty);
 }

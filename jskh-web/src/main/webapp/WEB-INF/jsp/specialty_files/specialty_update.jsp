@@ -53,13 +53,7 @@
 							    <div class="layui-input-inline">
 									<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 										<option value="">请选择</option>
-										<option value="0">已报名</option>
-										<option value="1">已缴费</option>
-										<option value="2">已上传</option>
-										<option value="3">审核中</option>
-										<option value="4">视频不合格</option>
-										<option value="5">体检合格</option>
-										<option value="6">体检不合格</option>
+										
 									</select>
 								</div>
 							</div>
@@ -119,6 +113,7 @@
   		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	var cate_name = "";
+	var specialty_id = "";
 	// 初始化
 	function init(data) {
 		$("#specialtyFilesId").val(data.id);
@@ -127,7 +122,8 @@
 		$("#name").val(data.name);
 		cate_name = data.cate_name;
 		$("#reviser").val(data.reviser);
-		$("#specialty_id").val(data.specialty_id);
+		//$("#specialty_id").val(data.specialty_id);
+		specialty_id = data.specialty_id;
 	}
 	//自定义提交
 	/* function addConfirm() {
@@ -163,10 +159,10 @@
 	});
 } */
 	
-	function ajax_h(form,cate_name){
-		//获取状态
+	function ajax_h(form,cate_name,url,object){
+		//获取文件类型
 		$.ajax({
-			url:'/fileCategory/getFileCategoryList',
+			url:url,
 			type:"POST",
 			dataType:"json",
 			success:function(data){
@@ -184,7 +180,7 @@
 						
 					}
 					console.log("option:"+option);
-					$("#cate_name").append(option);
+					$("#"+object).append(option);
 					form.render('select');
 				} else {
 					layer.msg(data.msg);
@@ -209,9 +205,16 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
-			//获取select值
-			console.log("1catenamede值为："+cate_name);
-			ajax_h(form,cate_name);
+			var url ="";
+			var object="";
+			//文件类型
+			url = '/fileCategory/getFileCategoryList';
+			object = 'cate_name';
+			ajax_h(form,cate_name,url,object);
+			//专业
+			url = '/specialty/getSpecialtyList';
+			object = 'specialty_id';
+			ajax_h(form,cate_name,url,object);
 			/*
 			 实现文件时间选择
 			 */
@@ -232,8 +235,10 @@
 				params.name = $("#name").val();
 				params.cate_name =  $("#cate_name option:checked").text();
 				params.reviser = $("#reviser").val();
+				//专业的code
 				params.specialty_id = $("#specialty_id").val();
-			
+				//专业名称
+				//params.specialty_id = $("#specialty_id").text();
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
