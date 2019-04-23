@@ -15,7 +15,7 @@
 			<form class="layui-form" onsubmit="return false;">
 						<!-- 隐藏text,用于存放入参的id -->
 						<input type="hidden" id="specialtyFilesId" name="specialtyFilesId" >
-					    <div class="layui-form-item">
+					    <div class="layui-form-item" style="margin: 7% 10% 10% 0px;">
 					    	<div class="layui-inline">
 							    <label class="layui-form-label" for="code">文件编号</label>
 							    <div class="layui-input-inline">
@@ -101,9 +101,9 @@
 					    </div> -->
 					<!-- </fieldset>
 				</div> -->
-				<div style="margin:;">
+				<div style="margin: 0% 0% 0% 6%;">
 					<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
-					<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+					<button type="reset" class="layui-btn layui-btn-danger" id="reset">重置</button>
 					<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
 				</div>
 			</form>
@@ -114,7 +114,7 @@
 	<script>
 	var cate_name = "";
 	var specialty_name = "";
-	// 初始化
+	// 初始化赋值
 	function init(data) {
 		$("#specialtyFilesId").val(data.id);
 		$("#date").val(data.date);
@@ -122,46 +122,11 @@
 		$("#name").val(data.name);
 		cate_name = data.cate_name;
 		$("#reviser").val(data.reviser);
-		//$("#specialty_id").val(data.specialty_id);
 		specialty_name = data.specialty_name;
 	}
-	//自定义提交
-	/* function addConfirm() {
-		var params = {};
-		params.id = $("#specialtyFilesId").val();
-		params.date = $("#date").val();
-		params.code = $("#code").val();
-		params.name = $("#name").val();
-		params.cate_name =  $("#cate_name option:checked").text();
-		params.reviser = $("#reviser").val();
-		params.specialty_id = $("#specialty_id").val();
-	// 数据保存
-	$.ajax({
-		type: "post",
-		url:'/specialtyFiles/updateSpecialtyFilesIf?specialtyFilesId='+params.id,
-		data: $.param(params),
-		dataType: "json",
-		success:function(data){
-			        	if(data){
-							console.log($.param(params));
-							if (data.code == 0) {
-								layer.msg("成功");
-								setTimeout(function(){
-										parent.window.location.reload();
-								},500);
-							} else if(data.code != 0) {
-								layer.msg("失败,数据缺少!");
-							}
-						}
-					} ,error:function(code1){
-			           layer.alert("发生异常,请联系管理员");
-			        }
-	});
-} */
-	
-	function ajax_h(form,names,url,object,ids){
-		//获取下拉列表(公共方法)
-		//alert(names);
+	//获取下拉列表(公共方法)
+	function ajax_h(form,names,url,object,ids)
+	{
 		$.ajax({
 			url:url,
 			type:"POST",
@@ -171,37 +136,37 @@
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";
-				var y=0;
-				var j =0;
-				
 				if (data.code == 0) {
 					if(ids == 'code'){
-						for (let i=0;i<data.data.length;i++) {
-							if(data.data[i].name == names){
+						for (let i=0;i<data.data.length;i++)
+						{
+							if(data.data[i].name == names)
+							{
 								option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
-								y++;
 							}
-							else{
+							else
+							{
 								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
-								j++;
 							}
-							$("#"+object).append(option);
-							form.render('select');
 						}
-						console.log("y"+y);
-						console.log("j"+j);
+						$("#"+object).append(option);
+						form.render('select');
 					}
-				 	else if(ids == 'id'){
-						for (let i=0;i<data.data.length;i++) {
-							if(data.data[i].name == names ){
-								option += "<option value='"+data.data[i].id+"' selected='selected'>"+data.data[i].name+"</option>";
+				 	else if(ids == 'id')
+				 	{
+						for (let j=0;j<data.data.length;j++)
+						{
+							if(data.data[j].name == names )
+							{
+								option += "<option value='"+data.data[j].id+"' selected='selected'>"+data.data[j].name+"</option>";
 							}
-							else{
-								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+							else
+							{
+								option += "<option value='"+data.data[j].id+"'>"+data.data[j].name+"</option>";
 							}
-							$("#"+object).append(option);
-							form.render('select');
 						}
+						$("#"+object).append(option);
+						form.render('select');
 					} 
 					console.log("option:"+option);
 					
@@ -214,7 +179,7 @@
 	        }
 		});
 	}
-
+	
 		//关闭监听
 		function exit(){
 		    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
@@ -228,6 +193,10 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
+			
+			/*
+				下拉列表数据获取  开始
+			*/
 			var url ="";
 			var object="";
 			var ids="";
@@ -245,8 +214,10 @@
 			names= specialty_name;
 			ajax_h(form,names,url,object,ids);
 			/*
-			 实现文件时间选择
-			 */
+				下拉列表数据获取  结束
+			*/
+			
+			// 实现文件时间选择
 			var laydate = layui.laydate;
 			//执行一个laydate实例
 			laydate.render({
@@ -257,18 +228,15 @@
 		 	// 提交功能
 		 	form.on('submit(submit)', function(data) { 
 				/*获取$值存入params */
-				 var params = {};
+				var params = {};
 				params.id = $("#specialtyFilesId").val();
 				params.date = $("#date").val();
 				params.code = $("#code").val();
 				params.name = $("#name").val();
-				params.cate_name =  $("#cate_name option:checked").text();
+				params.cate_name = $("#cate_name option:checked").text();
 				params.reviser = $("#reviser").val();
-				//专业的code
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
-				//专业名称
-				//params.specialty_id = $("#specialty_id").text();
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
@@ -299,6 +267,7 @@
 			});  
 			
 		});
+
 	</script>
 	</body>
 
