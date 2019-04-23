@@ -54,13 +54,6 @@
 							    <div class="layui-input-inline">
 									<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 										<option value="">请选择</option>
-										<option value="0">已报名</option>
-										<option value="1">已缴费</option>
-										<option value="2">已上传</option>
-										<option value="3">审核中</option>
-										<option value="4">视频不合格</option>
-										<option value="5">体检合格</option>
-										<option value="6">体检不合格</option>
 									</select>
 								</div>
 							</div>
@@ -73,68 +66,6 @@
 			</form>
 		</div>
 </div>
-	<%-- <div class="layui-col-md12 layui-content-white">
-
-		<form class="layui-form" action="" onsubmit="return false;">
-					<!-- <input type="hidden" id="specialtyFilesId" name="id" > -->
-					<input type="hidden" id="status" name="status" value="1" >
-					<div class="layui-form-item">
-					    <label class="layui-form-label" for="code">文件编号</label>
-					    <div class="layui-input-block">
-								<input  type="text" id="code" name="code" lay-verify="required" placeholder="请输入文件编号" class="layui-input" value="${list[0].code}">
-						</div>
-				    </div>
-					<div class="layui-form-item">
-					    <label class="layui-form-label" for="date">文件时间</label>
-					    <div class="layui-input-block">
-								<input  type="text" id="date" name="date" lay-verify="date" placeholder="请选择文件时间" class="layui-input">
-						</div>
-				    </div>
-				    <div class="layui-form-item">
-					    <label class="layui-form-label" for="name">文件名称</label>
-					    <div class="layui-input-block">
-								<input  type="text" id="name" name="name" lay-verify="required" placeholder="请输入文件名称" class="layui-input">
-						</div>
-				    </div>
-				    <div class="layui-form-item">
-					    <label class="layui-form-label" for="cate_name">文件类型名称</label>
-					    <div class="layui-input-block">
-							<select  type="text" id="cate_name" lay-filter="cate_name" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
-								<option value="">请选择</option>
-								
-							</select>
-						</div>
-				    </div>
-				    <div class="layui-form-item">
-					    <label class="layui-form-label" for="reviser">修订人</label>
-					    <div class="layui-input-block">
-								<input  type="text" id="reviser" name="reviser" lay-verify="required" placeholder="请输入文件名称" class="layui-input">
-						</div>
-				    </div>
-				    <div class="layui-form-item">
-					    <label class="layui-form-label" for="specialty_id">专业id</label>
-					    <div class="layui-input-block">
-							<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
-								<option value="">请选择</option>
-								<option value="0">已报名</option>
-								<option value="1">已缴费</option>
-								<option value="2">已上传</option>
-								<option value="3">审核中</option>
-								<option value="4">视频不合格</option>
-								<option value="5">体检合格</option>
-								<option value="6">体检不合格</option>
-							</select>
-						</div>
-				    </div>
-			<div style="margin:1px 533px;">
-				<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
-				<button type="reset" class="layui-btn layui-btn-danger">重置</button>
-				<button class="layui-btn layui-btn-normal" onclick="exit();" >关闭</button>
-			</div>
-			
-
-		</form>
-	</div> --%>
 		
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
@@ -145,26 +76,36 @@
 			parent.layer.close(index); //再执行关闭  
 		}
 		
-		function ajax_h(form){
-			//获取状态
+		function ajax_h(form,url,object,ids){
+			//获取下拉列表(公共方法)
 			$.ajax({
-				url:'/fileCategory/getFileCategoryList',
+				url:url,
 				type:"POST",
-//				data:{specialtyFilesId:data.id},
 				dataType:"json",
 				success:function(data){
 					console.log(data);
-					layer.msg("获取成功");
+					//layer.msg("获取成功");
 					console.log(data.data.length);
 					if (data.code == 0) {
-						
-						let option = "";
-						for (let i=0;i<data.data.length;i++) {
-							option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
-							
+						if(ids == 'id'){
+							let option = "";
+							for (let i=0;i<data.data.length;i++) {
+								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+								console.log("输出打印"+data.data[i].ids+"id=="+ids);
+							}
+							$("#"+object).append(option);
+							form.render('select');
 						}
-						$("#cate_name").append(option);
-						form.render('select');
+						else{
+							let option = "";
+							for (let i=0;i<data.data.length;i++) {
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+								console.log("输出打印"+data.data[i].ids+"id=="+ids);
+							}
+							$("#"+object).append(option);
+							form.render('select');
+						}
+						
 					} else {
 						layer.msg(data.msg);
 					}
@@ -186,8 +127,21 @@
 			/* $('#cate_name').val();
 			var selects =$('#cate_name option:selected').val();
 			console.log("select"+selects); */
-			//获取文件类型下拉框属性
-			ajax_h(form);
+			
+			//获取下拉框属性
+			var url ="";
+			var object="";
+			var ids ="";
+			//文件类型
+			url = '/fileCategory/getFileCategoryList';
+			object = 'cate_name';
+			ids = 'code';
+			ajax_h(form,url,object,ids);
+			//专业
+		 	url = '/specialty/getSpecialtyList';
+			object = 'specialty_id';
+			ids = 'id';
+			ajax_h(form,url,object,ids);
 			/*
 			 实现文件时间选择
 			 */
@@ -210,8 +164,9 @@
 			/* 	params.cate_name = $("#cate_name").val(); */
 				params.cate_name = $("#cate_name option:checked").text();
 				params.reviser = $("#reviser").val();
-				params.specialty_id = $("#specialty_id").val();
-				console.log("文件类型输出打印"+params.cate_name);
+				params.specialty_id = $("#specialty_id option:checked").val();
+				params.specialty_name = $("#specialty_id option:checked").text();
+				console.log("文件类型输出打印"+params.specialty_id);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",

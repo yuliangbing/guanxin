@@ -51,7 +51,7 @@
 							<div class="layui-inline">
 								<label class="layui-form-label" for="specialty_id">专业id</label>
 							    <div class="layui-input-inline">
-									<select  type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+									<select id="specialty_id" lay-filter="specialty_id" lay-verify="required" class="layui-select" lay-search>
 										<option value="">请选择</option>
 										
 									</select>
@@ -113,7 +113,7 @@
   		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	var cate_name = "";
-	var specialty_id = "";
+	var specialty_name = "";
 	// 初始化
 	function init(data) {
 		$("#specialtyFilesId").val(data.id);
@@ -123,7 +123,7 @@
 		cate_name = data.cate_name;
 		$("#reviser").val(data.reviser);
 		//$("#specialty_id").val(data.specialty_id);
-		specialty_id = data.specialty_id;
+		specialty_name = data.specialty_name;
 	}
 	//自定义提交
 	/* function addConfirm() {
@@ -159,29 +159,52 @@
 	});
 } */
 	
-	function ajax_h(form,cate_name,url,object){
-		//获取文件类型
+	function ajax_h(form,names,url,object,ids){
+		//获取下拉列表(公共方法)
+		//alert(names);
 		$.ajax({
 			url:url,
 			type:"POST",
 			dataType:"json",
 			success:function(data){
 				layer.msg("获取成功");
-				console.log(data.data.length);
+				console.log("长度"+data.data.length);
+				console.log(names);
+				let option = "";
+				var y=0;
+				var j =0;
+				
 				if (data.code == 0) {
-					let option = "";
-					for (let i=0;i<data.data.length;i++) {
-						if(data.data[i].name == cate_name){
-							option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+					if(ids == 'code'){
+						for (let i=0;i<data.data.length;i++) {
+							if(data.data[i].name == names){
+								option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+								y++;
+							}
+							else{
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+								j++;
+							}
+							$("#"+object).append(option);
+							form.render('select');
 						}
-						else{
-							option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
-						}
-						
+						console.log("y"+y);
+						console.log("j"+j);
 					}
+				 	else if(ids == 'id'){
+						for (let i=0;i<data.data.length;i++) {
+							if(data.data[i].name == names ){
+								option += "<option value='"+data.data[i].id+"' selected='selected'>"+data.data[i].name+"</option>";
+							}
+							else{
+								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+							}
+							$("#"+object).append(option);
+							form.render('select');
+						}
+					} 
 					console.log("option:"+option);
-					$("#"+object).append(option);
-					form.render('select');
+					
 				} else {
 					layer.msg(data.msg);
 				}
@@ -207,14 +230,20 @@
 			var form = layui.form;
 			var url ="";
 			var object="";
+			var ids="";
+			var name;
 			//文件类型
 			url = '/fileCategory/getFileCategoryList';
 			object = 'cate_name';
-			ajax_h(form,cate_name,url,object);
+			ids = 'code';
+			names = cate_name;
+			ajax_h(form,names,url,object,ids);
 			//专业
+			ids = 'id';
 			url = '/specialty/getSpecialtyList';
 			object = 'specialty_id';
-			ajax_h(form,cate_name,url,object);
+			names= specialty_name;
+			ajax_h(form,names,url,object,ids);
 			/*
 			 实现文件时间选择
 			 */
@@ -236,7 +265,8 @@
 				params.cate_name =  $("#cate_name option:checked").text();
 				params.reviser = $("#reviser").val();
 				//专业的code
-				params.specialty_id = $("#specialty_id").val();
+				params.specialty_id = $("#specialty_id option:checked").val();
+				params.specialty_name = $("#specialty_id option:checked").text();
 				//专业名称
 				//params.specialty_id = $("#specialty_id").text();
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){

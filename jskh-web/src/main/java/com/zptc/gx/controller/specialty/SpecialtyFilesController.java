@@ -46,7 +46,7 @@ public class SpecialtyFilesController extends BaseController {
 	    String name = ToolUtil.str("name", request);
 	    String cate_name = ToolUtil.str("cate_name", request);
 	    String reviser = ToolUtil.str("reviser", request);
-	    Long specialty_id = ToolUtil.lon("specialty_id", request);
+	  /*  Long specialty_id = ToolUtil.lon("specialty_id", request);*/
 	    Integer status = ToolUtil.integer("status", request);
 	    String date1 = ToolUtil.str("date1", request);
 	    String date2 = ToolUtil.str("date2", request);
@@ -60,7 +60,7 @@ public class SpecialtyFilesController extends BaseController {
 	    data.put("name", name);
 	    data.put("cate_name", cate_name);
 	    data.put("reviser", reviser);
-	    data.put("specialty_id", specialty_id);
+//	    data.put("specialty_id", specialty_id);
 	    data.put("date1", date1);
 	    data.put("date2", date2);
 		data.put("limit", limit);
@@ -75,7 +75,7 @@ public class SpecialtyFilesController extends BaseController {
 		count.put("name", name);
 		count.put("cate_name", cate_name);
 		count.put("reviser", reviser);
-		count.put("specialty_id", specialty_id);
+//		count.put("specialty_id", specialty_id);
 		count.put("date1", date1);
 		count.put("date2", date2);
 		count.put("status", 1);
@@ -116,10 +116,12 @@ public class SpecialtyFilesController extends BaseController {
 		    System.out.println("cateName"+cateName);
 		    String reviser = ToolUtil.str("reviser", request);
 		    Long specialty_id = ToolUtil.lon("specialty_id", request);
-		    System.out.println();
+		    System.out.println("专业id："+specialty_id);
+		    String specialty_name = ToolUtil.str("specialty_name", request);
+		    System.out.println("获取到的专业name"+specialty_name);
 		    Integer status = ToolUtil.integer("status", request);
 		    Date date = ToolUtil.date2("date", request);
-		    specialty_id = (long) -1;
+		    
 		    SpecialtyFiles specialtyFiles = new SpecialtyFiles();
 		    specialtyFiles.setCode(code);
 		    specialtyFiles.setDate(date);
@@ -127,6 +129,7 @@ public class SpecialtyFilesController extends BaseController {
 		    specialtyFiles.setCateName(cateName);
 		    specialtyFiles.setReviser(reviser);
 		    specialtyFiles.setSpecialtyId(specialty_id);
+		    specialtyFiles.setSpecialtyName(specialty_name);
 		    specialtyFiles.setStatus(status);
 		    specialtyFiles.setCreateTime(new Date());
 		    specialtyFiles.setCreateUser(user.getTeaName());
@@ -166,6 +169,8 @@ public class SpecialtyFilesController extends BaseController {
 	    String cateName = ToolUtil.str("cate_name", request);
 	    String reviser = ToolUtil.str("reviser", request);
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
+	    String specialty_name = ToolUtil.str("specialty_name", request);
+	    System.out.println("获取到的专业name"+specialty_name);
 	    Integer status = ToolUtil.integer("status", request);
 	    Date date = ToolUtil.date2("date", request);
 	    status = 1;
@@ -183,12 +188,13 @@ public class SpecialtyFilesController extends BaseController {
 	    specialtyFiles.setCateName(cateName);
 	    specialtyFiles.setReviser(reviser);
 	    specialtyFiles.setSpecialtyId(specialty_id);
+	    specialtyFiles.setSpecialtyName(specialty_name);
 	    specialtyFiles.setStatus(status);
 	    specialtyFiles.setModifyTime(new Date());
 	    specialtyFiles.setModifyUser(user.getTeaName());
 	   
 	    //判断传入的值是否为空或""
-	    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)) == false) {
+	    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(cateName)&&ToolUtil.equalBool(reviser)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(date)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据

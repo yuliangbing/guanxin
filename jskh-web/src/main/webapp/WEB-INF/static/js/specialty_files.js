@@ -134,6 +134,12 @@
 								align: 'center',
 								hide:true
 							}, {
+								field: 'specialty_name',
+								title: '专业名称',
+								width: '10%',
+								sort: false,
+								align: 'center'
+							},{
 								field: 'status',
 								title: '状态',
 								width: '10%',

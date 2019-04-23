@@ -43,7 +43,7 @@
 					</div>
 			    </div>
 			    <div class="layui-form-item">
-				    <label class="layui-form-label" for="specialty_id">文件类型名称</label>
+				    <label class="layui-form-label" for="specialty_id">专业id</label>
 				    <div class="layui-input-block">
 							<input disabled type="text" id="specialty_id" name="specialty_id" class="layui-input">
 					</div>
@@ -65,7 +65,7 @@
 		$("#name").val(data.name);
 		$("#cate_name").val(data.cate_name);
 		$("#reviser").val(data.reviser);
-		$("#specialty_id").val(data.specialty_id);
+		$("#specialty_id").val(data.specialty_name);
 	}
 
 		//关闭监听

@@ -44,19 +44,17 @@ public class FileCategoryController extends BaseController {
 	    Integer page = ToolUtil.integer("page", request);
 	    
 	    Integer pages = page;
-	    Integer limits = 0;
 		//用于分页的数据
-		page = (page - 1) * limit;
-		limits = limit*pages;
+		pages = (page - 1) * limit;
 		//存入data,用于获取表格数据
 	    data.put("code", code);
 	    data.put("name", name);
-		data.put("limits", limits);
+		data.put("limit", limit);
 		data.put("page", page);
 		data.put("status", 1);
 	
 		System.out.println("page:"+page);
-		System.out.println("limits:"+limits);
+		System.out.println("limit:"+limit);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 		count.put("counts", count);

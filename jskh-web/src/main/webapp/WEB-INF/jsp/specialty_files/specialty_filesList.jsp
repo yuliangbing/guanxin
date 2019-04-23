@@ -69,7 +69,8 @@
 							<button class="layui-btn layui-right" lay-submit lay-filter="search">搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 							<!--<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>   -->
-							
+						    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+						       <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 						</form>
 					</div>
 					<!--table表格部分 -->
