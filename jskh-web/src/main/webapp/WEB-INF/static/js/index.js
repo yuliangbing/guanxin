@@ -1,3 +1,6 @@
+var pageUrl_ = "toPage?page=";
+//var pageUrl_ = "";
+
 $(document).ready(function() {
 	getSystemName();
 	getUser();
@@ -91,7 +94,7 @@ function appendMenu(html_, menuList) {
 	for (var i = 0; i < menuList.length; i++) {
 		var menu = menuList[i];
 		if (!menu.hasSubMenu) {
-			html_ += "<li><a _href='" + menu.url + "'>";
+			html_ += "<li><a _href='" + pageUrl_ + menu.url + "'>";
 			html_ += "<i class='iconfont'>&#xe6b8;</i>";
 			html_ += "<cite>" + menu.menuStr + "</cite>";
 			html_ += "</a>";

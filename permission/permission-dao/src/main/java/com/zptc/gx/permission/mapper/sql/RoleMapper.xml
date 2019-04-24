@@ -123,19 +123,19 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.permission.entity.Role" >
     update role
     <set >
-      <if test="roleName != null" >
+      <if test="roleName != null and roleName != ''" >
         role_name = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="roleNum != null" >
+      <if test="roleNum != null and roleNum != ''" >
         role_num = #{roleNum,jdbcType=VARCHAR},
       </if>
-      <if test="isDefault != null" >
+      <if test="isDefault != null and isDefault != -1" >
         is_default = #{isDefault,jdbcType=INTEGER},
       </if>
-      <if test="roleOrder != null" >
+      <if test="roleOrder != null and roleOrder != -1" >
         role_order = #{roleOrder,jdbcType=INTEGER},
       </if>
-      <if test="status != null" >
+      <if test="status != null and status != -1" >
         status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createId != null" >
@@ -174,4 +174,38 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <!-- 自定义 -->
+  <select id="queryRoleList" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where 1=1
+    <if test="isNotDel != null and isNotDel == 1">
+    	AND status != 3
+    </if>
+    <if test="beginNum != null and beginNum != '' and endNum != null and endNum != ''">
+    	limit #{beginNum},#{endNum}
+    </if>
+  </select>
+  
+  <select id="countRoleList" resultType="Integer" parameterType="map" >
+    select 
+    count(1)
+    from role
+    where 1=1
+    <if test="isNotDel != null and isNotDel == 1">
+    	AND status != 3
+    </if>
+  </select>
+  
+  <!-- 都设置为不默认 -->
+  <update id="setNotDefault" parameterType="com.zptc.gx.permission.entity.Role" >
+    update role
+    set is_default = 2,
+      modify_id = #{modifyId,jdbcType=BIGINT},
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+  </update>
+  
 </mapper>

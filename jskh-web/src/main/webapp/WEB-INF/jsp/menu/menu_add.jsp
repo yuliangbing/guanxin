@@ -5,8 +5,6 @@
 <%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
-<link rel="stylesheet"
-	href="${path}/static/public/lib/layui/css/layui.css">
 <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
 <script type="text/javascript" src="${path}/static/js/menu/menu_add.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
