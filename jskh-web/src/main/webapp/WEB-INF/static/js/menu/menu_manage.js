@@ -64,7 +64,7 @@ function initMenuEvent() {
 
 function add(parentId,parentStr) {
 	layer.open({
-		title : '新增父菜单',
+		title : '新增菜单',
 		type : 2,
 		content : 'toPage?page=menu/menu_add',
 		area : [ ($(window).width() * 0.9) + "px",

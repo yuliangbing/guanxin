@@ -1,7 +1,9 @@
 package com.zptc.gx.controller.permission;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +21,7 @@ import com.zptc.gx.permission.entity.Role;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.permission.service.RoleService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 @Controller
 @RequestMapping("/role")
@@ -28,6 +31,12 @@ public class RoleController extends BaseController {
 	@Autowired
 	private RoleService roleService;
 
+	/**
+	 * 添加角色
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/addRole")
 	@ResponseBody
 	public JsonResult addRole(HttpServletRequest request, HttpServletResponse response) {
@@ -44,6 +53,9 @@ public class RoleController extends BaseController {
 			role.setRoleName(roleName);
 			role.setRoleNum(roleNum);
 			role.setRoleOrder(roleOrder);
+			role.setStatus(1);
+			//设为不默认
+			role.setIsDefault(2);
 			role.setCreateId(user.getId());
 			role.setCreateTime(new Date());
 			role.setCreateUser(user.getTeaName());
@@ -62,6 +74,12 @@ public class RoleController extends BaseController {
 		return jsonResult;
 	}
 	
+	/**
+	 * 修改角色
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping("/updateRole")
 	@ResponseBody
 	public JsonResult updateRole(HttpServletRequest request, HttpServletResponse response) {
@@ -73,7 +91,8 @@ public class RoleController extends BaseController {
 			Long roleId = ToolUtil.lon("roleId", request);
 			String roleName = ToolUtil.str("roleName", request);
 		    String roleNum = ToolUtil.str("roleNum", request);
-		    Integer roleOrder = ToolUtil.integer("roleOrder", request);
+		    Integer roleOrder = ToolUtil.intWithNull("roleOrder", request);
+		    Integer status = ToolUtil.intWithNull("status", request);
 			
 			Role role = roleService.findRoleById(roleId);
 			if (role == null) {
@@ -83,6 +102,7 @@ public class RoleController extends BaseController {
 			role.setRoleName(roleName);
 			role.setRoleNum(roleNum);
 			role.setRoleOrder(roleOrder);
+			role.setStatus(status);
 			role.setModifyId(user.getId());
 			role.setModifyTime(new Date());
 			role.setModifyUser(user.getTeaName());
@@ -93,6 +113,81 @@ public class RoleController extends BaseController {
 			} else {
 				jsonResult = JsonResult.build(FLAG_FAILED);
 			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
+	/**
+	 * 设置为默认
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/setDefault")
+	@ResponseBody
+	public JsonResult setDefault(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		
+		try {
+			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			
+			Long roleId = ToolUtil.lon("roleId", request);
+			
+			Role role = roleService.findRoleById(roleId);
+			if (role == null) {
+				jsonResult = JsonResult.build(FLAG_FAILED, "没有该角色！");
+				return jsonResult;
+			}
+			role.setIsDefault(1);
+			role.setModifyId(user.getId());
+			role.setModifyTime(new Date());
+			role.setModifyUser(user.getTeaName());
+			
+			int result = roleService.setDefault(role);
+		    if (result > 0) {
+		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
+			} else {
+				jsonResult = JsonResult.build(FLAG_FAILED);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
+	/**
+	 * 获取角色列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/getRoleList")
+	@ResponseBody
+	public JsonResult getRoleList(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		
+		try {
+			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			
+			int page = ToolUtil.integer("page", request);
+			int limit = ToolUtil.integer("limit", request);
+			
+			Map<String, Object> par = new HashMap<>();
+			int count = roleService.countRoleList(par);
+			
+			PageVO pageVO = new PageVO(page, limit);
+			
+			par.put("beginNum", pageVO.getBeginNum());
+			par.put("endNum", pageVO.getEndNum());
+			par.put("isNotDel", 1);
+			List<Role> roleList = roleService.queryRoleList(par);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, roleList, null, count);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
