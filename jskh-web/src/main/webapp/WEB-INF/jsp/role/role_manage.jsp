@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>专业文件</title>
+<title>角色管理</title>
 
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 </head>
@@ -39,7 +39,8 @@
             	<i class="layui-icon">&#xe62f;</i>
             </a>
 		{{#  } }}
-			<a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
+			<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="roleMenuRel">权限</a>
+			<a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 		</script>
 	<script type="text/html" id="isDefaultTem">

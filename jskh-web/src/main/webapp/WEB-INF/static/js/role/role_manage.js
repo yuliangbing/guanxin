@@ -70,7 +70,7 @@ layui.use([ 'table' ], function() {
 	table.on('tool(demoList)', function(obj) {
 		var data = obj.data; // 获得当前行数据
 		switch (obj.event) {
-		case 'update':
+		case 'edit':
 			layer.open({
 				type : 2,
 				title : '修改角色',
@@ -95,6 +95,21 @@ layui.use([ 'table' ], function() {
 			break;
 		case 'updateStatus':
 			updateStatus(data.id, data.status);
+			break;
+		case 'roleMenuRel':
+			layer.open({
+				type : 2,
+				title : '修改角色',
+				area : [ '90%', '90%' ],
+				anim : 0,
+				content : "/toPage?page=role/roleMenuRel_manage",
+				success : function(layero, index) {
+					// 获取子页面的iframe
+					var iframe = window['layui-layer-iframe' + index];
+					// 向子页面的全局函数child传参
+					iframe.init(data);
+				}
+			});
 			break;
 		}
 		;
