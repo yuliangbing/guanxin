@@ -45,10 +45,13 @@ public class RoleController extends BaseController {
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
+			//接受前端数据--开始
 			String roleName = ToolUtil.str("roleName", request);
 		    String roleNum = ToolUtil.str("roleNum", request);
 		    Integer roleOrder = ToolUtil.integer("roleOrder", request);
+		  //接受前端数据--结束
 			
+		    //编写对象参数--开始
 			Role role = new Role();
 			role.setRoleName(roleName);
 			role.setRoleNum(roleNum);
@@ -59,6 +62,7 @@ public class RoleController extends BaseController {
 			role.setCreateId(user.getId());
 			role.setCreateTime(new Date());
 			role.setCreateUser(user.getTeaName());
+			//编写对象参数--结束
 			
 			int result = roleService.addRole(role);
 		    if (result > 0) {
@@ -179,13 +183,15 @@ public class RoleController extends BaseController {
 			int limit = ToolUtil.integer("limit", request);
 			
 			Map<String, Object> par = new HashMap<>();
+			//获取总数量
+			par.put("isNotDel", 1);
 			int count = roleService.countRoleList(par);
 			
 			PageVO pageVO = new PageVO(page, limit);
 			
 			par.put("beginNum", pageVO.getBeginNum());
 			par.put("endNum", pageVO.getEndNum());
-			par.put("isNotDel", 1);
+			
 			List<Role> roleList = roleService.queryRoleList(par);
 			jsonResult = JsonResult.build(FLAG_SUCCESS, roleList, null, count);
 		} catch (Exception e) {

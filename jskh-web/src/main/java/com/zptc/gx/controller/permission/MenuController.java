@@ -49,9 +49,11 @@ public class MenuController extends BaseController {
 		JsonResult jsonResult = new JsonResult();
 
 		try {
+			//获取父菜单开始
 			Map<String, Object> par = new HashMap<>();
 			par.put("parentIsNull", 1);
 			List<Menu> menuList = menuService.queryMenuList(par);
+			//获取父菜单结束
 			List<MenuVO1> menuVOList = getMenuVOList(menuList, MENU_LEVEL);
 			jsonResult = JsonResult.build(FLAG_SUCCESS, menuVOList);
 		} catch (Exception e) {
