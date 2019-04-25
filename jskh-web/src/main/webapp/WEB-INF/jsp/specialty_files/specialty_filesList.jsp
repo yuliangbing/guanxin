@@ -6,9 +6,8 @@
 <head>
 <meta charset="utf-8">
 <title>专业文件</title>
-<link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<link rel="stylesheet" href="/static/public/css/specialty_files.css">
+<link rel="stylesheet" href="/static/public/css/specialty_files/specialty_filesList.css">
 
 </head>
 		<body class="layui-layout-body" style="background-color: #ffff;padding: 10px;"  >
@@ -18,7 +17,6 @@
 				<div class="layui-row layui-col-space15">
 					<!-- 内容主体区域 -->
 					<div class="layui-col-md12 layui-content-white">
-
 						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
 								<div class="layui-inline">
@@ -54,23 +52,12 @@
 										<input type="text" id="reviser" name="reviser" lay-verify="" placeholder="请输入修订人" autocomplete="off" class="layui-input">
 									</div>
 								</div>
-								<!-- <div class="layui-inline">
-									<label class="layui-form-label" for="specialty_id">专业id</label>
-									<div class="layui-input-inline">
-										<select type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off" placeholder="" lay-verify="" class="layui-select" lay-search>
-											<option value="">请选择</option>
-										</select>
-									</div>
-								</div> -->
 							</div>
-							<!-- <a class="layui-top-icon" href="javascript:;" layadmin-event="refresh" title="刷新">
-								<i class="layui-icon layui-icon-refresh-3"></i>
-							</a> -->
-							<button class="layui-btn layui-right" lay-submit lay-filter="search">搜索</button>
+							<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
-							<!--<button class="layui-btn layui-btn-warm" lay-submit lay-filter="insertAdd" >新增</button>   -->
 						    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
-						       <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+						       <i class="layui-icon" style="line-height:30px">ဂ</i>
+						    </a>
 						</form>
 					</div>
 					<!--table表格部分 -->
@@ -78,22 +65,19 @@
 						<table class="layui-hide" id="demoList" lay-filter="demoList"></table>
 					</div>
 				</div>
-			<!--</div>-->
 		</div>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-   		<%-- <script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script> --%>
-   		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-   		<script src="${path}/static/js/specialty_files.js" type="text/javascript" charset="utf-8"></script>
+   		<script src="${path}/static/js/specialty_files/specialty_list.js" type="text/javascript" charset="utf-8"></script>
    		<script type="text/html" id="toolbarDemo">
 			<div style="margin:-5px -1px;">
-			 	 <button class="layui-btn layui-btn-danger" lay-event="delData""><i class="layui-icon"></i>批量删除</button>
-			 	 <button class="layui-btn" lay-submit lay-filter="insertAdd"><i class="layui-icon"></i>添加</button>
+			 	 <button class="layui-btn layui-btn-danger" lay-event="dels""><i class="layui-icon">&#xe640;</i>批量删除</button>
+			 	 <button class="layui-btn layui-bg-blue" lay-submit lay-filter="add"><i class="layui-icon">&#xe654;</i>添加</button>
 			</div>
 		</script>
 		<script type="text/html" id="barDemo" >
-			<a class="layui-btn layui-btn-xs" lay-event="check">查看</a>
-			<a class="layui-btn layui-btn-xs" lay-event="update">修改</a>
-			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+			<a class="layui-btn layui-btn-xs" lay-event="details"><i class="layui-icon">&#xe615;</i>查看</a>
+			<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="modify"><i class="layui-icon">&#xe642;</i>编辑</a>
+			<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 		</script>
 	</body>
 </html>
