@@ -16,11 +16,14 @@ public interface IssuesMapper {
 
     int updateByPrimaryKeySelective(Issues record);
 
-    int updateByPrimaryKey(Issues record);
+    int updateByPrimaryKey(Issues issues);
     
     //获取全部列表数据
  	List<Issues> getIssuesList(Object data);
  	
  	//统计数据条数
  	int selectCounts(Map<String,Object> counts);
+ 	
+ 	int updateByPrimaryKeyDel(Issues issues);
+ 	
 }

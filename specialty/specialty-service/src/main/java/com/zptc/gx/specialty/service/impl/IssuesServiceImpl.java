@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.Issues;
+import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.mapper.IssuesMapper;
 import com.zptc.gx.specialty.service.IssuesService;
 
@@ -17,8 +19,8 @@ public class IssuesServiceImpl implements IssuesService {
 	private IssuesMapper issuesMapper;
 
 	@Override
-	public void addIssues(Issues issues){
-		issuesMapper.insertSelective(issues);
+	public int addIssues(Issues issues){
+		return issuesMapper.insertSelective(issues);
 	}
 	@Override
 	public void modifyIssues(Issues issues){
@@ -42,5 +44,21 @@ public class IssuesServiceImpl implements IssuesService {
 	public int selectCounts(Map<String, Object> count) {
 		// TODO Auto-generated method stub
 		return issuesMapper.selectCounts(count);
+	}
+//	@Override
+//	@Transactional
+//	public int modifSpecialtyFilesDel(Issues issues) {
+//		// TODO Auto-generated method stub
+//		return issuesMapper.updateByPrimaryKeyDel(issues);
+//	}
+	@Override
+	public int modifIssuesDel(Issues issues) {
+		// TODO Auto-generated method stub
+		return issuesMapper.updateByPrimaryKeyDel(issues);
+	}
+	@Override
+	public int modifyIssuesKey(Issues issues) {
+		// TODO Auto-generated method stub
+		return issuesMapper.updateByPrimaryKey(issues);
 	}
 }
