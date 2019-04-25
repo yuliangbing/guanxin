@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zptc.gx.specialty.mapper.OrganizationTypeMapper" >
-  <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.OrganizationType" >
+<mapper namespace="com.zptc.gx.branch.mapper.OrganizationTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.zptc.gx.branch.entity.OrganizationType" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -23,7 +23,7 @@
     delete from organization_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+  <insert id="insert" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
     insert into organization_type (id, name, status, 
       create_time, create_user, modify_time, 
       modify_user)
@@ -31,7 +31,7 @@
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+  <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
     insert into organization_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
     update organization_type
     <set >
       <if test="name != null" >
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.OrganizationType" >
+  <update id="updateByPrimaryKey" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
     update organization_type
     set name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
