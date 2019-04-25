@@ -25,8 +25,7 @@
 	<script src="${path}/static/js/role/role_manage.js"></script>
 	<script type="text/html" id="toolbarDemo">
 			<div class="layui-btn-container">
-				<button class="layui-btn layui-btn-danger" lay-event="delAll">批量删除</button>
-			 	<button class="layui-btn" lay-event="add">添加</button>
+			 	<button class="layui-btn" lay-event="add">新增角色</button>
 			</div>
 		</script>
 	<script type="text/html" id="barDemo">

@@ -1,14 +1,18 @@
+//使用layui
 $(document).ready(function() {
 	layui.use('form', function() {
 		var form = layui.form;
 	})
 })
 
+//保存数据开始
 function addConfirm() {
+	//编写参数开始
 	var params = {};
 	params.roleName = $("#roleName").val();
 	params.roleNum = $("#roleNum").val();
 	params.roleOrder = $("#roleOrder").val();
+	//编写参数结束
 	
 	if (params.roleName == '') {
 		layer.alert("角色名称不能为空");
@@ -17,7 +21,7 @@ function addConfirm() {
 	// 数据保存
 	$.ajax({
 		type: "post",
-		url: "/role/addRole",
+		url: "/role/addRole",//请求接口地址
 		data: $.param(params),
 		dataType: "json",
 		success: function(result) {
@@ -51,3 +55,4 @@ function addConfirm() {
 		}
 	});
 }
+//保存数据结束

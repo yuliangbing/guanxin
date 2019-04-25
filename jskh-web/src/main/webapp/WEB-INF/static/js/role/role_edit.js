@@ -1,9 +1,11 @@
+//使用layui
 $(document).ready(function() {
 	layui.use('form', function() {
 		var form = layui.form;
 	})
 })
 
+//初始化编辑页面，data是从rola_manage.jsp传入的
 function init(data) {
 	$("#roleId").val(data.id);
 	$("#roleName").val(data.roleName);
@@ -11,21 +13,23 @@ function init(data) {
 	$("#roleOrder").val(data.roleOrder);
 }
 
+//保存数据
 function editConfirm() {
+	//编写参数开始
 	var params = {};
 	params.roleId = $("#roleId").val();
 	params.roleName = $("#roleName").val();
 	params.roleNum = $("#roleNum").val();
 	params.roleOrder = $("#roleOrder").val();
+	//编写参数结束
 
 	if (params.roleName == '') {
 		layer.alert("角色名称不能为空");
 		return false;
 	}
-	// 数据保存
 	$.ajax({
 		type : "post",
-		url : "/role/updateRole",
+		url : "/role/updateRole",//请求接口地址
 		data : $.param(params),
 		dataType : "json",
 		success : function(result) {
