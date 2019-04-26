@@ -36,6 +36,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<div style="margin-left: -5%;">
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+						<button type="cancel" class="layui-btn layui-btn-primary">取消</button>
+					</div>
+				</div>
+			</div>
 	</body>
 </body>
 </html>
