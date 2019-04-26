@@ -1,8 +1,8 @@
 package com.zptc.gx.vo;
 
 public class PageVO {
-	private int limit; // 每页显示记录数
-	private int page; // 当前页
+	private int limit = 10; // 每页显示记录数
+	private int page = 0; // 当前页
 
 	public int getLimit() {
 		return limit;
@@ -24,8 +24,12 @@ public class PageVO {
 	}
 
 	public PageVO(int page, int limit) {
-		this.page = page;
-		this.limit = limit;
+		if (page > 0) {
+			this.page = page;
+		}
+		if (limit > 0) {
+			this.limit = limit;
+		}
 	}
 
 	public int getBeginNum() {
