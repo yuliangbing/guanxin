@@ -19,7 +19,7 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="date">
+          <input class="layui-input" placeholder="开始日" name="start" id="date1">
           <input class="layui-input" placeholder="截止日" name="end" id="date2">
           <input type="text" name="code" id="code" placeholder="请输入要搜索的内容" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
@@ -27,9 +27,10 @@
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
         </form>
       </div>
-      <xblock>
-        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-        <button class="layui-btn" lay-event="insert" id="insert"><i class="layui-icon" ></i>添加</button>
+   
+     <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <button class="layui-btn" lay-event="insert" id="insert"><i class="layui-icon" ></i>添加</button>
       </xblock>
       <table id="test" lay-filter="test"></table>
 		<tbody class="x-cate" id="menuTableBody">
@@ -42,6 +43,5 @@
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
       
-</body>
-
+  </body>
 </html>
