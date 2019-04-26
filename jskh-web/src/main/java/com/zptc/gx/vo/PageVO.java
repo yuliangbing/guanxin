@@ -2,7 +2,7 @@ package com.zptc.gx.vo;
 
 public class PageVO {
 	private int limit = 10; // 每页显示记录数
-	private int page = 0; // 当前页
+	private int page = 1; // 当前页
 
 	public int getLimit() {
 		return limit;
