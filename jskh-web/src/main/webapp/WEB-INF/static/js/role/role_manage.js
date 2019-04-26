@@ -1,9 +1,7 @@
 layui.use([ 'table' ], function() {
 	var table = layui.table;
 
-	/*
-	 * 表格
-	 */
+	// 表格加载开始
 	table.render({
 		elem : '#demoList',
 		url : '/role/getRoleList',
@@ -14,9 +12,6 @@ layui.use([ 'table' ], function() {
 		limit : 10,
 		cols : [ [ // 表头
 		{
-			type : 'checkbox',
-			fixed : 'left'
-		}, {
 			field : 'id',
 			title : 'ID',
 			sort : true,
@@ -47,9 +42,12 @@ layui.use([ 'table' ], function() {
 			align : 'center'
 		} ] ]
 	});
+	// 表格加载结束
 
+	// 监听头部工具栏事件开始
 	table.on('toolbar(demoList)', function(obj) {
 		var checkStatus = table.checkStatus(obj.config.id);
+		// console.log(JSON.stringify(checkStatus))
 		switch (obj.event) {
 		case 'add':
 			layer.open({
@@ -60,13 +58,12 @@ layui.use([ 'table' ], function() {
 				content : "/toPage?page=role/role_add"
 			});
 			break;
-		case 'delAll':
-			layer.msg('批量删除');
-			break;
 		}
 		;
 	});
+	// 监听头部工具栏事件结束
 
+	// 监听行工具栏事件开始
 	table.on('tool(demoList)', function(obj) {
 		var data = obj.data; // 获得当前行数据
 		switch (obj.event) {
@@ -114,8 +111,10 @@ layui.use([ 'table' ], function() {
 		}
 		;
 	});
+	// 监听行工具栏事件结束
 });
 
+// 表格数据重新加载
 function tableReload() {
 	layui.use('table', function() {
 		var table = layui.table;
@@ -129,6 +128,7 @@ function tableReload() {
 	})
 }
 
+// 设为默认开始
 function setDefault(roleId) {
 	$.ajax({
 		type : "post",
@@ -153,7 +153,9 @@ function setDefault(roleId) {
 		}
 	});
 }
+// 设为默认结束
 
+// 启用停用开始
 function updateStatus(roleId, thisStatus) {
 	var status;
 	var msg;
@@ -190,7 +192,9 @@ function updateStatus(roleId, thisStatus) {
 		});
 	})
 }
+// 启用停用结束
 
+// 删除开始
 function del(roleId) {
 	$.ajax({
 		type : "post",
@@ -216,3 +220,45 @@ function del(roleId) {
 		}
 	});
 }
+// 删除结束
+
+// 批量删除开始
+function delAll() {
+	layui.use([ 'table' ], function() {
+		var table = layui.table;
+		var checkStatus = table.checkStatus('demoList'); // idTest 即为基础参数 id
+															// 对应的值
+		var roleIds = "";
+		for (var i = 0; i < data.length; i++) {
+			if (i == 0) {
+				roleIds = data[i].id;
+			} else {
+				roleIds += data[i].id;
+			}
+		}
+		$.ajax({
+			type : "post",
+			url : "/role/updateRole",
+			data : {
+				roleIds : roleIds,
+				status : 3
+			},
+			dataType : "json",
+			success : function(result) {
+				if (result.code == 0) {
+					layer.msg("删除成功！");
+					tableReload();
+				} else {
+					var msg = result.retMsg;
+					if (msg == "")
+						msg = "删除失败！";
+					layer.msg(msg);
+				}
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) {
+				layer.msg("系统异常，请联系管理员！");
+			}
+		});
+	})
+}
+// 批量删除结束

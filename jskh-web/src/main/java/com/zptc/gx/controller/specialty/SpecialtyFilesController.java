@@ -119,7 +119,6 @@ public class SpecialtyFilesController extends BaseController {
 		    System.out.println("专业id："+specialty_id);
 		    String specialty_name = ToolUtil.str("specialty_name", request);
 		    System.out.println("获取到的专业name"+specialty_name);
-		    Integer status = ToolUtil.integer("status", request);
 		    Date date = ToolUtil.date2("date", request);
 		    
 		    SpecialtyFiles specialtyFiles = new SpecialtyFiles();
@@ -130,7 +129,7 @@ public class SpecialtyFilesController extends BaseController {
 		    specialtyFiles.setReviser(reviser);
 		    specialtyFiles.setSpecialtyId(specialty_id);
 		    specialtyFiles.setSpecialtyName(specialty_name);
-		    specialtyFiles.setStatus(status);
+		    specialtyFiles.setStatus(1);
 		    specialtyFiles.setCreateTime(new Date());
 		    specialtyFiles.setCreateUser(user.getTeaName());
 		    //判断传入的值是否为空或""
@@ -163,7 +162,7 @@ public class SpecialtyFilesController extends BaseController {
 	public JsonResult updateSpecialtyIf(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用updateSpecialtyFilesIf方法");
-		Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
+		Long specialtyFilesId = ToolUtil.lon("Id", request);
 		String code = ToolUtil.str("code", request);
 	    String name = ToolUtil.str("name", request);
 	    String cateName = ToolUtil.str("cate_name", request);

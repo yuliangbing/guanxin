@@ -19,26 +19,27 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/issuesList/getIssuesList'
+		    ,url:window.path +'/thesisList/getThesisList'
+//		    ,data:tableData
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'date', title:'时间', width:130,}
-		      ,{field:'code', title:'立项编号', width:130, }
-		      ,{field:'name', title:'课题名称', width:150, }
-		      ,{field:'sources', title:'课题来源', width:150, } 
-		      ,{field:'host', title:'主持人', width:130, }
-		      ,{field:'participants', title:'参与人', width:130, }
+		      ,{field:'date', title:'发表时间', width:130,}
+		      ,{field:'published_journal', title:'发表期刊', width:130, }
+		      ,{field:'name', title:'论文题目', width:150, }
+		      ,{field:'index_level', title:'索引或级别', width:150, } 
+		      ,{field:'awards', title:'获奖情况', width:230, }
+		      ,{field:'first_author', title:'第一作者', width:130, }
+		      ,{field:'other_authors', title:'其他作者情况', width:130, }
 		      ,{field:'specialty_id', title:'专业id', width:130, }
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180, }
 		      ,{field:'create_time', title:'创建时间', width:150, }
 		      ,{field:'create_user', title:'创建人', width:150, }
 		      ,{field:'modify_time', title:'修改时间', width:150, }
 		      ,{field:'modify_user', title:'修改人', width:130, }
-		      ,{field:'awards_construction', title:'获奖及建设情况', width:230, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
@@ -49,28 +50,23 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    if(layEvent === 'detail'){//查看
 	    	
 	    	layer.open({
-				title:"查看",
+							title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=issues/issues_check'],
+	    		content:['/toPage?page=thesis/thesis_check','no'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
-	    		success : function(layero, index) {
-					// 获取子页面的iframe
-					var iframe = window['layui-layer-iframe' + index];
-					// 向子页面的全局函数child传参
-					iframe.init(data);
-				} 
-	    	});
+	    		area:['90%','90%']
+					}); 
+	    	
 	    }else if(layEvent === 'del'){//删除
 	    	layer.confirm('真的删除行么', function(index) {
 				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/issuesList/del',
+					url:'/thesisList/del',
 					type:"POST",
-					data:{Id:data.id},
+					data:{specialtyId:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -91,20 +87,13 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=issues/issues_update'],
+	    		content:['/toPage?page=thesis/thesis_update','no'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
-	    		success : function(layero, index) {
-					// 获取子页面的iframe
-					var iframe = window['layui-layer-iframe' + index];
-					// 向子页面的全局函数child传参
-					iframe.init(data);
-				} 
+	    		area:['90%','90%']
 			});
 			}
 		});
-
 		/* 搜索功能 */
 	  form.on('submit(search)', function(data) {
 			/*layer.alert(JSON.stringify(data.field));*/
@@ -127,7 +116,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=issues/issues_insert'],
+	  		content:['/toPage?page=thesis/thesis_insert','no'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
@@ -149,9 +138,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/issuesList/del',
+						url:'/thesisList/del',
 						type:"POST",
-						data:{Id:param},
+						data:{specialtyId:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数

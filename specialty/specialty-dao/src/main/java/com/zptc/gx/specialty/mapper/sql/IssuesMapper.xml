@@ -204,15 +204,9 @@
     <include refid="Base_Column_List" />
     from issues
     <where>
-<!--     	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
-			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
+		<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
-		</if> -->
-		<if test="id != null and id != ''">
-			and instr(id,#{id,jdbcType=BIGINT})
-		</if>
-		<if test="date != null and date != ''">
-			and instr(date,#{date,jdbcType=datetime})
 		</if>
 		<if test="code != null and code != ''">
 			and instr(code,#{code,jdbcType=VARCHAR})
@@ -236,7 +230,7 @@
 			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
 		</if>
 		<if test="status != null and status != ''">
-			and instr(status,#{status,jdbcType=INTEGER})
+			and status = #{status,jdbcType=INTEGER}
 		</if>
 		<if test="create_time != null and create_time != ''">
 			and instr(create_time,#{create_time,jdbcType=DATETIME})
@@ -254,17 +248,18 @@
 			and modify_user = #{modify_user,jdbcType=VARCHAR}
 		</if>
 	</where>
-    limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER};
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->
   <select id="selectCounts" resultType="int" parameterType="map">
 		select
 			count(*)
 		from
-			specialty_files
+			issues
 			<where>
 				<if test="date != null and date != ''">
-					and instr(date,#{date,jdbcType=datetime})
+					<!-- and date like '%${date}%' -->
+					and datediff(date,#{date,jdbcType=TIMESTAMP})
 				</if>
 				<if test="code != null and code != ''">
 					and instr(code,#{code,jdbcType=VARCHAR})
@@ -304,4 +299,14 @@
 				</if> -->
 		</where>
 	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
+	    update issues
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+ 	 </update>
 </mapper>

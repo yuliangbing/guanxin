@@ -1,10 +1,10 @@
 //JavaScript代码区域
-			function ajax_h(form){
+			function ajax_h(form)
+			{
 				//获取文件类型
 				$.ajax({
 					url:'/fileCategory/getFileCategoryList',
 					type:"POST",
-//					data:{specialtyFilesId:data.id},
 					dataType:"json",
 					success:function(data){
 						console.log(data);
@@ -15,16 +15,11 @@
 							let option = "";
 							for (let i=0;i<data.data.length;i++) {
 								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
-								
 							}
 							$("#cate_name").append(option);
 							form.render('select');
-//							layui.use('form', function() {
-//						        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
-//						        form.render();
-//						    });
 						} else {
-							layer.msg(data.msg);
+							layer.msg("网络错误，请检查网络！");
 						}
 						
 					} ,error:function(code){
@@ -35,64 +30,31 @@
 			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				//获取下拉列表
 				ajax_h(form);
-			
-				//获取体检状态
-				/*	var url = "/api/admin/common/second/dictionary";
-					var param = {
-							fatherCode:"014000"
-						};
-					var met="GET";
-					ajax_hm(url,param,met,function(err,data){
-						if(err,data){
-							console.log(data);
-							if (data.code == 0) {
-								let option = "";
-								for (let i=0;i<data.dictionaryListByFatherCode.length;i++) {
-									option += "<option value='"+data.dictionaryListByFatherCode[i].code+"'>"+data.dictionaryListByFatherCode[i].name+"</option>";
-								}
-								$("#status").append(option);
-								form.render('select');
-							} else {
-								layer.msg(data.msg);
-							}
-						}else{
-							console.log(err);
-							layer.msg(msg_000000001);
-						}
-					});	*/
 				
-				/*
-				 实现时间选择
-				 */
+				/* 实现时间选择 */
 				var laydate = layui.laydate;
-
-				//执行一个laydate实例
 				laydate.render({
 					elem: '#date' //指定元素	
 					,range: '~' //或 range: '~' 来自定义分割字符
 				});
 
-				/*
-				 表格
-				 */
-				//第一个表格
+				/*表格 */
 				var tableIns = table.render({
 					elem: '#demoList'
 					,method:'post'
 					,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
-				
-					//额外条件
 					,page: true
-					//toolbar: '<div class="layui-btn-container"> <button class="layui-btn layui-btn-sm" lay-submit lay-filter="delCheckData">批量删除</button></div>',
 				    ,toolbar:'#toolbarDemo'
+				    ,defaultToolbar:true
 					,limits: [10, 15, 20,25] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 					,loading: true
 					,limit: 10
 					,cols: [
 						[ //表头
-							{type: 'checkbox', fixed: 'left'},
+							{type: 'checkbox', fixed: 'left',width:'8%'},
 							{
 								field: 'id',
 								title: '主键',
@@ -144,7 +106,7 @@
 								title: '状态',
 								width: '10%',
 								align: 'center',
-								hide:true
+								hide:true//隐藏
 							},{
 								field: 'create_user',
 								title: '创建人',
@@ -173,13 +135,14 @@
 								fixed: 'right',
 								title: '操作',
 								toolbar: '#barDemo',
-								width: '14%',
+								width: '24%',
 								sort: false,
 								align: 'center'
 							}
 						]
 					]
 				});
+				
 				/* 搜索功能 */
 				form.on('submit(search)', function(data) {
 					//layer.alert(JSON.stringify($("#cate_name option:checked").text()));
@@ -187,7 +150,7 @@
 					let arr = {};
 					arr = data.field;
 					arr.cate_name = $("#cate_name option:checked").text();
-					console.log(arr);
+					//console.log(arr);
 					/*layer.alert(JSON.stringify(arr));*/
 					if(arr.data != "" && arr.date != null){
 						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
@@ -201,14 +164,15 @@
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
+				
 				/*新增功能*/
-				form.on('submit(insertAdd)', function(data) {
+				form.on('submit(add)', function(data) {
 					layer.open({
 						type:2,
-						title:'查看窗口',
+						title:'添加窗口',
 						area:['90%','90%'],
 						anim:0,
-						content: "/toPage?page=specialty_files/specialty_insert"
+						content: "/toPage?page=specialty_files/specialty_add"
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
@@ -242,13 +206,13 @@
 							});
 							});
 						
-					} else if(layEvent === 'update') { //修改
+					} else if(layEvent === 'modify') { //修改
 						
 						layer.open({
 									type: 2,
 									title: '修改窗口',
 									area:['90%','90%'],
-									content:'/toPage?page=specialty_files/specialty_update',
+									content:'/toPage?page=specialty_files/specialty_modify',
 									/*btn : [ '保存', '取消' ],
 									btnAlign : 'c',
 									yes : function(index, layero) {
@@ -271,14 +235,14 @@
 									}
 									
 							});
-					} else if(layEvent==='check'){
-						//layer.msg('用户名：'+ data.code + ' 的查看操作');
+					} else if(layEvent==='details'){
+						//layer.msg('用户名：'+  + ' 的查看操作');
 						layer.open({
 							type:2,
-							title:'查看窗口',
+							title:'详情窗口',
 							area:['90%','90%'],
 							anim:0,
-							content: "/toPage?page=specialty_files/specialty_check",
+							content: "/toPage?page=specialty_files/specialty_details",
 							success : function(layero, index) {
 								// 获取子页面的iframe
 								var iframe = window['layui-layer-iframe' + index];
@@ -296,14 +260,14 @@
 					    var checkStatus = table.checkStatus(res.config.id);
 					    console.log(checkStatus.data.length);
 					    switch(res.event){
-					      case 'delData':
+					      case 'dels':
 					        var data = checkStatus.data;
 					        var param = [{}];
-					      //  layer.alert(JSON.stringify(data)+"1");
+					      //  layer.alert(JSON.stringify(data));
 					        if(data.length > 0){
-					        	 for(var i=0;i< data.length;i++){
+					        	 for(var i=0;i< data.length;i++)
+					        	 {
 							        	param = data[i].id;
-//							        	layer.alert(JSON.stringify(data[i].id));
 							        	console.log(param);
 							        	//向服务端发送删除指令*/		
 										$.ajax({
@@ -315,7 +279,6 @@
 												var nowPage = tableIns.config.page.curr;//返回当前页数
 									        	var reloadPage = (nowPage-1) > 0? nowPage:1;
 												layer.msg("删除成功");
-												//layer.close(index);
 								    			tableIns.reload({
 								    				page:{
 								    					curr:reloadPage
@@ -329,9 +292,6 @@
 					        	layer.msg("请选择要删除的用户");
 					        }
 					       
-					        
-					       //layer.alert(JSON.stringify(param));
-					        
 					      break;
 					    };
 					    

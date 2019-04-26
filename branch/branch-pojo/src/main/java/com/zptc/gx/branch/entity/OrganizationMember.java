@@ -1,9 +1,11 @@
-package com.zptc.gx.specialty.entity;
+package com.zptc.gx.branch.entity;
 
 import java.util.Date;
 
-public class OrganizationType {
+public class OrganizationMember {
     private Long id;
+
+    private String position;
 
     private String name;
 
@@ -23,6 +25,14 @@ public class OrganizationType {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position == null ? null : position.trim();
     }
 
     public String getName() {
