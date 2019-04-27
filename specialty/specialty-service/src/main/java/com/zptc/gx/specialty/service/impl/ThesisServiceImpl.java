@@ -19,16 +19,16 @@ public class ThesisServiceImpl implements ThesisService {
 	private ThesisMapper thesisMapper;
 
 	@Override
-	public void addThesis(Thesis thesis){
-		thesisMapper.insertSelective(thesis);
+	public int addThesis(Thesis thesis){
+		return thesisMapper.insertSelective(thesis);
 	}
 	@Override
-	public void modifyThesis(Thesis thesis){
-		thesisMapper.updateByPrimaryKeySelective(thesis);
+	public int modifyThesis(Thesis thesis){
+		return  thesisMapper.updateByPrimaryKeySelective(thesis);
 	}
 	@Override
-	public void deleteThesisById(Long id){
-		thesisMapper.deleteByPrimaryKey(id);
+	public int deleteThesisById(Long id){
+		return thesisMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public Thesis findThesisById(Long id){

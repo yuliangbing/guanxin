@@ -8,11 +8,12 @@ import com.zptc.gx.specialty.entity.SpecialtyFiles;
 
 public interface ThesisService {
 
-	public void addThesis(Thesis thesis);
+	public 
+	int addThesis(Thesis thesis);
 
-	public void modifyThesis(Thesis thesis);
+	public int modifyThesis(Thesis thesis);
 
-	public void deleteThesisById(Long id);
+	public int deleteThesisById(Long id);
 
 	public Thesis findThesisById(Long id);
 	

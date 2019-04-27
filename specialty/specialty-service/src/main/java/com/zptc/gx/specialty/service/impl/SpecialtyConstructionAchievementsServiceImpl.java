@@ -1,6 +1,7 @@
 package com.zptc.gx.specialty.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -37,9 +38,9 @@ public class SpecialtyConstructionAchievementsServiceImpl implements SpecialtyCo
 	}
 	//获取列表数据
 	@Override
-	public List<SpecialtyConstructionAchievements> getSpecialtyIdList(Long specialtyId) {
+	public List<SpecialtyConstructionAchievements> getSpecialtyAchievementsList(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return specialtyConstructionAchievementsMapper.getSpecialtyIdList(specialtyId);
+		return specialtyConstructionAchievementsMapper.getSpecialtyList(data);
 	}
 	//不带if修改
 	@Override
@@ -47,5 +48,15 @@ public class SpecialtyConstructionAchievementsServiceImpl implements SpecialtyCo
 			SpecialtyConstructionAchievements specialtyConstructionAchievements) {
 		// TODO Auto-generated method stub
 		return specialtyConstructionAchievementsMapper.updateByPrimaryKey(specialtyConstructionAchievements);
+	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionAchievementsMapper.selectCounts(count);
+	}
+	@Override
+	public int modifSpecialtyFilesDel(SpecialtyConstructionAchievements specialtyConstructionAchievements) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionAchievementsMapper.updateByPrimaryKeyDel(specialtyConstructionAchievements);
 	}
 }

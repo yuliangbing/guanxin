@@ -82,7 +82,7 @@ public class SpecialtyFilesController extends BaseController {
 		//定义返回的数据条总数
 		int counts = 0;
 		//定义返回的msg
-		String msg = "msg";
+		String msg = "";
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据

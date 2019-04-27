@@ -177,9 +177,37 @@
   
   <!-- 自定义 -->
   <!-- 查询列表数据 -->
-  <select id="getSpecialtyIdList" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select
-    <include refid="Base_Column_List" />
-    from specialty_construction_achievements
+  <select id="getSpecialtyList" resultMap="BaseResultMap" parameterType="map" >
+	    select
+	    <include refid="Base_Column_List" />
+	    from specialty_construction_achievements
+	    <where>
+	    	<if test="status !=null and status != ''">
+				and status = #{status,jdbcType=INTEGER}
+			</if>
+	    </where>
+	    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
+   <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_construction_achievements
+			<where>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	<update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
+	    update specialty_construction_achievements
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+   </update>
 </mapper>
