@@ -17,6 +17,8 @@ public class SubjectCompetition {
 
     private Long specialtyId;
 
+    private String specialtyName;
+
     private Integer status;
 
     private Date createTime;
@@ -81,6 +83,14 @@ public class SubjectCompetition {
 
     public void setSpecialtyId(Long specialtyId) {
         this.specialtyId = specialtyId;
+    }
+
+    public String getSpecialtyName() {
+        return specialtyName;
+    }
+
+    public void setSpecialtyName(String specialtyName) {
+        this.specialtyName = specialtyName == null ? null : specialtyName.trim();
     }
 
     public Integer getStatus() {

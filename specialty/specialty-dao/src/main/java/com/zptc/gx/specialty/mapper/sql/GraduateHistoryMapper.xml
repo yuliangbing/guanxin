@@ -9,6 +9,7 @@
     <result column="entrepreneurs_num" property="entrepreneursNum" jdbcType="INTEGER" />
     <result column="employment_rate" property="employmentRate" jdbcType="DECIMAL" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -17,7 +18,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, date, graduate_num, employed_num, entrepreneurs_num, employment_rate, specialty_id, 
-    status, create_time, create_user, modify_time, modify_user
+    specialty_name, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -32,14 +33,14 @@
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.GraduateHistory" >
     insert into graduate_history (id, date, graduate_num, 
       employed_num, entrepreneurs_num, employment_rate, 
-      specialty_id, status, create_time, 
-      create_user, modify_time, modify_user
-      )
+      specialty_id, specialty_name, status, 
+      create_time, create_user, modify_time, 
+      modify_user)
     values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{graduateNum,jdbcType=INTEGER}, 
       #{employedNum,jdbcType=INTEGER}, #{entrepreneursNum,jdbcType=INTEGER}, #{employmentRate,jdbcType=DECIMAL}, 
-      #{specialtyId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
-      )
+      #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.GraduateHistory" >
     insert into graduate_history
@@ -64,6 +65,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
       </if>
       <if test="status != null" >
         status,
@@ -103,6 +107,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -141,6 +148,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -167,6 +177,7 @@
       entrepreneurs_num = #{entrepreneursNum,jdbcType=INTEGER},
       employment_rate = #{employmentRate,jdbcType=DECIMAL},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
+      specialty_name = #{specialtyName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},

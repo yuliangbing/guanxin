@@ -7,6 +7,8 @@ public class MainCourses {
 
     private Long specialtyId;
 
+    private String specialtyName;
+
     private Date date;
 
     private String courses;
@@ -35,6 +37,14 @@ public class MainCourses {
 
     public void setSpecialtyId(Long specialtyId) {
         this.specialtyId = specialtyId;
+    }
+
+    public String getSpecialtyName() {
+        return specialtyName;
+    }
+
+    public void setSpecialtyName(String specialtyName) {
+        this.specialtyName = specialtyName == null ? null : specialtyName.trim();
     }
 
     public Date getDate() {

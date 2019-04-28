@@ -21,6 +21,8 @@ public class Thesis {
 
     private Long specialtyId;
 
+    private String specialtyName;
+
     private Integer status;
 
     private Date createTime;
@@ -103,6 +105,14 @@ public class Thesis {
         this.specialtyId = specialtyId;
     }
 
+    public String getSpecialtyName() {
+        return specialtyName;
+    }
+
+    public void setSpecialtyName(String specialtyName) {
+        this.specialtyName = specialtyName == null ? null : specialtyName.trim();
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -142,14 +152,4 @@ public class Thesis {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
-
-	@Override
-	public String toString() {
-		return "Thesis [id=" + id + ", date=" + date + ", name=" + name + ", publishedJournal=" + publishedJournal
-				+ ", indexLevel=" + indexLevel + ", awards=" + awards + ", firstAuthor=" + firstAuthor
-				+ ", otherAuthors=" + otherAuthors + ", specialtyId=" + specialtyId + ", status=" + status
-				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
-				+ ", modifyUser=" + modifyUser + "]";
-	}
-    
 }

@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.MainCourses" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="courses" property="courses" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
@@ -13,7 +14,8 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, specialty_id, date, courses, status, create_time, create_user, modify_time, modify_user
+    id, specialty_id, specialty_name, date, courses, status, create_time, create_user, 
+    modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -26,14 +28,14 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.MainCourses" >
-    insert into main_courses (id, specialty_id, date, 
-      courses, status, create_time, 
-      create_user, modify_time, modify_user
-      )
-    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, 
-      #{courses,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
-      )
+    insert into main_courses (id, specialty_id, specialty_name, 
+      date, courses, status, 
+      create_time, create_user, modify_time, 
+      modify_user)
+    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{courses,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.MainCourses" >
     insert into main_courses
@@ -43,6 +45,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
       </if>
       <if test="date != null" >
         date,
@@ -73,6 +78,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="date != null" >
         #{date,jdbcType=TIMESTAMP},
       </if>
@@ -102,6 +110,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="date != null" >
         date = #{date,jdbcType=TIMESTAMP},
       </if>
@@ -129,6 +140,7 @@
   <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.MainCourses" >
     update main_courses
     set specialty_id = #{specialtyId,jdbcType=BIGINT},
+      specialty_name = #{specialtyName,jdbcType=VARCHAR},
       date = #{date,jdbcType=TIMESTAMP},
       courses = #{courses,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
