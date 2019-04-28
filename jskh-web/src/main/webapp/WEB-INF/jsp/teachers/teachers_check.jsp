@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/teachers/teachers_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -22,40 +22,70 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">发表时间</label>
-					<div class="layui-input-inline">
-						<input name="date" id="date" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">论文题目</label>
+					<label class="layui-form-label">教师姓名</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">发表期刊</label>
+					<label class="layui-form-label">教师编号</label>
 					<div class="layui-input-inline">
-						<input name="published_journal" id="published_journal" disabled autocomplete="off" class="layui-input">
+						<input name="code" id="code" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">入职时间</label>
+					<div class="layui-input-inline">
+						<input name="entry_time" id="entry_time" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label">索引或级别</label>
+					<label class="layui-form-label">出生时间</label>
 					<div class="layui-input-inline">
-						<input name="index_level" id="index_level" disabled autocomplete="off" class="layui-input">
+						<input name="birthday" id="birthday" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">毕业院校</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author" disabled autocomplete="off" class="layui-input">
+						<input name="graduate_school" id="graduate_school" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">其他作者</label>
+					<label class="layui-form-label">学历学位</label>
 					<div class="layui-input-inline"  >
-						<input name="other_authors" id="other_authors" disabled autocomplete="off" class="layui-input">
+						<input name="final_degree" id="final_degree" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">政治面貌</label>
+					<div class="layui-input-inline">
+						<input name="political_status"  id="political_status" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业编码</label>
+					<div class="layui-input-inline">
+						<input name="specialty_code"  id="specialty_code" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业名称</label>
+					<div class="layui-input-inline">
+						<input name="specialty_name"  id="specialty_name" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">研究方向</label>
+					<div class="layui-input-inline">
+						<input name="research_direction"  id="research_direction" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">是否兼职</label>
+					<div class="layui-input-inline">
+						<input name="is_part_time"  id="is_part_time" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -88,35 +118,7 @@
 						<input name="modify_user"  id="modify_user" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-form-item">
-				
-					<label  class="layui-form-label">获奖情况</label>
-					<div class="layui-input-inline">
-						<textarea  class="layui-textarea" disabled id="awards" style="width: 440%;"></textarea>
-					</div>
-				
-				</div>
 			</div>
 		</form>
 	</body>
-	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-   	<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-   	<script>
-   	function init(data) {
-
-		$("#id").val(data.id);
-		$("#date").val(data.date);
-		$("#name").val(data.name);
-		$("specialty_id").val(data.specialty_id);
-		$("#published_journal").val(data.published_journal);
-		$("#index_level").val(data.index_level);
-		$("#awards").val(data.awards);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
-		$("#create_time").val(data.create_time);
-		$("#create_user").val(data.create_user);
-		$("#modify_time").val(data.modify_time);
-		$("#modify_user").val(data.modify_user);
-	}
-   	</script>
 </html>

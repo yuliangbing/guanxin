@@ -160,8 +160,6 @@ public class IssuesListController extends BaseController{
 		    issues.setStatus(status);
 		    issues.setCreateTime(new Date());
 		    issues.setCreateUser(user.getTeaName());
-		    issues.setModifyTime(new Date());
-		    issues.setModifyUser(user.getTeaName());
 		  //判断传入的值是否为空或""
 		    if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(host)) == false) {
 		    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");

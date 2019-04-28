@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
-<script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/teachers/teachers_List.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body class="layui-layout-body">
@@ -22,7 +22,7 @@
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="时间" name="date" id="date" style="width:200px;">
-          <input type="text" name="code" id="code" placeholder="请输入论文题目" autocomplete="off" class="layui-input">
+          <input type="text" name="code" id="code" placeholder="请输入立项编号" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
