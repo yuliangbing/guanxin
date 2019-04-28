@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="code" property="code" jdbcType="VARCHAR" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="specialty_info" property="specialtyInfo" jdbcType="LONGVARCHAR" />
+    <result column="branch_characteristic" property="branchCharacteristic" jdbcType="LONGVARCHAR" />
     <result column="date" property="date" jdbcType="TIMESTAMP" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -12,20 +14,12 @@
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.zptc.gx.branch.entity.BranchIntroduction" extends="BaseResultMap" >
-    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
-  </resultMap>
   <sql id="Base_Column_List" >
-    id, code, name, date, status, create_time, create_user, modify_time, modify_user
-  </sql>
-  <sql id="Blob_Column_List" >
-    introduction
+    id, code, name, specialty_info, branch_characteristic, date, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from branch_introduction
     where id = #{id,jdbcType=BIGINT}
   </select>
@@ -33,17 +27,19 @@
     delete from branch_introduction
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
+  <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
     insert into branch_introduction (id, code, name, 
       date, status, create_time, 
       create_user, modify_time, modify_user, 
-      introduction)
+      specialty_info, branch_characteristic
+      )
     values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{date,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, 
-      #{introduction,jdbcType=LONGVARCHAR})
+      #{specialtyInfo,jdbcType=LONGVARCHAR}, #{branchCharacteristic,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
+  <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
     insert into branch_introduction
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -73,8 +69,11 @@
       <if test="modifyUser != null" >
         modify_user,
       </if>
-      <if test="introduction != null" >
-        introduction,
+      <if test="specialtyInfo != null" >
+        specialty_info,
+      </if>
+      <if test="branchCharacteristic != null" >
+        branch_characteristic,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -105,12 +104,15 @@
       <if test="modifyUser != null" >
         #{modifyUser,jdbcType=VARCHAR},
       </if>
-      <if test="introduction != null" >
-        #{introduction,jdbcType=LONGVARCHAR},
+      <if test="specialtyInfo != null" >
+        #{specialtyInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="branchCharacteristic != null" >
+        #{branchCharacteristic,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
     update branch_introduction
     <set >
       <if test="code != null" >
@@ -137,13 +139,16 @@
       <if test="modifyUser != null" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
       </if>
-      <if test="introduction != null" >
-        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      <if test="specialtyInfo != null" >
+        specialty_info = #{specialtyInfo,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="branchCharacteristic != null" >
+        branch_characteristic = #{branchCharacteristic,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
     update branch_introduction
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
@@ -153,7 +158,8 @@
       create_user = #{createUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       modify_user = #{modifyUser,jdbcType=VARCHAR},
-      introduction = #{introduction,jdbcType=LONGVARCHAR}
+      specialty_info = #{specialtyInfo,jdbcType=LONGVARCHAR},
+      branch_characteristic = #{branchCharacteristic,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
