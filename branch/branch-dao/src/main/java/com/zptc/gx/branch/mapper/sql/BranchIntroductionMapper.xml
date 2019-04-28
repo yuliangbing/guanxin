@@ -27,7 +27,7 @@
     delete from branch_introduction
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
+  <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     insert into branch_introduction (id, code, name, 
       date, status, create_time, 
       create_user, modify_time, modify_user, 
@@ -39,7 +39,7 @@
       #{specialtyInfo,jdbcType=LONGVARCHAR}, #{branchCharacteristic,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
+  <insert id="insertSelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     insert into branch_introduction
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -112,7 +112,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     update branch_introduction
     <set >
       <if test="code != null" >
@@ -148,7 +148,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zptc.gx.branch.entity.BranchIntroductionWithBLOBs" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     update branch_introduction
     set code = #{code,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
