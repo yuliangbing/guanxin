@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.service;
 
+import java.util.List;
+
 import com.zptc.gx.permission.entity.RoleMenuRel;
 
 public interface RoleMenuRelService {
@@ -11,5 +13,7 @@ public interface RoleMenuRelService {
 	public void deleteRoleMenuRelById(Long id);
 
 	public RoleMenuRel findRoleMenuRelById(Long id);
+	
+	public List<Long> getMenuIdListByRoleId(Long roleId);
 
 }

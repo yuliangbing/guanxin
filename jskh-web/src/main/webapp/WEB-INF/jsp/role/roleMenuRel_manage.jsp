@@ -10,13 +10,17 @@
 
 <link rel="stylesheet" href="${path}/static/public/css/font.css">
 <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
+<style type="text/css">
+	td div{
+		width: max-content;
+	}
+</style>
 </head>
 <body>
 	<div class="x-body">
 		<form action="" method="post" class="layui-form layui-form-pane">
 			<div class="layui-form-item">
-				<label for="name" class="layui-form-label"> 角色名 </label> <label
-					for="name" id="roleName" class="layui-form-label"> </label>
+				<label for="name" class="layui-form-label" style="width: max-content;" id="roleName"> 角色名 :</label>
 			</div>
 			<div class="layui-form-item layui-form-text">
 				<label class="layui-form-label"> 拥有权限 </label>
@@ -75,5 +79,5 @@
 		});
 	</script>
 </body>
-<%-- <script src="${path}/static/js/role/roleMenuRel_manage.js"></script> --%>
+<script src="${path}/static/js/role/roleMenuRel_manage.js"></script>
 </html>
