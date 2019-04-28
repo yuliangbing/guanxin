@@ -15,7 +15,7 @@ public interface IssuesService {
 	public void deleteIssuesById(Long id);
 
 	public Issues findIssuesById(Long id);
-	//不带if条件
+	//带if条件
 	public int modifyIssuesKey(Issues issues);
 	
 	//获取课程的全部数据

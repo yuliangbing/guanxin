@@ -45,12 +45,6 @@ public class IssuesServiceImpl implements IssuesService {
 		// TODO Auto-generated method stub
 		return issuesMapper.selectCounts(count);
 	}
-//	@Override
-//	@Transactional
-//	public int modifSpecialtyFilesDel(Issues issues) {
-//		// TODO Auto-generated method stub
-//		return issuesMapper.updateByPrimaryKeyDel(issues);
-//	}
 	@Override
 	public int modifIssuesDel(Issues issues) {
 		// TODO Auto-generated method stub
