@@ -107,6 +107,7 @@ public class ThesisListController extends BaseController{
 			String firstAuthor = ToolUtil.str("first_author", request);
 			String otherAuthors = ToolUtil.str("other_authors", request);
 			Long specialtyId = ToolUtil.lon("specialty_id", request);
+			String specialtyName = ToolUtil.str("specialty_name", request);
 		    
 		    Thesis thesis = new Thesis();
 		    thesis.setDate(date);
@@ -117,6 +118,7 @@ public class ThesisListController extends BaseController{
 		    thesis.setFirstAuthor(firstAuthor);
 		    thesis.setOtherAuthors(otherAuthors);
 		    thesis.setSpecialtyId(specialtyId);
+		    thesis.setSpecialtyName(specialtyName);
 		    thesis.setStatus(1);
 		    thesis.setCreateTime(new Date());
 		    thesis.setCreateUser(user.getTeaName());
@@ -158,7 +160,7 @@ public class ThesisListController extends BaseController{
 		String firstAuthor = ToolUtil.str("first_author", request);
 		String otherAuthors = ToolUtil.str("other_authors", request);
 		Long specialtyId = ToolUtil.lon("specialty_id", request);
-	    
+		String specialtyName = ToolUtil.str("specialty_name", request);
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 //		//根据ThesisId查询
 	    Thesis thesis = thesisService.findThesisById(ThesisId);
@@ -174,6 +176,7 @@ public class ThesisListController extends BaseController{
 	    thesis.setFirstAuthor(firstAuthor);
 	    thesis.setOtherAuthors(otherAuthors);
 	    thesis.setSpecialtyId(specialtyId);
+	    thesis.setSpecialtyName(specialtyName);
 	    thesis.setStatus(1);
 	    thesis.setModifyTime(new Date());
 	    thesis.setModifyUser(user.getTeaName());

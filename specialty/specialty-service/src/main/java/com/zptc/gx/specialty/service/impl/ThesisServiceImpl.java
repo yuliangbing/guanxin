@@ -52,6 +52,7 @@ public class ThesisServiceImpl implements ThesisService {
 //		return issuesMapper.updateByPrimaryKeyDel(issues);
 //	}
 	@Override
+	@Transactional
 	public int modifThesisDel(Thesis thesis) {
 		// TODO Auto-generated method stub
 		return thesisMapper.updateByPrimaryKeyDel(thesis);

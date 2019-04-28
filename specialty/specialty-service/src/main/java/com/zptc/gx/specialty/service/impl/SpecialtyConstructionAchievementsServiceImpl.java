@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.SpecialtyConstructionAchievements;
 import com.zptc.gx.specialty.mapper.SpecialtyConstructionAchievementsMapper;
@@ -55,6 +56,7 @@ public class SpecialtyConstructionAchievementsServiceImpl implements SpecialtyCo
 		return specialtyConstructionAchievementsMapper.selectCounts(count);
 	}
 	@Override
+	@Transactional
 	public int modifSpecialtyFilesDel(SpecialtyConstructionAchievements specialtyConstructionAchievements) {
 		// TODO Auto-generated method stub
 		return specialtyConstructionAchievementsMapper.updateByPrimaryKeyDel(specialtyConstructionAchievements);

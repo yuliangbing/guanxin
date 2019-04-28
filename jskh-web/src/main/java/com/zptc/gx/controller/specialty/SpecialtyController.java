@@ -30,7 +30,12 @@ public class SpecialtyController extends BaseController {
 	@Autowired
 	private SpecialtyService specialtyService; 
 	
-	/*获取列表*/
+	/**
+	 * 获取下拉列表专业id的，不要修改
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	
 	@RequestMapping("/getSpecialtyList")
 	@ResponseBody
