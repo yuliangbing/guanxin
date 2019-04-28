@@ -11,6 +11,7 @@
     <result column="first_author" property="firstAuthor" jdbcType="VARCHAR" />
     <result column="other_authors" property="otherAuthors" jdbcType="VARCHAR" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -19,7 +20,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, date, name, published_journal, index_level, awards, first_author, other_authors, 
-    specialty_id, status, create_time, create_user, modify_time, modify_user
+    specialty_id, specialty_name, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -35,13 +36,15 @@
     insert into thesis (id, date, name, 
       published_journal, index_level, awards, 
       first_author, other_authors, specialty_id, 
-      status, create_time, create_user, 
-      modify_time, modify_user)
+      specialty_name, status, create_time, 
+      create_user, modify_time, modify_user
+      )
     values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
       #{publishedJournal,jdbcType=VARCHAR}, #{indexLevel,jdbcType=VARCHAR}, #{awards,jdbcType=VARCHAR}, 
       #{firstAuthor,jdbcType=VARCHAR}, #{otherAuthors,jdbcType=VARCHAR}, #{specialtyId,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
+      #{specialtyName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.Thesis" >
     insert into thesis
@@ -72,6 +75,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
       </if>
       <if test="status != null" >
         status,
@@ -117,6 +123,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -161,6 +170,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -189,6 +201,7 @@
       first_author = #{firstAuthor,jdbcType=VARCHAR},
       other_authors = #{otherAuthors,jdbcType=VARCHAR},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
+      specialty_name = #{specialtyName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
@@ -203,50 +216,13 @@
     from thesis
     <where>
 		<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
-			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
-		</if>
-		<if test="published_journal != null and published_journal != ''">
-			and instr(published_journal,#{published_journal,jdbcType=VARCHAR})
-		</if>
-		<if test="name != null and name != ''">
-			and instr(name,#{name,jdbcType=VARCHAR})
-		</if>
-		<if test="index_level != null and index_level != ''">
-			and instr(index_level,#{index_level,jdbcType=VARCHAR})
-		</if>
-		<if test="awards != null and awards != ''">
-			and instr(awards,#{awards,jdbcType=VARCHAR})
-		</if>
-		<if test="first_author != null and first_author != ''">
-			and instr(first_author,#{first_author,jdbcType=VARCHAR})
-		</if>
-		<if test="other_authors != null and other_authors != ''">
-			and instr(other_authors,#{other_authors,jdbcType=VARCHAR})
-		</if>
-		<if test="specialty_id != null and specialty_id != ''">
-			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
 		</if>
 		<if test="status != null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
-		<if test="create_time != null and create_time != ''">
-			and instr(create_time,#{create_time,jdbcType=DATETIME})
-		</if>		
-		<if test="create_user != null and create_user != ''">
-			and instr(create_user,#{create_user,jdbcType=VARCHAR})
-		</if>
-		<if test="modify_time != null and modify_time != ''">
-			and instr(modify_time,#{modify_time,jdbcType=DATETIME})
-		</if>
-		<!-- <if test="specialty_id != null and specialty_id != ''">
-			and specialty_id like '%${specialty_id}%'
-		</if> -->
-		<if test="modify_user !=null and modify_user != ''">
-			and modify_user = #{modify_user,jdbcType=VARCHAR}
-		</if>
 	</where>
-    limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER};
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->
   <select id="selectCounts" resultType="int" parameterType="map">
@@ -255,50 +231,16 @@
 		from
 			thesis
 			<where>
-				<if test="date != null and date != ''">
-					<!-- and date like '%${date}%' -->
-					and datediff(date,#{date,jdbcType=TIMESTAMP})
+				<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 				</if>
-				<if test="published_journal != null and published_journal != ''">
-					and instr(published_journal,#{published_journal,jdbcType=VARCHAR})
-				</if>
-				<if test="name != null and name != ''">
-					and instr(name,#{name,jdbcType=VARCHAR})
-				</if>
-				<if test="index_level != null and index_level != ''">
-					and instr(index_level,#{index_level,jdbcType=VARCHAR})
-				</if>
-				<if test="awards != null and awards != ''">
-					and instr(awards,#{awards,jdbcType=VARCHAR})
-				</if>
-				<if test="first_author != null and host != ''">
-					and instr(first_author,#{first_author,jdbcType=VARCHAR})
-				</if>
-				<if test="other_authors != null and other_authors != ''">
-					and instr(other_authors,#{other_authors,jdbcType=VARCHAR})
-				</if>
-<!-- 				<if test="specialty_id != null and specialty_id != ''">
-					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
-				</if> -->
 				<if test="status != null and status != ''">
 					and instr(status,#{status,jdbcType=INTEGER})
 				</if>
-				<if test="create_time != null and create_time != ''">
-					and instr(create_time,#{create_time,jdbcType=DATETIME})
-				</if>		
-				<if test="create_user != null and create_user != ''">
-					and instr(create_user,#{create_user,jdbcType=VARCHAR})
-				</if>
-				<if test="modify_time != null and modify_time != ''">
-					and instr(modify_time,#{modify_time,jdbcType=DATETIME})
-				</if>
-				<!-- <if test="specialty_id != null and specialty_id != ''">
-					and specialty_id like '%${specialty_id}%'
-				</if> -->
 		</where>
 	</select>
 	<!--根据status修改状态(删除)-->
-	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.Thesis" >
 	    update thesis
 	    <set>
 	    	<if test="status !=null and status !=''">

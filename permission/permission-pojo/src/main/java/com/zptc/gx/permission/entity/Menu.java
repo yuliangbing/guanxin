@@ -38,6 +38,8 @@ public class Menu {
     private Integer showType;
     
     private Integer isInit;
+    
+    private Integer level;
 
     public Long getId() {
         return id;
@@ -181,5 +183,13 @@ public class Menu {
 
 	public void setIsInit(Integer isInit) {
 		this.isInit = isInit;
+	}
+
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
 	}
 }

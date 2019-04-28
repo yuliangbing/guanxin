@@ -16,7 +16,7 @@ public class SpecialtyFiles {
     private String reviser;
 
     private Long specialtyId;
-    
+
     private String specialtyName;
 
     private Integer status;
@@ -85,6 +85,14 @@ public class SpecialtyFiles {
         this.specialtyId = specialtyId;
     }
 
+    public String getSpecialtyName() {
+        return specialtyName;
+    }
+
+    public void setSpecialtyName(String specialtyName) {
+        this.specialtyName = specialtyName == null ? null : specialtyName.trim();
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -124,24 +132,4 @@ public class SpecialtyFiles {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
-
-
-
-	public String getSpecialtyName() {
-		return specialtyName;
-	}
-
-	public void setSpecialtyName(String specialtyName) {
-		this.specialtyName = specialtyName;
-	}
-
-	@Override
-	public String toString() {
-		return "SpecialtyFiles [id=" + id + ", date=" + date + ", code=" + code + ", name=" + name + ", cateName="
-				+ cateName + ", reviser=" + reviser + ", specialtyId=" + specialtyId + ", specialty_name="
-				+ specialtyName + ", status=" + status + ", createTime=" + createTime + ", createUser=" + createUser
-				+ ", modifyTime=" + modifyTime + ", modifyUser=" + modifyUser + "]";
-	}
-
-	
 }

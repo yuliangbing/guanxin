@@ -8,6 +8,10 @@ public class BranchIntroduction {
     private String code;
 
     private String name;
+    
+    private String specialtyInfo;
+
+    private String branchCharacteristic;
 
     private Date date;
 
@@ -20,8 +24,6 @@ public class BranchIntroduction {
     private Date modifyTime;
 
     private String modifyUser;
-
-    private String introduction;
 
     public Long getId() {
         return id;
@@ -47,7 +49,23 @@ public class BranchIntroduction {
         this.name = name == null ? null : name.trim();
     }
 
-    public Date getDate() {
+    public String getSpecialtyInfo() {
+		return specialtyInfo;
+	}
+
+	public void setSpecialtyInfo(String specialtyInfo) {
+		this.specialtyInfo = specialtyInfo;
+	}
+
+	public String getBranchCharacteristic() {
+		return branchCharacteristic;
+	}
+
+	public void setBranchCharacteristic(String branchCharacteristic) {
+		this.branchCharacteristic = branchCharacteristic;
+	}
+
+	public Date getDate() {
         return date;
     }
 
@@ -93,13 +111,5 @@ public class BranchIntroduction {
 
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
-    }
-
-    public String getIntroduction() {
-        return introduction;
-    }
-
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction == null ? null : introduction.trim();
     }
 }

@@ -5,12 +5,8 @@
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="teacher_id" property="teacherId" jdbcType="BIGINT" />
     <result column="teacher_code" property="teacherCode" jdbcType="VARCHAR" />
-    <result column="issue_id" property="issueId" jdbcType="BIGINT" />
-    <result column="thesis_id" property="thesisId" jdbcType="BIGINT" />
-    <result column="patent_id" property="patentId" jdbcType="BIGINT" />
-    <result column="text_or_mon_id" property="textOrMonId" jdbcType="BIGINT" />
-    <result column="other_ach_id" property="otherAchId" jdbcType="BIGINT" />
-    <result column="sub_comp" property="subComp" jdbcType="BIGINT" />
+    <result column="achievement_id" property="achievementId" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -18,8 +14,8 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, teacher_id, teacher_code, issue_id, thesis_id, patent_id, text_or_mon_id, other_ach_id, 
-    sub_comp, status, create_time, create_user, modify_time, modify_user
+    id, teacher_id, teacher_code, achievement_id, type, status, create_time, create_user, 
+    modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -33,15 +29,13 @@
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.AchievementsTeacherRel" >
     insert into achievements_teacher_rel (id, teacher_id, teacher_code, 
-      issue_id, thesis_id, patent_id, 
-      text_or_mon_id, other_ach_id, sub_comp, 
-      status, create_time, create_user, 
-      modify_time, modify_user)
+      achievement_id, type, status, 
+      create_time, create_user, modify_time, 
+      modify_user)
     values (#{id,jdbcType=BIGINT}, #{teacherId,jdbcType=BIGINT}, #{teacherCode,jdbcType=VARCHAR}, 
-      #{issueId,jdbcType=BIGINT}, #{thesisId,jdbcType=BIGINT}, #{patentId,jdbcType=BIGINT}, 
-      #{textOrMonId,jdbcType=BIGINT}, #{otherAchId,jdbcType=BIGINT}, #{subComp,jdbcType=BIGINT}, 
-      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
+      #{achievementId,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.AchievementsTeacherRel" >
     insert into achievements_teacher_rel
@@ -55,23 +49,11 @@
       <if test="teacherCode != null" >
         teacher_code,
       </if>
-      <if test="issueId != null" >
-        issue_id,
+      <if test="achievementId != null" >
+        achievement_id,
       </if>
-      <if test="thesisId != null" >
-        thesis_id,
-      </if>
-      <if test="patentId != null" >
-        patent_id,
-      </if>
-      <if test="textOrMonId != null" >
-        text_or_mon_id,
-      </if>
-      <if test="otherAchId != null" >
-        other_ach_id,
-      </if>
-      <if test="subComp != null" >
-        sub_comp,
+      <if test="type != null" >
+        type,
       </if>
       <if test="status != null" >
         status,
@@ -99,23 +81,11 @@
       <if test="teacherCode != null" >
         #{teacherCode,jdbcType=VARCHAR},
       </if>
-      <if test="issueId != null" >
-        #{issueId,jdbcType=BIGINT},
+      <if test="achievementId != null" >
+        #{achievementId,jdbcType=BIGINT},
       </if>
-      <if test="thesisId != null" >
-        #{thesisId,jdbcType=BIGINT},
-      </if>
-      <if test="patentId != null" >
-        #{patentId,jdbcType=BIGINT},
-      </if>
-      <if test="textOrMonId != null" >
-        #{textOrMonId,jdbcType=BIGINT},
-      </if>
-      <if test="otherAchId != null" >
-        #{otherAchId,jdbcType=BIGINT},
-      </if>
-      <if test="subComp != null" >
-        #{subComp,jdbcType=BIGINT},
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -143,23 +113,11 @@
       <if test="teacherCode != null" >
         teacher_code = #{teacherCode,jdbcType=VARCHAR},
       </if>
-      <if test="issueId != null" >
-        issue_id = #{issueId,jdbcType=BIGINT},
+      <if test="achievementId != null" >
+        achievement_id = #{achievementId,jdbcType=BIGINT},
       </if>
-      <if test="thesisId != null" >
-        thesis_id = #{thesisId,jdbcType=BIGINT},
-      </if>
-      <if test="patentId != null" >
-        patent_id = #{patentId,jdbcType=BIGINT},
-      </if>
-      <if test="textOrMonId != null" >
-        text_or_mon_id = #{textOrMonId,jdbcType=BIGINT},
-      </if>
-      <if test="otherAchId != null" >
-        other_ach_id = #{otherAchId,jdbcType=BIGINT},
-      </if>
-      <if test="subComp != null" >
-        sub_comp = #{subComp,jdbcType=BIGINT},
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
@@ -183,12 +141,8 @@
     update achievements_teacher_rel
     set teacher_id = #{teacherId,jdbcType=BIGINT},
       teacher_code = #{teacherCode,jdbcType=VARCHAR},
-      issue_id = #{issueId,jdbcType=BIGINT},
-      thesis_id = #{thesisId,jdbcType=BIGINT},
-      patent_id = #{patentId,jdbcType=BIGINT},
-      text_or_mon_id = #{textOrMonId,jdbcType=BIGINT},
-      other_ach_id = #{otherAchId,jdbcType=BIGINT},
-      sub_comp = #{subComp,jdbcType=BIGINT},
+      achievement_id = #{achievementId,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},

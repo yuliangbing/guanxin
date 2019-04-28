@@ -101,6 +101,17 @@ public class MenuController extends BaseController {
 			menu.setCreateId(user.getId());
 			menu.setCreateTime(new Date());
 			menu.setCreateUser(user.getTeaName());
+			if (parentId != null) {
+				Menu parentMenu = menuService.findMenuById(parentId);
+				if (parentMenu != null) {
+					menu.setLevel(parentMenu.getLevel()+1);
+				} else {
+					jsonResult = JsonResult.build(FLAG_FAILED,"没有找到父菜单！");
+					return jsonResult;
+				}
+			} else {
+				menu.setLevel(MENU_LEVEL);
+			}
 			int result = menuService.addMenu(menu);
 			if (result > 0) {
 				jsonResult = JsonResult.build(FLAG_SUCCESS);

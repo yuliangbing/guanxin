@@ -7,6 +7,7 @@
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="participants" property="participants" jdbcType="VARCHAR" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -14,8 +15,8 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, date, content, participants, specialty_id, status, create_time, create_user, 
-    modify_time, modify_user
+    id, date, content, participants, specialty_id, specialty_name, status, create_time, 
+    create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -29,13 +30,13 @@
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.TrainingEnvironmentConstruction" >
     insert into training_environment_construction (id, date, content, 
-      participants, specialty_id, status, 
-      create_time, create_user, modify_time, 
-      modify_user)
+      participants, specialty_id, specialty_name, 
+      status, create_time, create_user, 
+      modify_time, modify_user)
     values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{content,jdbcType=VARCHAR}, 
-      #{participants,jdbcType=VARCHAR}, #{specialtyId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{modifyUser,jdbcType=VARCHAR})
+      #{participants,jdbcType=VARCHAR}, #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.TrainingEnvironmentConstruction" >
     insert into training_environment_construction
@@ -54,6 +55,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
       </if>
       <if test="status != null" >
         status,
@@ -87,6 +91,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -119,6 +126,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="specialtyName != null" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -143,6 +153,7 @@
       content = #{content,jdbcType=VARCHAR},
       participants = #{participants,jdbcType=VARCHAR},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
+      specialty_name = #{specialtyName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},

@@ -19,6 +19,15 @@
 </head>
 <body>
 <div class="all">
+		<!--时间-->
+		<div class="layui-form-item ">
+			<div class="layui-inline">
+             <label class="layui-form-label">发表时间</label>
+				<div class="layui-input-inline">
+						<input type="text" class="layui-input" id="date" name="date" placeholder="YYYY-MM-DD">
+				</div>
+			</div>
+		</div>
 		
 		<!--教材或者专著名称-->
 			<div class="layui-form-item ">
@@ -72,4 +81,21 @@
 		</div>
 		
 </body>
+<script>
+	layui.use('element', function() {
+    	var element = layui.element;
+
+	});
+	layui.use(['form', 'table', 'laydate'], function() {
+		var table = layui.table;
+
+		
+			//时间控件
+			var laydate = layui.laydate;
+			laydate.render({
+			elem: '#date'
+			});
+
+    });
+	</script>
 </html>
