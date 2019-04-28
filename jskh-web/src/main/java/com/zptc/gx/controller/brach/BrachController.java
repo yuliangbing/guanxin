@@ -44,13 +44,15 @@ public class BrachController extends BaseController {
 			
 			String code = ToolUtil.str("code", request);
 		    String name = ToolUtil.str("name", request);
-		    String introduction = ToolUtil.str("introduction", request);
+		    String specialtyInfo = ToolUtil.str("introduction", request);
+		    String branchCharacteristic = ToolUtil.str("branchCharacteristic", request);
 		    Date date = ToolUtil.date1("data", request);
 		    
 		    BranchIntroduction branch = new BranchIntroduction();
 		    branch.setCode(code);
 		    branch.setName(name);
-		    branch.setIntroduction(introduction);
+		    branch.setSpecialtyInfo(specialtyInfo);
+		    branch.setBranchCharacteristic(branchCharacteristic);
 			branch.setDate(date);
 			branch.setCreateTime(new Date());
 			branch.setCreateUser(user.getTeaName());
@@ -79,7 +81,8 @@ public class BrachController extends BaseController {
 			Long branchId = ToolUtil.lon("branchId", request);
 			String code = ToolUtil.str("code", request);
 		    String name = ToolUtil.str("name", request);
-		    String introduction = ToolUtil.str("introduction", request);
+		    String specialtyInfo = ToolUtil.str("introduction", request);
+		    String branchCharacteristic = ToolUtil.str("branchCharacteristic", request);
 		    Date date = ToolUtil.date1("data", request);
 		    
 		    BranchIntroduction branch = branchIntroductionService.findBranchIntroductionById(branchId);
@@ -90,7 +93,8 @@ public class BrachController extends BaseController {
 		    
 		    branch.setCode(code);
 		    branch.setName(name);
-		    branch.setIntroduction(introduction);
+		    branch.setSpecialtyInfo(specialtyInfo);
+		    branch.setBranchCharacteristic(branchCharacteristic);
 		    branch.setDate(date);
 		    branch.setModifyUser(user.getTeaName());
 		    branch.setModifyTime(new Date());
