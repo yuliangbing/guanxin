@@ -150,4 +150,12 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+  <!-- 自定义sql -->
+  <select id="getMenuIdListByRoleId" resultType="java.lang.Long" parameterType="java.lang.Long" >
+    select 
+    menu_id
+    from role_menu_rel
+    where role_id = #{roleId,jdbcType=BIGINT}
+  </select>
 </mapper>

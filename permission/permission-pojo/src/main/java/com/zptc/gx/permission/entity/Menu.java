@@ -23,6 +23,10 @@ public class Menu {
 
     private Integer status;
 
+    private Integer showType;
+
+    private Integer isInit;
+
     private Long createId;
 
     private String createUser;
@@ -35,10 +39,6 @@ public class Menu {
 
     private Date modifyTime;
 
-    private Integer showType;
-    
-    private Integer isInit;
-    
     private Integer level;
 
     public Long getId() {
@@ -121,6 +121,22 @@ public class Menu {
         this.status = status;
     }
 
+    public Integer getShowType() {
+        return showType;
+    }
+
+    public void setShowType(Integer showType) {
+        this.showType = showType;
+    }
+
+    public Integer getIsInit() {
+        return isInit;
+    }
+
+    public void setIsInit(Integer isInit) {
+        this.isInit = isInit;
+    }
+
     public Long getCreateId() {
         return createId;
     }
@@ -169,27 +185,11 @@ public class Menu {
         this.modifyTime = modifyTime;
     }
 
-    public Integer getShowType() {
-        return showType;
+    public Integer getLevel() {
+        return level;
     }
 
-    public void setShowType(Integer showType) {
-        this.showType = showType;
+    public void setLevel(Integer level) {
+        this.level = level;
     }
-
-	public Integer getIsInit() {
-		return isInit;
-	}
-
-	public void setIsInit(Integer isInit) {
-		this.isInit = isInit;
-	}
-
-	public Integer getLevel() {
-		return level;
-	}
-
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
 }

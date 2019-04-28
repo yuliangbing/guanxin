@@ -24,7 +24,9 @@ public class MenuVO1 {
     private List<MenuVO1> subMenuList;
     
     private Integer level;
-
+    
+    private boolean isChecked;
+    
 	public Long getId() {
 		return id;
 	}
@@ -103,5 +105,13 @@ public class MenuVO1 {
 
 	public void setLevel(Integer level) {
 		this.level = level;
+	}
+
+	public boolean isChecked() {
+		return isChecked;
+	}
+
+	public void setChecked(boolean isChecked) {
+		this.isChecked = isChecked;
 	}
 }

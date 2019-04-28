@@ -8,6 +8,7 @@
     <result column="is_default" property="isDefault" jdbcType="INTEGER" />
     <result column="role_order" property="roleOrder" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="is_init" property="isInit" jdbcType="INTEGER" />
     <result column="create_id" property="createId" jdbcType="BIGINT" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
@@ -16,7 +17,7 @@
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, role_name, role_num, is_default, role_order, status, create_id, create_user, 
+    id, role_name, role_num, is_default, role_order, status, is_init, create_id, create_user, 
     create_time, modify_id, modify_user, modify_time
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -32,14 +33,14 @@
   <insert id="insert" parameterType="com.zptc.gx.permission.entity.Role" >
     insert into role (id, role_name, role_num, 
       is_default, role_order, status, 
-      create_id, create_user, create_time, 
-      modify_id, modify_user, modify_time
-      )
+      is_init, create_id, create_user, 
+      create_time, modify_id, modify_user, 
+      modify_time)
     values (#{id,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleNum,jdbcType=VARCHAR}, 
       #{isDefault,jdbcType=INTEGER}, #{roleOrder,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}
-      )
+      #{isInit,jdbcType=INTEGER}, #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.permission.entity.Role" >
     insert into role
@@ -61,6 +62,9 @@
       </if>
       <if test="status != null" >
         status,
+      </if>
+      <if test="isInit != null" >
+        is_init,
       </if>
       <if test="createId != null" >
         create_id,
@@ -100,6 +104,9 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="isInit != null" >
+        #{isInit,jdbcType=INTEGER},
+      </if>
       <if test="createId != null" >
         #{createId,jdbcType=BIGINT},
       </if>
@@ -123,20 +130,23 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.permission.entity.Role" >
     update role
     <set >
-      <if test="roleName != null and roleName != ''" >
+      <if test="roleName != null" >
         role_name = #{roleName,jdbcType=VARCHAR},
       </if>
-      <if test="roleNum != null and roleNum != ''" >
+      <if test="roleNum != null" >
         role_num = #{roleNum,jdbcType=VARCHAR},
       </if>
-      <if test="isDefault != null and isDefault != -1" >
+      <if test="isDefault != null" >
         is_default = #{isDefault,jdbcType=INTEGER},
       </if>
-      <if test="roleOrder != null and roleOrder != -1" >
+      <if test="roleOrder != null" >
         role_order = #{roleOrder,jdbcType=INTEGER},
       </if>
-      <if test="status != null and status != -1" >
+      <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="isInit != null" >
+        is_init = #{isInit,jdbcType=INTEGER},
       </if>
       <if test="createId != null" >
         create_id = #{createId,jdbcType=BIGINT},
@@ -166,6 +176,7 @@
       is_default = #{isDefault,jdbcType=INTEGER},
       role_order = #{roleOrder,jdbcType=INTEGER},
       status = #{status,jdbcType=INTEGER},
+      is_init = #{isInit,jdbcType=INTEGER},
       create_id = #{createId,jdbcType=BIGINT},
       create_user = #{createUser,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},

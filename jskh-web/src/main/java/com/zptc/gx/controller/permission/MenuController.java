@@ -54,7 +54,7 @@ public class MenuController extends BaseController {
 			par.put("parentIsNull", 1);
 			List<Menu> menuList = menuService.queryMenuList(par);
 			//获取父菜单结束
-			List<MenuVO1> menuVOList = getMenuVOList(menuList, MENU_LEVEL);
+			List<MenuVO1> menuVOList = getMenuVOList(menuList);
 			jsonResult = JsonResult.build(FLAG_SUCCESS, menuVOList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -277,18 +277,16 @@ public class MenuController extends BaseController {
 	}
 
 	// 获取菜单列表
-	private List<MenuVO1> getMenuVOList(List<Menu> menuList, int level) {
-		int nextLevel = level + 1;
+	private List<MenuVO1> getMenuVOList(List<Menu> menuList) {
 		List<MenuVO1> menuVOList = new ArrayList<>();
 		for (Menu parentMenu : menuList) {
 			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
-			parentMenuVO.setLevel(level);
 			Map<String, Object> menuPar = new HashMap<>();
 			menuPar.put("parentId", parentMenu.getId());
 			List<Menu> subMenuList = menuService.queryMenuList(menuPar);
 			if (!CollectionUtils.isEmpty(subMenuList)) {
 				parentMenuVO.setHasSubMenu(true);
-				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList, nextLevel);
+				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList);
 				parentMenuVO.setSubMenuList(subMenuVOList);
 			} else {
 				parentMenuVO.setHasSubMenu(false);

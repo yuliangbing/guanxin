@@ -15,6 +15,8 @@ public class Role {
 
     private Integer status;
 
+    private Integer isInit;
+
     private Long createId;
 
     private String createUser;
@@ -73,6 +75,14 @@ public class Role {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getIsInit() {
+        return isInit;
+    }
+
+    public void setIsInit(Integer isInit) {
+        this.isInit = isInit;
     }
 
     public Long getCreateId() {

@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.mapper;
 
+import java.util.List;
+
 import com.zptc.gx.permission.entity.RoleMenuRel;
 
 public interface RoleMenuRelMapper {
@@ -14,4 +16,6 @@ public interface RoleMenuRelMapper {
     int updateByPrimaryKeySelective(RoleMenuRel record);
 
     int updateByPrimaryKey(RoleMenuRel record);
+    
+    List<Long> getMenuIdListByRoleId(Long roleId);
 }
