@@ -142,4 +142,14 @@ public class SpecialtyProfile {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SpecialtyProfile [id=" + id + ", specialtyId=" + specialtyId + ", specialtyName=" + specialtyName
+				+ ", date=" + date + ", position=" + position + ", characteristic=" + characteristic + ", directorId="
+				+ directorId + ", directorName=" + directorName + ", status=" + status + ", branchIntroduction="
+				+ branchIntroduction + ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime="
+				+ modifyTime + ", modifyUser=" + modifyUser + "]";
+	}
+    
 }
