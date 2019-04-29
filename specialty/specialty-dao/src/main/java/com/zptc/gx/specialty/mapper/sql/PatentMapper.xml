@@ -196,4 +196,38 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+   <!-- 查询列表数据 -->
+  <select id="getPatentList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from patent
+    <where>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			patent
+			<where>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.Patent" >
+	    update patent
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

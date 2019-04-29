@@ -78,7 +78,7 @@ public class SpecialtyConstructionMeasuresController extends BaseController {
 		return jsonResult;
 	}
 	
-	/*新增分院*/
+	/*新增*/
 	
 	@RequestMapping("/addSpecialtyConstructionMeasures")
 	@ResponseBody
