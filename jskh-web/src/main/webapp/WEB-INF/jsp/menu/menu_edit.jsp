@@ -43,8 +43,7 @@
 				</div>
 			</div>
 			<div class="layui-form-item">
-				<label for="url" class="layui-form-label"> <span
-					class="x-red">*</span>菜单地址
+				<label for="url" class="layui-form-label">菜单地址
 				</label>
 				<div class="layui-input-inline">
 					<input type="text" id="url" name="url" required=""

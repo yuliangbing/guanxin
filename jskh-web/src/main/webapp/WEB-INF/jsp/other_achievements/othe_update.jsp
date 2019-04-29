@@ -13,15 +13,15 @@
 <script src="${path}/static/public/lib/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
-<body>
-		<form class="layui-form" action="">
+<body><form class="layui-form" action="">
 
-			
-				<div class="sz-input-inline">
-					<label class="sz-form-label">时间</label>
+			<div class="layui-form-item ">
+				<div class="input-inline">
+					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
-						<input name="date"   autocomplete="off" class="layui-input" type="text">
+						<input name="date"   autocomplete="off" placeholder="请选择时间" class="layui-input" type="text">
 					</div>
+				</div>
 				</div>
 				<!--成果名称-->
 			<div class="layui-form-item ">

@@ -41,7 +41,7 @@ function appendMenu(html_, menuList) {
 		html_ += "<td><i style='margin-left:" + menu.level * 30 + "px;'></i>"
 				+ menu.menuStr;
 		if (menu.hasSubMenu) {
-			html_ += "<i class=\"layui-icon x-show\" status='true' style='float:right'>&#xe603;</i>";
+			html_ += "<i class=\"layui-icon x-show\" style='float:right'>&#xe61a;</i>";
 		}
 		html_ += "</td>";
 		html_ += "<td>" + menu.menuNum + "</td>";
@@ -59,7 +59,7 @@ function appendMenu(html_, menuList) {
 }
 
 function initMenuEvent() {
-	$("tbody.x-cate tr[fid!='']").hide();
+	//$("tbody.x-cate tr[fid!='']").hide();
 }
 
 function add(parentId,parentStr) {

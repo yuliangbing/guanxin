@@ -16,7 +16,7 @@ layui.use(['laydate','table','form'],function(){
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		   //,url:window.path +'/issuesList/getIssuesList'
+		   //,url:window.path +'/otherList/getOtherList'
 		    ,data:tables
 		    ,title: '用户数据表'
 		    ,page: true
@@ -57,7 +57,7 @@ layui.use(['laydate','table','form'],function(){
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/othe_updata','no'],
+	    		content:['/toPage?page=other_achievements/othe_update','no'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%']
@@ -131,7 +131,7 @@ layui.use(['laydate','table','form'],function(){
 							type: 2,
 							title: '修改窗口',
 							area:['90%','90%'],
-							content:'/toPage?page=other_achievements/othe_updata',
+							content:'/toPage?page=other_achievements/other_update',
 							/*btn : [ '保存', '取消' ],
 							btnAlign : 'c',
 							yes : function(index, layero) {
@@ -161,7 +161,7 @@ layui.use(['laydate','table','form'],function(){
 					title:'查看窗口',
 					area:['90%','90%'],
 					anim:0,
-					content: "/toPage?page=other_achievements/other_check.jsp",
+					content: "/toPage?page=other_achievements/other_check",
 					success : function(layero, index) {
 						// 获取子页面的iframe
 						var iframe = window['layui-layer-iframe' + index];

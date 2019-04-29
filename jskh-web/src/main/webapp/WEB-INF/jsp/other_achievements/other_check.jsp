@@ -22,7 +22,7 @@
 			<div class="layui-inline">
              <label class="layui-form-label">时间</label>
 				<div class="layui-input-inline">
-						<input type="text" class="layui-input" id="date" name="date" placeholder="YYYY-MM-DD">
+						<input type="text" class="layui-input" id="date" name="date"  disabled  placeholder="请选择时间">
 				</div>
 			</div>
 		</div>
@@ -32,7 +32,7 @@
 				<div class="layui-inline ">
 					<label class="layui-form-label ">成果名称</label>
 					<div class="layui-input-inline ">
-						 <input type="text" name="name" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+						 <input type="text" name="name" required  lay-verify="required" placeholder="请输入内容" disabled  autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 				<div class="layui-inline ">
 					<label class="layui-form-label ">成果来源</label>
 					<div class="layui-input-inline ">
-						 <input type="text" name="sources" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+						 <input type="text" name="sources" required  lay-verify="required"  placeholder="请输入内容" disabled  autocomplete="off" class="layui-input">
 						
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 				<div class="layui-inline ">
 					<label class="layui-form-label ">成果级别</label>
 					<div class="layui-input-inline ">
-						 <input type="text" name="level" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+						 <input type="text" name="level" required  lay-verify="required" placeholder="请输入内容"  disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
@@ -63,7 +63,7 @@
 				<div class="layui-inline ">
 					<label class="layui-form-label ">第一作者</label>
 					<div class="layui-input-inline ">
-						 <input type="text" name="first-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+						 <input type="text" name="first-author" required  lay-verify="required" placeholder="请输入内容"  disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
@@ -73,7 +73,7 @@
 				<div class="layui-inline ">
 					<label class="layui-form-label ">其他作者</label>
 					<div class="layui-input-inline ">
-				 <input type="text" name="other-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+				 <input type="text" name="other-author" required  lay-verify="required" placeholder="请输入内容"  disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
