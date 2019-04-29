@@ -25,6 +25,7 @@ import com.zptc.gx.specialty.entity.Thesis;
 import com.zptc.gx.specialty.service.ThesisService;
 import com.zptc.gx.specialty.service.ThesisService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 @Controller
 @RequestMapping("/thesisList")
@@ -41,7 +42,8 @@ public class ThesisListController extends BaseController{
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 	    String date = ToolUtil.str("date", request);
-	    System.out.println("获取到的时间："+date);
+	    String name = ToolUtil.str("name", request);
+	    //System.out.println("获取到的时间："+date);
 	    String date1 = null;
 	    String date2 = null;
 	    if (date != null && date != "") {
@@ -53,19 +55,23 @@ public class ThesisListController extends BaseController{
 	    
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
+	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
 		//用于分页的数据
-		pages = (page - 1) * limit;
+		//pages = (page - 1) * limit;
+	    pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
 	    data.put("date1", date1);
 	    data.put("date2", date2);
+	    data.put("name", name);
 	    data.put("status", 1);
-		data.put("limit", limit);
+		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 	    count.put("date1", date1);
 	    count.put("date2", date2);
+	    count.put("name", name);
 	    count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
@@ -123,7 +129,7 @@ public class ThesisListController extends BaseController{
 		    thesis.setCreateTime(new Date());
 		    thesis.setCreateUser(user.getTeaName());
 		    //判断传入的值是否为空或""
-		    if ((ToolUtil.equalBool(publishedJournal)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(indexLevel)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(awards)&&ToolUtil.equalBool(firstAuthor)&&ToolUtil.equalBool(otherAuthors)&&ToolUtil.equalBool(date)) == false) {
+		    if ((ToolUtil.equalBool(publishedJournal)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(indexLevel)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(awards)&&ToolUtil.equalBool(firstAuthor)&&ToolUtil.equalBool(otherAuthors)&&ToolUtil.equalBool(date)) == false) {
 		    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 		    	System.out.println("错误，传入数据错误");
 		    	 //接口拿到的数据
@@ -182,7 +188,7 @@ public class ThesisListController extends BaseController{
 	    thesis.setModifyUser(user.getTeaName());
 	   
 	    //判断传入的值是否为空或""
-	    if ((ToolUtil.equalBool(publishedJournal)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(indexLevel)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(awards)&&ToolUtil.equalBool(firstAuthor)&&ToolUtil.equalBool(otherAuthors)&&ToolUtil.equalBool(date)) == false) {
+	    if ((ToolUtil.equalBool(publishedJournal)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(indexLevel)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(awards)&&ToolUtil.equalBool(firstAuthor)&&ToolUtil.equalBool(otherAuthors)&&ToolUtil.equalBool(date)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
