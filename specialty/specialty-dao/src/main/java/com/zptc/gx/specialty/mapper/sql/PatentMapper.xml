@@ -16,10 +16,11 @@
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
+    <result column="patent_type_id" property="patentTypeId" jdbcType="BIGINT" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, date, code, name, type, first_author, other_authors, specialty_id, specialty_name, 
-    status, create_time, create_user, modify_time, modify_user
+    status, create_time, create_user, modify_time, modify_user, patent_type_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -36,12 +37,12 @@
       name, type, first_author, 
       other_authors, specialty_id, specialty_name, 
       status, create_time, create_user, 
-      modify_time, modify_user)
+      modify_time, modify_user, patent_type_id)
     values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, #{firstAuthor,jdbcType=VARCHAR}, 
       #{otherAuthors,jdbcType=VARCHAR}, #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
+      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}, #{patentTypeId,jdbcType=BIGINT})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.Patent" >
     insert into patent
@@ -88,6 +89,9 @@
       <if test="modifyUser != null" >
         modify_user,
       </if>
+      <if test="patentTypeId != null" >
+        patent_type_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -131,6 +135,9 @@
       </if>
       <if test="modifyUser != null" >
         #{modifyUser,jdbcType=VARCHAR},
+      </if>
+      <if test="patentTypeId != null" >
+        #{patentTypeId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -176,6 +183,9 @@
       <if test="modifyUser != null" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
       </if>
+      <if test="patentTypeId != null" >
+        patent_type_id = #{patentTypeId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -193,7 +203,8 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      modify_user = #{modifyUser,jdbcType=VARCHAR}
+      modify_user = #{modifyUser,jdbcType=VARCHAR},
+      patent_type_id = #{patentTypeId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
    <!-- 查询列表数据 -->
