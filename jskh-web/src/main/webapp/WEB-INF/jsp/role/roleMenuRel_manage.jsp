@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="${path}/static/public/css/font.css">
 <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
 <style type="text/css">
-body{
+body {
 	overflow-y: auto;
 }
+
 form {
 	width: 500px;
 	margin: 10px auto;
@@ -50,13 +51,14 @@ a {
 <body>
 	<div class="x-body">
 		<form action="" method="post" class="layui-form layui-form-pane">
+			<input type="hidden" id="roleId" />
 			<div class="layui-form-item">
 				<label for="name" style="width: max-content;" id="roleName">
 					角色名 :</label>
 			</div>
 			<div id="xtree1" class="xtree_contianer"></div>
 			<div class="layui-form-item">
-				<a class="layui-btn" lay-filter="save">保存</a>
+				<a class="layui-btn" onclick="save()">保存</a>
 			</div>
 		</form>
 	</div>
