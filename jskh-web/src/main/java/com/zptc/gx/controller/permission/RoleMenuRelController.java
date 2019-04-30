@@ -23,9 +23,11 @@ import com.zptc.gx.permission.entity.Role;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.permission.service.MenuService;
 import com.zptc.gx.permission.service.RoleMenuRelService;
+import com.zptc.gx.util.ToolUtil;
 import com.zptc.gx.vo.PageVO;
+import com.zptc.gx.vo.helper.menu.MenuToTree;
 import com.zptc.gx.vo.helper.menu.MenuVOHelper;
-import com.zptc.gx.vo.menu.MenuVO1;
+import com.zptc.gx.vo.menu.MenuTree;
 
 @Controller
 @RequestMapping("/roleMenuRel")
@@ -46,52 +48,52 @@ public class RoleMenuRelController extends BaseController {
 	 */
 	@RequestMapping("/getRoleMenuRelList")
 	@ResponseBody
-	public JsonResult getRoleMenuRelList(HttpServletRequest request, HttpServletResponse response) {
+	public List<MenuTree> getRoleMenuRelList(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
-
+		List<MenuTree> menuTreeList = new ArrayList<MenuTree>();
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
-			List<Long> roleMenuListIdList = roleMenuRelService.getMenuIdListByRoleId(user.getRoleId());
+			Long roleId = ToolUtil.lonWithNull("roleId", request);
+			
+			List<Long> roleMenuListIdList = roleMenuRelService.getMenuIdListByRoleId(roleId);
 			
 			//获取父菜单开始
 			Map<String, Object> par = new HashMap<>();
 			par.put("parentIsNull", 1);
 			List<Menu> menuList = menuService.queryMenuList(par);
 			//获取父菜单结束
-			List<MenuVO1> menuVOList = getMenuVOList(menuList, roleMenuListIdList);
+			
+			menuTreeList = getMenuTreeList(menuList, roleMenuListIdList);
 
-			jsonResult = JsonResult.build(FLAG_SUCCESS, menuVOList);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, menuTreeList);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
-		return jsonResult;
+		return menuTreeList;
 	}
 	
 	// 获取菜单列表
-	private List<MenuVO1> getMenuVOList(List<Menu> menuList, List<Long> roleMenuIdList) {
-		List<MenuVO1> menuVOList = new ArrayList<>();
+	private List<MenuTree> getMenuTreeList(List<Menu> menuList, List<Long> roleMenuIdList) {
+		List<MenuTree> menuTreeList = new ArrayList<>();
 		for (Menu parentMenu : menuList) {
-			MenuVO1 parentMenuVO = MenuVOHelper.getMenuVO1FromMenu(parentMenu);
+			MenuTree menuTree = MenuToTree.getMenuTreeFromMenu(parentMenu);
 			
 			//是否已选择
-			if (roleMenuIdList.contains(parentMenuVO.getId())) {
-				parentMenuVO.setChecked(true);
+			if (roleMenuIdList.contains(parentMenu.getId())) {
+				menuTree.setChecked(true);
 			}
 			Map<String, Object> menuPar = new HashMap<>();
 			menuPar.put("parentId", parentMenu.getId());
 			List<Menu> subMenuList = menuService.queryMenuList(menuPar);
 			if (!CollectionUtils.isEmpty(subMenuList)) {
-				parentMenuVO.setHasSubMenu(true);
-				List<MenuVO1> subMenuVOList = getMenuVOList(subMenuList, roleMenuIdList);
-				parentMenuVO.setSubMenuList(subMenuVOList);
-			} else {
-				parentMenuVO.setHasSubMenu(false);
+				List<MenuTree> subMenuTreeList = getMenuTreeList(subMenuList, roleMenuIdList);
+				menuTree.setData(subMenuTreeList);
 			}
-			menuVOList.add(parentMenuVO);
+			menuTreeList.add(menuTree);
 		}
-		return menuVOList;
+		return menuTreeList;
 	}
 }

@@ -294,4 +294,10 @@
     delete from menu
     where parent_id = #{parentId,jdbcType=BIGINT}
   </delete>
+  
+  <select id="findMaxLevel" resultType="java.lang.Integer" >
+    select 
+    MAX(level)+1
+    from menu
+  </select>
 </mapper>

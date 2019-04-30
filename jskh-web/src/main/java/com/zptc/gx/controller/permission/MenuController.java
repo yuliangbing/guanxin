@@ -143,9 +143,6 @@ public class MenuController extends BaseController {
 			Long menuId = ToolUtil.lon("menuId", request);
 			String menuStr = ToolUtil.str("menuStr", request);
 			String menuNum = ToolUtil.str("menuNum", request);
-			Long parentId = ToolUtil.lonWithNull("parentId", request);
-			String parentStr = ToolUtil.str("parentStr", request);
-			String parentNum = ToolUtil.str("parentNum", request);
 			Integer menuOrder = ToolUtil.intWithNull("menuOrder", request);
 			String url = ToolUtil.str("url", request);
 			String remark = ToolUtil.str("remark", request);
@@ -158,9 +155,6 @@ public class MenuController extends BaseController {
 
 			menu.setMenuStr(menuStr);
 			menu.setMenuNum(menuNum);
-			menu.setParentId(parentId);
-			menu.setParentStr(parentStr);
-			menu.setParentNum(parentNum);
 			menu.setMenuOrder(menuOrder);
 			menu.setUrl(url);
 			menu.setRemark(remark);
@@ -294,5 +288,22 @@ public class MenuController extends BaseController {
 			menuVOList.add(parentMenuVO);
 		}
 		return menuVOList;
+	}
+	
+	@RequestMapping("/getMaxLevel")
+	@ResponseBody
+	public JsonResult getMaxLevel(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+
+		try {
+			Long id = ToolUtil.lon("menuId", request);
+			int level = menuService.findMaxLevel();
+			jsonResult = JsonResult.build(FLAG_SUCCESS, level);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
 	}
 }
