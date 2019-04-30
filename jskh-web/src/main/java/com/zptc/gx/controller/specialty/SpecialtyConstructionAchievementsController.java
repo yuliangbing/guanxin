@@ -25,6 +25,7 @@ import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.service.SpecialtyConstructionAchievementsService;
 import com.zptc.gx.specialty.service.SpecialtyService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 @Controller
 @RequestMapping("/specialtyConstructionAchievements")
@@ -44,7 +45,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			System.out.println("列表信息");
 			Map<String, Object> data = new HashMap<>();
 			//获取请求参数
-//			String code = ToolUtil.str("code", request);
+			String level = ToolUtil.str("level", request);
 		    /*String name = ToolUtil.str("name", request);
 		    String cate_name = ToolUtil.str("cate_name", request);
 		    String reviser = ToolUtil.str("reviser", request);
@@ -53,9 +54,10 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 		    String date2 = ToolUtil.str("date2", request);*/
 		    Integer limit = ToolUtil.integer("limit", request);
 		    Integer page = ToolUtil.integer("page", request);
+		    PageVO pageVO = new PageVO(page, limit);
 		    Integer pages = 0;
 			//用于分页的数据
-			pages = (page - 1) * limit;
+		    pages = pageVO.getBeginNum();
 			//存入data,用于获取表格数据
 		  /*data.put("code", code);
 		    data.put("name", name);
@@ -63,7 +65,8 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 		    data.put("reviser", reviser);
 		    data.put("date1", date1);
 		    data.put("date2", date2);*/
-			data.put("limit", limit);
+			data.put("level", level);
+			data.put("limit", pageVO.getLimit());
 			data.put("pages", pages);
 			data.put("status", 1);
 			Map<String, Object> count = new HashMap<>();
@@ -74,6 +77,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			count.put("reviser", reviser);
 			count.put("date1", date1);
 			count.put("date2", date2);*/
+			count.put("level", level);
 			count.put("status", 1);
 			//定义返回的数据条总数
 			int counts = 0;
@@ -111,7 +115,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    String author = ToolUtil.str("author", request);
 			    Long specialtyId = ToolUtil.lon("specialty_id", request);
 			    String specialtyName = ToolUtil.str("specialty_name", request);
-			    Date date = ToolUtil.date1("date", request);
+			    Date date = ToolUtil.date2("date", request);
 			    
 			    SpecialtyConstructionAchievements specialtyConstructionAchievements = new SpecialtyConstructionAchievements();
 			    specialtyConstructionAchievements.setDate(date);
