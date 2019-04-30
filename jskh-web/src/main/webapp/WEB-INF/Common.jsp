@@ -8,8 +8,7 @@
 <script type="text/javascript" src="${path}/static/js/xadmin.js"></script>
 <script type="text/javascript">
 	window.onbeforeunload = function(event) {
-		ws.onclose = function() {
+		ws.onclose = function(){
 		};
 		ws.close();
-	}
-</script>
+	}</script>

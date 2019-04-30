@@ -12,20 +12,20 @@
     <result column="url" property="url" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="show_type" property="showType" jdbcType="INTEGER" />
+    <result column="is_init" property="isInit" jdbcType="INTEGER" />
     <result column="create_id" property="createId" jdbcType="BIGINT" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="modify_id" property="modifyId" jdbcType="BIGINT" />
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
-    <result column="show_type" property="showType" jdbcType="INTEGER" />
-    <result column="is_init" property="isInit" jdbcType="INTEGER" />
     <result column="level" property="level" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, menu_str, menu_num, parent_id, parent_str, parent_num, menu_order, url, remark, 
-    status, create_id, create_user, create_time, modify_id, modify_user, modify_time, 
-    show_type, is_init, level
+    status, show_type, is_init, create_id, create_user, create_time, modify_id, modify_user, 
+    modify_time, level
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -35,21 +35,23 @@
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from menu
-    where id = #{id,jdbcType=BIGINT} and (is_init != 1 or is_init is null)
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu (id, menu_str, menu_num, 
       parent_id, parent_str, parent_num, 
       menu_order, url, remark, 
-      status, create_id, create_user, 
-      create_time, modify_id, modify_user, 
-      modify_time, show_type, is_init, level)
+      status, show_type, is_init, 
+      create_id, create_user, create_time, 
+      modify_id, modify_user, modify_time, 
+      level)
     values (#{id,jdbcType=BIGINT}, #{menuStr,jdbcType=VARCHAR}, #{menuNum,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{parentStr,jdbcType=VARCHAR}, #{parentNum,jdbcType=VARCHAR}, 
       #{menuOrder,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{status,jdbcType=INTEGER}, #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{showType,jdbcType=INTEGER}, #{isInit,jdbcType=INTEGER})
+      #{status,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, #{isInit,jdbcType=INTEGER}, 
+      #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{level,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu
@@ -84,6 +86,12 @@
       <if test="status != null" >
         status,
       </if>
+      <if test="showType != null" >
+        show_type,
+      </if>
+      <if test="isInit != null" >
+        is_init,
+      </if>
       <if test="createId != null" >
         create_id,
       </if>
@@ -101,12 +109,6 @@
       </if>
       <if test="modifyTime != null" >
         modify_time,
-      </if>
-      <if test="showType != null" >
-        show_type,
-      </if>
-      <if test="isInit != null" >
-        is_init,
       </if>
       <if test="level != null" >
         level,
@@ -143,6 +145,12 @@
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
+      <if test="showType != null" >
+        #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="isInit != null" >
+        #{isInit,jdbcType=INTEGER},
+      </if>
       <if test="createId != null" >
         #{createId,jdbcType=BIGINT},
       </if>
@@ -161,11 +169,8 @@
       <if test="modifyTime != null" >
         #{modifyTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="showType != null" >
-        #{showType,jdbcType=INTEGER},
-      </if>
-      <if test="isInit != null" >
-        #{isInit,jdbcType=INTEGER},
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -199,6 +204,12 @@
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
+      <if test="showType != null" >
+        show_type = #{showType,jdbcType=INTEGER},
+      </if>
+      <if test="isInit != null" >
+        is_init = #{isInit,jdbcType=INTEGER},
+      </if>
       <if test="createId != null" >
         create_id = #{createId,jdbcType=BIGINT},
       </if>
@@ -217,12 +228,6 @@
       <if test="modifyTime != null" >
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="showType != null" >
-        show_type = #{showType,jdbcType=INTEGER},
-      </if>
-      <if test="isInit != null" >
-        is_init = #{isInit,jdbcType=INTEGER},
-      </if>
       <if test="level != null" >
         level = #{level,jdbcType=INTEGER},
       </if>
@@ -240,14 +245,14 @@
       url = #{url,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
+      show_type = #{showType,jdbcType=INTEGER},
+      is_init = #{isInit,jdbcType=INTEGER},
       create_id = #{createId,jdbcType=BIGINT},
       create_user = #{createUser,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       modify_id = #{modifyId,jdbcType=BIGINT},
       modify_user = #{modifyUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      show_type = #{showType,jdbcType=INTEGER},
-      is_init = #{isInit,jdbcType=INTEGER},
       level = #{level,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -289,4 +294,10 @@
     delete from menu
     where parent_id = #{parentId,jdbcType=BIGINT}
   </delete>
+  
+  <select id="findMaxLevel" resultType="java.lang.Integer" >
+    select 
+    MAX(level)+1
+    from menu
+  </select>
 </mapper>

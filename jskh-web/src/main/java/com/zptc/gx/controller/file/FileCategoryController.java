@@ -29,7 +29,12 @@ public class FileCategoryController extends BaseController {
 	@Autowired
 	private FileCategoryService fileCategoryService;
 	
-	/*获取列表*/
+	/**
+	 * 这个是获取下拉列表的，不要修改
+	 * @param request
+	 * @param responses
+	 * @return
+	 */
 	@RequestMapping("/getFileCategoryList")
 	@ResponseBody
 	public JsonResult getSpecialty(HttpServletRequest request, HttpServletResponse responses) {

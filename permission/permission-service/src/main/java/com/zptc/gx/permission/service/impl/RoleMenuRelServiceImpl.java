@@ -1,5 +1,7 @@
 package com.zptc.gx.permission.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +31,10 @@ public class RoleMenuRelServiceImpl implements RoleMenuRelService {
 	public RoleMenuRel findRoleMenuRelById(Long id){
 		RoleMenuRel roleMenuRel = roleMenuRelMapper.selectByPrimaryKey(id);
 		return roleMenuRel;
+	}
+	@Override
+	public List<Long> getMenuIdListByRoleId(Long roleId) {
+		// TODO Auto-generated method stub
+		return roleMenuRelMapper.getMenuIdListByRoleId(roleId);
 	}
 }

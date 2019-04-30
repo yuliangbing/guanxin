@@ -14,51 +14,68 @@
 <body>
 		<form class="layui-form" action="">
 
-			<div class="sz-form-item">
-				
-				<div class="sz-input-inline">
-					<label class="sz-form-label">时间</label>
-					<div class="layui-input-inline">
-					<input  type="text" id="date" name="date" lay-verify="date" placeholder="请选择时间" class="layui-input">
-					
-					</div>
+			
+				<!--时间-->
+		<div class="layui-form-item ">
+			<div class="layui-inline">
+             <label class="layui-form-label">时间</label>
+				<div class="layui-input-inline">
+						<input type="text" class="layui-input" id="date" name="date" placeholder="请选择时间">
 				</div>
-				<div class="sz-input-inline">
-					<label class="sz-form-label">成果名称</label>
-					<div class="layui-input-inline">
-						<input name="name"   autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="sz-input-inline">
-					<label class="sz-form-label">成果来源</label>
-					<div class="layui-input-inline">
-						<input name="sources"   autocomplete="off" class="layui-input" type="text">
+			</div>
+		</div>
+		
+		<!--成果名称-->
+			<div class="layui-form-item ">
+				<div class="layui-inline ">
+					<label class="layui-form-label ">成果名称</label>
+					<div class="layui-input-inline ">
+						 <input type="text" name="name" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
-			<div class="sz-form-item" >
-				<div class="sz-input-inline">
-					<label class="sz-form-label">成果级别</label>
-					<div class="layui-input-inline">
-						<input name="level"   autocomplete="off" class="layui-input" type="text">
+			
+		<!--成果来源-->
+			<div class="layui-form-item ">
+				<div class="layui-inline ">
+					<label class="layui-form-label ">成果来源</label>
+					<div class="layui-input-inline ">
+						 <input type="text" name="sources" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+						
 					</div>
 				</div>
-				<div class="sz-input-inline">
-					<label class="sz-form-label">第一作者</label>
-					<div class="layui-input-inline">
-						<input name="first-author"   autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="sz-input-inline">
-					<label class="sz-form-label">其他作者情况</label>
-					<div class="layui-input-inline">
-						<input name="other-author"   autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				
-				</div>	
 			</div>
+			<!--成果级别-->
+			<div class="layui-form-item ">
+				<div class="layui-inline ">
+					<label class="layui-form-label ">成果级别</label>
+					<div class="layui-input-inline ">
+						 <input type="text" name="level" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+					</div>
+				</div>
 			</div>
+		
+		<!--第一作者-->
+		
+			<div class="layui-form-item ">
+				<div class="layui-inline ">
+					<label class="layui-form-label ">第一作者</label>
+					<div class="layui-input-inline ">
+						 <input type="text" name="first-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+		
+		<!--其他作者-->
+			<div class="layui-form-item ">
+				<div class="layui-inline ">
+					<label class="layui-form-label ">其他作者</label>
+					<div class="layui-input-inline ">
+				 <input type="text" name="other-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+			
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>

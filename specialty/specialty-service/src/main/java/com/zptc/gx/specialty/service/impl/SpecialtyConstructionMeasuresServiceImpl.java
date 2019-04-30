@@ -1,9 +1,11 @@
 package com.zptc.gx.specialty.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.SpecialtyConstructionMeasures;
 import com.zptc.gx.specialty.mapper.SpecialtyConstructionMeasuresMapper;
@@ -43,8 +45,20 @@ public class SpecialtyConstructionMeasuresServiceImpl implements SpecialtyConstr
 	}
 	//不带if修改
 	@Override
-	public List<SpecialtyConstructionMeasures> getSpecialtyIdList(Long specialtyId) {
+	public List<SpecialtyConstructionMeasures> getSpecialtyMeasuresList(Object data) {
 		// TODO Auto-generated method stub
-		return specialtyConstructionMeasuresMapper.getSpecialtyIdList(specialtyId);
+		return specialtyConstructionMeasuresMapper.getMeasuresList(data);
 	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionMeasuresMapper.selectCounts(count);
+	}
+	@Override
+	@Transactional
+	public int modifSpecialtyMeasuresDel(SpecialtyConstructionMeasures specialtyConstructionMeasures) {
+		// TODO Auto-generated method stub
+		return specialtyConstructionMeasuresMapper.updateByPrimaryKeyDel(specialtyConstructionMeasures);
+	}
+	
 }

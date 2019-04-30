@@ -109,7 +109,8 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    String name = ToolUtil.str("name", request);
 			    String level = ToolUtil.str("level", request);
 			    String author = ToolUtil.str("author", request);
-			    Long specialty_id = ToolUtil.lon("specialty_id", request);
+			    Long specialtyId = ToolUtil.lon("specialty_id", request);
+			    String specialtyName = ToolUtil.str("specialty_name", request);
 			    Date date = ToolUtil.date1("date", request);
 			    
 			    SpecialtyConstructionAchievements specialtyConstructionAchievements = new SpecialtyConstructionAchievements();
@@ -118,12 +119,13 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    specialtyConstructionAchievements.setLevel(level);
 			    specialtyConstructionAchievements.setAuthor(author);
 			    specialtyConstructionAchievements.setSources(sources);
-			    specialtyConstructionAchievements.setSpecialtyId(specialty_id);
+			    specialtyConstructionAchievements.setSpecialtyId(specialtyId);
+			    specialtyConstructionAchievements.setSpecialtyName(specialtyName);
 			    specialtyConstructionAchievements.setStatus(1);
 			    specialtyConstructionAchievements.setCreateTime(new Date());
 			    specialtyConstructionAchievements.setCreateUser(user.getTeaName());
 			  //判断传入的值是否为空或""
-			    if ((ToolUtil.equalBool(sources)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(level)&&ToolUtil.equalBool(author)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)) == false) {
+			    if ((ToolUtil.equalBool(sources)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(level)&&ToolUtil.equalBool(author)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(date)) == false) {
 			    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 			    	System.out.println("错误，传入数据错误");
 			    	 //接口拿到的数据
@@ -160,7 +162,8 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    String name = ToolUtil.str("name", request);
 			    String level = ToolUtil.str("level", request);
 			    String author = ToolUtil.str("author", request);
-			    Long specialty_id = ToolUtil.lon("specialty_id", request);
+			    Long specialtyId = ToolUtil.lon("specialty_id", request);
+			    String specialtyName = ToolUtil.str("specialty_name", request);
 			    Date date = ToolUtil.date1("date", request);
 			    
 			    SpecialtyConstructionAchievements specialtyConstructionAchievements = specialtyConstructionAchievementsService.findSpecialtyConstructionAchievementsById(specialtyAchievementsId);
@@ -173,12 +176,13 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    specialtyConstructionAchievements.setName(name);
 			    specialtyConstructionAchievements.setLevel(level);
 			    specialtyConstructionAchievements.setAuthor(author);
-			    specialtyConstructionAchievements.setSpecialtyId(specialty_id);
+			    specialtyConstructionAchievements.setSpecialtyId(specialtyId);
+			    specialtyConstructionAchievements.setSpecialtyName(specialtyName);
 			    specialtyConstructionAchievements.setDate(date);
 			    specialtyConstructionAchievements.setModifyUser(user.getTeaName());
 			    specialtyConstructionAchievements.setModifyTime(new Date());
 			    //判断传入的值是否为空或""
-			    if ((ToolUtil.equalBool(sources)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(level)&&ToolUtil.equalBool(author)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(date)) == false) {
+			    if ((ToolUtil.equalBool(sources)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(level)&&ToolUtil.equalBool(author)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(date)) == false) {
 			    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 			    	System.out.println("错误，传入数据错误");
 			    	 //接口拿到的数据

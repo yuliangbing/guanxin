@@ -23,4 +23,6 @@ public interface MenuMapper {
     List<Menu> queryMenuList(Map<String, Object> par);
     
     int deleteByParentId(Long parentId);
+    
+    int findMaxLevel();
 }

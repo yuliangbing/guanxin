@@ -61,7 +61,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业id</label>
 					<div class="layui-input-inline">
-						<input name="specialty_id"  id="specialty_id" disabled autocomplete="off" class="layui-input">
+						<input name="specialty_name"  id="specialty_name" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -113,11 +113,13 @@
 		$("#host").val(data.host);
 		$("#participants").val(data.participants);
 		$("#specialty_id").val(data.specialty_id);
+		$("#specialty_name").val(data.specialty_name);
 		$("#status").val(data.status);
 		$("#create_time").val(data.create_time);
 		$("#create_user").val(data.create_user);
 		$("#modify_time").val(data.modify_time);
 		$("#modify_user").val(data.modify_user);
+		specialty_name = data.specialty_name;
 	}
    	</script>
 </html>

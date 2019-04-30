@@ -196,4 +196,51 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 自定义 -->
+  <!-- 查询列表数据 -->
+  <select id="getOtherAchievementsList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from other_achievements
+    <where>
+    	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="Counts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			other_achievements
+			<where>
+				<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
+				<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+			</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="DelOtherAchievements" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
+	    update other_achievements
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

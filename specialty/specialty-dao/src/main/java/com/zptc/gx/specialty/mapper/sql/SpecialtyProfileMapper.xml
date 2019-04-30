@@ -4,7 +4,6 @@
   <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.SpecialtyProfile" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
-    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="DATE" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="characteristic" property="characteristic" jdbcType="VARCHAR" />
@@ -18,8 +17,8 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, specialty_id, specialty_name, date, position, characteristic, director_id, director_name, 
-    status, branch_introduction, create_time, create_user, modify_time, modify_user
+    id, specialty_id, date, position, characteristic, director_id, director_name, status, 
+    branch_introduction, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -32,16 +31,16 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
-    insert into specialty_profile (id, specialty_id, specialty_name, 
-      date, position, characteristic, 
-      director_id, director_name, status, 
-      branch_introduction, create_time, create_user, 
-      modify_time, modify_user)
-    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, 
-      #{date,jdbcType=DATE}, #{position,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, 
-      #{directorId,jdbcType=BIGINT}, #{directorName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{branchIntroduction,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR})
+    insert into specialty_profile (id, specialty_id, date, 
+      position, characteristic, director_id, 
+      director_name, status, branch_introduction, 
+      create_time, create_user, modify_time, 
+      modify_user)
+    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{date,jdbcType=DATE}, 
+      #{position,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, #{directorId,jdbcType=BIGINT}, 
+      #{directorName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{branchIntroduction,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{modifyUser,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
     insert into specialty_profile
@@ -51,9 +50,6 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
-      </if>
-      <if test="specialtyName != null" >
-        specialty_name,
       </if>
       <if test="date != null" >
         date,
@@ -96,9 +92,6 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
-      <if test="specialtyName != null" >
-        #{specialtyName,jdbcType=VARCHAR},
-      </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
       </if>
@@ -140,9 +133,6 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
-      <if test="specialtyName != null" >
-        specialty_name = #{specialtyName,jdbcType=VARCHAR},
-      </if>
       <if test="date != null" >
         date = #{date,jdbcType=DATE},
       </if>
@@ -182,7 +172,6 @@
   <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
     update specialty_profile
     set specialty_id = #{specialtyId,jdbcType=BIGINT},
-      specialty_name = #{specialtyName,jdbcType=VARCHAR},
       date = #{date,jdbcType=DATE},
       position = #{position,jdbcType=VARCHAR},
       characteristic = #{characteristic,jdbcType=VARCHAR},
@@ -195,5 +184,119 @@
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
+  </update>
+   <!-- 自定义 -->
+  <!-- 查询列表数据 -->
+  <select id="getSpecialtyProfileList" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from specialty_profile
+    <where>
+    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+		</if>
+		<if test="date != null and date != ''">
+			and instr(date,#{date,jdbcType=DATE})
+		</if>
+		<if test="position != null and position != ''">
+			and instr(position,#{position,jdbcType=VARCHAR})
+		</if>
+		<if test="characteristic != null and characteristic != ''">
+			and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+		</if>
+		<if test="directorId != null and directorId != ''">
+			and instr(directorId,#{directorId,jdbcType=BIGINT})
+		</if>
+		<if test="directorName != null and directorName != ''">
+			and instr(directorName,#{directorName,jdbcType=VARCHAR})
+		</if>
+		<if test="branchIntroduction != null and branchIntroduction != ''">
+			and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="createUser != null and createUser != ''">
+			and instr(createUser,#{createUser,jdbcType=VARCHAR})
+		</if>
+		<if test="modifyTime != null and modifyTime != ''">
+			and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="modifyUser != null and modifyUser != ''">
+			and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+		</if> -->
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_profile
+			<where>
+				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+				</if>
+				<if test="date != null and date != ''">
+					and instr(date,#{date,jdbcType=DATE})
+				</if>
+				<if test="position != null and position != ''">
+					and instr(position,#{position,jdbcType=VARCHAR})
+				</if>
+				<if test="characteristic != null and characteristic != ''">
+					and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+				</if>
+				<if test="directorId != null and directorId != ''">
+					and instr(directorId,#{directorId,jdbcType=BIGINT})
+				</if>
+				<if test="directorName != null and directorName != ''">
+					and instr(directorName,#{directorName,jdbcType=VARCHAR})
+				</if>
+				<if test="branchIntroduction != null and branchIntroduction != ''">
+					and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+				</if>
+				<if test="createTime != null and createTime != ''">
+					and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="createUser != null and createUser != ''">
+					and instr(createUser,#{createUser,jdbcType=VARCHAR})
+				</if>
+				<if test="modifyTime != null and modifyTime != ''">
+					and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="modifyUser != null and modifyUser != ''">
+					and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+				</if> -->
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
+	    update specialty_profile
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

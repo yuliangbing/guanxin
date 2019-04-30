@@ -20,7 +20,6 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  var tableIns = table.render({
 		    elem: '#test'
 		    ,url:window.path +'/thesisList/getThesisList'
-//		    ,data:tableData
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -31,15 +30,16 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'published_journal', title:'发表期刊', width:130, }
 		      ,{field:'name', title:'论文题目', width:150, }
 		      ,{field:'index_level', title:'索引或级别', width:150, } 
-		      ,{field:'awards', title:'获奖情况', width:230, }
 		      ,{field:'first_author', title:'第一作者', width:130, }
 		      ,{field:'other_authors', title:'其他作者情况', width:130, }
-		      ,{field:'specialty_id', title:'专业id', width:130, }
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180, }
+		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
+		      ,{field:'specialty_name', title:'专业名称', width:130,}
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true }
 		      ,{field:'create_time', title:'创建时间', width:150, }
 		      ,{field:'create_user', title:'创建人', width:150, }
 		      ,{field:'modify_time', title:'修改时间', width:150, }
 		      ,{field:'modify_user', title:'修改人', width:130, }
+		      ,{field:'awards', title:'获奖情况', width:230, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
@@ -50,13 +50,19 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    if(layEvent === 'detail'){//查看
 	    	
 	    	layer.open({
-							title:"查看",
+				title:"查看",
 	    		type:2,
 	    		content:['/toPage?page=thesis/thesis_check','no'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%']
-					}); 
+	    		area:['90%','90%'],
+	    		success : function(layero, index) {
+					// 获取子页面的iframe
+					var iframe = window['layui-layer-iframe' + index];
+					// 向子页面的全局函数child传参
+					iframe.init(data);
+				} 
+			}); 
 	    	
 	    }else if(layEvent === 'del'){//删除
 	    	layer.confirm('真的删除行么', function(index) {
@@ -64,9 +70,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/thesisList/del',
+					url:'/thesisList/delThesisList',
 					type:"POST",
-					data:{specialtyId:data.id},
+					data:{id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -90,7 +96,13 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=thesis/thesis_update','no'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%']
+	    		area:['90%','90%'],
+	    		success : function(layero, index) {
+					// 获取子页面的iframe
+					var iframe = window['layui-layer-iframe' + index];
+					// 向子页面的全局函数child传参
+					iframe.init(data);
+				}
 			});
 			}
 		});
@@ -99,10 +111,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-			if(arr.data != "" && arr.date != null){
-				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-				arr.date2 = data.field.date.split('~')[1];
-			}
+//			if(arr.data != "" && arr.date != null){
+//				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+//				arr.date2 = data.field.date.split('~')[1];
+//			}
 			tableIns.reload({
 				where:arr,
 				page: {
@@ -138,9 +150,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/thesisList/del',
+						url:'/thesisList/delThesisList',
 						type:"POST",
-						data:{specialtyId:param},
+						data:{id:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数

@@ -96,7 +96,7 @@ layui.use([ 'table' ], function() {
 		case 'roleMenuRel':
 			layer.open({
 				type : 2,
-				title : '修改角色',
+				title : '修改角色权限',
 				area : [ '90%', '90%' ],
 				anim : 0,
 				content : "/toPage?page=role/roleMenuRel_manage",

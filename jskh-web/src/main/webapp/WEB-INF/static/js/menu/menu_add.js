@@ -33,10 +33,6 @@ function addConfirm() {
 		layer.alert("菜单编号不能为空");
 		return false;
 	}
-	if (params.url == '') {
-		layer.alert("菜单地址不能为空");
-		return false;
-	}
 	if (params.showType == '') {
 		layer.alert("是否显示不能为空");
 		return false;

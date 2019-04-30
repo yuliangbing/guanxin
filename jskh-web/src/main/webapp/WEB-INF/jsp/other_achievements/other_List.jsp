@@ -21,7 +21,7 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="开始日" name="start" id="date1">
           <input class="layui-input" placeholder="截止日" name="end" id="date2">
-          <input type="text" name="code" id="code" placeholder="请输入要搜索的内容" autocomplete="off" class="layui-input">
+          <input type="text" name="code" id="code" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>

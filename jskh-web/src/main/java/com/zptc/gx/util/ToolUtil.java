@@ -605,6 +605,17 @@ public class ToolUtil {
 		return flag;
 	}
 	
+	public static boolean equalBool(Integer integer) {
+		Boolean flag = false;
+		if(!integer.equals("") && integer != null) {
+			flag = true;
+		}
+		else {
+			flag = flag;
+		}
+		return flag;
+	}
+	
 	public static boolean equalBool(Long long1) {
 		Boolean flag = false;
 		if(!long1.equals("") &&long1 != null) {
