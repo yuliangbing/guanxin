@@ -7,8 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<link rel="stylesheet" href="${path}/static/public/css/teacher.css">
-<script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/teachers/teachers_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -16,41 +15,64 @@
 		<form class="layui-form" onsubmit="return false;">
 
 			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+				
 				<div class="layui-inline">
-					<label class="layui-form-label">发表时间</label>
+					<label class="layui-form-label">教师姓名</label>
 					<div class="layui-input-inline">
-						<input name="date" id="date"  autocomplete="off" class="layui-input">
+						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">论文题目</label>
+					<label class="layui-form-label">教师编号</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input">
+						<input name="code" id="code"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">发表期刊</label>
+					<label class="layui-form-label">入职时间</label>
 					<div class="layui-input-inline">
-						<input name="published_journal" id="published_journal"  autocomplete="off" class="layui-input">
+						<input name="entry_time" id="entry_time"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label">索引或级别</label>
+					<label class="layui-form-label">出生时间</label>
 					<div class="layui-input-inline">
-						<input name="index_level" id="index_level"  autocomplete="off" class="layui-input">
+						<input name="birthday" id="birthday"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">毕业院校</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input">
+						<input name="graduate_school" id="graduate_school"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">其他作者</label>
+					<label class="layui-form-label">学历学位</label>
 					<div class="layui-input-inline"  >
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input">
+						<select name="final_degree"  id="final_degree" autocomplete="off" class="layui-input" type="text">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">政治面貌</label>
+					<div class="layui-input-inline">
+						<select name="political_status"  id="political_status" autocomplete="off" class="layui-input" type="text">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业编码</label>
+					<div class="layui-input-inline">
+						<input name="specialty_code" id="specialty_code"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">研究方向</label>
+					<div class="layui-input-inline">
+						<input name="research_direction" id="research_direction"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -61,10 +83,11 @@
 						</select>
 					</div>
 				</div>
-				<div class="layui-form-item">
-					<label  class="layui-form-label">获奖情况</label>
-					<div class="layui-input-inline">
-						<textarea  class="layui-textarea"  id="awards" style="width: 440%;"></textarea>
+				<div class="layui-inline">
+					<label class="layui-form-label">是否兼职</label>
+					<div class="layui-input-block">
+						<input type="radio" name="graduate_school" id="graduate_school"  value="是" title="是" class="layui-input" checked="checked">
+						<input type="radio" name="graduate_school" id="graduate_school"  value="否" title="否" class="layui-input" >					
 					</div>
 				</div>
 			</div>
@@ -74,13 +97,29 @@
 			</div>
 		</form>
 	</body>
-		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
-	//专业id下拉列表
+	function init(data) {
+
+		id = data.id;
+		$("#name").val(data.name);
+		$("#code").val(data.code);
+		$("#entry_time").val(data.entry_time);
+		$("#birthday").val(data.birthday);
+		$("#graduate_school").val(data.graduate_school);
+		$("#final_degree").val(data.final_degree);
+		$("#political_status").val(data.political_status);
+		$("#specialty_code").val(data.specialty_code);
+		$("#specialty_name").val(data.specialty_name);
+		$("#research_direction").val(data.research_direction);
+		$("#is_part_time").val(data.is_part_time);
+		$("#specialty_id").val(data.specialty_id);
+	}
+	
 	function ajax_h(form,names,url,object,ids)
 	{
 		$.ajax({
@@ -152,26 +191,27 @@
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
-			elem: '#date' //指定元素	
+			elem: '#entry_time' //指定元素	
 		});
-		
+		laydate.render({
+			elem: '#birthday' //指定元素	
+		});
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
+			params.specialty_id = $("#specialty_id").val();
+			params.specialty_code = $("#specialty_code").val();
+			params.specialty_name = $("#specialty_name").val();
 			params.date = $("#date").val();
-			params.name = $("#name").val();
-			params.published_journal = $("#published_journal").val();
-			params.index_level = $("#index_level").val();
-			params.first_author = $("#first_author").val();
-			params.other_authors = $("#other_authors").val();
-			params.awards = $("#awards").val();
-			params.specialty_id = $("#specialty_id option:checked").val();
-			params.specialty_name = $("#specialty_id option:checked").text();
+			params.specialty_teachers = $("#specialty_teachers").val();
+			params.part_time_teachers = $("#part_time_teachers").val();
+			params.director = $("#director").val();
+			params.latest = $("#latest").val();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/thesisList/addThesisList?id='+id,
+				        url:window.path+'/issuesList/updateIssues?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
@@ -199,5 +239,4 @@
 		});
 });
 	</script>
-</html>
 </html>

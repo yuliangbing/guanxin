@@ -175,8 +175,8 @@
 			params.host = $("#host").val();
 			params.participants = $("#participants").val();
 			params.awardsConstruction = $('#awards_construction').val();
-			params.specialty_id = $("#specialty_id").val();
-			
+			params.specialty_id = $("#specialty_id option:checked").val();
+			params.specialty_name = $("#specialty_id option:checked").text();
 			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
