@@ -147,6 +147,7 @@ public class IssuesListController extends BaseController{
 		    String host = ToolUtil.str("host", request);
 		    String participants = ToolUtil.str("participants", request);
 		    Long  specialtyId = ToolUtil.lon("specialtyId", request);
+		    String specialtyName = ToolUtil.str("specialty_name", request);
 		    status = 1;
 		    Issues issues = new Issues();
 		    issues.setCode(code);
@@ -157,6 +158,7 @@ public class IssuesListController extends BaseController{
 		    issues.setHost(host);
 		    issues.setParticipants(participants);
 		    issues.setSpecialtyId(specialtyId);
+		    issues.setSpecialtyName(specialtyName);
 		    issues.setStatus(status);
 		    issues.setCreateTime(new Date());
 		    issues.setCreateUser(user.getTeaName());
@@ -204,7 +206,7 @@ public class IssuesListController extends BaseController{
 		    String host = ToolUtil.str("host", request);
 		    String participants = ToolUtil.str("participants", request);
 		    Long  specialtyId = ToolUtil.lon("specialtyId", request);
-		    
+		    String specialtyName = ToolUtil.str("specialty_name", request);
 
 		   
 		    
@@ -222,6 +224,7 @@ public class IssuesListController extends BaseController{
 		    issues.setHost(host);
 		    issues.setParticipants(participants);
 		    issues.setSpecialtyId(specialtyId);
+		    issues.setSpecialtyName(specialtyName);
 		    issues.setStatus(1);
 		    issues.setModifyTime(new Date());
 		    issues.setModifyUser(user.getTeaName());
