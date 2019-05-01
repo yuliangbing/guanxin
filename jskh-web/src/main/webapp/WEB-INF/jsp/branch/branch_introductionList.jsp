@@ -65,10 +65,10 @@
 	type="text/plain"></script>
 <!-- 配置文件 -->
 <script type="text/javascript"
-	src="${path}/static/public/ueditor/ueditor.config.js"></script>
+	src="${path}/ueditor/ueditor.config.js"></script>
 <!-- 编辑器源码文件 -->
 <script type="text/javascript"
-	src="${path}/static/public/ueditor/ueditor.all.js"></script>
+	src="${path}/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
 	UE.getEditor('situation');

@@ -59,6 +59,7 @@
 			<!-- 不进行拦截 -->
 			<mvc:exclude-mapping path="/static/**" />
 			<mvc:exclude-mapping path="/home/**" />
+			<mvc:exclude-mapping path="/ueditor*" />
 			<bean class="com.zptc.gx.interprecetor.ControllerInterprecetor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
@@ -66,6 +67,7 @@
 	<!-- 资源映射 -->
 	<mvc:resources location="/WEB-INF/static/"
 		mapping="/static/**" />
+	<mvc:resources location="/ueditor/" mapping="/ueditor/**" />
 
 	<!-- 定义文件上传解析器 -->
 	<bean id="multipartResolver"
