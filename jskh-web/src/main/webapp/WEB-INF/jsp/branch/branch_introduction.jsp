@@ -47,7 +47,7 @@
 	<div style="margin-left: -5%;">
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" lay-filter="demo1">保存</button>
+				<button class="layui-btn" lay-submit="" lay-filter="demo1" onclick="save()">保存</button>
 				<button type="cancel" class="layui-btn layui-btn-primary">取消</button>
 			</div>
 		</div>
@@ -71,10 +71,10 @@
 	src="${path}/ueditor/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-	UE.getEditor('situation');
+	var situationUE = UE.getEditor('situation');
 	$('.situation').append($('#situation'));
 
-	UE.getEditor('characteristic');
+	var characteristicUE = UE.getEditor('characteristic');
 	$('.characteristic').append($('#characteristic'));
 </script>
 </html>
