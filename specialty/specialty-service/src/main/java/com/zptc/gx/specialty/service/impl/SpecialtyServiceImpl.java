@@ -48,7 +48,7 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 		// TODO Auto-generated method stub
 		return specialtyMapper.findSpecialtyByRoleId(roleId);
 	}
-	//根据specialtyId查询专业全部数据
+	//获取专业全部数据（下拉方法）
 	@Override
 	public List<Specialty> getSpecialtyList(Object data) {
 		// TODO Auto-generated method stub
@@ -63,8 +63,14 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 	//根据status修改状态（删除，@Transactional是回滚）
 	@Override
 	@Transactional
-	public int modifSpecialtyFilesDel(Specialty specialty) {
+	public int modifSpecialtyDel(Specialty specialty) {
 		// TODO Auto-generated method stub
 		return specialtyMapper.updateByPrimaryKeyDel(specialty);
+	}
+	//获取专业信息全部数据
+	@Override
+	public List<Specialty> ListSpecialty(Object data) {
+		// TODO Auto-generated method stub
+		return specialtyMapper.SpecialtyLists(data);
 	}
 }

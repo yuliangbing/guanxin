@@ -208,7 +208,7 @@ public class OtherAchievementsController extends BaseController {
 	 */
 	@RequestMapping("/delOtherAchievements")
 	@ResponseBody
-	public JsonResult delSpecialtyFiles(HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult delOtherAchievements(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用delOtherAchievements方法");
 		try {
