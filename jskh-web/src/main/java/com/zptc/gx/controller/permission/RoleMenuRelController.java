@@ -75,6 +75,49 @@ public class RoleMenuRelController extends BaseController {
 		return menuTreeList;
 	}
 	
+	@RequestMapping("/updateRoleMenuRels")
+	@ResponseBody
+	public JsonResult updateRoleMenuRels(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		try {
+			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+
+			Long roleId = ToolUtil.lonWithNull("roleId", request);
+			String menuIds = ToolUtil.str("menuIds", request);
+			
+			if (roleId == null) {
+				return JsonResult.build(FLAG_FAILED, "请传入角色id");
+			}
+			
+			if (menuIds != null) {
+				String [] menuIdList = menuIds.split(",");
+				
+				List<Long> newMenuIdList = new ArrayList<Long>();
+				for (int i = 0; i < menuIdList.length; i++) {
+					Long menuId = ToolUtil.lonWithNull(menuIdList[i]);
+					if (menuId != null) {
+						newMenuIdList.add(menuId);
+					}
+				}
+				
+				Map<String, Object> par = new HashMap<>();
+				par.put("newMenuIdList", newMenuIdList);
+				par.put("roleId", roleId);
+				par.put("username", user.getTeaName());
+				par.put("userId", user.getId());
+				
+				roleMenuRelService.updateRoleMenuRels(par);
+			}
+			
+			jsonResult = JsonResult.build(FLAG_SUCCESS);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
 	// 获取菜单列表
 	private List<MenuTree> getMenuTreeList(List<Menu> menuList, List<Long> roleMenuIdList) {
 		List<MenuTree> menuTreeList = new ArrayList<>();

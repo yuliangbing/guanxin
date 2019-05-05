@@ -83,7 +83,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					}
 				});
 				});
-	    }else if(layEvent === 'edit'){//编辑
+	    }/*else if(layEvent === 'edit'){//编辑
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
@@ -98,7 +98,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					iframe.init(data);
 				} 
 			});
-			}
+			}*/
 		});
 
 		/* 搜索功能 */
@@ -123,7 +123,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=teachers/teachers_insert'],
+	  		content:['/toPage?page=teacher_team/teacher_team_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']

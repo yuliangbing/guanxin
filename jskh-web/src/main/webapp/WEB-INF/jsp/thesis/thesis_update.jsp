@@ -177,7 +177,8 @@
 			params.first_author = $("#first_author").val();
 			params.other_authors = $("#other_authors").val();
 			params.awards = $("#awards").val();
-			params.specialty_id = $("#specialty_id").val();
+			params.specialty_id = $("#specialty_id option:checked").val();
+			params.specialty_name = $("#specialty_id option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

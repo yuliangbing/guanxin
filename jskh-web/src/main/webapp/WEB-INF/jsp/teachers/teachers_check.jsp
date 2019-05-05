@@ -85,7 +85,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业id</label>
 					<div class="layui-input-inline">
-						<input name="specialty_id"  id="specialty_id" disabled autocomplete="off" class="layui-input">
+						<input name="specialty_name"  id="specialty_name" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -119,11 +119,9 @@
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	//表格数据传值
-	var id = 0;
-	var specialty_name = "";
 	function init(data) {
 
-		id = data.id;
+		$("#id").val(data.id);
 		$("#name").val(data.name);
 		$("#code").val(data.code);
 		$("#entry_time").val(data.entry_time);
@@ -132,10 +130,17 @@
 		$("#final_degree").val(data.final_degree);
 		$("#political_status").val(data.political_status);
 		$("#specialty_code").val(data.specialty_code);
+		$("#specialty_name").val(data.specialty_id);
 		$("#specialty_name").val(data.specialty_name);
 		$("#research_direction").val(data.research_direction);
 		$("#is_part_time").val(data.is_part_time);
+		$("#create_time").val(data.create_time);
+		$("#create_user").val(data.create_user);
+		$("#modify_time").val(data.modify_time);
+		$("#modify_user").val(data.modify_user);
 		$("#specialty_id").val(data.specialty_id);
+		$("#modify_user").val(data.modify_user);
+		specialty_name = data.specialty_name;
 	}
 	</script>
 </html>

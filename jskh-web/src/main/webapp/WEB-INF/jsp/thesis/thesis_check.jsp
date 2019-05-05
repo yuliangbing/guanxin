@@ -102,25 +102,23 @@
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
    	<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
    	<script>
-   	var name="";
    	function init(data) {
 
-		$("#id").val(data.id);
+   		$("#id").val(data.id);
 		$("#date").val(data.date);
 		$("#name").val(data.name);
-		$("specialty_name").val(data.specialty_id);
-		$("specialty_name").text(data.specialty_name);
 		$("#published_journal").val(data.published_journal);
 		$("#index_level").val(data.index_level);
-		$("#awards").val(data.awards);
 		$("#first_author").val(data.first_author);
 		$("#other_authors").val(data.other_authors);
+		$("#awards").val(data.awards);
+		$("#specialty_name").val(data.specialty_id);
+		$("#specialty_name").val(data.specialty_name);
 		$("#create_time").val(data.create_time);
 		$("#create_user").val(data.create_user);
 		$("#modify_time").val(data.modify_time);
 		$("#modify_user").val(data.modify_user);
-		name = data.specialty_name;
-		
+		specialty_name = data.specialty_name;
 	}
    	</script>
 </html>
