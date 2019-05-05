@@ -32,7 +32,8 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'index_level', title:'索引或级别', width:150, } 
 		      ,{field:'first_author', title:'第一作者', width:130, }
 		      ,{field:'other_authors', title:'其他作者情况', width:130, }
-		      ,{field:'specialty_id', title:'专业id', width:130, }
+		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
+		      ,{field:'specialty_name', title:'专业名称', width:130,}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true }
 		      ,{field:'create_time', title:'创建时间', width:150, }
 		      ,{field:'create_user', title:'创建人', width:150, }
@@ -110,10 +111,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-			if(arr.data != "" && arr.date != null){
-				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-				arr.date2 = data.field.date.split('~')[1];
-			}
+//			if(arr.data != "" && arr.date != null){
+//				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+//				arr.date2 = data.field.date.split('~')[1];
+//			}
 			tableIns.reload({
 				where:arr,
 				page: {

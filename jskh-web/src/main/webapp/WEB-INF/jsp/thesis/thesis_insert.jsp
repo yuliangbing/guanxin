@@ -80,19 +80,6 @@
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
-	function init(data) {
-
-		id = data.id;
-		$("#date").val(data.date);
-		$("#name").val(data.name);
-		$("#published_journal").val(data.published_journal);
-		$("#index_level").val(data.index_level);
-		$("#awards").text(data.awards);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
-		$("#specialty_id").val(data.specialty_id);
-		specialty_name = data.specialty_name;
-	}
 	//专业id下拉列表
 	function ajax_h(form,names,url,object,ids)
 	{
@@ -179,7 +166,8 @@
 			params.first_author = $("#first_author").val();
 			params.other_authors = $("#other_authors").val();
 			params.awards = $("#awards").val();
-			params.specialty_id = $("#specialty_id").val();
+			params.specialty_id = $("#specialty_id option:checked").val();
+			params.specialty_name = $("#specialty_id option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

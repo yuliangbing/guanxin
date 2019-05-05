@@ -20,12 +20,15 @@ public interface SpecialtyService {
 	
 	public List<Specialty> findSpecialtyByRoleId(Long roleId);
 	
-	//根据specialtyId查询专业全部数据
+	//专业信息全部数据（用于下拉方法）
 	public List<Specialty> getSpecialtyList(Object data);
+	
+	//专业信息全部数据
+	public List<Specialty> ListSpecialty(Object data);
 	
 	//统计数据条数
 	public int selectCounts(Map<String, Object> count);
 	
 	//根据status修改状态（删除）
-	public int modifSpecialtyFilesDel(Specialty specialty);
+	public int modifSpecialtyDel(Specialty specialty);
 }

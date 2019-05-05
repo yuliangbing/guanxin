@@ -193,6 +193,9 @@
 	    <include refid="Base_Column_List" />
 	    from specialty_construction_achievements
 	    <where>
+	    	<if test="level !=null and level != ''">
+				and level = #{level,jdbcType=INTEGER}
+			</if>
 	    	<if test="status !=null and status != ''">
 				and status = #{status,jdbcType=INTEGER}
 			</if>
@@ -206,6 +209,9 @@
 		from
 			specialty_construction_achievements
 			<where>
+				<if test="level !=null and level != ''">
+					and level = #{level,jdbcType=INTEGER}
+				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
 				</if>

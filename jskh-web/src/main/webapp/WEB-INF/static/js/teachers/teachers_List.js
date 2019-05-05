@@ -35,7 +35,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialty_code', title:'专业编码', width:150,}
 		      ,{field:'specialty_name', title:'专业名称', width:150, }
 		      ,{field:'is_part_time', title:'是否兼职', width:150, }
-		      ,{field:'specialty_id', title:'专业id', width:150, }
+		      ,{field:'specialty_id', title:'专业id', width:150,hide:true }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:150,hide:true }
 		      ,{field:'create_time', title:'创建时间', width:150, }
 		      ,{field:'create_user', title:'创建人', width:150, }
@@ -91,7 +91,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=issues/issues_update'],
+	    		content:['/toPage?page=teachers/teachers_update','no'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -127,7 +127,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=issues/issues_insert'],
+	  		content:['/toPage?page=teachers/teachers_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']

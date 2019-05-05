@@ -20,8 +20,10 @@ public interface SpecialtyMapper {
     int updateByPrimaryKey(Specialty record);
 
 	List<Specialty> findSpecialtyByRoleId(Long roleId);
-	//获取全部列表数据
+	//获取全部列表数据（下拉方法）
 	List<Specialty> getSpecialtyList(Object data);
+	//获取全部数据
+	List<Specialty> SpecialtyLists (Object data);
 	//统计数据条数
 	int selectCounts(Map<String,Object> counts);
 	//根据status修改状态（删除）

@@ -18,4 +18,6 @@ public interface RoleMenuRelMapper {
     int updateByPrimaryKey(RoleMenuRel record);
     
     List<Long> getMenuIdListByRoleId(Long roleId);
+    
+    int deleteByRoleId(Long roleId);
 }

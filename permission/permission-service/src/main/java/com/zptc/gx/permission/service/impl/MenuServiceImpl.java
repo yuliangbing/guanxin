@@ -52,4 +52,9 @@ public class MenuServiceImpl implements MenuService {
 		// TODO Auto-generated method stub
 		return menuMapper.queryMenuList(par);
 	}
+	@Override
+	public int findMaxLevel() {
+		// TODO Auto-generated method stub
+		return menuMapper.findMaxLevel();
+	}
 }
