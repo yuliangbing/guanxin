@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/teacher_team/teacher_team_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -17,49 +17,42 @@
 			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
 				
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业id</label>
+					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" autocomplete="off" class="layui-input" type="text">
-							<option value="">请选择</option>
-						</select>
+						<input name="date" id="date"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业编码</label>
+					<label class="layui-form-label">毕业人数</label>
 					<div class="layui-input-inline">
-						<input name="specialty_code" id="specialty_code"  autocomplete="off" class="layui-input" type="text">
+						<input name="graduate_num" id="graduate_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业名称</label>
+					<label class="layui-form-label">就业人数</label>
 					<div class="layui-input-inline">
-						<input name="specialty_name" id="specialty_name"  autocomplete="off" class="layui-input" type="text">
+						<input name="employed_num" id="employed_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业教师团队</label>
+					<label class="layui-form-label">创业人数</label>
 					<div class="layui-input-inline">
-						<input name="specialty_teachers" id="specialty_teachers"  autocomplete="off" class="layui-input" type="text">
+						<input name="entrepreneurs_num" id="entrepreneurs_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">兼职教师团队</label>
+					<label class="layui-form-label">就业对口率</label>
 					<div class="layui-input-inline">
-						<input name="part_time_teachers" id="part_time_teachers"  autocomplete="off" class="layui-input" type="text">
+						<input name="host" id="host"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">团队总负责人</label>
-					<div class="layui-input-inline"  >
-						<input name="director" id="director"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">是否兼职</label>
-					<div class="layui-input-block">
-						<input type="radio" name="graduate_school" id="graduate_school"  value="是" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="graduate_school" id="graduate_school"  value="否" title="否" class="layui-input" >					
+					<label class="layui-form-label">专业id</label>
+					<div class="layui-input-inline">
+						<select name="specialty_id"  id="specialty_id" autocomplete="off" class="layui-input" type="text">
+							<option value="">请选择</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -78,17 +71,11 @@
 	function init(data) {
 
 		id = data.id;
-		$("#name").val(data.name);
-		$("#code").val(data.code);
-		$("#entry_time").val(data.entry_time);
-		$("#birthday").val(data.birthday);
-		$("#graduate_school").val(data.graduate_school);
-		$("#final_degree").val(data.final_degree);
-		$("#political_status").val(data.political_status);
-		$("#specialty_code").val(data.specialty_code);
-		$("#specialty_name").val(data.specialty_name);
-		$("#research_direction").val(data.research_direction);
-		$("#is_part_time").val(data.is_part_time);
+		$("#date").val(data.date);
+		$("#graduate_num").val(data.graduate_num);
+		$("#employed_num").val(data.employed_num);
+		$("#entrepreneurs_num").val(data.entrepreneurs_num);
+		$("#employment_rate").text(data.employment_rate);
 		$("#specialty_id").val(data.specialty_id);
 		specialty_name = data.specialty_name;
 	}
@@ -164,27 +151,20 @@
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
-			elem: '#entry_time' //指定元素	
+			elem: '#date' //指定元素	
 		});
-		laydate.render({
-			elem: '#birthday' //指定元素	
-		});
+		
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
-			params.name = $("#name").val();
-			params.code = $("#code").val();
-			params.entry_time = $("#entry_time").val();
-			params.birthday = $("#birthday").val();
-			params.graduate_school = $("#graduate_school").val();
-			params.final_degree = $("#final_degree").val();
-			params.political_status = $("#political_status").val();
-			params.specialty_code = $("#specialty_code").val();
-			params.specialty_name = $("#specialty_name").val();
-			params.research_direction = $("#research_direction").val();
-			params.is_part_time = $("#is_part_time").val();
-			params.specialty_id = $("#specialty_id").val();
+			params.date = $("#date").val();
+			params.graduate_num = $("#graduate_num").val();
+			params.employed_num = $("#employed_num").val();
+			params.entrepreneurs_num = $("#entrepreneurs_num").val();
+			params.employment_rate = $("#employment_rate").val();
+			params.specialty_id = $("#specialty_id option:checked").val();
+			params.specialty_name = $("#specialty_id option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
