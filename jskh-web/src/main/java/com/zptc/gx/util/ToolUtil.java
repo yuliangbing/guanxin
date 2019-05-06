@@ -596,7 +596,7 @@ public class ToolUtil {
 	
 	public static boolean equalBool(Date date) {
 		Boolean flag = false;
-		if(!date.equals("") && date != null) {
+		if(!"".equals(date) && date != null) {
 			flag = true;
 		}
 		else {
@@ -622,6 +622,15 @@ public class ToolUtil {
 			flag = true;
 		}
 		else {
+			flag = flag;
+		}
+		return flag;
+	}
+	public static boolean equalBool(BigDecimal bigDecimal) {
+		Boolean flag = false;
+		if (!"".equals(bigDecimal) && bigDecimal != null) {
+			flag = true;
+		}else {
 			flag = flag;
 		}
 		return flag;

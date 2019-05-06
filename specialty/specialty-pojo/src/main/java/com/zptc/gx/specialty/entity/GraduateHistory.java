@@ -133,4 +133,14 @@ public class GraduateHistory {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "GraduateHistory [id=" + id + ", date=" + date + ", graduateNum=" + graduateNum + ", employedNum="
+				+ employedNum + ", entrepreneursNum=" + entrepreneursNum + ", employmentRate=" + employmentRate
+				+ ", specialtyId=" + specialtyId + ", specialtyName=" + specialtyName + ", status=" + status
+				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
+				+ ", modifyUser=" + modifyUser + "]";
+	}
+    
 }
