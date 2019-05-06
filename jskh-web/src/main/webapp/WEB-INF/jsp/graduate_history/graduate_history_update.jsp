@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -15,41 +15,36 @@
 		<form class="layui-form" onsubmit="return false;">
 
 			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+				
 				<div class="layui-inline">
-					<label class="layui-form-label">发表时间</label>
+					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
-						<input name="date" id="date"  autocomplete="off" class="layui-input">
+						<input name="date" id="date"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">论文题目</label>
+					<label class="layui-form-label">毕业人数</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input">
+						<input name="graduate_num" id="graduate_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">发表期刊</label>
+					<label class="layui-form-label">就业人数</label>
 					<div class="layui-input-inline">
-						<input name="published_journal" id="published_journal"  autocomplete="off" class="layui-input">
+						<input name="employed_num" id="employed_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label">索引或级别</label>
+					<label class="layui-form-label">创业人数</label>
 					<div class="layui-input-inline">
-						<input name="index_level" id="index_level"  autocomplete="off" class="layui-input">
+						<input name="entrepreneurs_num" id="entrepreneurs_num"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">就业对口率</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">其他作者</label>
-					<div class="layui-input-inline"  >
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input">
+						<input name="host" id="host"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -60,12 +55,6 @@
 						</select>
 					</div>
 				</div>
-				<div class="layui-form-item">
-					<label  class="layui-form-label">获奖情况</label>
-					<div class="layui-input-inline">
-						<textarea  class="layui-textarea"  id="awards" style="width: 440%;"></textarea>
-					</div>
-				</div>
 			</div>
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
@@ -74,24 +63,23 @@
 		</form>
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
 	function init(data) {
+
 		id = data.id;
 		$("#date").val(data.date);
-		$("#name").val(data.name);
-		$("#published_journal").val(data.published_journal);
-		$("#index_level").val(data.index_level);
-		$("#awards").text(data.awards);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
+		$("#graduate_num").val(data.graduate_num);
+		$("#employed_num").val(data.employed_num);
+		$("#entrepreneurs_num").val(data.entrepreneurs_num);
+		$("#employment_rate").text(data.employment_rate);
 		$("#specialty_id").val(data.specialty_id);
 		specialty_name = data.specialty_name;
 	}
-	//专业id下拉列表
+	
 	function ajax_h(form,names,url,object,ids)
 	{
 		$.ajax({
@@ -171,18 +159,16 @@
 			/*获取$值存入params */
 			var params = {};
 			params.date = $("#date").val();
-			params.name = $("#name").val();
-			params.published_journal = $("#published_journal").val();
-			params.index_level = $("#index_level").val();
-			params.first_author = $("#first_author").val();
-			params.other_authors = $("#other_authors").val();
-			params.awards = $("#awards").val();
+			params.graduate_num = $("#graduate_num").val();
+			params.employed_num = $("#employed_num").val();
+			params.entrepreneurs_num = $("#entrepreneurs_num").val();
+			params.employment_rate = $("#employment_rate").val();
 			params.specialty_id = $("#specialty_id option:checked").val();
 			params.specialty_name = $("#specialty_id option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/thesisList/updateThesis?id='+id,
+				        url:window.path+'/issuesList/updateIssues?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
@@ -210,5 +196,4 @@
 		});
 });
 	</script>
-</html>
 </html>

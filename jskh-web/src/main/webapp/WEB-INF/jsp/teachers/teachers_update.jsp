@@ -106,18 +106,16 @@
 	function init(data) {
 
 		id = data.id;
+		$("#date").val(data.date);
 		$("#name").val(data.name);
-		$("#code").val(data.code);
-		$("#entry_time").val(data.entry_time);
-		$("#birthday").val(data.birthday);
-		$("#graduate_school").val(data.graduate_school);
-		$("#final_degree").val(data.final_degree);
-		$("#political_status").val(data.political_status);
-		$("#specialty_code").val(data.specialty_code);
+		$("#published_journal").val(data.published_journal);
+		$("#index_level").val(data.index_level);
+		$("#first_author").val(data.first_author);
+		$("#other_authors").val(data.other_authors);
+		$("#awards").val(data.awards);
+		$("#specialty_name").val(data.specialty_id);
 		$("#specialty_name").val(data.specialty_name);
-		$("#research_direction").val(data.research_direction);
-		$("#is_part_time").val(data.is_part_time);
-		$("#specialty_id").val(data.specialty_id);
+		specialty_name = data.specialty_name;
 	}
 	
 	function ajax_h(form,names,url,object,ids)
@@ -200,14 +198,17 @@
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
-			params.specialty_id = $("#specialty_id").val();
-			params.specialty_code = $("#specialty_code").val();
-			params.specialty_name = $("#specialty_name").val();
-			params.date = $("#date").val();
-			params.specialty_teachers = $("#specialty_teachers").val();
-			params.part_time_teachers = $("#part_time_teachers").val();
-			params.director = $("#director").val();
-			params.latest = $("#latest").val();
+			params.name = $("#name").val();
+			params.code = $("#code").val();
+			params.entry_time = $("#entry_time").val();
+			params.birthday = $("#birthday").val();
+			params.graduate_school = $("#graduate_school").val();
+			params.final_degree = $("#final_degree").val();
+			params.political_status = $("#political_status").val();
+			params.research_direction = $("#research_direction").val();
+			params.is_part_time = $("#is_part_time").val();
+			params.specialty_id = $("#specialty_id option:checked").val();
+			params.specialty_name = $("#specialty_id option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

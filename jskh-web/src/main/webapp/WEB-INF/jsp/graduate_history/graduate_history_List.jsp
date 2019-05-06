@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
-<script type="text/javascript" src="${path}/static/js/teacher_team/teacher_team_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body class="layui-layout-body">
@@ -39,6 +39,7 @@
 	</script> 
     <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
+  	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
      

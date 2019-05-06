@@ -22,19 +22,13 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业id</label>
-					<div class="layui-input-inline">
-						<input name="specialty_id"  id="specialty_id" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">专业编码</label>
 					<div class="layui-input-inline">
 						<input name="specialty_code" id="specialty_code" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 84px;">专业名称</label>
+					<label class="layui-form-label" style="width: 84px;">专业id</label>
 					<div class="layui-input-inline">
 						<input name="specialty_name" id="specialty_name" disabled autocomplete="off" class="layui-input">
 					</div>
@@ -103,19 +97,21 @@
    	<script>
    	function init(data) {
 
-		$("#id").val(data.id);
+   		$("#id").val(data.id);
 		$("#specialty_id").val(data.specialty_id);
 		$("#specialty_code").val(data.specialty_code);
-		$("specialty_name").val(data.specialty_name);
+		$("#specialty_name").val(data.specialty_id);
 		$("#date").val(data.date);
 		$("#specialty_teachers").val(data.specialty_teachers);
 		$("#part_time_teachers").val(data.part_time_teachers);
 		$("#director").val(data.director);
 		$("#latest").val(data.latest);
+		$("#specialty_name").val(data.specialty_name);
 		$("#create_time").val(data.create_time);
 		$("#create_user").val(data.create_user);
 		$("#modify_time").val(data.modify_time);
 		$("#modify_user").val(data.modify_user);
+		specialty_name = data.specialty_name;
 	}
    	</script>
 </html>
