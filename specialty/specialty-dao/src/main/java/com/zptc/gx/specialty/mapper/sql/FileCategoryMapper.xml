@@ -128,7 +128,19 @@
   
   <!-- 自定义 -->
   <!-- 查询列表数据 -->
+  <!-- 下拉方法 -->
   <select id="getFileCategoryList" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from file_category
+    <where>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
+  <!-- 列表数据获取 -->
+  <select id="ListFileCategory" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from file_category
@@ -143,7 +155,7 @@
 			and status = #{status,jdbcType=INTEGER}
 		</if>
 	</where>
-  <!--   limit #{page,jdbcType=INTEGER},#{limits,jdbcType=INTEGER}; -->
+  limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->
   <select id="selectCounts" resultType="int" parameterType="map">
