@@ -1,69 +1,136 @@
-layui.use(['laydate','table','form'],function(){
-	var laydate = layui.laydate;
-	var table = layui.table;
-	var form = layui.form;
-	//加载时间选择器
-	  laydate.render({
-  	    elem: '#date1'
-  	  });
-	 
-	  laydate.render({
-	  	    elem: '#date2'
-	  	  });
-	  var tables= [
-		  {"name":"123"},{"name":"yyy"}
-	  ];
+//function ajax_h(form,url,object,ids){
+//			//获取下拉列表(公共方法)
+//			$.ajax({
+//				url:url,
+//				type:"POST",
+//				dataType:"json",
+//				success:function(data){
+//					console.log(data);
+//					//layer.msg("获取成功");
+//					console.log(data.data.length);
+//					if (data.code == 0) {
+//							let option = "";
+//							for (let i=0;i<data.data.length;i++) {
+//								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+//							}
+//							$("#"+object).append(option);
+//							form.render('select');
+//						
+//					} else {
+//						layer.msg("请检查网络连接！");
+//					}
+//					
+//				} ,error:function(code){
+//		           layer.alert("发生错误,请联系管理员");
+//		        }
+//			});
+//		}
+layui.use('element', function() {
+				var element = layui.element;
+
+			});
+layui.use(['form', 'table', 'laydate'], function() {
+				var form = layui.form;
+				var table = layui.table;
+				
+				/*
+				 实现时间选择
+				 */
+				var laydate = layui.laydate;
+
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#date' //指定元素	
+					,range: '~' //或 range: '~' 来自定义分割字符
+				});
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		   //,url:window.path +'/otherList/getOtherList'
-		    ,data:tables
+		    ,url:window.path +'/otherAchievements/getOtherAchievementsList'
 		    ,title: '用户数据表'
+		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      
-		      ,{field:'date', title:'时间', width:130,}
-		      ,{field:'name', title:'成果名称', width:130, }
-		      ,{field:'sources', title:'成果来源', width:150, }
-		      ,{field:'level', title:'成果级别', width:150, }
-		      ,{field:'first_author', title:'第一作者', width:150, } 
-		      ,{field:'other_authors', title:'其他作者情况', width:150, }
-		      ,{field:'right', title:'操作',toolbar: '#barDemo', width:150, }
-		 
-		    
+		      ,{field:'id', title:'主键', width:100,sort: true}
+		      ,{field:'date', title:'时间', width:130,}	     
+		      ,{field:'name', title:'成果名称', width:150, }
+		      ,{field:'sources', title:'成果来源', width:150, } 
+		      ,{field:'level', title:'成果级别', width:130, }
+		      ,{field:'first_author', title:'第一作者', width:130, }
+		      ,{field:'other_authors', title:'其他作者情况', width:130, }
+		      ,{field:'specialtyName', title:'专业名称', width:130, }
+		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
+		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
+		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
+		     // ,{field:'modify_time', title:'修改时间', width:150,  hide:true}
+		     // ,{field:'modify_user', title:'修改人', width:130, hide:true }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
-	  //监听行工具事件
+	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
 	    var layEvent = obj.event;
 	    if(layEvent === 'detail'){//查看
+	    	
 	    	layer.open({
-							title:"查看",
+				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/other_check','no'],
+	    		content:['/toPage?page=other_achievements/other_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%']
-					}); 
-	    	
-	    }else if(layEvent === 'del'){//删除
-	    	layer.confirm('真的删除行么',function(index){
-	    		obj.del();
-	    		layer.close(index);
+	    		area:['90%','90%'],
+	    		success : function(layero, index) {
+					// 获取子页面的iframe
+					var iframe = window['layui-layer-iframe' + index];
+					// 向子页面的全局函数child传参
+					iframe.init(data);
+				} 
 	    	});
+	    }else if(layEvent === 'del'){//删除
+	    	layer.confirm('真的删除行么', function(index) {
+				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+				layer.close(index);
+				//向服务端发送删除指令*/		
+				$.ajax({
+					url:'/otherAchievements/delOtherAchievements',
+					type:"POST",
+					data:{id:data.id},
+					dataType:"json",
+					success:function(data){
+						var nowPage = tableIns.config.page.curr;//返回当前页数
+			        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+			        	//console.log((nowPage-1));
+			        	//console.log(reloadPage);
+						layer.msg("删除成功");
+						layer.close(index);
+		    			tableIns.reload({
+		    				page:{
+		    					curr:reloadPage
+		    				}
+		    			});
+					}
+				});
+				});
 	    }else if(layEvent === 'edit'){//编辑
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/othe_update','no'],
+	    		content:['/toPage?page=other_achievements/other_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%']
+	    		area:['90%','90%'],
+	    		success : function(layero, index) {
+					// 获取子页面的iframe
+					var iframe = window['layui-layer-iframe' + index];
+					// 向子页面的全局函数child传参
+					iframe.init(data);
+				} 
 			});
 			}
 		});
+
 		/* 搜索功能 */
 	  form.on('submit(search)', function(data) {
 			/*layer.alert(JSON.stringify(data.field));*/
@@ -81,41 +148,62 @@ layui.use(['laydate','table','form'],function(){
 			});
 			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 		});
+	  
+		
+		layui.use('element', function() {
+			var element = layui.element;
+
+		});
+
+		layui.use(['form','laydate'], function() {
+			var form = layui.form;
+			
+		
+			/*
+			 实现文件时间选择
+			 */
+			var laydate = layui.laydate;
+			
+			laydate.render({
+				elem: '#date' //指定元素
+			});
+			
 	//添加按钮点击事件
 	  $("#insert").click(function(){
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=other_achievements/other_insert','no'],
+	  		content:['/toPage?page=other_achievements/other_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
 	  	});
 	  });
-	  
-	  
-	  
-	//监听工具条
-		table.on('tool(demoList)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-			var data = obj.data; //获得当前行数据
-			//alert(JSON.stringify(data));
-			var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-			var tr = obj.tr; //获得当前行 tr 的DOM对象
-			if(layEvent === 'del') { //删除
-				layer.confirm('真的删除行么', function(index) {
-					/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-					layer.close(index);
-					//向服务端发送删除指令*/		
+	  //批量删除
+	  table.on('toolbar(test)', function(obj){
+		    var checkStatus = table.checkStatus(obj.config.id);
+		    //console.log(JSON.stringify(checkStatus.data.id));
+		    
+		    switch(obj.event){
+		      case 'delData':
+		        var data = checkStatus.data;
+		        var param = [{}];
+		       // layer.alert(JSON.stringify(data));
+		        for(var i=0;i< data.length;i++){
+		        	param = data[i].id;
+//		        	layer.alert(JSON.stringify(data[i].id));
+		        	console.log(param);
+		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/otherAchievements/delOptherAchievements',
+						url:'/otherAchievements/delOtherAchievements',
 						type:"POST",
-						data:{otherAchievementsId:data.id},
+						data:{id:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数
 				        	var reloadPage = (nowPage-1) > 0? nowPage:1;
 							layer.msg("删除成功");
-							layer.close(index);
+							//layer.close(index);
 			    			tableIns.reload({
 			    				page:{
 			    					curr:reloadPage
@@ -123,56 +211,14 @@ layui.use(['laydate','table','form'],function(){
 			    			});
 						}
 					});
-					});
-				
-			} else if(layEvent === 'update') { //修改
-				
-				layer.open({
-							type: 2,
-							title: '修改窗口',
-							area:['90%','90%'],
-							content:'/toPage?page=other_achievements/other_update',
-							/*btn : [ '保存', '取消' ],
-							btnAlign : 'c',
-							yes : function(index, layero) {
-								// 获取子页面的iframe
-								var iframe = window['layui-layer-iframe' + index];
-								// 向子页面的全局函数child传参
-								iframe.addConfirm();
-							},
-							btn2 : function(index, layero) {
-								layer.closeAll();
-							},
-							cancel : function() {
-								layer.closeAll();
-							},*/
-							success : function(layero, index) {
-								// 获取子页面的iframe
-								var iframe = window['layui-layer-iframe' + index];
-								// 向子页面的全局函数child传参
-								iframe.init(data);
-							}
-							
-					});
-			} else if(layEvent==='check'){
-				//layer.msg('用户名：'+ data.code + ' 的查看操作');
-				layer.open({
-					type:2,
-					title:'查看窗口',
-					area:['90%','90%'],
-					anim:0,
-					content: "/toPage?page=other_achievements/other_check",
-					success : function(layero, index) {
-						// 获取子页面的iframe
-						var iframe = window['layui-layer-iframe' + index];
-						// 向子页面的全局函数child传参
-						iframe.init(data);
-					}
-					
-				});
-			} 
-
-		});
-		
-	  
+		        	
+		        	
+		        }
+		       //layer.alert(JSON.stringify(param));
+		        
+		      break;
+		    };
+		    
+		  });
+});
 });

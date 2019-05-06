@@ -5,218 +5,166 @@
 <%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
-<link rel="stylesheet"
-	href="${path}/static/public/lib/layui/css/layui.css">
-<link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
-<link rel="stylesheet" href="${path}/static/public/css/teacher.css">
+<link rel="stylesheet" href="/static/public/layui/css/layui.css">
+<link rel="stylesheet" href="/static/public/css/xadmin.css">
+
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
-		<form class="layui-form" action="">
+		<form class="layui-form" onsubmit="return false;">
 
+			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">时间</label>
+					<div class="layui-input-inline">
+						<input name="date" id="date"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">成果名称</label>
+					<div class="layui-input-inline">
+						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
 			
-				<!--时间-->
-		<div class="layui-form-item ">
-			<div class="layui-inline">
-             <label class="layui-form-label">时间</label>
-				<div class="layui-input-inline">
-						<input type="text" class="layui-input" id="date" name="date" placeholder="请选择时间">
+				<div class="layui-inline">
+					<label class="layui-form-label">成果来源</label>
+					<div class="layui-input-inline">
+						<input name="sources" id="sources"  autocomplete="off" class="layui-input" type="text">
+					</div>
 				</div>
-			</div>
-		</div>
-		
-		<!--成果名称-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">成果名称</label>
-					<div class="layui-input-inline ">
-						 <input type="text" name="name" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+				<div class="layui-inline">
+					<label class="layui-form-label">成果级别</label>
+					<div class="layui-input-inline">
+						<input name="level" id="level"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">第一作者</label>
+					<div class="layui-input-inline">
+						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">其他作者情况</label>
+					<div class="layui-input-inline">
+						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业名称</label>
+					<div class="layui-input-inline">
+						<select  type="text" id="specialtyName" lay-filter="specialtyName" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+								<option value="">请选择</option>
+							</select>
 					</div>
 				</div>
 			</div>
-			
-		<!--成果来源-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">成果来源</label>
-					<div class="layui-input-inline ">
-						 <input type="text" name="sources" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
-						
-					</div>
-				</div>
-			</div>
-			<!--成果级别-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">成果级别</label>
-					<div class="layui-input-inline ">
-						 <input type="text" name="level" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
-					</div>
-				</div>
-			</div>
-		
-		<!--第一作者-->
-		
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">第一作者</label>
-					<div class="layui-input-inline ">
-						 <input type="text" name="first-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
-					</div>
-				</div>
-			</div>
-		
-		<!--其他作者-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">其他作者</label>
-					<div class="layui-input-inline ">
-				 <input type="text" name="other-author" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
-					</div>
-				</div>
-			</div>
-			
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>
 		</form>
-		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-	<script>
-		//关闭弹窗监听
-		function exit(){
-		    var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
-			parent.layer.close(index); //再执行关闭  
-		}
-		
-		function ajax_h(form,url,object,ids){
-			//获取下拉列表(公共方法)
-			$.ajax({
-				url:url,
-				type:"POST",
-				dataType:"json",
-				success:function(data){
-					console.log(data);
-					//layer.msg("获取成功");
-					console.log(data.data.length);
-					if (data.code == 0) {
-						if(ids == 'id'){
-							let option = "";
-							for (let i=0;i<data.data.length;i++) {
-								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
-								console.log("输出打印"+data.data[i].ids+"id=="+ids);
-							}
-							$("#"+object).append(option);
-							form.render('select');
-						}
-						else{
-							let option = "";
-							for (let i=0;i<data.data.length;i++) {
-								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
-								console.log("输出打印"+data.data[i].ids+"id=="+ids);
-							}
-							$("#"+object).append(option);
-							form.render('select');
-						}
-						
-					} else {
-						layer.msg(data.msg);
-					}
-					
-				} ,error:function(code){
-		           layer.alert("发生错误,请联系管理员");
-		        }
-			});
-		}
-		
-		layui.use('element', function() {
-			var element = layui.element;
-
-		});
-
-		layui.use(['form','laydate'], function() {
-			var form = layui.form;
-			//获取选中的值
-			/* $('#cate_name').val();
-			var selects =$('#cate_name option:selected').val();
-			console.log("select"+selects); */
-			
-			//获取下拉框属性
-			var url ="";
-			var object="";
-			var ids ="";
-			//文件类型
-			url = '/fileCategory/getFileCategoryList';
-			object = 'cate_name';
-			ids = 'code';
-			ajax_h(form,url,object,ids);
-			//专业
-		 	url = '/specialty/getSpecialtyList';
-			object = 'specialty_id';
-			ids = 'id';
-			ajax_h(form,url,object,ids);
-			/*
-			 实现文件时间选择
-			 */
-			var laydate = layui.laydate;
-			//执行一个laydate实例
-			laydate.render({
-				elem: '#date' //指定元素
-				//,range: '~' //或 range: '~' 来自定义分割字符
-			});
-			
-		    
-			// 提交功能
-			form.on('submit(submit)', function(data) {
-				/*获取$值存入params */
-				var params = {};
-				params.status = $("#status").val();
-				params.date = $("#date").val();
-				params.code = $("#code").val();
-				params.name = $("#name").val();
-			/* 	params.cate_name = $("#cate_name").val(); */
-				params.cate_name = $("#cate_name option:checked").text();
-				params.reviser = $("#reviser").val();
-				params.specialty_id = $("#specialty_id option:checked").val();
-				params.specialty_name = $("#specialty_id option:checked").text();
-				console.log("文件类型输出打印"+params.specialty_id);
-				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
-				    $.ajax({
-					        type:"POST",
-					        url:'/specialtyFiles/addSpecialtyFiles',
-							data:$.param(params),
-					        //预期服务器返回数据的类型
-					        dataType:"json", 
-					        success:function(data){
-					        	if(data){
-									if (data.code == 0) {
-										layer.msg("成功");
-										setTimeout(function(){
-												parent.window.location.reload();
-										},500);
-									} else if(data.code != 0) {
-										layer.msg("失败,可能为数据填写错误或缺少必要数据！");
-									}
-								}
-							} ,error:function(code){
-					           layer.alert("发生错误,请联系管理员");
-					        }
-					});
-
-				  
-				  layer.close(index);
-				});
-									
-				//return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-			});
-			
-			
-				
-			
-			
-		
-		});
-	</script>
 	</body>
+		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+	<script>
+	function ajax_h(form,url,object,ids){
+		//获取下拉列表(公共方法)
+		$.ajax({
+			url:url,
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				//layer.msg("获取成功");
+				console.log(data.data.length);
+				if (data.code == 0) {
+						let option = "";
+						for (let i=0;i<data.data.length;i++) {
+							option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+						}
+						$("#"+object).append(option);
+							var form = layui.form;
+							form.render('select');
+						
+					
+				} else {
+					layer.msg("请检查网络连接！");
+				}
+				
+			} ,error:function(code){
+	           layer.alert("发生错误,请联系管理员");
+	        }
+		});
+	}
+	//时间控件
+	layui.use(['form','laydate'], function() {	
+		
+	var form = layui.form;
+	var laydate = layui.laydate;
+	var url="";
+	var object = "";
+	var ids= "";
+	url = '/specialty/getSpecialtyList';
+	object = 'specialtyName';
+	ids = 'id';
+	ajax_h(form,url,object,ids);
+	laydate.render({
+		
+	    elem: '#date'
+	  });
+	laydate.render({
+		elem: '#date1' //指定元素	
+	});
+	/*提交功能*/
+	  form.on('submit(submit)', function(data) {
+			/*获取$值存入params */
+			var params = {};
+			params.date = $("#date").val();
+			params.sources = $("#sources").val();
+			params.name = $("#name").val();
+		/* 	params.cate_name = $("#cate_name").val(); */
+			params.level = $("#level").val();
+			params.first_author = $("#first_author").val();
+			params.other_authors = $("#other_authors").val();
+			params.specialty_name = $("#specialtyName option:checked").text();
+			params.specialty_id = $("#specialtyName option:checked").val();
+		console.log(params);
+			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
+			    $.ajax({
+				        type:"POST",
+				        url:window.path+'/otherAchievements/addOtherAchievements',
+						data:$.param(params),
+				        //预期服务器返回数据的类型
+				        dataType:"json", 
+				        success:function(data){
+				        	if(data){
+								if (data.code == 0) {
+									layer.msg("成功");
+									setTimeout(function(){
+											parent.window.location.reload();
+									},500);
+								} else if(data.code != 0) {
+									layer.msg("失败,可能为数据填写错误或缺少必要数据！");
+								}
+							}
+						} ,error:function(code){
+				           layer.alert("发生错误,请联系管理员");
+				        }
+				});
+
+			  
+			  layer.close(index);
+			});
+								
+			//return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+		});
+});
+	</script>
+</html>
+
 </html>
