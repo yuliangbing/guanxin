@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
-<script type="text/javascript" src="${path}/static/js/teacher_team/teacher_team_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/outstanding_graduate_history/outstanding_graduate_history_List.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body class="layui-layout-body">
@@ -21,7 +21,8 @@
     <div class="layui-col-md12 layui-content-white">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="时间" name="date" id="date" style="width:200px;">
+          <input class="layui-input" placeholder="时间" autocomplete="off" name="date" id="date" style="width:200px;">
+          <input type="text" name="code" id="code" placeholder="请输入姓名" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
@@ -38,6 +39,7 @@
 	</script> 
     <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
+  	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
      

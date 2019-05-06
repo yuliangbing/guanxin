@@ -25,16 +25,17 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true}
-		      ,{field:'specialty_code', title:'专业编码', width:150, }
-		      ,{field:'specialty_name', title:'专业名称', width:150, }
-		      ,{field:'date', title:'团队变更时间', width:150, } 
-		      ,{field:'specialty_teachers', title:'专业教师团队', width:150, }
-		      ,{field:'part_time_teachers', title:'兼职教师团队', width:150, }
-		      ,{field:'director', title:'团队总负责人', width:150, }
-		      ,{field:'latest', title:'是否最新', width:150,}
+		      ,{field:'date', title:'毕业时间', width:130,}
+		      ,{field:'name', title:'姓名', width:130, }
+		      ,{field:'company', title:'公司', width:150, }
+		      ,{field:'position', title:'岗位', width:150, } 
+		      ,{field:'salary', title:'薪资', width:130, }
+		      ,{field:'advanced_description', title:'先进描述', width:220, }
+		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
+		      ,{field:'specialty_name', title:'专业名称', width:130, }
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:130, }
+		      ,{field:'create_user', title:'创建人', width:150, }
 		      ,{field:'modify_time', title:'修改时间', width:150, }
 		      ,{field:'modify_user', title:'修改人', width:130, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
@@ -49,7 +50,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=teacher_team/teacher_team_check'],
+	    		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_check'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -62,9 +63,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	});
 	    }else if(layEvent === 'del'){//删除
 	    	layer.confirm('真的删除行么', function(index) {
-				 //删除对应行（tr）的DOM结构，并更新缓存
+				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 				layer.close(index);
-				//向服务端发送删除指令		
+				//向服务端发送删除指令*/		
 				$.ajax({
 					url:'/issuesList/del',
 					type:"POST",
@@ -73,6 +74,8 @@ layui.use(['form', 'table', 'laydate'], function() {
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
 			        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+			        	//console.log((nowPage-1));
+			        	//console.log(reloadPage);
 						layer.msg("删除成功");
 						layer.close(index);
 		    			tableIns.reload({
@@ -83,11 +86,11 @@ layui.use(['form', 'table', 'laydate'], function() {
 					}
 				});
 				});
-	    }/*else if(layEvent === 'edit'){//编辑
+	    }else if(layEvent === 'edit'){//编辑
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=teacher_team/teacher_team_update','no'],
+	    		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -98,7 +101,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					iframe.init(data);
 				} 
 			});
-			}*/
+			}
 		});
 
 		/* 搜索功能 */
@@ -123,7 +126,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=teacher_team/teacher_team_insert'],
+	  		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
