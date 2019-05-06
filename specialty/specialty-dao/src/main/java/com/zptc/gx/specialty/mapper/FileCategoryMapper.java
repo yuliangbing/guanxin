@@ -18,10 +18,12 @@ public interface FileCategoryMapper {
     int updateByPrimaryKeySelective(FileCategory record);
     //不带if的修改
     int updateByPrimaryKey(FileCategory record);
-    //获取全部列表数据
+    //获取全部列表数据(下拉列表)
     List<FileCategory> getFileCategoryList(Object data);
     //统计数据条数
   	int selectCounts(Map<String,Object> counts);
   	//根据status修改状态（删除）
   	int updateByPrimaryKeyDel(FileCategory fileCategory);
+  	//获取全部列表数据
+	List<FileCategory> ListFileCategory(Map<String, Object> data);
 }
