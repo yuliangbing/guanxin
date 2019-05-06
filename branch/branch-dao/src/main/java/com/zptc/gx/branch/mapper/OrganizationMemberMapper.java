@@ -1,6 +1,10 @@
 package com.zptc.gx.branch.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import com.zptc.gx.branch.entity.OrganizationMember;
+
 
 public interface OrganizationMemberMapper {
     int deleteByPrimaryKey(Long id);
@@ -14,4 +18,8 @@ public interface OrganizationMemberMapper {
     int updateByPrimaryKeySelective(OrganizationMember record);
 
     int updateByPrimaryKey(OrganizationMember record);
+    
+    int delOrganizationMemberById(OrganizationMember OrganizationMember );
+
+	List<OrganizationMember> getOrganizationMember(Map<String, Object> data);
 }

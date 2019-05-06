@@ -23,6 +23,15 @@
     delete from organization_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
+   <update id="delOrganizationTypeById" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
+	    update organization_type
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
   <insert id="insert" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
     insert into organization_type (id, name, status, 
       create_time, create_user, modify_time, 
@@ -114,4 +123,11 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 查询列表数据 -->
+  <select id="getOrganizationType" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from organization_type
+  </select>
+
 </mapper>
