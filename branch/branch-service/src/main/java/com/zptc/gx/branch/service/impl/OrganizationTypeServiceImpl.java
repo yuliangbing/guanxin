@@ -1,4 +1,7 @@
-package com.zptc.gx.branch.service.impl;
+ package com.zptc.gx.branch.service.impl;
+
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,13 +24,22 @@ public class OrganizationTypeServiceImpl implements OrganizationTypeService {
 	public int modifyOrganizationType(OrganizationType organizationType){
 		return organizationTypeMapper.updateByPrimaryKeySelective(organizationType);
 	}
+	
+	
 	@Override
-	public int deleteOrganizationTypeById(Long id){
-		return organizationTypeMapper.deleteByPrimaryKey(id);
+	public int delOrganizationTypeById(OrganizationType organizationType){
+		return organizationTypeMapper.delOrganizationTypeById(organizationType);
 	}
+	
 	@Override
 	public OrganizationType findOrganizationTypeById(Long id){
 		OrganizationType organizationType = organizationTypeMapper.selectByPrimaryKey(id);
 		return organizationType;
 	}
+	@Override
+	public List<OrganizationType> getOrganizationTypeList(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return organizationTypeMapper.getOrganizationType(data);
+	}
+	
 }

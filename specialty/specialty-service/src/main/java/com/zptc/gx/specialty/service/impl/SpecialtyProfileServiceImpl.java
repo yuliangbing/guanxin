@@ -45,8 +45,8 @@ public class SpecialtyProfileServiceImpl implements SpecialtyProfileService {
 	}
 	
 	@Override
-	public int modifSpecialtyFilesDel(SpecialtyProfile specialtyFiles) {
+	public int modifSpecialtyFilesDel(SpecialtyProfile specialtyProfile) {
 		// TODO Auto-generated method stub
-		return 0;
+		return specialtyProfileMapper.updateByPrimaryKeyDel(specialtyProfile);
 	}
 }

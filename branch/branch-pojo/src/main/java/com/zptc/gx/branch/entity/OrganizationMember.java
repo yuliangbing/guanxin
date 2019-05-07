@@ -82,4 +82,6 @@ public class OrganizationMember {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	
 }

@@ -125,4 +125,20 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+ <!--自定义方法  -->
+ <!-- 查找列表数据 -->
+   <select id="getOrganizationMember" resultType="map"  parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from organization_member
+  </select>
+     <update id="delOrganizationMemberById" parameterType="com.zptc.gx.branch.entity.OrganizationMember" >
+	    update organization_member
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

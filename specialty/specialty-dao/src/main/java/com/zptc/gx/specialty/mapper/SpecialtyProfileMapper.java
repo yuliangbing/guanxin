@@ -19,8 +19,9 @@ public interface SpecialtyProfileMapper {
   	List<SpecialtyProfile> getSpecialtyProfileList(Object data);
 
     int updateByPrimaryKeySelective(SpecialtyProfile record);
-
-    int updateByPrimaryKey(SpecialtyProfile record);
+//  软删除
+    int updateByPrimaryKeyDel(SpecialtyProfile record);
 
 	int selectCounts(Map<String, Object> counts);
+	
 }
