@@ -89,7 +89,6 @@ public class ThesisListController extends BaseController{
 			System.out.println("返回数据条数"+counts);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			System.out.println("22");
 			e.printStackTrace();
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
