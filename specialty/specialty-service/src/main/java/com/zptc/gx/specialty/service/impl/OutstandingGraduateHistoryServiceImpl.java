@@ -1,5 +1,8 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,20 +17,35 @@ public class OutstandingGraduateHistoryServiceImpl implements OutstandingGraduat
 	private OutstandingGraduateHistoryMapper outstandingGraduateHistoryMapper;
 
 	@Override
-	public void addOutstandingGraduateHistory(OutstandingGraduateHistory outstandingGraduateHistory){
-		outstandingGraduateHistoryMapper.insertSelective(outstandingGraduateHistory);
+	public int addOutstandingGraduateHistory(OutstandingGraduateHistory outstandingGraduateHistory){
+		return outstandingGraduateHistoryMapper.insertSelective(outstandingGraduateHistory);
 	}
 	@Override
-	public void modifyOutstandingGraduateHistory(OutstandingGraduateHistory outstandingGraduateHistory){
-		outstandingGraduateHistoryMapper.updateByPrimaryKeySelective(outstandingGraduateHistory);
+	public int modifyOutstandingGraduateHistory(OutstandingGraduateHistory outstandingGraduateHistory){
+		return outstandingGraduateHistoryMapper.updateByPrimaryKeySelective(outstandingGraduateHistory);
 	}
 	@Override
-	public void deleteOutstandingGraduateHistoryById(Long id){
-		outstandingGraduateHistoryMapper.deleteByPrimaryKey(id);
+	public int deleteOutstandingGraduateHistoryById(Long id){
+		return outstandingGraduateHistoryMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public OutstandingGraduateHistory findOutstandingGraduateHistoryById(Long id){
 		OutstandingGraduateHistory outstandingGraduateHistory = outstandingGraduateHistoryMapper.selectByPrimaryKey(id);
 		return outstandingGraduateHistory;
+	}
+	@Override
+	public List<OutstandingGraduateHistory> getOutstandingGraduateHistoryList(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return outstandingGraduateHistoryMapper.OutstandingGraduateHistoryList(data);
+	}
+	@Override
+	public int Counts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return outstandingGraduateHistoryMapper.selectCounts(count);
+	}
+	@Override
+	public int delOutstandingGraduateHistory(OutstandingGraduateHistory outstandingGraduateHistory) {
+		// TODO Auto-generated method stub
+		return outstandingGraduateHistoryMapper.updateDel(outstandingGraduateHistory);
 	}
 }
