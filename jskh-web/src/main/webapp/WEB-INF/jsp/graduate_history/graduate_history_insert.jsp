@@ -44,7 +44,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">就业对口率</label>
 					<div class="layui-input-inline">
-						<input name="host" id="host"  autocomplete="off" class="layui-input" type="text">
+						<input name="employment_rate" id="employment_rate"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -165,10 +165,11 @@
 			params.employment_rate = $("#employment_rate").val();
 			params.specialty_id = $("#specialty_id option:checked").val();
 			params.specialty_name = $("#specialty_id option:checked").text();
+			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/issuesList/updateIssues?id='+id,
+				        url:window.path+'/graduateHistory/addGraduateHistory?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
