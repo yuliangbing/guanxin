@@ -18,7 +18,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/issuesList/getIssuesList'
+		    ,url:window.path +'/outstandingGraduateHistory/ListOutstandingGraduateHistory'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -30,14 +30,14 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'company', title:'公司', width:150, }
 		      ,{field:'position', title:'岗位', width:150, } 
 		      ,{field:'salary', title:'薪资', width:130, }
-		      ,{field:'advanced_description', title:'先进描述', width:220, }
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
-		      ,{field:'specialty_name', title:'专业名称', width:130, }
+		      ,{field:'advancedDescription', title:'先进描述', width:220, }
+		      ,{field:'specialtyId', title:'专业id', width:130,hide:true }
+		      ,{field:'specialtyName', title:'专业名称', width:130, }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:150, }
-		      ,{field:'modify_time', title:'修改时间', width:150, }
-		      ,{field:'modify_user', title:'修改人', width:130, }
+		      ,{field:'createTime', title:'创建时间', width:150, }
+		      ,{field:'createUser', title:'创建人', width:150, }
+		      ,{field:'modifyTime', title:'修改时间', width:150, }
+		      ,{field:'modifyUser', title:'修改人', width:130, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
@@ -67,9 +67,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/issuesList/del',
+					url:'/outstandingGraduateHistory/delOutstandingGraduateHistory',
 					type:"POST",
-					data:{Id:data.id},
+					data:{id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -148,9 +148,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/issuesList/del',
+						url:'/outstandingGraduateHistory/delOutstandingGraduateHistory',
 						type:"POST",
-						data:{Id:param},
+						data:{id:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数

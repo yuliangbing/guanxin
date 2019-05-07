@@ -51,10 +51,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=issues/issues_check'],
-	    		maxmin:true,
-	    		resize:false,
+	    		content:'/toPage?page=issues/issues_check',
 	    		area:['90%','90%'],
+	    		resize:false,
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];

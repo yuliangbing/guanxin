@@ -68,7 +68,7 @@
 				<div class="layui-upload" style="margin-left: 10.5%;">
   						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 32%;top: 70%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
   					<div class="layui-upload-list">
-    					<img class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="demo1">
+    					<img class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="image">
   					</div>
 				</div>
 			
@@ -158,18 +158,20 @@
 		var laydate = layui.laydate;
 		var element = layui.element;
 		//普通图片上传
+		var urlimg="";
 		  var uploadInst = upload.render({
 		    elem: '#test1'
 		    ,url: '/ueditor/jsp/controller.jsp?action=uploadfile'
 		    ,before: function(obj){
 		      //预读本地文件示例，不支持ie8
 		      obj.preview(function(index, file, result){
-		        $('#demo1').attr('src', result); //图片链接（base64）
+		        $('#image').attr('src', result); //图片链接（base64）
 		      });
 		    }
 		    ,done: function(res){
 		    	console.log(res);
-				$("#showFile").text(res.original);
+				/* $("#showFile").text(res.original); */
+				urlimg = res.url;
 		    }
 		  });
 		/* upload.render({
@@ -209,12 +211,14 @@
 			params.position = $("#position").val();
 			params.advanced_description = $("#advanced_description").val();
 			params.salary = $("#salary").val();
+			params.image = urlimg;
 			params.specialty_id = $("#specialty_id option:checked").val();
 			params.specialty_name = $("#specialty_id option:checked").text();
+			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/issuesList/updateIssues?id='+id,
+				        url:window.path+'/outstandingGraduateHistory/addOutstandingGraduateHistory?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 

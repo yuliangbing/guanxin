@@ -90,6 +90,12 @@
 					</div>
 				
 				</div>
+				<label class="layui-form-label">照片 </label>
+				<div class="layui-upload" style="margin-left: 10.5%;">
+  					<div class="layui-upload-list">
+    					<img url="" class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="image">
+  					</div>
+				</div>
 			</div>
 		</form>
 	</body>
@@ -100,18 +106,20 @@
 
 		$("#id").val(data.id);
 		$("#date").val(data.date);
-		$("#graduate_num").val(data.graduate_num);
-		$("#employed_num").val(data.employed_num);
-		$("#entrepreneurs_num").val(data.entrepreneurs_num);
-		$("#employment_rate").val(data.employment_rate);
-		$("#specialty_id").val(data.specialty_id);
-		$("#specialty_name").val(data.specialty_name);
+		$("#name").val(data.name);
+		$('#image').attr("src",data.image);
+		$("#company").val(data.company);
+		$("#position").val(data.position);
+		$("#advanced_description").val(data.advancedDescription);
+		$("#salary").val(data.salary);
+		$("#specialty_id").val(data.specialtyId);
+		$("#specialty_name").val(data.specialtyName);
 		$("#status").val(data.status);
-		$("#create_time").val(data.create_time);
-		$("#create_user").val(data.create_user);
-		$("#modify_time").val(data.modify_time);
-		$("#modify_user").val(data.modify_user);
-		specialty_name = data.specialty_name;
+		$("#create_time").val(data.createTime);
+		$("#create_user").val(data.createUser);
+		$("#modify_time").val(data.modifyTime);
+		$("#modify_user").val(data.modifyUser);
+		specialty_name = data.specialtyName;
 	}
    	</script>
 </html>
