@@ -18,7 +18,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/graduateHistory/ListGraduateHistory'
+		    ,url:window.path +'/issuesList/getIssuesList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -26,17 +26,17 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true}
 		      ,{field:'date', title:'时间', width:130,}
-		      ,{field:'graduateNum', title:'毕业人数', width:130, }
-		      ,{field:'employedNum', title:'就业人数', width:150, }
-		      ,{field:'entrepreneursNum', title:'创业人数', width:150, } 
-		      ,{field:'employmentRate', title:'就业对口率', width:130, }
-		      ,{field:'specialtyId', title:'专业id', width:130,hide:true }
-		      ,{field:'specialtyName', title:'专业名称', width:130, }
+		      ,{field:'graduate_num', title:'毕业人数', width:130, }
+		      ,{field:'employed_num', title:'就业人数', width:150, }
+		      ,{field:'entrepreneurs_num', title:'创业人数', width:150, } 
+		      ,{field:'employment_rate', title:'就业对口率', width:130, }
+		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
+		      ,{field:'specialty_name', title:'专业名称', width:130, }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{field:'createTime', title:'创建时间', width:150, }
-		      ,{field:'createUser', title:'创建人', width:150, }
-		      ,{field:'modifyTime', title:'修改时间', width:150, }
-		      ,{field:'modifyUser', title:'修改人', width:130, }
+		      ,{field:'create_time', title:'创建时间', width:150, }
+		      ,{field:'create_user', title:'创建人', width:150, }
+		      ,{field:'modify_time', title:'修改时间', width:150, }
+		      ,{field:'modify_user', title:'修改人', width:130, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
@@ -66,9 +66,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/graduateHistory/delGraduateHistory',
+					url:'/issuesList/del',
 					type:"POST",
-					data:{id:data.id},
+					data:{Id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -147,9 +147,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/graduateHistory/delGraduateHistory',
+						url:'/issuesList/del',
 						type:"POST",
-						data:{id:param},
+						data:{Id:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数
