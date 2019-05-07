@@ -136,13 +136,13 @@ private Long branchIntroduction;
 	    specialtyProfile.setModifyUser(user.getTeaName());
 	   
 	    //判断传入的值是否为空或""
-	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)) == false) {
-	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
-	    	System.out.println("错误，传入数据错误");
-	    	 //接口拿到的数据
-		    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyProfile.toString());
-	    	return jsonResult;
-		}
+//	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)) == false) {
+//	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+//	    	System.out.println("错误，传入数据错误");
+//	    	 //接口拿到的数据
+//		    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyProfile.toString());
+//	    	return jsonResult;
+//		}
 	    	System.out.println("传入数据成功");
 			try {
 				
@@ -250,17 +250,17 @@ private Long branchIntroduction;
 	/*根据id进行软删除（修改status状态码）*/
 	@RequestMapping("/delSpecialtyProfile")
 	@ResponseBody
-	public JsonResult delSpecialtyFiles(HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用delSpecialtyProfile方法");
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			Long id =ToolUtil.lonWithNull("id",request);
 			int status = ToolUtil.integer("status", request);
 			status = 2;
-			Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
-			System.out.println("id"+specialtyFilesId);
+			System.out.println("id"+id);
 		    //判断是否有该专业
-			SpecialtyProfile specialtyFiles = specialtyProfileService.findSpecialtyProfileById(specialtyFilesId);
+			SpecialtyProfile specialtyFiles = specialtyProfileService.findSpecialtyProfileById(id);
 			if (specialtyFiles == null) {
 				jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
 				return jsonResult;

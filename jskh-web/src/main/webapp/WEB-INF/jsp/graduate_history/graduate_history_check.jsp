@@ -92,18 +92,18 @@
 
 		$("#id").val(data.id);
 		$("#date").val(data.date);
-		$("#graduate_num").val(data.graduateNum);
-		$("#employed_num").val(data.employedNum);
-		$("#entrepreneurs_num").val(data.entrepreneursNum);
-		$("#employment_rate").val(data.employmentRate);
-		$("#specialty_id").val(data.specialtyId);
-		$("#specialty_name").val(data.specialtyName);
+		$("#graduate_num").val(data.graduate_num);
+		$("#employed_num").val(data.employed_num);
+		$("#entrepreneurs_num").val(data.entrepreneurs_num);
+		$("#employment_rate").val(data.employment_rate);
+		$("#specialty_id").val(data.specialty_id);
+		$("#specialty_name").val(data.specialty_name);
 		$("#status").val(data.status);
-		$("#create_time").val(data.createTime);
-		$("#create_user").val(data.createUser);
-		$("#modify_time").val(data.modifyTime);
-		$("#modify_user").val(data.modifyUser);
-		specialty_name = data.specialtyName;
+		$("#create_time").val(data.create_time);
+		$("#create_user").val(data.create_user);
+		$("#modify_time").val(data.modify_time);
+		$("#modify_user").val(data.modify_user);
+		specialty_name = data.specialty_name;
 	}
    	</script>
 </html>

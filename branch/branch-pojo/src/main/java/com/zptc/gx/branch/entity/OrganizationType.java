@@ -72,4 +72,11 @@ public class OrganizationType {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "OrganizationType [id=" + id + ", name=" + name + ", status=" + status + ", createTime=" + createTime
+				+ ", createUser=" + createUser + ", modifyTime=" + modifyTime + ", modifyUser=" + modifyUser + "]";
+	}
+    
 }
