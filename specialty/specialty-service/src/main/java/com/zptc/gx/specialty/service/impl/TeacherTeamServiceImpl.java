@@ -1,5 +1,8 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +32,20 @@ public class TeacherTeamServiceImpl implements TeacherTeamService {
 	public TeacherTeam findTeacherTeamById(Long id){
 		TeacherTeam teacherTeam = teacherTeamMapper.selectByPrimaryKey(id);
 		return teacherTeam;
+	}
+	@Override
+	public int selectCounts(Map<String, Object> counts) {
+		// TODO Auto-generated method stub
+		return teacherTeamMapper.selectCounts(counts);
+	}
+	@Override
+	public List<TeacherTeam> getTeacherTeamList(Object data) {
+		// TODO Auto-generated method stub
+		return teacherTeamMapper.getTeacherTeamList(data);
+	}
+	@Override
+	public int modifySpecialtyProfile(TeacherTeam teacherTeam) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

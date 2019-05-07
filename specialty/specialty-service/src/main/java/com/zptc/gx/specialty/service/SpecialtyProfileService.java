@@ -8,7 +8,7 @@ import com.zptc.gx.specialty.entity.SpecialtyProfile;
 
 public interface SpecialtyProfileService {
 
-	public void addSpecialtyProfile(SpecialtyProfile specialtyProfile);
+	public int addSpecialtyProfile(SpecialtyProfile specialtyProfile);
 
 	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile);
 

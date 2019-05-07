@@ -185,4 +185,19 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+ <!-- 查询列表数据 -->
+  <select id="getTeacherTeamList" resultType="map" parameterType="com.zptc.gx.specialty.entity.TeacherTeam" >
+    select
+    <include refid="Base_Column_List" />
+    from teacher_team
+    
+  </select>
+  
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			teacher_team
+	
+	</select>
 </mapper>

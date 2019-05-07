@@ -1,5 +1,9 @@
 package com.zptc.gx.specialty.mapper;
 
+import java.util.List;
+import java.util.Map;
+
+import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.entity.TeacherTeam;
 
 public interface TeacherTeamMapper {
@@ -14,4 +18,8 @@ public interface TeacherTeamMapper {
     int updateByPrimaryKeySelective(TeacherTeam record);
 
     int updateByPrimaryKey(TeacherTeam record);
+    
+    int selectCounts(Map<String, Object> counts);
+    
+    List<TeacherTeam> getTeacherTeamList(Object data);
 }

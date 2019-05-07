@@ -17,8 +17,8 @@ public class SpecialtyProfileServiceImpl implements SpecialtyProfileService {
 	private SpecialtyProfileMapper specialtyProfileMapper;
 
 	@Override
-	public void addSpecialtyProfile(SpecialtyProfile specialtyProfile){
-		specialtyProfileMapper.insertSelective(specialtyProfile);
+	public int addSpecialtyProfile(SpecialtyProfile specialtyProfile){
+		return specialtyProfileMapper.insertSelective(specialtyProfile);
 	}
 	@Override
 	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile){

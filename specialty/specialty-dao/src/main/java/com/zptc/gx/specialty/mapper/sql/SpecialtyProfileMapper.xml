@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.zptc.gx.specialty.entity.SpecialtyProfile" >
     <id column="id" property="id" jdbcType="BIGINT" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="DATE" />
     <result column="position" property="position" jdbcType="VARCHAR" />
     <result column="characteristic" property="characteristic" jdbcType="VARCHAR" />
@@ -17,7 +18,7 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, specialty_id, date, position, characteristic, director_id, director_name, status, 
+    id, specialty_id, specialty_name,date, position, characteristic, director_id, director_name, status, 
     branch_introduction, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -31,12 +32,12 @@
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
-    insert into specialty_profile (id, specialty_id, date, 
+    insert into specialty_profile (id, specialty_id, specialty_name, date, 
       position, characteristic, director_id, 
       director_name, status, branch_introduction, 
       create_time, create_user, modify_time, 
       modify_user)
-    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT}, #{date,jdbcType=DATE}, 
+    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT},#{specialty_name,jdbcType=VARCHAR},,jdbcType=DATE}, 
       #{position,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, #{directorId,jdbcType=BIGINT}, 
       #{directorName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{branchIntroduction,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
@@ -50,6 +51,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="specialtyName != null" >
+        specialty_name,
       </if>
       <if test="date != null" >
         date,
@@ -91,6 +95,9 @@
       </if>
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
+      </if>
+      <if test="specialtyName != null" >
+         #{specialty_name,jdbcType=VARCHAR},
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},
@@ -136,6 +143,9 @@
       <if test="date != null" >
         date = #{date,jdbcType=DATE},
       </if>
+       <if test="specialtyName != null" >
+         #{specialty_name,jdbcType=VARCHAR},
+      </if>
       <if test="position != null" >
         position = #{position,jdbcType=VARCHAR},
       </if>
@@ -172,6 +182,7 @@
   <update id="updateByPrimaryKey" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
     update specialty_profile
     set specialty_id = #{specialtyId,jdbcType=BIGINT},
+    specialty_name = #{specialtyName,jdbcType=VARCHAR},
       date = #{date,jdbcType=DATE},
       position = #{position,jdbcType=VARCHAR},
       characteristic = #{characteristic,jdbcType=VARCHAR},

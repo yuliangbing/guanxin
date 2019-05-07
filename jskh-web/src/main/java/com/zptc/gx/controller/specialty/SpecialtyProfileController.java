@@ -33,23 +33,166 @@ public class SpecialtyProfileController extends BaseController{
    private SpecialtyProfileService specialtyProfileService;
 
 private Long branchIntroduction;
-   
-   @RequestMapping("/getSpecialtyProfileList")
-   @ResponseBody
-   public JsonResult getSpecialtyProfile(HttpServletRequest request, HttpServletResponse responses) {
-		System.out.println("获取专业文件列表接口");
+
+//增加专业概况信息
+@RequestMapping("/addSpecialtyProfile")
+@ResponseBody
+public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse response) {
+	JsonResult jsonResult = new JsonResult();
+	System.out.println("添加接口");
+	try {
+		ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+		
+		Long id = ToolUtil.lon("id", request);
+		String position = ToolUtil.str("position", request);
+	    String characteristic = ToolUtil.str("characteristic", request);
+	    String director_name = ToolUtil.str("director_name", request);
+	    String specialty_name = ToolUtil.str("specialty_name", request);
+	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
+	    Integer status = ToolUtil.integer("status", request);
+	    
+	   SpecialtyProfile specialtyProfile= new SpecialtyProfile();
+	  specialtyProfile.setId(id);
+	  specialtyProfile.setPosition(position);
+	  specialtyProfile.setCharacteristic(characteristic);
+	  specialtyProfile.setDirectorName(director_name);
+	  specialtyProfile.setSpecialtyName(specialty_name);
+	  specialtyProfile.setBranchIntroduction(branch_introduction);
+	  specialtyProfile.setStatus(1);
+	  specialtyProfile.setCreateTime(new Date());
+	  specialtyProfile.setCreateUser(user.getTeaName());
+	  if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
+	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
+		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+		return jsonResult;
+	  }
+	  System.out.println("传入数据成功");
+       System.out.println("addSpecialtyProfile方法拿到的数据："+specialtyProfile.toString());
+	 int result = specialtyProfileService.addSpecialtyProfile(specialtyProfile);
+	 if (result>0) {
+		jsonResult = JsonResult.build(FLAG_SUCCESS);
+	}else {
+		jsonResult = JsonResult.build(FLAG_FAILED);
+	}
+	}	 catch (Exception e) {
+		// TODO: handle exception
+		 e.printStackTrace();
+		 jsonResult = JsonResult.build(FLAG_SUCCESS, e.getMessage());
+	}
+	return jsonResult;
+}
+
+/*根据id进行软删除（修改status状态码）*/
+@RequestMapping("/delSpecialtyProfile")
+@ResponseBody
+public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletResponse response) {
+	JsonResult jsonResult = new JsonResult();
+	System.out.println("启用delSpecialtyProfile方法");
+	try {
+		ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+		Long id =ToolUtil.lonWithNull("id",request);
+		int status = ToolUtil.integer("status", request);
+		status = 2;
+		System.out.println("id"+id);
+	    //判断是否有该专业
+		SpecialtyProfile specialtyFiles = specialtyProfileService.findSpecialtyProfileById(id);
+		if (specialtyFiles == null) {
+			jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+			return jsonResult;
+		}
+		specialtyFiles.setStatus(status);
+	    int result = specialtyProfileService.modifSpecialtyFilesDel(specialtyFiles);
+	    System.out.println("status："+status);
+	    System.out.println("result:"+result);
+	    if (result > 0) {
+	    	jsonResult = JsonResult.build(FLAG_SUCCESS);
+		} else {
+			jsonResult = JsonResult.build(FLAG_FAILED);
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+	}
+	return jsonResult;
+}
+//   修改专业概况信息
+   @RequestMapping("/updateSpecialtyProfilesIf")
+	@ResponseBody
+	public JsonResult updateSpecialtyIf(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+		System.out.println("启用updateSpecialtyProfilesIf方法");
+		Long id = ToolUtil.lon("id", request);
+		String position = ToolUtil.str("position", request);
+	    String characteristic = ToolUtil.str("characteristic", request);
+	    String director_name = ToolUtil.str("director_name", request);
+	    Long specialty_id = ToolUtil.lon("specialty_id", request);
+	    String specialty_name = ToolUtil.str("specialty_name",request);
+	    Long director_id = ToolUtil.lon("director_id", request);
+	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
+	    Date date = ToolUtil.date2("date", request);
+	   // System.out.println("判断返回的值"+(ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)));
+	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+//		//根据specialtyFilesId
+	    SpecialtyProfile specialtyProfile = specialtyProfileService.findSpecialtyProfileById(id);
+	    if (specialtyProfile == null) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+			return jsonResult;
+		}
+	    specialtyProfile.setDate(date);
+	    System.out.println(date);
+	    specialtyProfile.setBranchIntroduction(branch_introduction);
+	    specialtyProfile.setCharacteristic(characteristic);
+	    specialtyProfile.setDirectorId(director_id);
+	    specialtyProfile.setDirectorName(director_name);
+	    specialtyProfile.setSpecialtyId(specialty_id);
+	    specialtyProfile.setSpecialtyName(specialty_name);
+	    specialtyProfile.setPosition(position);
+	    specialtyProfile.setId(id);
+	    specialtyProfile.setModifyTime(new Date());
+	    specialtyProfile.setModifyUser(user.getTeaName());
+	   
+//	    判断传入的值是否为空或""
+	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)) == false) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+	    	System.out.println("错误，传入数据错误");
+	    	 //接口拿到的数据
+		    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyProfile.toString());
+	    	return jsonResult;
+		}
+	    	System.out.println("传入数据成功");
+			try {
+			    //接口拿到的数据
+			    System.out.println("updateSpecialtyProfileIf方法拿到的数据："+specialtyProfile.toString());
+			    int result = specialtyProfileService.modifySpecialtyProfile(specialtyProfile);
+			    if (result > 0) {
+			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
+				} else {
+					jsonResult = JsonResult.build(FLAG_FAILED);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+			}
+			return jsonResult;
+	}
+
+
+//  获取获取专业概况列表
+ @RequestMapping("/getSpecialtyProfileList")
+ @ResponseBody
+ public JsonResult getSpecialtyProfile(HttpServletRequest request, HttpServletResponse responses) {
+		System.out.println("获取专业概况列表接口");
 		JsonResult jsonResult = new JsonResult();
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
-	/*	int id = ToolUtil.integer("id", request);
-		Long specialty_id = ToolUtil.lon("specialty_id", request);
+		String specialty_name = ToolUtil.str("specialty_name", request);
 	    Date date = ToolUtil.date2("date", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
-	    Long director_id = ToolUtil.lon("director_id", request);
 	    String director_name = ToolUtil.str("director_name", request);
 	    Integer status = ToolUtil.integer("status", request);
-	    Long branch_introduction = ToolUtil.lon("branch_introduction", request);*/
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    Integer pages = 0;
@@ -92,188 +235,6 @@ private Long branchIntroduction;
 			//返回接口的具体数据
 			jsonResult = jsonResult.build(FLAG_SUCCESS, SpecialtyProfileList, msg, counts);
 			System.out.println("获得的数据："+data);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
-		}
-		return jsonResult;
-	}
-   @RequestMapping("/updateSpecialtyProfilesIf")
-	@ResponseBody
-	public JsonResult updateSpecialtyIf(HttpServletRequest request, HttpServletResponse response) {
-		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用updateSpecialtyFilesIf方法");
-		Long id = ToolUtil.lon("id", request);
-		String position = ToolUtil.str("position", request);
-	    String characteristic = ToolUtil.str("characteristic", request);
-	    String director_name = ToolUtil.str("director_name", request);
-	    Long specialty_id = ToolUtil.lon("specialty_id", request);
-	    Long director_id = ToolUtil.lon("director_id", request);
-	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
-	    Integer status = ToolUtil.integer("status", request);
-	    Date date = ToolUtil.date2("date", request);
-	    status = 1;
-	   // System.out.println("判断返回的值"+(ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)));
-	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-//		//根据specialtyFilesId
-	    SpecialtyProfile specialtyProfile = specialtyProfileService.findSpecialtyProfileById(id);
-	    if (specialtyProfile == null) {
-	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-			return jsonResult;
-		}
-	    specialtyProfile.setDate(date);
-	    System.out.println(date);
-	    specialtyProfile.setBranchIntroduction(branch_introduction);
-	    specialtyProfile.setCharacteristic(characteristic);
-	    specialtyProfile.setDirectorId(director_id);
-	    specialtyProfile.setDirectorName(director_name);
-	    specialtyProfile.setSpecialtyId(specialty_id);
-	    specialtyProfile.setPosition(position);
-	    specialtyProfile.setId(id);
-	    specialtyProfile.setStatus(status);
-	    specialtyProfile.setModifyTime(new Date());
-	    specialtyProfile.setModifyUser(user.getTeaName());
-	   
-	    //判断传入的值是否为空或""
-//	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)) == false) {
-//	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
-//	    	System.out.println("错误，传入数据错误");
-//	    	 //接口拿到的数据
-//		    System.out.println("updateSpecialtyIf方法拿到的数据："+specialtyProfile.toString());
-//	    	return jsonResult;
-//		}
-	    	System.out.println("传入数据成功");
-			try {
-				
-//				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-//				//根据specialtyFilesId查询
-//			    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
-//			    if (specialtyFiles == null) {
-//			    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-//					return jsonResult;
-//				}
-//			    specialtyFiles.setDate(date);
-//			    specialtyFiles.setCode(code);
-//			    specialtyFiles.setName(name);
-//			    specialtyFiles.setCateName(cateName);
-//			    specialtyFiles.setReviser(reviser);
-//			    specialtyFiles.setSpecialtyId(specialty_id);
-//			    specialtyFiles.setStatus(status);
-//			    specialtyFiles.setModifyTime(new Date());
-//			    specialtyFiles.setModifyUser(user.getTeaName());
-			    //接口拿到的数据
-			    System.out.println("updateSpecialtyProfileIf方法拿到的数据："+specialtyProfile.toString());
-			    int result = specialtyProfileService.modifySpecialtyProfile(specialtyProfile);
-			    if (result > 0) {
-			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
-				} else {
-					jsonResult = JsonResult.build(FLAG_FAILED);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
-			}
-			return jsonResult;
-	}
-	/*不带if的修改*/
-	/*@RequestMapping("/updateSpecialtyFiles")
-	@ResponseBody
-	public JsonResult updateSpecialty(HttpServletRequest request, HttpServletResponse response) {
-		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用updateSpecialtyFiles方法");
-		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			
-			Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
-			String code = ToolUtil.str("code", request);
-		    String name = ToolUtil.str("name", request);
-		    String cateName = ToolUtil.str("cateName", request);
-		    String reviser = ToolUtil.str("reviser", request);
-		    Long specialtyId = ToolUtil.lon("specialtyId", request);
-		    //
-		    Integer status = ToolUtil.integer("status", request);
-		    Date date = ToolUtil.date1("date", request);
-		    
-		    SpecialtyFiles specialtyFiles = specialtyFilesService.findSpecialtyFilesById(specialtyFilesId);
-		    if (specialtyFiles == null) {
-		    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-				return jsonResult;
-			}
-		    
-		    specialtyFiles.setCode(code);
-		    specialtyFiles.setName(name);
-		    specialtyFiles.setCateName(cateName);
-		    specialtyFiles.setReviser(reviser);
-		    specialtyFiles.setSpecialtyId(specialtyId);
-		    specialtyFiles.setStatus(status);
-		    specialtyFiles.setModifyTime(new Date());
-		    specialtyFiles.setModifyUser(user.getTeaName());
-		    int result = specialtyFilesService.modifySpecialtyFilesKey(specialtyFiles);
-		    if (result > 0) {
-		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
-			} else {
-				jsonResult = JsonResult.build(FLAG_FAILED);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
-		}
-		return jsonResult;
-	}*/
-	/*删除专业文件(数据库删除)*/
-	/*@RequestMapping("/deleteSpecialtyFiles")
-	@ResponseBody
-	public JsonResult deleteSpecialty(HttpServletRequest request, HttpServletResponse response) {
-		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用deleteSpecialtyFiles方法");
-		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			
-			Long specialtyFilesId = ToolUtil.lon("specialtyFilesId", request);
-		    
-		    int result = specialtyFilesService.deleteSpecialtyFilesById(specialtyFilesId);
-		    if (result > 0) {
-		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
-			} else {
-				jsonResult = JsonResult.build(FLAG_FAILED);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
-		}
-		return jsonResult;
-	}*/
-	/*根据id进行软删除（修改status状态码）*/
-	@RequestMapping("/delSpecialtyProfile")
-	@ResponseBody
-	public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletResponse response) {
-		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用delSpecialtyProfile方法");
-		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-			Long id =ToolUtil.lonWithNull("id",request);
-			int status = ToolUtil.integer("status", request);
-			status = 2;
-			System.out.println("id"+id);
-		    //判断是否有该专业
-			SpecialtyProfile specialtyFiles = specialtyProfileService.findSpecialtyProfileById(id);
-			if (specialtyFiles == null) {
-				jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
-				return jsonResult;
-			}
-			specialtyFiles.setStatus(status);
-		    int result = specialtyProfileService.modifSpecialtyFilesDel(specialtyFiles);
-		    System.out.println("status："+status);
-		    System.out.println("result:"+result);
-		    if (result > 0) {
-		    	jsonResult = JsonResult.build(FLAG_SUCCESS);
-			} else {
-				jsonResult = JsonResult.build(FLAG_FAILED);
-			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

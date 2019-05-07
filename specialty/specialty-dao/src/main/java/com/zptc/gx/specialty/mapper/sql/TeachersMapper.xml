@@ -15,7 +15,6 @@
     <result column="research_direction" property="researchDirection" jdbcType="VARCHAR" />
     <result column="is_part_time" property="isPartTime" jdbcType="INTEGER" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
-    <result column="specialty_name2" property="specialtyName2" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -24,7 +23,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, code, entry_time, birthday, graduate_school, final_degree, political_status, 
-    specialty_code, specialty_name, research_direction, is_part_time, specialty_id, specialty_name2, 
+    specialty_code, specialty_name, research_direction, is_part_time, specialty_id,
     status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -42,14 +41,14 @@
       entry_time, birthday, graduate_school, 
       final_degree, political_status, specialty_code, 
       specialty_name, research_direction, is_part_time, 
-      specialty_id, specialty_name2, status, 
+      specialty_id, status, 
       create_time, create_user, modify_time, 
       modify_user)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{entryTime,jdbcType=TIMESTAMP}, #{birthday,jdbcType=TIMESTAMP}, #{graduateSchool,jdbcType=VARCHAR}, 
       #{finalDegree,jdbcType=VARCHAR}, #{politicalStatus,jdbcType=VARCHAR}, #{specialtyCode,jdbcType=VARCHAR}, 
       #{specialtyName,jdbcType=VARCHAR}, #{researchDirection,jdbcType=VARCHAR}, #{isPartTime,jdbcType=INTEGER}, 
-      #{specialtyId,jdbcType=BIGINT}, #{specialtyName2,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{specialtyId,jdbcType=BIGINT},  #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=VARCHAR})
   </insert>
@@ -94,9 +93,6 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
-      </if>
-      <if test="specialtyName2 != null" >
-        specialty_name2,
       </if>
       <if test="status != null" >
         status,
@@ -154,9 +150,6 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
-      <if test="specialtyName2 != null" >
-        #{specialtyName2,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -213,9 +206,6 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
-      <if test="specialtyName2 != null" >
-        specialty_name2 = #{specialtyName2,jdbcType=VARCHAR},
-      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -248,7 +238,6 @@
       research_direction = #{researchDirection,jdbcType=VARCHAR},
       is_part_time = #{isPartTime,jdbcType=INTEGER},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
-      specialty_name2 = #{specialtyName2,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
@@ -256,4 +245,36 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <!-- 查询列表数据 -->
+  <select id="getTeachersList" resultType="map" parameterType="com.zptc.gx.specialty.entity.Teachers" >
+    select
+    <include refid="Base_Column_List" />
+    from teachers
+    <where>
+    <if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+    </if>
+    </where>
+  </select>
+  
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			teachers
+	  <where>
+	    <if test="status !=null and status != ''">
+						and status = #{status,jdbcType=INTEGER}
+		</if>
+    </where>
+</select>
+	<update id=" delByPrimaryKeyStaus"  parameterType="com.zptc.gx.specialty.entity.Teachers" >
+	    update teachers
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>
