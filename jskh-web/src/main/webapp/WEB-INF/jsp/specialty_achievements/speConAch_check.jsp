@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/specialty_achievements/speConAch_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -48,15 +48,9 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">作者</label>
 					<div class="layui-input-inline"  >
-						<input name="first_author" id="first_author" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">其他作者情况</label>
-					<div class="layui-input-inline"  >
-						<input name="other_author" id="other_author" disabled autocomplete="off" class="layui-input">
+						<input name="author" id="author" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -79,8 +73,7 @@
 		$("#name").val(data.name);
 		$("#sources").val(data.sources);
 		$("#level").val(data.level);
-		$("#first_author").val(data.first_author);
-		$("#other_author").val(data.other_author);
+		$("#author").val(data.author);
 		$("#specialtyName").val(data.specialtyName);
 	}
    	</script>

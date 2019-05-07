@@ -41,15 +41,9 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">主持人</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">其他作者情况</label>
-					<div class="layui-input-inline">
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input" type="text">
+						<input name="author" id="author"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -69,7 +63,7 @@
 	</body>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+		<script type="text/javascript" src="${path}/static/js/specialty_achievements/speConAch_List.js"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
 	function ajax_h(form,url,object,ids){
@@ -129,15 +123,14 @@
 			params.name = $("#name").val();
 		/* 	params.cate_name = $("#cate_name").val(); */
 			params.level = $("#level").val();
-			params.first_author = $("#first_author").val();
-			params.other_authors = $("#other_authors").val();
+			params.author = $("#author").val();
 			params.specialty_name = $("#specialtyName option:checked").text();
 			params.specialty_id = $("#specialtyName option:checked").val();
 		console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/otherAchievements/addOtherAchievements',
+				        url:window.path+'/specialtyConstructionAchievements/addSpecialtyConstructionAchievements',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 

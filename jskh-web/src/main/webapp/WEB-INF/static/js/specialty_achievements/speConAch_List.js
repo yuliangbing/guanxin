@@ -46,7 +46,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/otherAchievements/getOtherAchievementsList'
+		    ,url:window.path +'/specialtyConstructionAchievements/getSpecialtyConstructionAchievements'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -57,8 +57,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'name', title:'成果名称', width:150, }
 		      ,{field:'sources', title:'成果来源', width:150, } 
 		      ,{field:'level', title:'成果级别', width:130, }
-		      ,{field:'first_author', title:'第一作者', width:130, }
-		      ,{field:'other_authors', title:'其他作者情况', width:130, }
+		      ,{field:'author', title:'作者', width:130, }
 		      ,{field:'specialtyName', title:'专业名称', width:130, }
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
@@ -77,7 +76,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/other_check'],
+	    		content:['/toPage?page=specialty_achievements/speConAch_check'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -94,9 +93,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/otherAchievements/delOtherAchievements',
+					url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
 					type:"POST",
-					data:{id:data.id},
+					data:{Id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -117,7 +116,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/other_update'],
+	    		content:['/toPage?page=specialty_achievements/speConAch_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -173,7 +172,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=other_achievements/other_insert'],
+	  		content:['/toPage?page=specialty_achievements/speConAch_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
@@ -195,7 +194,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/otherAchievements/delOtherAchievements',
+						url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",
