@@ -1,5 +1,8 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +17,12 @@ public class InnovationEntrepreneurialAchievementsServiceImpl implements Innovat
 	private InnovationEntrepreneurialAchievementsMapper innovationEntrepreneurialAchievementsMapper;
 
 	@Override
-	public void addInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements){
-		innovationEntrepreneurialAchievementsMapper.insertSelective(innovationEntrepreneurialAchievements);
+	public int addInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements){
+		return innovationEntrepreneurialAchievementsMapper.insertSelective(innovationEntrepreneurialAchievements);
 	}
 	@Override
-	public void modifyInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements){
-		innovationEntrepreneurialAchievementsMapper.updateByPrimaryKeySelective(innovationEntrepreneurialAchievements);
+	public int modifyInnovationEntrepreneurialAchievements(InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements){
+		return innovationEntrepreneurialAchievementsMapper.updateByPrimaryKeySelective(innovationEntrepreneurialAchievements);
 	}
 	@Override
 	public void deleteInnovationEntrepreneurialAchievementsById(Long id){
@@ -29,5 +32,20 @@ public class InnovationEntrepreneurialAchievementsServiceImpl implements Innovat
 	public InnovationEntrepreneurialAchievements findInnovationEntrepreneurialAchievementsById(Long id){
 		InnovationEntrepreneurialAchievements innovationEntrepreneurialAchievements = innovationEntrepreneurialAchievementsMapper.selectByPrimaryKey(id);
 		return innovationEntrepreneurialAchievements;
+	}
+	@Override
+	public List<InnovationEntrepreneurialAchievements> getIEAchievementsList(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return innovationEntrepreneurialAchievementsMapper.IEAchievementsList(data);
+	}
+	@Override
+	public int Counts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return innovationEntrepreneurialAchievementsMapper.Counts(count);
+	}
+	@Override
+	public int dellIEAchievements(InnovationEntrepreneurialAchievements achievements) {
+		// TODO Auto-generated method stub
+		return innovationEntrepreneurialAchievementsMapper.updateDel(achievements);
 	}
 }
