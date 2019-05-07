@@ -22,6 +22,7 @@ import com.zptc.gx.specialty.entity.Issues;
 import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.service.IssuesService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 @Controller
 @RequestMapping("/issuesList")
@@ -38,7 +39,6 @@ public class IssuesListController extends BaseController{
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 		String code = ToolUtil.str("code", request);
-	    String name = ToolUtil.str("name", request);
 	    String date = ToolUtil.str("date", request);
 	    String date1 = null;
 	    String date2 = null;
@@ -48,61 +48,27 @@ public class IssuesListController extends BaseController{
 	    	date1 = dates[0].trim();
 		    date2 = dates[1].trim();
 		}
-	    
-	    String sources = ToolUtil.str("sources", request);
-	    Integer status = ToolUtil.integer("status", request);
-	    String awardsConstruction = ToolUtil.str("awardsConstruction", request);
-	    String host = ToolUtil.str("host", request);
-	    String participants = ToolUtil.str("participants", request);
-	    Long  specialtyId = ToolUtil.lon("specialtyId", request);
-	    String createTime = ToolUtil.str("createTime", request);
-	    String createUser = ToolUtil.str("createUser", request);
-	    String modifyTime = ToolUtil.str("modifyTime", request);
-	    String modifyUser = ToolUtil.str("modifyUser", request);
-	    
+	   	    
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
-	    
+	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
-	    Integer limits = 0;
 		//用于分页的数据
-		pages = (page - 1) * limit;
+	    pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
 	    data.put("code", code);
-	    data.put("name", name);
 	    data.put("date1", date1);
 	    data.put("date2", date2);
-	    data.put("sources", sources);
 	    data.put("status", 1);
-	    data.put("awardsConstruction", awardsConstruction);
-	    data.put("host", host);
-	    data.put("participants", participants);
-	    data.put("specialtyId", specialtyId);
-	    data.put("createTime", createTime);
-	    data.put("createUser", createUser);
-	    data.put("modifyTime", modifyTime);
-	    data.put("modifyUser", modifyUser);
-	    
-		data.put("limit", limit);
+		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
-	
 		System.out.println("page:"+pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 	    count.put("code", code);
-	    count.put("name", name);
 	    count.put("date1", date1);
 	    count.put("date2", date2);
-	    count.put("sources", sources);
 	    count.put("status", 1);
-	    count.put("awardsConstruction", awardsConstruction);
-	    count.put("host", host);
-	    count.put("participants", participants);
-	    count.put("specialtyId", specialtyId);
-	    count.put("createTime", createTime);
-	    count.put("createUser", createUser);
-	    count.put("modifyTime", modifyTime);
-	    count.put("modifyUser", modifyUser);
 		//定义返回的数据条总数
 		int counts = 0;
 		//定义返回的msg
@@ -117,6 +83,7 @@ public class IssuesListController extends BaseController{
 			//返回接口的具体数据
 			jsonResult = jsonResult.build(0, issuesList, msg, counts);
 			System.out.println("获得的数据："+data);
+			System.out.println("返回数据条数"+counts);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
