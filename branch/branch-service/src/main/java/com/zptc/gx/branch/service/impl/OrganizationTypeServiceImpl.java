@@ -41,5 +41,10 @@ public class OrganizationTypeServiceImpl implements OrganizationTypeService {
 		// TODO Auto-generated method stub
 		return organizationTypeMapper.getOrganizationType(data);
 	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return organizationTypeMapper.selectCounts(count);
+	}
 	
 }

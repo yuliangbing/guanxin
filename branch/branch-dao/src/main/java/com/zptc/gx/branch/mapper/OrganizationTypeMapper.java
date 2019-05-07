@@ -1,6 +1,7 @@
 package com.zptc.gx.branch.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zptc.gx.branch.entity.OrganizationType;
 
@@ -21,4 +22,6 @@ public interface OrganizationTypeMapper {
     int updateByPrimaryKey(OrganizationType record);
     
     List<OrganizationType> getOrganizationType(Object data);
+
+	int selectCounts(Map<String, Object> count);
 }

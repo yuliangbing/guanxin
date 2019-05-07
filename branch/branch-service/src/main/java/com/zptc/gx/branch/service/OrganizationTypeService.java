@@ -16,7 +16,10 @@ public interface OrganizationTypeService {
 	public int delOrganizationTypeById(OrganizationType organizationType);
 
 	public OrganizationType findOrganizationTypeById(Long id);
-
+	
+//	统计数据条数
+	public int selectCounts(Map<String, Object> count);
+	
 	public List<OrganizationType> getOrganizationTypeList(Map<String, Object> data);
 
 }

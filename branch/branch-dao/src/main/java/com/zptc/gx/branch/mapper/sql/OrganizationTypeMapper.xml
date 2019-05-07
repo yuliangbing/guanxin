@@ -129,5 +129,26 @@
     <include refid="Base_Column_List" />
     from organization_type
   </select>
-
+<!-- 统计条数 -->
+ <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			organization_type
+			<where>
+				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if> -->
+				<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+				</if>
+				<!-- <if test="specialty_id != null and specialty_id != ''">
+					and specialty_id like '%${specialty_id}%'
+					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+				</if> -->
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
 </mapper>

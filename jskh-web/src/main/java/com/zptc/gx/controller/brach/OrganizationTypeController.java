@@ -69,9 +69,10 @@ public class OrganizationTypeController extends BaseController{
 		String msg = "success";
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-	//获取所有status == 1 的所有数据
+	        //获取所有status == 1 的所有数据
 			List<OrganizationType>    OrganizationTypeList = organizationTypeService.getOrganizationTypeList(data);
-			
+			//获取所有status == 1的数据条总数
+			counts = organizationTypeService.selectCounts(count);
 			jsonResult = jsonResult.build(FLAG_SUCCESS, OrganizationTypeList, msg, counts);
 		} catch (Exception e) {
 			// TODO: handle exception
