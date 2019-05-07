@@ -44,7 +44,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">就业对口率</label>
 					<div class="layui-input-inline">
-						<input name="host" id="host"  autocomplete="off" class="layui-input" type="text">
+						<input name="employment_rate" id="employment_rate"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -72,12 +72,12 @@
 
 		id = data.id;
 		$("#date").val(data.date);
-		$("#graduate_num").val(data.graduate_num);
-		$("#employed_num").val(data.employed_num);
-		$("#entrepreneurs_num").val(data.entrepreneurs_num);
-		$("#employment_rate").text(data.employment_rate);
-		$("#specialty_id").val(data.specialty_id);
-		specialty_name = data.specialty_name;
+		$("#graduate_num").val(data.graduateNum);
+		$("#employed_num").val(data.employedNum);
+		$("#entrepreneurs_num").val(data.entrepreneursNum);
+		$("#employment_rate").val(data.employmentRate);
+		$("#specialty_id").val(data.specialtyId);
+		specialty_name = data.specialtyName;
 	}
 	
 	function ajax_h(form,names,url,object,ids)
@@ -168,7 +168,7 @@
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/issuesList/updateIssues?id='+id,
+				        url:window.path+'/graduateHistory/updateGraduateHistory?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
