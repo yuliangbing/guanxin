@@ -22,6 +22,6 @@ public interface SpecialtyProfileMapper {
 //  软删除
     int updateByPrimaryKeyDel(SpecialtyProfile record);
 
-	int selectCounts(Map<String, Object> counts);
+	int selectCounts(Map<String, Object> count);
 	
 }

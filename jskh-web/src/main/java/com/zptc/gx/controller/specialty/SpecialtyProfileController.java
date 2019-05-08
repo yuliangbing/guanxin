@@ -43,7 +43,7 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 	try {
 		ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 		
-		Long id = ToolUtil.lon("id", request);
+		//Long id = ToolUtil.lon("id", request);
 		String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
 	    String director_name = ToolUtil.str("director_name", request);
@@ -52,7 +52,7 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 	    Integer status = ToolUtil.integer("status", request);
 	    
 	   SpecialtyProfile specialtyProfile= new SpecialtyProfile();
-	  specialtyProfile.setId(id);
+	  //specialtyProfile.setId(id);
 	  specialtyProfile.setPosition(position);
 	  specialtyProfile.setCharacteristic(characteristic);
 	  specialtyProfile.setDirectorName(director_name);
@@ -61,7 +61,7 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 	  specialtyProfile.setStatus(1);
 	  specialtyProfile.setCreateTime(new Date());
 	  specialtyProfile.setCreateUser(user.getTeaName());
-	  if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
+	  if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
 	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
 		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 		return jsonResult;

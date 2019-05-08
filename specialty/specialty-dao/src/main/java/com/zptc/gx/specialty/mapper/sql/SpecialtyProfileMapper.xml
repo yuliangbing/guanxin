@@ -37,7 +37,7 @@
       director_name, status, branch_introduction, 
       create_time, create_user, modify_time, 
       modify_user)
-    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT},#{specialty_name,jdbcType=VARCHAR},,jdbcType=DATE}, 
+    values (#{id,jdbcType=BIGINT}, #{specialtyId,jdbcType=BIGINT},#{specialtyName,jdbcType=VARCHAR},,jdbcType=DATE}, 
       #{position,jdbcType=VARCHAR}, #{characteristic,jdbcType=VARCHAR}, #{directorId,jdbcType=BIGINT}, 
       #{directorName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{branchIntroduction,jdbcType=BIGINT}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
@@ -97,7 +97,7 @@
         #{specialtyId,jdbcType=BIGINT},
       </if>
       <if test="specialtyName != null" >
-         #{specialty_name,jdbcType=VARCHAR},
+         #{specialtyName,jdbcType=VARCHAR},
       </if>
       <if test="date != null" >
         #{date,jdbcType=DATE},

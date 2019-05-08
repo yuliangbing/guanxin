@@ -90,16 +90,16 @@ public class OrganizationTypeController extends BaseController{
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 		   
-			Long id = ToolUtil.lon("id", request);
+			//Long id = ToolUtil.lon("id", request);
 		    String name = ToolUtil.str("name", request);
 		    Integer status = ToolUtil.integer("status", request);
 		     OrganizationType organizationType = new OrganizationType();
-		     organizationType.setId(id);
+		     //organizationType.setId(id);
 		     organizationType.setName(name);
 		     organizationType.setCreateTime(new Date());
 		     organizationType.setCreateUser(user.getTeaName());
 		     organizationType.setStatus(1);
-		     if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)) == false) {
+		     if ((ToolUtil.equalBool(name)) == false) {
  				jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 		     	return jsonResult;
 	     	  }

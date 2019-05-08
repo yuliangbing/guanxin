@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.branch.entity.OrganizationType;
 import com.zptc.gx.branch.mapper.OrganizationTypeMapper;
@@ -21,12 +22,14 @@ public class OrganizationTypeServiceImpl implements OrganizationTypeService {
 		return organizationTypeMapper.insertSelective(organizationType);
 	}
 	@Override
+	@Transactional
 	public int modifyOrganizationType(OrganizationType organizationType){
 		return organizationTypeMapper.updateByPrimaryKeySelective(organizationType);
 	}
 	
 	
 	@Override
+	@Transactional//事务回滚
 	public int delOrganizationTypeById(OrganizationType organizationType){
 		return organizationTypeMapper.delOrganizationTypeById(organizationType);
 	}

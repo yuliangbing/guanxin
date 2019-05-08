@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.mapper.SpecialtyProfileMapper;
@@ -39,12 +40,13 @@ public class SpecialtyProfileServiceImpl implements SpecialtyProfileService {
 		return specialtyProfileMapper.getSpecialtyProfileList(data);
 	}
 	@Override
-	public int selectCounts(Map<String, Object> counts) {
+	public int selectCounts(Map<String, Object> count) {
 		// TODO Auto-generated method stub
-		return specialtyProfileMapper.selectCounts(counts);
+		return specialtyProfileMapper.selectCounts(count);
 	}
-	
+//	软删除改变status
 	@Override
+	@Transactional//事务回滚
 	public int modifSpecialtyFilesDel(SpecialtyProfile specialtyProfile) {
 		// TODO Auto-generated method stub
 		return specialtyProfileMapper.updateByPrimaryKeyDel(specialtyProfile);

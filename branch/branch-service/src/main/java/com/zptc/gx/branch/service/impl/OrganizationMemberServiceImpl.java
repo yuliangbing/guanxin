@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.branch.entity.OrganizationMember;
 import com.zptc.gx.branch.mapper.OrganizationMemberMapper;
@@ -21,6 +22,7 @@ public class OrganizationMemberServiceImpl implements OrganizationMemberService 
 		return organizationMemberMapper.insertSelective(organizationMember);
 	}
 	@Override
+	@Transactional
 	public int modifyOrganizationMember(OrganizationMember organizationMember){
 		return organizationMemberMapper.updateByPrimaryKeySelective(organizationMember);
 	}
@@ -39,6 +41,7 @@ public class OrganizationMemberServiceImpl implements OrganizationMemberService 
 		return organizationMemberMapper.getOrganizationMember(data);
 	}
 	@Override
+	@Transactional//事务回滚
 	public int delOrganizationMemberById(OrganizationMember organizationMember) {
 		// TODO Auto-generated method stub
 		return organizationMemberMapper.delOrganizationMemberById(organizationMember);

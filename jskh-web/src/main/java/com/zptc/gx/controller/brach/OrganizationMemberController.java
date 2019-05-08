@@ -88,21 +88,22 @@ public class OrganizationMemberController extends BaseController{
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			   
-			Long id = ToolUtil.lon("id", request);
+			//Long id = ToolUtil.lon("id", request);
 		    String name = ToolUtil.str("name", request);
 		    String position = ToolUtil.str("position",request);
 		    Integer status = ToolUtil.integer("status", request);
 		    OrganizationMember organizationMember =new OrganizationMember();
-		    organizationMember.setId(id);
+		    //organizationMember.setId(id);
 		    organizationMember.setName(name);
 		    organizationMember.setPosition(position);
 		    organizationMember.setCreateTime(new Date());
 		    organizationMember.setCreateUser(user.getTeaName());
 		    organizationMember.setStatus(1);
-		    if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(position)) == false) {
+		    if ((ToolUtil.equalBool(name)&&ToolUtil.equalBool(position)) == false) {
 		    			jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 		    			return jsonResult;
 		      }
+		    System.out.println(organizationMember.toString());
 		    int result = organizationMemberService.addOrganizationMember(organizationMember);
 		    if (result>0) {
 				jsonResult = JsonResult.build(FLAG_SUCCESS);

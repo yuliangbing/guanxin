@@ -20,12 +20,116 @@
     id, date, name, award_level, students, teachers, specialty_id, specialty_name, status, 
     create_time, create_user, modify_time, modify_user
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+  <!-- 根据id -->
+   <select id="selectByPrimaryKeyId" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
     from subject_competition
-    where id = #{id,jdbcType=BIGINT}
+    where id= #{id,jdbcType=BIGINT}
   </select>
+  <!-- 查询列表数据 -->
+  <select id="getSubjectCompetitionList" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from subject_competition
+    <where>
+    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="date != null and date != ''">
+			and instr(date,#{date,jdbcType=DATE})
+		</if>
+		<if test="position != null and position != ''">
+			and instr(position,#{position,jdbcType=VARCHAR})
+		</if>
+		<if test="characteristic != null and characteristic != ''">
+			and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+		</if>
+		<if test="directorId != null and directorId != ''">
+			and instr(directorId,#{directorId,jdbcType=BIGINT})
+		</if>
+		<if test="directorName != null and directorName != ''">
+			and instr(directorName,#{directorName,jdbcType=VARCHAR})
+		</if>
+		<if test="branchIntroduction != null and branchIntroduction != ''">
+			and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="createUser != null and createUser != ''">
+			and instr(createUser,#{createUser,jdbcType=VARCHAR})
+		</if>
+		<if test="modifyTime != null and modifyTime != ''">
+			and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="modifyUser != null and modifyUser != ''">
+			and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+		</if> -->
+		<if test="award_level != null and award_level != ''">
+			and instr(award_level,#{award_level,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_profile
+			<where>
+				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+				</if>
+				<if test="date != null and date != ''">
+					and instr(date,#{date,jdbcType=DATE})
+				</if>
+				<if test="position != null and position != ''">
+					and instr(position,#{position,jdbcType=VARCHAR})
+				</if>
+				<if test="characteristic != null and characteristic != ''">
+					and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+				</if>
+				<if test="directorId != null and directorId != ''">
+					and instr(directorId,#{directorId,jdbcType=BIGINT})
+				</if>
+				<if test="directorName != null and directorName != ''">
+					and instr(directorName,#{directorName,jdbcType=VARCHAR})
+				</if>
+				<if test="branchIntroduction != null and branchIntroduction != ''">
+					and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+				</if>
+				<if test="createTime != null and createTime != ''">
+					and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="createUser != null and createUser != ''">
+					and instr(createUser,#{createUser,jdbcType=VARCHAR})
+				</if>
+				<if test="modifyTime != null and modifyTime != ''">
+					and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="modifyUser != null and modifyUser != ''">
+					and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+				</if> -->
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
     delete from subject_competition
     where id = #{id,jdbcType=BIGINT}
