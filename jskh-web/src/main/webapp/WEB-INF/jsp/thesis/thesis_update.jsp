@@ -18,44 +18,44 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">发表时间</label>
 					<div class="layui-input-inline">
-						<input name="date" id="date"  autocomplete="off" class="layui-input">
+						<input name="date" id="date" lay-verify="required|date" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">论文题目</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input">
+						<input name="name" id="name" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">发表期刊</label>
 					<div class="layui-input-inline">
-						<input name="published_journal" id="published_journal"  autocomplete="off" class="layui-input">
+						<input name="published_journal" id="published_journal" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
 					<label class="layui-form-label">索引或级别</label>
 					<div class="layui-input-inline">
-						<input name="index_level" id="index_level"  autocomplete="off" class="layui-input">
+						<input name="index_level" id="index_level" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">第一作者</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input">
+						<input name="first_author" id="first_author" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">其他作者</label>
 					<div class="layui-input-inline"  >
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input">
+						<input name="other_authors" id="other_authors" lay-verify="required" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">专业id</label>
 					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" autocomplete="off" class="layui-input" type="text">
+						<select name="specialty_id"  id="specialty_id" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 						</select>
 					</div>
@@ -63,7 +63,7 @@
 				<div class="layui-form-item">
 					<label  class="layui-form-label">获奖情况</label>
 					<div class="layui-input-inline">
-						<textarea  class="layui-textarea"  id="awards" style="width: 440%;"></textarea>
+						<textarea  class="layui-textarea" lay-verify="required" id="awards" style="width: 440%;"></textarea>
 					</div>
 				</div>
 			</div>

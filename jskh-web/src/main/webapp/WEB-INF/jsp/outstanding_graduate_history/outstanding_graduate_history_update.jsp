@@ -19,39 +19,39 @@
 				<div class="layui-inline" >
 					<label class="layui-form-label">毕业时间</label>
 					<div class="layui-input-inline">
-						<input name="date" id="date"  autocomplete="off" class="layui-input" type="text">
+						<input name="date" id="date" lay-verify="required|date" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline" >
 					<label class="layui-form-label">姓名</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
+						<input name="name" id="name" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">公司</label>
 					<div class="layui-input-inline">
-						<input name="company" id="company"  autocomplete="off" class="layui-input" type="text">
+						<input name="company" id="company" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
 					<label class="layui-form-label">岗位</label>
 					<div class="layui-input-inline">
-						<input name="position" id="position"  autocomplete="off" class="layui-input" type="text">
+						<input name="position" id="position" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">薪资</label>
 					<div class="layui-input-inline">
-						<input name="salary" id="salary"  autocomplete="off" class="layui-input" type="text">
+						<input name="salary" id="salary" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">专业id</label>
 					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" autocomplete="off" class="layui-input" type="text">
+						<select name="specialty_id"  id="specialty_id" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 						</select>
 					</div>

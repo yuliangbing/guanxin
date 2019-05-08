@@ -35,11 +35,11 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
 		      ,{field:'specialty_name', title:'专业名称', width:130,}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true }
+		      ,{field:'awards', title:'获奖情况', width:230, }
 		      ,{field:'create_time', title:'创建时间', width:150, }
 		      ,{field:'create_user', title:'创建人', width:150, }
 		      ,{field:'modify_time', title:'修改时间', width:150, }
 		      ,{field:'modify_user', title:'修改人', width:130, }
-		      ,{field:'awards', title:'获奖情况', width:230, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  

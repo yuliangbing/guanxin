@@ -20,6 +20,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    elem: '#test'
 		    ,url:window.path +'/outstandingGraduateHistory/ListOutstandingGraduateHistory'
 		    ,title: '用户数据表'
+	    	,method:'post'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
@@ -113,6 +114,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 				arr.date2 = data.field.date.split('~')[1];
 			}
+			console.log(arr);
 			tableIns.reload({
 				where:arr,
 				page: {
