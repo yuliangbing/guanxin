@@ -1,15 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>组织机构</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css" >
-<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
-<script type="text/javascript" src="${path}/static/js/organization/organization_type_List.js"></script>
+<meta charset="UTF-8">
+<title>教学资产</title>
+<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
+	<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assetsList.js"></script>
 </head>
+<body>
 <body class="layui-layout-body">
      <div class="layui-layout layui-layout-admin">
      <!--<div class="layui-body">-->
@@ -27,15 +28,21 @@
 								</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label" for="code">ID</label>
+									<label class="layui-form-label" >成果名称</label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入ID" autocomplete="off" class="layui-input">
+										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label" for="name" style="width:120px;">组织机构类别名称</label>
+									<label class="layui-form-label"  style="width:120px;">成果来源</label>
 									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入组织机构类别名称" autocomplete="off" class="layui-input">
+										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入成果来源" autocomplete="off" class="layui-input">
+									</div>
+								</div>
+								<div class="layui-inline">
+									<label class="layui-form-label" for="name" style="width:120px;">作者</label>
+									<div class="layui-input-inline">
+										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入作者" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 							</div>
@@ -46,8 +53,8 @@
 						    </a>
 						</form>
 					</div>
-    <table class="layui-hide" id=test lay-filter="test"></table>
-    </div>
+                  <table class="layui-hide" id=test lay-filter="test"></table>
+              </div>
 
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
@@ -61,6 +68,5 @@
     </div>
     </script>
 	</body>
-	
-	
+</body>
 </html>
