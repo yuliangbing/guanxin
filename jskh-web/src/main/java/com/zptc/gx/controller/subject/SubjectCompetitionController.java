@@ -65,7 +65,7 @@ public class SubjectCompetitionController extends BaseController{
 		    subjectCompetition.setStatus(1);
 		    subjectCompetition.setCreateTime(new Date());
 		    subjectCompetition.setCreateUser(user.getTeaName());
-		    if ((ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)
+		    if ((ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)&&ToolUtil.equalBool(date)
                     &&ToolUtil.equalBool(students)&&ToolUtil.equalBool(teachers)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
 		    			jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 		    			return jsonResult;
