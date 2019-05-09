@@ -181,14 +181,14 @@ public class SubjectCompetitionController extends BaseController{
 		//用于分页的数据
 		pages = (page - 1) * limit;
 		//存入data,用于获取表格数据
-/*	    data.put("specialty_id", specialty_id);
-	    data.put("position", position);
-	    data.put("characteristic", characteristic);
-	    data.put("director_id", director_id);
-//	    data.put("specialty_id", specialty_id);
-	    data.put("date", date);
-		data.put("director_name", director_name);
-		data.put("branch_introduction", branch_introduction);*/
+	    data.put("id", id);
+	    data.put("name", name);
+	    data.put("award_level", award_level);
+	    data.put("students", students);
+	    data.put("teachers", teachers);
+	    data.put("date", new Date());
+		data.put("specialty_id", specialty_id);
+		data.put("specialty_name", specialty_name);
 		data.put("limit", limit);
 		data.put("pages", pages);
 		data.put("status", 1);
