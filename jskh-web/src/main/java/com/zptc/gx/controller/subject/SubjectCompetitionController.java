@@ -46,6 +46,7 @@ public class SubjectCompetitionController extends BaseController{
 			//Long id = ToolUtil.lon("id", request);
 			String name = ToolUtil.str("name", request);
 		    String award_level = ToolUtil.str("award_level", request);
+		    Date date = ToolUtil.date1("date", request);
 		    String students = ToolUtil.str("students", request);
 		    String teachers = ToolUtil.str("teachers", request);
 		   Long specialty_id = ToolUtil.lon("specialty_id", request); 
@@ -57,6 +58,7 @@ public class SubjectCompetitionController extends BaseController{
 		    subjectCompetition.setName(name);
 		    subjectCompetition.setAwardLevel(award_level);
 		    subjectCompetition.setStudents(students);
+		    subjectCompetition.setDate(date);
 		    subjectCompetition.setTeachers(teachers);
 		    subjectCompetition.setSpecialtyId(specialty_id);
 		    subjectCompetition.setSpecialtyName(specialty_name);
@@ -118,6 +120,7 @@ public class SubjectCompetitionController extends BaseController{
       
        Long id = ToolUtil.lon("id", request);
      String name = ToolUtil.str("name", request);
+     
 	 String award_level = ToolUtil.str("award_level", request);
 	  String students = ToolUtil.str("students", request);
 	  String teachers = ToolUtil.str("teachers", request);
@@ -170,7 +173,6 @@ public class SubjectCompetitionController extends BaseController{
 //	 获取请求参数
 	 Long id = ToolUtil.lon("id", request);
      String name = ToolUtil.str("name", request);
-     Date date = ToolUtil.date1("date", request);
 	 String award_level = ToolUtil.str("award_level", request);
 	  String students = ToolUtil.str("students", request);
 	  String teachers = ToolUtil.str("teachers", request);
@@ -189,7 +191,7 @@ public class SubjectCompetitionController extends BaseController{
 	    data.put("award_level", award_level);
 	    data.put("students", students);
 	    data.put("teachers", teachers);
-	    data.put("date", date);
+	    
 		data.put("specialty_id", specialty_id);
 		data.put("specialty_name", specialty_name);
 		data.put("limit", pageVO.getLimit());

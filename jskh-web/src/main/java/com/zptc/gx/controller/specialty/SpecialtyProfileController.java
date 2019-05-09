@@ -47,6 +47,7 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 		//Long id = ToolUtil.lon("id", request);
 		String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
+	    Date date = ToolUtil.date1("date", request);
 	    String director_name = ToolUtil.str("director_name", request);
 	    String specialty_name = ToolUtil.str("specialty_name", request);
 	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
@@ -56,17 +57,18 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 	  //specialtyProfile.setId(id);
 	  specialtyProfile.setPosition(position);
 	  specialtyProfile.setCharacteristic(characteristic);
+	  specialtyProfile.setDate(date);
 	  specialtyProfile.setDirectorName(director_name);
 	  specialtyProfile.setSpecialtyName(specialty_name);
 	  specialtyProfile.setBranchIntroduction(branch_introduction);
 	  specialtyProfile.setStatus(1);
 	  specialtyProfile.setCreateTime(new Date());
 	  specialtyProfile.setCreateUser(user.getTeaName());
-	  if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
-	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
-		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
-		return jsonResult;
-	  }
+//	  if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
+//	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
+//		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+//		return jsonResult;
+//	  }
 	  System.out.println("传入数据成功");
        System.out.println("addSpecialtyProfile方法拿到的数据："+specialtyProfile.toString());
 	 int result = specialtyProfileService.addSpecialtyProfile(specialtyProfile);
@@ -189,7 +191,6 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 		String specialty_name = ToolUtil.str("specialty_name", request);
-		Date date = ToolUtil.date1("date", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
 	    String director_name = ToolUtil.str("director_name", request);
@@ -205,8 +206,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    data.put("position", position);
 	    data.put("characteristic", characteristic);
 	    data.put("director_name", director_name);
-	    data.put("date", date);
-	    data.put("date", new Date());
+	    
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
