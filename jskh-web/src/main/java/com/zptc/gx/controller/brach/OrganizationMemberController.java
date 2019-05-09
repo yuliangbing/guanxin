@@ -24,6 +24,7 @@ import com.zptc.gx.controller.BaseController;
 import com.zptc.gx.controller.specialty.SpecialtyFilesController;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 
 @Controller
@@ -48,16 +49,17 @@ public class OrganizationMemberController extends BaseController{
 	 //  Integer status= ToolUtil.integer("status",request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
+	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
-//	    Integer pages = page;
-	    Integer limits = 0;
 //	    用于分页的数据
+	    pages = pageVO.getBeginNum();
+
 	  //存入data,用于获取表格数据
 	    //data.put("id", id);
 	    data.put("name", name);
 	    data.put("position", position);
 	    data.put("status", 1);
-		data.put("limits", limits);
+		data.put("limits", pageVO.getLimit());
 		data.put("page", page); 
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数

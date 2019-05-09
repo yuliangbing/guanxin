@@ -24,6 +24,7 @@ import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.specialty.entity.Specialty;
 import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 import java.util.List;
 
@@ -45,19 +46,18 @@ public class OrganizationTypeController extends BaseController{
 		Long id = ToolUtil.lon("id", request);
 	    String name = ToolUtil.str("name", request);
 	    Integer status= ToolUtil.integer("status",request);
-//	    String date1 = ToolUtil.str("date1", request);
-//	    String date2 = ToolUtil.str("date2", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
+	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
-//	    Integer pages = page;
-	    Integer limits = 0;
 //	    用于分页的数据
+	    pages = pageVO.getBeginNum();
+
 	  //存入data,用于获取表格数据
 	    data.put("id", id);
 	    data.put("name", name);
 	    data.put("status", 1);
-		data.put("limits", limits);
+		data.put("limits", pageVO.getLimit());
 		data.put("page", page);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数

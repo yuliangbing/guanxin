@@ -198,7 +198,7 @@
   </update>
    <!-- 自定义 -->
   <!-- 查询列表数据 -->
-  <select id="getSpecialtyProfileList" resultType="map" parameterType="map" >
+  <select id="getSpecialtyProfileList" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from specialty_profile

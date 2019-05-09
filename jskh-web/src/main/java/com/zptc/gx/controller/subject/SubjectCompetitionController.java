@@ -23,6 +23,7 @@ import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.entity.SubjectCompetition;
 import com.zptc.gx.specialty.service.SubjectCompetitionService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 
 
@@ -177,9 +178,10 @@ public class SubjectCompetitionController extends BaseController{
 	  Integer status = ToolUtil.integer("status", request);
 	  Integer limit = ToolUtil.integer("limit", request);
 	  Integer page = ToolUtil.integer("page", request);
+	  PageVO pageVO = new PageVO(page, limit);
 	  Integer pages = 0;
 		//用于分页的数据
-		pages = (page - 1) * limit;
+	  pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
 	    data.put("id", id);
 	    data.put("name", name);
@@ -189,7 +191,7 @@ public class SubjectCompetitionController extends BaseController{
 	    data.put("date", new Date());
 		data.put("specialty_id", specialty_id);
 		data.put("specialty_name", specialty_name);
-		data.put("limit", limit);
+		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
 		

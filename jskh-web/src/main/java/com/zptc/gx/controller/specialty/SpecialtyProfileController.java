@@ -23,6 +23,7 @@ import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.service.SpecialtyProfileService;
 import com.zptc.gx.util.ToolUtil;
+import com.zptc.gx.vo.PageVO;
 
 @Controller
 @RequestMapping("specialtyProfile")
@@ -188,26 +189,25 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 		String specialty_name = ToolUtil.str("specialty_name", request);
-	    Date date = ToolUtil.date2("date", request);
+	   // Date date = ToolUtil.date2("date", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
 	    String director_name = ToolUtil.str("director_name", request);
 	    Integer status = ToolUtil.integer("status", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
+	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
 		//用于分页的数据
-		pages = (page - 1) * limit;
+	    pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
-/*	    data.put("specialty_id", specialty_id);
+	    data.put("specialty_name", specialty_name);
 	    data.put("position", position);
 	    data.put("characteristic", characteristic);
-	    data.put("director_id", director_id);
+	    data.put("director_name", director_name);
 //	    data.put("specialty_id", specialty_id);
-	    data.put("date", date);
-		data.put("director_name", director_name);
-		data.put("branch_introduction", branch_introduction);*/
-		data.put("limit", limit);
+	    data.put("date", new Date());
+		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
 	
