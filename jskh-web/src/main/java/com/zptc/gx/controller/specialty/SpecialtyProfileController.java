@@ -189,7 +189,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 		String specialty_name = ToolUtil.str("specialty_name", request);
-	   // Date date = ToolUtil.date2("date", request);
+		Date date = ToolUtil.date1("date", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
 	    String director_name = ToolUtil.str("director_name", request);
@@ -205,7 +205,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    data.put("position", position);
 	    data.put("characteristic", characteristic);
 	    data.put("director_name", director_name);
-//	    data.put("specialty_id", specialty_id);
+	    data.put("date", date);
 	    data.put("date", new Date());
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
