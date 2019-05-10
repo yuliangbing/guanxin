@@ -46,7 +46,7 @@ public class SubjectCompetitionController extends BaseController{
 			//Long id = ToolUtil.lon("id", request);
 			String name = ToolUtil.str("name", request);
 		    String award_level = ToolUtil.str("award_level", request);
-		    Date date = ToolUtil.date1("date", request);
+		    Date date = ToolUtil.date2("date", request);
 		    String students = ToolUtil.str("students", request);
 		    String teachers = ToolUtil.str("teachers", request);
 		   Long specialty_id = ToolUtil.lon("specialty_id", request); 
@@ -68,6 +68,7 @@ public class SubjectCompetitionController extends BaseController{
 		    if ((ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)&&ToolUtil.equalBool(date)
                     &&ToolUtil.equalBool(students)&&ToolUtil.equalBool(teachers)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
 		    			jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+		    			System.out.println(subjectCompetition.toString());
 		    			return jsonResult;
 		       }
 		   int result = subjectCompetitionService.addSubjectCompetition(subjectCompetition);
@@ -142,13 +143,13 @@ public class SubjectCompetitionController extends BaseController{
 	 subjectCompetition.setSpecialtyId(specialty_id);
 	 subjectCompetition.setSpecialtyName(specialty_name);
 //	判断传入的值是否为空或""
-//	 if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)&&ToolUtil.equalBool(students)&&ToolUtil.equalBool(teachers)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
-//	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
-//	    	System.out.println("错误，传入数据错误");
-//	    	 //接口拿到的数据
-//		    System.out.println("updateSubjectCompetition方法拿到的数据："+subjectCompetition.toString());
-//	    	return jsonResult;
-//		}
+	 if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)&&ToolUtil.equalBool(students)&&ToolUtil.equalBool(teachers)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+	    	System.out.println("错误，传入数据错误");
+	    	 //接口拿到的数据
+		    System.out.println("updateSubjectCompetition方法拿到的数据："+subjectCompetition.toString());
+	    	return jsonResult;
+		}
 	 try {
 //	 接口拿到的数据	
      int result = subjectCompetitionService.modifySubjectCompetition(subjectCompetition);
@@ -191,7 +192,6 @@ public class SubjectCompetitionController extends BaseController{
 	    data.put("award_level", award_level);
 	    data.put("students", students);
 	    data.put("teachers", teachers);
-	    
 		data.put("specialty_id", specialty_id);
 		data.put("specialty_name", specialty_name);
 		data.put("limit", pageVO.getLimit());

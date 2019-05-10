@@ -19,7 +19,7 @@ public interface SpecialtyProfileService {
 	public List<SpecialtyProfile> getSpecialtyProfileList(Object data);
 	
 	public int selectCounts(Map<String, Object> count);
-
+//    软删除方法
 	public int modifSpecialtyFilesDel(SpecialtyProfile specialtyFiles);
 
 }

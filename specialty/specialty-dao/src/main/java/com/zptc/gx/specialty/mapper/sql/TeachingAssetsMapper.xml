@@ -291,4 +291,117 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.SpecialtyProfile" >
+	    update teaching_assets
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <!-- 查询列表数据 -->
+  <select id="getTeachingAssetsList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from teaching_assets
+    <where>
+    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+		</if>
+		<if test="date != null and date != ''">
+			and instr(date,#{date,jdbcType=DATE})
+		</if>
+		<if test="position != null and position != ''">
+			and instr(position,#{position,jdbcType=VARCHAR})
+		</if>
+		<if test="characteristic != null and characteristic != ''">
+			and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+		</if>
+		<if test="directorId != null and directorId != ''">
+			and instr(directorId,#{directorId,jdbcType=BIGINT})
+		</if>
+		<if test="directorName != null and directorName != ''">
+			and instr(directorName,#{directorName,jdbcType=VARCHAR})
+		</if>
+		<if test="branchIntroduction != null and branchIntroduction != ''">
+			and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+		</if>
+		<if test="createTime != null and createTime != ''">
+			and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="createUser != null and createUser != ''">
+			and instr(createUser,#{createUser,jdbcType=VARCHAR})
+		</if>
+		<if test="modifyTime != null and modifyTime != ''">
+			and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+		</if>
+		<if test="modifyUser != null and modifyUser != ''">
+			and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+		</if> -->
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			teaching_assets
+			<where>
+				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+				</if>
+				<if test="date != null and date != ''">
+					and instr(date,#{date,jdbcType=DATE})
+				</if>
+				<if test="position != null and position != ''">
+					and instr(position,#{position,jdbcType=VARCHAR})
+				</if>
+				<if test="characteristic != null and characteristic != ''">
+					and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+				</if>
+				<if test="specialty_id != null and specialty_id != ''">
+					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+				</if>
+				<if test="directorId != null and directorId != ''">
+					and instr(directorId,#{directorId,jdbcType=BIGINT})
+				</if>
+				<if test="directorName != null and directorName != ''">
+					and instr(directorName,#{directorName,jdbcType=VARCHAR})
+				</if>
+				<if test="branchIntroduction != null and branchIntroduction != ''">
+					and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
+				</if>
+				<if test="createTime != null and createTime != ''">
+					and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="createUser != null and createUser != ''">
+					and instr(createUser,#{createUser,jdbcType=VARCHAR})
+				</if>
+				<if test="modifyTime != null and modifyTime != ''">
+					and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
+				</if>
+				<if test="modifyUser != null and modifyUser != ''">
+					and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
+				</if> -->
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
 </mapper>

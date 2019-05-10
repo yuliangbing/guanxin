@@ -132,4 +132,15 @@ public class SubjectCompetition {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SubjectCompetition [id=" + id + ", date=" + date + ", name=" + name + ", awardLevel=" + awardLevel
+				+ ", students=" + students + ", teachers=" + teachers + ", specialtyId=" + specialtyId
+				+ ", specialtyName=" + specialtyName + ", status=" + status + ", createTime=" + createTime
+				+ ", createUser=" + createUser + ", modifyTime=" + modifyTime + ", modifyUser=" + modifyUser + "]";
+	}
+
+
+    
 }

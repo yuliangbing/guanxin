@@ -14,12 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
 import com.zptc.gx.controller.BaseController;
 import com.zptc.gx.permission.entity.ZptcUser;
-import com.zptc.gx.specialty.entity.SpecialtyFiles;
 import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.service.SpecialtyProfileService;
 import com.zptc.gx.util.ToolUtil;
@@ -64,11 +63,11 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 	  specialtyProfile.setStatus(1);
 	  specialtyProfile.setCreateTime(new Date());
 	  specialtyProfile.setCreateUser(user.getTeaName());
-//	  if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
-//	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
-//		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
-//		return jsonResult;
-//	  }
+	  if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)
+	&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(branch_introduction)) == false) {
+		jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+		return jsonResult;
+	  }
 	  System.out.println("传入数据成功");
        System.out.println("addSpecialtyProfile方法拿到的数据："+specialtyProfile.toString());
 	 int result = specialtyProfileService.addSpecialtyProfile(specialtyProfile);
