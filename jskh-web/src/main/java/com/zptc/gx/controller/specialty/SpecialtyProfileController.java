@@ -37,7 +37,7 @@ private Long branchIntroduction;
 //增加专业概况信息
 @RequestMapping("/addSpecialtyProfile")
 @ResponseBody
-public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse response) {
+public JsonResult addSpecialtyProfile(HttpServletRequest request, HttpServletResponse response) {
 	JsonResult jsonResult = new JsonResult();
 	System.out.println("添加接口");
 	try {
@@ -46,7 +46,7 @@ public JsonResult addSpecialty(HttpServletRequest request, HttpServletResponse r
 		//Long id = ToolUtil.lon("id", request);
 		String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
-	    Date date = ToolUtil.date1("date", request);
+	    Date date = ToolUtil.date2("date", request);
 	    String director_name = ToolUtil.str("director_name", request);
 	    String specialty_name = ToolUtil.str("specialty_name", request);
 	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
@@ -135,7 +135,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    Date date = ToolUtil.date2("date", request);
 	   // System.out.println("判断返回的值"+(ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)));
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-//		//根据specialtyFilesId
+//		//根据specialtyProfileId
 	    SpecialtyProfile specialtyProfile = specialtyProfileService.findSpecialtyProfileById(id);
 	    if (specialtyProfile == null) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
