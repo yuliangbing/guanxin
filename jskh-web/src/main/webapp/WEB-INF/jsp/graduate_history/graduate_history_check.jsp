@@ -91,7 +91,7 @@
    	function init(data) {
 
 		$("#id").val(data.id);
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#graduate_num").val(data.graduateNum);
 		$("#employed_num").val(data.employedNum);
 		$("#entrepreneurs_num").val(data.entrepreneursNum);
@@ -103,7 +103,7 @@
 		$("#create_user").val(data.createUser);
 		$("#modify_time").val(data.modifyTime);
 		$("#modify_user").val(data.modifyUser);
-		specialty_name = data.specialty_name;
+		/* specialty_name = data.specialty_name; */
 	}
    	</script>
 </html>

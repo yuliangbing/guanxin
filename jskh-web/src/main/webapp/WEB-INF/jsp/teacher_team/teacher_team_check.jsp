@@ -101,7 +101,7 @@
 		$("#specialty_id").val(data.specialty_id);
 		$("#specialty_code").val(data.specialty_code);
 		$("#specialty_name").val(data.specialty_id);
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#specialty_teachers").val(data.specialty_teachers);
 		$("#part_time_teachers").val(data.part_time_teachers);
 		$("#director").val(data.director);

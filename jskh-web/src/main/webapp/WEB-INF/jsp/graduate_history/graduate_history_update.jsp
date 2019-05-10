@@ -69,9 +69,9 @@
 	var id = 0;
 	var specialty_name = "";
 	function init(data) {
-
+			
 		id = data.id;
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#graduate_num").val(data.graduateNum);
 		$("#employed_num").val(data.employedNum);
 		$("#entrepreneurs_num").val(data.entrepreneursNum);
@@ -151,7 +151,8 @@
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
-			elem: '#date' //指定元素	
+			elem: '#date', //指定元素
+			
 		});
 		
 	/*提交功能*/

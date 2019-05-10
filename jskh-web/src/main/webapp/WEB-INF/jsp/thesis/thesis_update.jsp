@@ -81,7 +81,7 @@
 	var specialty_name = "";
 	function init(data) {
 		id = data.id;
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#name").val(data.name);
 		$("#published_journal").val(data.published_journal);
 		$("#index_level").val(data.index_level);

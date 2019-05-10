@@ -89,7 +89,7 @@
 	function init(data) {
 
 		id = data.id;
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#name").val(data.name);
 		$('#image').attr("src",data.image);
 		urlimg=data.image;

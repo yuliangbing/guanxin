@@ -105,7 +105,7 @@
    	function init(data) {
 
    		$("#id").val(data.id);
-		$("#date").val(data.date);
+   		$("#date").val((data.date.split(' '))[0]);
 		$("#name").val(data.name);
 		$("#published_journal").val(data.published_journal);
 		$("#index_level").val(data.index_level);
