@@ -200,13 +200,13 @@ public class SubjectCompetitionController extends BaseController{
 		
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-	/*	count.put("specialty_id", specialty_id);
-		count.put("position", position);
-		count.put("characteristic", characteristic);
-		count.put("director_id", director_id);
-		count.put("director_name", director_name);
-		count.put("branch_introduction", branch_introduction);
-		count.put("date", date);*/
+		count.put("id", id);
+		count.put("name", name);
+		count.put("award_level", award_level);
+		count.put("students", students);
+		count.put("teachers", teachers);
+		count.put("specialty_id", specialty_id);
+		count.put("specialty_name", specialty_name);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
