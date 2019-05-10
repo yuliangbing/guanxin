@@ -128,6 +128,12 @@
     select
     <include refid="Base_Column_List" />
     from organization_type
+     <where>
+	    	<if test="status !=null and status != ''">
+				and status = #{status,jdbcType=INTEGER}
+			</if>
+	    </where>
+	    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
 <!-- 统计条数 -->
  <select id="selectCounts" resultType="int" parameterType="map">
