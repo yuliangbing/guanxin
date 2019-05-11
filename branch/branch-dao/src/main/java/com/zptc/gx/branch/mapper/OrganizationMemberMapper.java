@@ -20,6 +20,8 @@ public interface OrganizationMemberMapper {
     int updateByPrimaryKey(OrganizationMember record);
     
     int delOrganizationMemberById(OrganizationMember OrganizationMember );
-
+  //获取列表
 	List<OrganizationMember> getOrganizationMember(Map<String, Object> data);
+	//统计条数
+	int selectCounts(Map<String, Object> count);
 }

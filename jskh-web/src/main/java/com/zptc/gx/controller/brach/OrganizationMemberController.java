@@ -59,11 +59,11 @@ public class OrganizationMemberController extends BaseController{
 	    data.put("name", name);
 	    data.put("position", position);
 	    data.put("status", 1);
-		data.put("limits", pageVO.getLimit());
-		data.put("page", page); 
+		data.put("limit", pageVO.getLimit());
+		data.put("pages", pages); 
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-//		count.put("counts", count);
+		count.put("counts", count);
 		//count.put("id", id);
 		count.put("name", name);
 		count.put("position", position);
@@ -72,8 +72,12 @@ public class OrganizationMemberController extends BaseController{
 		String msg = "success";
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//获取所有status == 1 的所有数据
 			List<OrganizationMember>  OrganizationTypeList = organizationMemberService.getOrganizationMemberList(data);
-			jsonResult =jsonResult.build(FLAG_SUCCESS, OrganizationTypeList);
+			//获取所有status == 1的数据条总数
+			counts = organizationMemberService.selectCounts(count);
+			//返回接口的具体数据
+			jsonResult =jsonResult.build(FLAG_SUCCESS, OrganizationTypeList,msg,counts);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

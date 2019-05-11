@@ -43,9 +43,9 @@ public class OrganizationTypeController extends BaseController{
 		JsonResult jsonResult =new JsonResult();
 		Map<String, Object> data = new HashMap<>();
 //		获取请求参数
-		Long id = ToolUtil.lon("id", request);
+		//Long id = ToolUtil.lon("id", request);
 	    String name = ToolUtil.str("name", request);
-	    Integer status= ToolUtil.integer("status",request);
+	   // Integer status= ToolUtil.integer("status",request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -54,15 +54,15 @@ public class OrganizationTypeController extends BaseController{
 	    pages = pageVO.getBeginNum();
 
 	  //存入data,用于获取表格数据
-	    data.put("id", id);
+	    //data.put("id", id);
 	    data.put("name", name);
 	    data.put("status", 1);
-		data.put("limits", pageVO.getLimit());
-		data.put("page", page);
+		data.put("limit", pageVO.getLimit());
+		data.put("pages", pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 //		count.put("counts", count);
-		count.put("id", id);
+		//count.put("id", id);
 		count.put("name", name);
 		count.put("status", 1);
 		int counts=0;
@@ -73,6 +73,7 @@ public class OrganizationTypeController extends BaseController{
 			List<OrganizationType>    OrganizationTypeList = organizationTypeService.getOrganizationTypeList(data);
 			//获取所有status == 1的数据条总数
 			counts = organizationTypeService.selectCounts(count);
+			//返回接口的具体数据
 			jsonResult = jsonResult.build(FLAG_SUCCESS, OrganizationTypeList, msg, counts);
 		} catch (Exception e) {
 			// TODO: handle exception

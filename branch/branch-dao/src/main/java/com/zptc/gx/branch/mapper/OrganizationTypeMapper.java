@@ -20,8 +20,8 @@ public interface OrganizationTypeMapper {
     int updateByPrimaryKeySelective(OrganizationType record);
 
     int updateByPrimaryKey(OrganizationType record);
-    
+//获取列表
     List<OrganizationType> getOrganizationType(Object data);
-
+//统计条数
 	int selectCounts(Map<String, Object> count);
 }

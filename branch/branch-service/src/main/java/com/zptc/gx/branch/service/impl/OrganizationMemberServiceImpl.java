@@ -46,4 +46,9 @@ public class OrganizationMemberServiceImpl implements OrganizationMemberService 
 		// TODO Auto-generated method stub
 		return organizationMemberMapper.delOrganizationMemberById(organizationMember);
 	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return organizationMemberMapper.selectCounts(count);
+	}
 }

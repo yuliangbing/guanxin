@@ -307,46 +307,54 @@
     <include refid="Base_Column_List" />
     from teaching_assets
     <where>
-    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
-			and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP})
-			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		<if test="cate_code != null and cate_code != ''">
+			and instr(cate_code,#{cate_code,jdbcType=VARCHAR})
 		</if>
-		<if test="specialty_id != null and specialty_id != ''">
-			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="model_num != null and model_num != ''">
+			and instr(model_num,#{model_num,jdbcType=VARCHAR})
+		</if>
+		<if test="specification != null and specification != ''">
+			and instr(specification,#{specification,jdbcType=VARCHAR})
+		</if>
+		<if test="sources != null and sources != ''">
+			and instr(sources,#{sources,jdbcType=VARCHAR})
 		</if>
 		<if test="date != null and date != ''">
 			and instr(date,#{date,jdbcType=DATE})
 		</if>
-		<if test="position != null and position != ''">
-			and instr(position,#{position,jdbcType=VARCHAR})
+		<if test="total_amount != null and total_amount != ''">
+			and instr(total_amount,#{total_amount,jdbcType=DECIMAL})
 		</if>
-		<if test="characteristic != null and characteristic != ''">
-			and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
+		<if test="country_code != null and country_code != ''">
+			and instr(country_code,#{country_code,jdbcType=VARCHAR})
+		</if>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="manufacturer != null and manufacturer != ''">
+			and instr(manufacturer,#{manufacturer,jdbcType=VARCHAR})
+		</if>
+		<if test="use_person != null and use_person != ''">
+			and instr(use_person,#{use_person,jdbcType=VARCHAR})
+		</if>
+		<if test="status_code != null and status_code != ''">
+			and instr(status_code,#{status_code,jdbcType=VARCHAR})
+		</if>
+		<if test="training_room != null and training_room != ''">
+			and instr(training_room,#{training_room,jdbcType=VARCHAR})
+		</if>
+		<if test="remark != null and remark != ''">
+			and instr(remark,#{remark,jdbcType=VARCHAR})
 		</if>
 		<if test="specialty_id != null and specialty_id != ''">
-			and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
+			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
 		</if>
-		<if test="directorId != null and directorId != ''">
-			and instr(directorId,#{directorId,jdbcType=BIGINT})
-		</if>
-		<if test="directorName != null and directorName != ''">
-			and instr(directorName,#{directorName,jdbcType=VARCHAR})
-		</if>
-		<if test="branchIntroduction != null and branchIntroduction != ''">
-			and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
-		</if>
-		<if test="createTime != null and createTime != ''">
-			and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
-		</if>
-		<if test="createUser != null and createUser != ''">
-			and instr(createUser,#{createUser,jdbcType=VARCHAR})
-		</if>
-		<if test="modifyTime != null and modifyTime != ''">
-			and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
-		</if>
-		<if test="modifyUser != null and modifyUser != ''">
-			and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
-		</if> -->
+		<if test="specialty_name != null and specialty_name != ''">
+			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+		</if> 
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
@@ -359,49 +367,58 @@
 			count(*)
 		from
 			teaching_assets
-			<where>
-				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
-					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
-				</if>
-				<if test="specialty_id != null and specialty_id != ''">
-					and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
-				</if>
-				<if test="date != null and date != ''">
-					and instr(date,#{date,jdbcType=DATE})
-				</if>
-				<if test="position != null and position != ''">
-					and instr(position,#{position,jdbcType=VARCHAR})
-				</if>
-				<if test="characteristic != null and characteristic != ''">
-					and instr(characteristic,#{characteristic,jdbcType=VARCHAR})
-				</if>
-				<if test="specialty_id != null and specialty_id != ''">
-					and instr(specialty_id,#{specialty_id,jdbcType=VARCHAR})
-				</if>
-				<if test="directorId != null and directorId != ''">
-					and instr(directorId,#{directorId,jdbcType=BIGINT})
-				</if>
-				<if test="directorName != null and directorName != ''">
-					and instr(directorName,#{directorName,jdbcType=VARCHAR})
-				</if>
-				<if test="branchIntroduction != null and branchIntroduction != ''">
-					and instr(branchIntroduction,#{branchIntroduction,jdbcType=BIGINT})
-				</if>
-				<if test="createTime != null and createTime != ''">
-					and instr(createTime,#{createTime,jdbcType=TIMESTAMP})
-				</if>
-				<if test="createUser != null and createUser != ''">
-					and instr(createUser,#{createUser,jdbcType=VARCHAR})
-				</if>
-				<if test="modifyTime != null and modifyTime != ''">
-					and instr(modifyTime,#{modifyTime,jdbcType=TIMESTAMP})
-				</if>
-				<if test="modifyUser != null and modifyUser != ''">
-					and instr(modifyUser,#{modifyUser,jdbcType=VARCHAR})
-				</if> -->
-				<if test="status !=null and status != ''">
-					and status = #{status,jdbcType=INTEGER}
-				</if>
-		</where>
+			    <where>
+		<if test="cate_code != null and cate_code != ''">
+			and instr(cate_code,#{cate_code,jdbcType=VARCHAR})
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="model_num != null and model_num != ''">
+			and instr(model_num,#{model_num,jdbcType=VARCHAR})
+		</if>
+		<if test="specification != null and specification != ''">
+			and instr(specification,#{specification,jdbcType=VARCHAR})
+		</if>
+		<if test="sources != null and sources != ''">
+			and instr(sources,#{sources,jdbcType=VARCHAR})
+		</if>
+		<if test="date != null and date != ''">
+			and instr(date,#{date,jdbcType=DATE})
+		</if>
+		<if test="total_amount != null and total_amount != ''">
+			and instr(total_amount,#{total_amount,jdbcType=DECIMAL})
+		</if>
+		<if test="country_code != null and country_code != ''">
+			and instr(country_code,#{country_code,jdbcType=VARCHAR})
+		</if>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="manufacturer != null and manufacturer != ''">
+			and instr(manufacturer,#{manufacturer,jdbcType=VARCHAR})
+		</if>
+		<if test="use_person != null and use_person != ''">
+			and instr(use_person,#{use_person,jdbcType=VARCHAR})
+		</if>
+		<if test="status_code != null and status_code != ''">
+			and instr(status_code,#{status_code,jdbcType=VARCHAR})
+		</if>
+		<if test="training_room != null and training_room != ''">
+			and instr(training_room,#{training_room,jdbcType=VARCHAR})
+		</if>
+		<if test="remark != null and remark != ''">
+			and instr(remark,#{remark,jdbcType=VARCHAR})
+		</if>
+		<if test="specialty_id != null and specialty_id != ''">
+			and instr(specialty_id,#{specialty_id,jdbcType=BIGINT})
+		</if>
+		<if test="specialty_name != null and specialty_name != ''">
+			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+		</if> 
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
 	</select>
 </mapper>

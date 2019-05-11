@@ -172,14 +172,14 @@ public class SubjectCompetitionController extends BaseController{
 	 JsonResult jsonResult = new JsonResult();
 	 Map< String, Object> data = new HashMap<>();
 //	 获取请求参数
-	 Long id = ToolUtil.lon("id", request);
+	 //Long id = ToolUtil.lon("id", request);
      String name = ToolUtil.str("name", request);
 	 String award_level = ToolUtil.str("award_level", request);
 	  String students = ToolUtil.str("students", request);
 	  String teachers = ToolUtil.str("teachers", request);
-	  Long specialty_id = ToolUtil.lon("specialty_id", request); 
+	 // Long specialty_id = ToolUtil.lon("specialty_id", request); 
 	  String specialty_name = ToolUtil.str("specialty_name", request);   
-	  Integer status = ToolUtil.integer("status", request);
+	//  Integer status = ToolUtil.integer("status", request);
 	  Integer limit = ToolUtil.integer("limit", request);
 	  Integer page = ToolUtil.integer("page", request);
 	  PageVO pageVO = new PageVO(page, limit);
@@ -187,12 +187,12 @@ public class SubjectCompetitionController extends BaseController{
 		//用于分页的数据
 	  pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
-	    data.put("id", id);
+	    //data.put("id", id);
 	    data.put("name", name);
 	    data.put("award_level", award_level);
 	    data.put("students", students);
 	    data.put("teachers", teachers);
-		data.put("specialty_id", specialty_id);
+		//data.put("specialty_id", specialty_id);
 		data.put("specialty_name", specialty_name);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
@@ -200,12 +200,12 @@ public class SubjectCompetitionController extends BaseController{
 		
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-		count.put("id", id);
+	//	count.put("id", id);
 		count.put("name", name);
 		count.put("award_level", award_level);
 		count.put("students", students);
 		count.put("teachers", teachers);
-		count.put("specialty_id", specialty_id);
+		//count.put("specialty_id", specialty_id);
 		count.put("specialty_name", specialty_name);
 		count.put("status", 1);
 		//定义返回的数据条总数

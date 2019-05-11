@@ -131,7 +131,38 @@
     select
     <include refid="Base_Column_List" />
     from organization_member
+         <where>
+			 <if test="position != null and position != ''">
+				and instr(position,#{position,jdbcType=VARCHAR})
+			</if> 
+			<if test="name != null and name != ''">
+				and instr(name,#{name,jdbcType=VARCHAR})
+			</if>
+	    	<if test="status !=null and status != ''">
+				and status = #{status,jdbcType=INTEGER}
+			</if>
+			
+	    </where>
+	      limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
+  <!-- 统计条数 -->
+ <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			organization_member
+			<where>
+			<if test="position != null and position != ''">
+				and instr(position,#{position,jdbcType=VARCHAR})
+			   </if>   
+				<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
      <update id="delOrganizationMemberById" parameterType="com.zptc.gx.branch.entity.OrganizationMember" >
 	    update organization_member
 	    <set>

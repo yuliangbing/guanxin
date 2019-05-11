@@ -224,7 +224,7 @@ public class TeachingAssetsController extends BaseController{
 	   String status_code = ToolUtil.str("status_code", request);
 	   String training_room = ToolUtil.str("training_room", request);
 	   String remark = ToolUtil.str("remark", request);
-	   Long specialty_id = ToolUtil.lon("specialty_id", request);
+	   //Long specialty_id = ToolUtil.lon("specialty_id", request);
 	   String specialty_name = ToolUtil.str("specialty_name", request);
 	   Integer status = ToolUtil.integer("status", request);
 	   Integer limit = ToolUtil.integer("limit", request);
@@ -248,7 +248,7 @@ public class TeachingAssetsController extends BaseController{
 	    data.put("status_code", status_code);
 	    data.put("training_room", training_room);
 	    data.put("remark", remark);
-	    data.put("specialty_id", specialty_id);
+	   // data.put("specialty_id", specialty_id);
 	    data.put("specialty_name", specialty_name);
 	    data.put("limit", pageVO.getLimit());
 	    data.put("pages", pages);
@@ -256,23 +256,22 @@ public class TeachingAssetsController extends BaseController{
 	    System.out.println("pages:"+pages);
 	  //存入count,用于获取表格数据条总数
 		Map<String, Object> count = new HashMap<>();
-		/*data.put("cate_code", cate_code);
-	    data.put("name", name);
-	    data.put("model_num", model_num);
-	    data.put("specification", specification);
-	    data.put("sources", sources);
-	    data.put("date", date);
-	    data.put("total_amount", total_amount);
-	    data.put("country_code", country_code);
-	    data.put("code", code);
-	    data.put("manufacturer", manufacturer);
-	    data.put("use_person", use_person);
-	    data.put("status_code", status_code);
-	    data.put("training_room", training_room);
-	    data.put("remark", remark);
-	    data.put("specialty_id", specialty_id);
-	    data.put("specialty_name", specialty_name);*/
-	    data.put("status", 1);
+		count.put("cate_code", cate_code);
+		count.put("name", name);
+		count.put("model_num", model_num);
+		count.put("specification", specification);
+		count.put("sources", sources);
+		count.put("date", date);
+		count.put("total_amount", total_amount);
+		count.put("country_code", country_code);
+		count.put("code", code);
+		count.put("manufacturer", manufacturer);
+		count.put("use_person", use_person);
+		count.put("status_code", status_code);
+		count.put("training_room", training_room);
+		count.put("remark", remark);
+		count.put("specialty_name", specialty_name);
+		count.put("status", 1);
 	  //定义返回的数据条总数
   		int counts = 0;
   		//定义返回的msg
@@ -284,7 +283,7 @@ public class TeachingAssetsController extends BaseController{
   		//获取所有status == 1的数据条总数
   			counts = teachingAssetsService.selectCounts(count);
   		//返回接口的具体数据
-  			jsonResult = jsonResult.build(FLAG_SUCCESS, teachingAssetsList,msg,counts);
+  			jsonResult = jsonResult.build(0, teachingAssetsList, msg,counts);
   			System.out.println("获得的数据："+data);
   		} catch (Exception e) {
 			// TODO: handle exception

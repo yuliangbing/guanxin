@@ -125,4 +125,50 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.TeachingAssetsCategory" >
+	    update teaching_assets_category
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
+    <!-- 查询列表数据 -->
+  <select id="getTeachingAssetsCategoryList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from teaching_assets_category
+    <where>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--分页  -->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			teaching_assets_category
+			    <where>
+		<if test="code != null and code != ''">
+			and instr(code,#{code,jdbcType=VARCHAR})
+		</if>
+		<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+	</select>
 </mapper>
