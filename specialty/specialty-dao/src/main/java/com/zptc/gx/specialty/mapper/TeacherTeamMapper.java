@@ -22,4 +22,6 @@ public interface TeacherTeamMapper {
     int selectCounts(Map<String, Object> counts);
     
     List<TeacherTeam> getTeacherTeamList(Object data);
+
+	TeacherTeam selectByIdAndLatest(Map<String, Object> data);
 }

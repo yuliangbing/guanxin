@@ -15,6 +15,7 @@
     <result column="research_direction" property="researchDirection" jdbcType="VARCHAR" />
     <result column="is_part_time" property="isPartTime" jdbcType="INTEGER" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -23,7 +24,7 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, name, code, entry_time, birthday, graduate_school, final_degree, political_status, 
-    specialty_code, specialty_name, research_direction, is_part_time, specialty_id,
+    specialty_code, specialty_name, research_direction, is_part_time, specialty_id, director, 
     status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
@@ -41,14 +42,14 @@
       entry_time, birthday, graduate_school, 
       final_degree, political_status, specialty_code, 
       specialty_name, research_direction, is_part_time, 
-      specialty_id, status, 
+      specialty_id, director, status, 
       create_time, create_user, modify_time, 
       modify_user)
     values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{entryTime,jdbcType=TIMESTAMP}, #{birthday,jdbcType=TIMESTAMP}, #{graduateSchool,jdbcType=VARCHAR}, 
       #{finalDegree,jdbcType=VARCHAR}, #{politicalStatus,jdbcType=VARCHAR}, #{specialtyCode,jdbcType=VARCHAR}, 
       #{specialtyName,jdbcType=VARCHAR}, #{researchDirection,jdbcType=VARCHAR}, #{isPartTime,jdbcType=INTEGER}, 
-      #{specialtyId,jdbcType=BIGINT},  #{status,jdbcType=INTEGER}, 
+      #{specialtyId,jdbcType=BIGINT}, #{director,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
       #{modifyUser,jdbcType=VARCHAR})
   </insert>
@@ -93,6 +94,9 @@
       </if>
       <if test="specialtyId != null" >
         specialty_id,
+      </if>
+      <if test="director != null" >
+        director,
       </if>
       <if test="status != null" >
         status,
@@ -150,6 +154,9 @@
       <if test="specialtyId != null" >
         #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -206,6 +213,9 @@
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -238,6 +248,7 @@
       research_direction = #{researchDirection,jdbcType=VARCHAR},
       is_part_time = #{isPartTime,jdbcType=INTEGER},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
+      director = #{director,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
@@ -246,29 +257,62 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
     <!-- 查询列表数据 -->
-  <select id="getTeachersList" resultType="map" parameterType="com.zptc.gx.specialty.entity.Teachers" >
+  <select id="getTeachersList" resultMap="BaseResultMap" parameterType="com.zptc.gx.specialty.entity.Teachers" >
     select
     <include refid="Base_Column_List" />
     from teachers
     <where>
-    <if test="status !=null and status != ''">
-					and status = #{status,jdbcType=INTEGER}
-    </if>
+    	<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
+	    <if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+	    </if>
     </where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
-  
+  <!-- 返回数据总条数 -->
   <select id="selectCounts" resultType="int" parameterType="map">
 		select
 			count(*)
 		from
 			teachers
 	  <where>
-	    <if test="status !=null and status != ''">
-						and status = #{status,jdbcType=INTEGER}
+	  	<if test="name != null and name != ''">
+			and instr(name,#{name,jdbcType=VARCHAR})
 		</if>
+	    <if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+      </where>
+	</select>
+	<!-- 查找是否有该老师 -->
+	<select id="selectByName" resultMap="BaseResultMap" parameterType="map" >
+    	select 
+   		<include refid="Base_Column_List" />
+   		from teachers
+   		where name = #{name,jdbcType=VARCHAR} and status = #{status,jdbcType=INTEGER}
+    </select>
+    <!-- 查询所有specialty_id相同的教师数据//用于获取相同的教师数据 -->
+     <select id="getTeacherByList" resultType="string" parameterType="map" >
+    select
+    <!-- <include refid="Base_Column_List" /> -->
+    name
+    from teachers
+    <where>
+    	<if test="specialty_id != null and specialty_id != ''">
+			and specialty_id = #{specialty_id,jdbcType=BIGINT}
+		</if>
+		 <if test="is_part_time !=null and is_part_time != ''">
+			and is_part_time = #{is_part_time,jdbcType=INTEGER}
+	    </if>
+	    <if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+	    </if>
     </where>
-</select>
-	<update id=" delByPrimaryKeyStaus"  parameterType="com.zptc.gx.specialty.entity.Teachers" >
+  </select>
+  <!-- 删除教师sql -->
+  <update id="updateByStatus" parameterType="com.zptc.gx.specialty.entity.Teachers" >
 	    update teachers
 	    <set>
 	    	<if test="status !=null and status !=''">
@@ -276,5 +320,5 @@
 			</if>
 	    </set>  
 	    where id = #{id,jdbcType=BIGINT}
-	</update>
+  </update>
 </mapper>

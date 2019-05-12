@@ -7,7 +7,7 @@ import com.zptc.gx.specialty.entity.Teachers;
 
 public interface TeachersService {
 
-	public void addTeachers(Teachers teachers);
+	public int addTeachers(Teachers teachers);
 
 	public int modifyTeachers(Teachers teachers);
 
@@ -17,14 +17,14 @@ public interface TeachersService {
 
 	public List<Teachers> getTeachersList(Map<String, Object> data);
 	
-	public int delTeachersStaus(Teachers teachers);
+	//public int delTeachersStaus(Teachers teachers);
 
 	public int selectCounts(Map<String, Object> count);
 
-//	public <TeachersController> TeachersController findTeacherTeamById(Long id);
+	public Teachers findTeachersByName(Map<String, Object> map);
+	//用于获取specialtyId相同的教师数据
+	public List<String> getTeachersByIdList(Map<String, Object> tdata);
 
-	public int modifySpecialtyProfile(TeachersService teachersService);
-
-	public Teachers findTeacherTeambySpecialtyId(Long specialty_id);
+	public int delTeachers(Teachers teachers);
 
 }

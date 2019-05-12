@@ -132,4 +132,14 @@ public class TeacherTeam {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "TeacherTeam [id=" + id + ", specialtyId=" + specialtyId + ", specialtyCode=" + specialtyCode
+				+ ", specialtyName=" + specialtyName + ", date=" + date + ", specialtyTeachers=" + specialtyTeachers
+				+ ", partTimeTeachers=" + partTimeTeachers + ", director=" + director + ", latest=" + latest
+				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
+				+ ", modifyUser=" + modifyUser + "]";
+	}
+    
 }

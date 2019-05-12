@@ -29,6 +29,8 @@ public class Teachers {
 
     private Long specialtyId;
 
+    private String director;
+
     private Integer status;
 
     private Date createTime;
@@ -143,6 +145,14 @@ public class Teachers {
         this.specialtyId = specialtyId;
     }
 
+    public String getDirector() {
+        return director;
+    }
+
+    public void setDirector(String director) {
+        this.director = director == null ? null : director.trim();
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -182,4 +192,16 @@ public class Teachers {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Teachers [id=" + id + ", name=" + name + ", code=" + code + ", entryTime=" + entryTime + ", birthday="
+				+ birthday + ", graduateSchool=" + graduateSchool + ", finalDegree=" + finalDegree
+				+ ", politicalStatus=" + politicalStatus + ", specialtyCode=" + specialtyCode + ", specialtyName="
+				+ specialtyName + ", researchDirection=" + researchDirection + ", isPartTime=" + isPartTime
+				+ ", specialtyId=" + specialtyId + ", director=" + director + ", status=" + status + ", createTime="
+				+ createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime + ", modifyUser="
+				+ modifyUser + "]";
+	}
+    
 }

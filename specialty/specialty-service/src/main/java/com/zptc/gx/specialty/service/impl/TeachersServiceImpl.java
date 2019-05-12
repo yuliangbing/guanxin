@@ -17,8 +17,8 @@ public class TeachersServiceImpl implements TeachersService {
 	private TeachersMapper teachersMapper;
 
 	@Override
-	public void addTeachers(Teachers teachers){
-		teachersMapper.insertSelective(teachers);
+	public int addTeachers(Teachers teachers){
+		return teachersMapper.insertSelective(teachers);
 	}
 	@Override
 	public int modifyTeachers(Teachers teachers){
@@ -38,24 +38,32 @@ public class TeachersServiceImpl implements TeachersService {
 		// TODO Auto-generated method stub
 		return teachersMapper.getTeachersList(data);
 	}
+	/*@Override
+	public int  delTeachersStaus(Teachers teachers) {
+		// TODO Auto-generated method stub
+		return teachersMapper.delByPrimaryKeyStaus(teachers);
+	}*/
 	@Override
 	public int selectCounts(Map<String, Object> count) {
 		// TODO Auto-generated method stub
-		return 0;
+		return teachersMapper.selectCounts(count);
+	}
+	//查询name是否存在
+	@Override
+	public Teachers findTeachersByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		Teachers teachers = teachersMapper.selectByName(map);
+		return teachers;
+	}
+	//用于获取specialtyId相同的教师数据
+	@Override
+	public List<String> getTeachersByIdList(Map<String, Object> Tdata) {
+		// TODO Auto-generated method stub
+		return teachersMapper.getTeacherByList(Tdata);
 	}
 	@Override
-	public int modifySpecialtyProfile(TeachersService teachersService) {
+	public int delTeachers(Teachers teachers) {
 		// TODO Auto-generated method stub
-		return 0;
+		return teachersMapper.updateByStatus(teachers);
 	}
-@Override
-public int  delTeachersStaus(Teachers teachers) {
-	// TODO Auto-generated method stub
-	return teachersMapper.delByPrimaryKeyStaus(teachers);
-}
-@Override
-public  Teachers findTeacherTeambySpecialtyId(Long specialty_id) {
-	// TODO Auto-generated method stub
-	return null;
-}
 }

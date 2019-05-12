@@ -17,16 +17,16 @@ public class TeacherTeamServiceImpl implements TeacherTeamService {
 	private TeacherTeamMapper teacherTeamMapper;
 
 	@Override
-	public void addTeacherTeam(TeacherTeam teacherTeam){
-		teacherTeamMapper.insertSelective(teacherTeam);
+	public int addTeacherTeam(TeacherTeam teacherTeam){
+		return teacherTeamMapper.insertSelective(teacherTeam);
 	}
 	@Override
-	public void modifyTeacherTeam(TeacherTeam teacherTeam){
-		teacherTeamMapper.updateByPrimaryKeySelective(teacherTeam);
+	public int modifyTeacherTeam(TeacherTeam teacherTeam){
+		return teacherTeamMapper.updateByPrimaryKeySelective(teacherTeam);
 	}
 	@Override
-	public void deleteTeacherTeamById(Long id){
-		teacherTeamMapper.deleteByPrimaryKey(id);
+	public int deleteTeacherTeamById(Long id){
+		return teacherTeamMapper.deleteByPrimaryKey(id);
 	}
 	@Override
 	public TeacherTeam findTeacherTeamById(Long id){
@@ -42,6 +42,17 @@ public class TeacherTeamServiceImpl implements TeacherTeamService {
 	public List<TeacherTeam> getTeacherTeamList(Object data) {
 		// TODO Auto-generated method stub
 		return teacherTeamMapper.getTeacherTeamList(data);
+	}/*
+	@Override
+	public int modifySpecialtyProfile(TeacherTeam teacherTeam) {
+		// TODO Auto-generated method stub
+		return 0;
+	}*/
+	@Override
+	public TeacherTeam findTeacherTeamByIdAndLatest(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		TeacherTeam teacherTeam = teacherTeamMapper.selectByIdAndLatest(data);
+		return teacherTeam;
 	}
 	@Override
 	public int modifySpecialtyProfile(TeacherTeam teacherTeam) {

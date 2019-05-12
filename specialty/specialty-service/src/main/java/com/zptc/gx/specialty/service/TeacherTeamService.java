@@ -8,13 +8,16 @@ import com.zptc.gx.specialty.entity.TeacherTeam;
 
 public interface TeacherTeamService {
 
-	public void addTeacherTeam(TeacherTeam teacherTeam);
+	public int addTeacherTeam(TeacherTeam teacherTeam);
 
-	public void modifyTeacherTeam(TeacherTeam teacherTeam);
+	public int modifyTeacherTeam(TeacherTeam teacherTeam);
 
-	public void deleteTeacherTeamById(Long id);
+	public int deleteTeacherTeamById(Long id);
 
 	public TeacherTeam findTeacherTeamById(Long id);
+	
+	//获取id和latest最新数据
+	public TeacherTeam findTeacherTeamByIdAndLatest(Map<String, Object> data);
 
 	public int selectCounts(Map<String, Object> count);
 	

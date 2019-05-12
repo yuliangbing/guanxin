@@ -200,4 +200,12 @@
 			teacher_team
 	
 	</select>
+	<!-- 获取id和latest==1的数据 -->
+	 <select id="selectByIdAndLatest" resultMap="BaseResultMap" parameterType="java.util.Map" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from teacher_team
+	    where specialty_id = #{specialty_id,jdbcType=BIGINT} 
+	    AND latest = #{latest,jdbcType=CHAR}
+	  </select>
 </mapper>
