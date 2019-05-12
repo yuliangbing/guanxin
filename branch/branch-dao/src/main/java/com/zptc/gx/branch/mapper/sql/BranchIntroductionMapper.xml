@@ -23,10 +23,20 @@
     from branch_introduction
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+  <delete id="deleteByPrimaryKey" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     delete from branch_introduction
     where id = #{id,jdbcType=BIGINT}
   </delete>
+ <!--软删除改变stauts  -->
+  <update id="deleteBranchIntroductionById" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
+	    update branch_introduction
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
   <insert id="insert" parameterType="com.zptc.gx.branch.entity.BranchIntroduction" >
     insert into branch_introduction (id, code, name, 
       date, status, create_time, 
@@ -174,4 +184,26 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 查询文本数据 -->
+  <select id="getBranchText" resultType="map" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from branch_introduction
+     <where>
+			 <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+			<if test="specialty_info != null and specialty_info != ''">
+				and instr(specialty_info,#{specialty_info,jdbcType=VARCHAR})
+			</if>
+			<if test="branch_characteristic != null and branch_characteristic != ''">
+				and instr(branch_characteristic,#{branch_characteristic,jdbcType=VARCHAR})
+			</if>
+	    	<if test="status !=null and status != ''">
+				and status = #{status,jdbcType=INTEGER}
+			</if>
+	    </where>
+	    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
 </mapper>

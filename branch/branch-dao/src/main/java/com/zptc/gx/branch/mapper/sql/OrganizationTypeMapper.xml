@@ -23,6 +23,7 @@
     delete from organization_type
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <!--软删除改变stauts  -->
    <update id="delOrganizationTypeById" parameterType="com.zptc.gx.branch.entity.OrganizationType" >
 	    update organization_type
 	    <set>
