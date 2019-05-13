@@ -36,7 +36,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">入职时间</label>
 					<div class="layui-input-inline">
-						<input name="entry_time" id="entry_time" disabled autocomplete="off" class="layui-input">
+						<input name="entryTime" id="entryTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
@@ -49,67 +49,73 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">毕业院校</label>
 					<div class="layui-input-inline">
-						<input name="graduate_school" id="graduate_school" disabled autocomplete="off" class="layui-input">
+						<input name="graduateSchool" id="graduateSchool" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">学历学位</label>
 					<div class="layui-input-inline"  >
-						<input name="final_degree" id="final_degree" disabled autocomplete="off" class="layui-input">
+						<input name="finalDegree" id="finalDegree" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">政治面貌</label>
 					<div class="layui-input-inline">
-						<input name="political_status"  id="political_status" disabled autocomplete="off" class="layui-input">
+						<input name="politicalStatus"  id="politicalStatus" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label">专业编码</label>
 					<div class="layui-input-inline">
-						<input name="specialty_code"  id="specialty_code" disabled autocomplete="off" class="layui-input">
+						<input name="specialtyCode"  id="specialtyCode" disabled autocomplete="off" class="layui-input">
 					</div>
-				</div>
+				</div> -->
 				<div class="layui-inline">
 					<label class="layui-form-label">研究方向</label>
 					<div class="layui-input-inline">
-						<input name="research_direction"  id="research_direction" disabled autocomplete="off" class="layui-input">
+						<input name="researchDirection"  id="researchDirection" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">是否兼职</label>
 					<div class="layui-input-inline">
-						<input name="is_part_time"  id="is_part_time" disabled autocomplete="off" class="layui-input">
+						<input name="isPartTime"  id="isPartTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业id</label>
+					<label class="layui-form-label">团队负责人</label>
 					<div class="layui-input-inline">
-						<input name="specialty_name"  id="specialty_name" disabled autocomplete="off" class="layui-input">
+						<input name="director"  id="director" disabled autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业</label>
+					<div class="layui-input-inline">
+						<input name="specialtyName"  id="specialtyName" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">创建时间</label>
 					<div class="layui-input-inline">
-						<input name="create_time"  id="create_time" disabled autocomplete="off" class="layui-input">
+						<input name="createTime"  id="createTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">创建人</label>
 					<div class="layui-input-inline">
-						<input name="create_user"  id="create_user" disabled autocomplete="off" class="layui-input">
+						<input name="createUser"  id="createUser" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">修改时间</label>
 					<div class="layui-input-inline">
-						<input name="modify_time"  id="modify_time" disabled autocomplete="off" class="layui-input">
+						<input name="modifyTime"  id="modifyTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">修改人</label>
 					<div class="layui-input-inline">
-						<input name="modify_user"  id="modify_user" disabled autocomplete="off" class="layui-input">
+						<input name="modifyUser"  id="modifyUser" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
@@ -124,23 +130,21 @@
 		$("#id").val(data.id);
 		$("#name").val(data.name);
 		$("#code").val(data.code);
-		$("#entry_time").val(data.entry_time);
+		$("#entryTime").val(data.entryTime);
 		$("#birthday").val(data.birthday);
-		$("#graduate_school").val(data.graduate_school);
-		$("#final_degree").val(data.final_degree);
-		$("#political_status").val(data.political_status);
-		$("#specialty_code").val(data.specialty_code);
-		$("#specialty_name").val(data.specialty_id);
-		$("#specialty_name").val(data.specialty_name);
-		$("#research_direction").val(data.research_direction);
-		$("#is_part_time").val(data.is_part_time);
-		$("#create_time").val(data.create_time);
-		$("#create_user").val(data.create_user);
-		$("#modify_time").val(data.modify_time);
-		$("#modify_user").val(data.modify_user);
-		$("#specialty_id").val(data.specialty_id);
-		$("#modify_user").val(data.modify_user);
-		specialty_name = data.specialty_name;
+		$("#graduateSchool").val(data.graduateSchool);
+		$("#finalDegree").val(data.finalDegree);
+		$("#politicalStatus").val(data.politicalStatus);
+		/* $("#specialtyCode").val(data.specialtyCode); */
+		$("#specialtyName").val(data.specialtyName);
+		$("#researchDirection").val(data.researchDirection);
+		$("#isPartTime").val(data.isPartTime);
+		$("#director").val(data.director);
+		$("#createTime").val(data.createTime);
+		$("#createUser").val(data.createUser);
+		$("#modifyTime").val(data.modifyTime);
+		$("#modifyUser").val(data.modifyUser);
 	}
 	</script>
+	
 </html>

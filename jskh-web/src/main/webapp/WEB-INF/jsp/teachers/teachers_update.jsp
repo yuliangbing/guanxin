@@ -31,7 +31,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">入职时间</label>
 					<div class="layui-input-inline">
-						<input name="entry_time" id="entry_time"  autocomplete="off" class="layui-input" type="text">
+						<input name="entryTime" id="entryTime"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
@@ -44,50 +44,62 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">毕业院校</label>
 					<div class="layui-input-inline">
-						<input name="graduate_school" id="graduate_school"  autocomplete="off" class="layui-input" type="text">
+						<input name="graduateSchool" id="graduateSchool"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">学历学位</label>
 					<div class="layui-input-inline"  >
-						<select name="final_degree"  id="final_degree" autocomplete="off" class="layui-input" type="text">
+						<select name="finalDegree"  id="finalDegree" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
+							<option value="高中">高中</option>
+							<option value="大专">大专</option>
+							<option value="本科">本科</option>
+							<option value="研究生">研究生</option>
+							<option value="学士">学士</option>
+							<option value="硕士">硕士</option>
+							<option value="博士">博士</option>
 						</select>
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">政治面貌</label>
 					<div class="layui-input-inline">
-						<select name="political_status"  id="political_status" autocomplete="off" class="layui-input" type="text">
+						<select name="politicalStatus"  id="politicalStatus" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
+							<option value="中共党员">中共党员</option>
+							<option value="中共预备党员">中共预备党员</option>
+							<option value="共青团员">共青团员</option>
+							<option value="群众">群众</option>
 						</select>
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">专业编码</label>
-					<div class="layui-input-inline">
-						<input name="specialty_code" id="specialty_code"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">研究方向</label>
 					<div class="layui-input-inline">
-						<input name="research_direction" id="research_direction"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">专业id</label>
-					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" autocomplete="off" class="layui-input" type="text">
-							<option value="">请选择</option>
-						</select>
+						<input name="researchDirection" id="researchDirection"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">是否兼职</label>
 					<div class="layui-input-block">
-						<input type="radio" name="graduate_school" id="graduate_school"  value="是" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="graduate_school" id="graduate_school"  value="否" title="否" class="layui-input" >					
+						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" checked="checked">
+						<input type="radio" name="isPartTime" id="isPartTime"  value="1" title="否" class="layui-input" >					
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">专业</label>
+					<div class="layui-input-inline">
+						<select name="specialtyId"  id="specialtyId" autocomplete="off" class="layui-input" type="text">
+							<option value="">请选择</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
+					<div class="layui-input-block">
+						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" checked="checked">
+						<input type="radio" name="director" id="director"  value="2" title="否" class="layui-input" >					
 					</div>
 				</div>
 			</div>
@@ -105,19 +117,30 @@
 	var specialty_name = "";
 	function init(data) {
 
-		id = data.id;
-		$("#date").val(data.date);
+		$("#id").val(data.id);
 		$("#name").val(data.name);
-		$("#published_journal").val(data.published_journal);
-		$("#index_level").val(data.index_level);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
-		$("#awards").val(data.awards);
-		$("#specialty_name").val(data.specialty_id);
-		$("#specialty_name").val(data.specialty_name);
-		specialty_name = data.specialty_name;
+		$("#code").val(data.code);
+		$("#entryTime").val((data.entryTime.split(' '))[0]);
+		$("#birthday").val((data.birthday.split(' '))[0]);
+		$("#graduateSchool").val(data.graduateSchool);
+		$("#finalDegree").val(data.finalDegree);
+		$("#politicalStatus").val(data.politicalStatus);
+		//$("#specialtyCode").val(data.specialtyCode);
+		$("#specialtyName").val(data.specialtyId);
+		$("#specialtyName").val(data.specialtyName);
+		$("#researchDirection").val(data.researchDirection);
+		$("input[name='isPartTime']:checked").val();
+		$("#director").val(data.director);
+		$("#createTime").val(data.createTime);
+		$("#createUser").val(data.createUser);
+		$("#modifyTime").val(data.modifyTime);
+		$("#modifyUser").val(data.modifyUser);
+		$("#specialtyId").val(data.specialtyId);
+		specialty_name = data.specialtyName;
 	}
-	
+	//专业id select
+	/* var id = 0;
+	var specialty_name = ""; */	
 	function ajax_h(form,names,url,object,ids)
 	{
 		$.ajax({
@@ -185,11 +208,11 @@
 	//专业
 	ids = 'id';
 	url = '/specialty/getSpecialtyList';
-	object = 'specialty_id';
+	object = 'specialtyId';
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
-			elem: '#entry_time' //指定元素	
+			elem: '#entryTime' //指定元素	
 		});
 		laydate.render({
 			elem: '#birthday' //指定元素	
@@ -200,19 +223,22 @@
 			var params = {};
 			params.name = $("#name").val();
 			params.code = $("#code").val();
-			params.entry_time = $("#entry_time").val();
+			params.entry_time = $("#entryTime").val();
 			params.birthday = $("#birthday").val();
-			params.graduate_school = $("#graduate_school").val();
-			params.final_degree = $("#final_degree").val();
-			params.political_status = $("#political_status").val();
-			params.research_direction = $("#research_direction").val();
-			params.is_part_time = $("#is_part_time").val();
-			params.specialty_id = $("#specialty_id option:checked").val();
-			params.specialty_name = $("#specialty_id option:checked").text();
+			params.graduate_school = $("#graduateSchool").val();
+			params.final_degree = $("#finalDegree").val();
+			params.political_status = $("#politicalStatus").val();
+			params.specialty_code = $("#specialtyCode").val();
+			params.research_direction = $("#researchDirection").val();
+			params.is_part_time = $("input[name='isPartTime']:checked").val();
+			params.director = $("input[name='director']:checked").val();
+			params.specialty_id = $("#specialtyId option:checked").val();
+			params.specialty_name = $("#specialtyId option:checked").text();
+			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/issuesList/updateIssues?id='+id,
+				        url:window.path+'/teachers/addTeacher',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
@@ -224,7 +250,7 @@
 											parent.window.location.reload();
 									},500);
 								} else if(data.code != 0) {
-									layer.msg("失败,可能为数据填写错误或缺少必要数据！");
+									layer.msg(data.msg);
 								}
 							}
 						} ,error:function(code){

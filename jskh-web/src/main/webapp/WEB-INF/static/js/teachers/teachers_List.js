@@ -18,29 +18,31 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/issuesList/getIssuesList'
+		    ,url:window.path +'/teachers/getTeachersList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'name', title:'教师姓名', width:130,}
+		      ,{field:'name', title:'教师姓名', width:130,align:'center'}
 		      ,{field:'code', title:'教师编号', width:130, }
-		      ,{field:'entry_time', title:'入职时间', width:150, }
+		      ,{field:'entryTime', title:'入职时间', width:150, }
 		      ,{field:'birthday', title:'出生时间', width:150, } 
-		      ,{field:'graduate_school', title:'毕业院校', width:150, }
-		      ,{field:'final_degree', title:'最终学历学位', width:150, }
-		      ,{field:'political_status', title:'政治面貌', width:150, }
-		      ,{field:'specialty_code', title:'专业编码', width:150,}
-		      ,{field:'specialty_name', title:'专业名称', width:150, }
-		      ,{field:'is_part_time', title:'是否兼职', width:150, }
-		      ,{field:'specialty_id', title:'专业id', width:150,hide:true }
+		      ,{field:'graduateSchool', title:'毕业院校', width:150, }
+		      ,{field:'finalDegree', title:'最终学历学位', width:150, }
+		      ,{field:'politicalStatus', title:'政治面貌', width:150, }
+		      ,{field:'specialtyCode', title:'专业编码', width:150,hide:true}
+		      ,{field:'specialtyName', title:'专业名称', width:150, }
+		      ,{field:'researchDirection', title:'研究方向', width:150, }
+		      ,{field:'isPartTime', title:'是否兼职', width:150,templet: '#isPartTime' }
+		      ,{field:'director', title:'团队负责人', width:150,templet: '#director' }
+		      ,{field:'specialtyId', title:'专业id', width:150,hide:true }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:150,hide:true }
-		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:150, }
-		      ,{field:'modify_time', title:'修改时间', width:150, }
-		      ,{field:'modify_user', title:'修改人', width:130, }
+		      ,{field:'createTime', title:'创建时间', width:150, }
+		      ,{field:'createUser', title:'创建人', width:150, }
+		      ,{field:'modifyTime', title:'修改时间', width:150, }
+		      ,{field:'modifyUser', title:'修改人', width:130, }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  
@@ -70,9 +72,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令		
 				$.ajax({
-					url:'/issuesList/del',
+					url:'/teachers/deleteTeachers',
 					type:"POST",
-					data:{Id:data.id},
+					data:{id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -149,9 +151,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/issuesList/del',
+						url:'/teachers/deleteTeachers',
 						type:"POST",
-						data:{Id:param},
+						data:{id:param},
 						dataType:"json",
 						success:function(data){
 							var nowPage = tableIns.config.page.curr;//返回当前页数

@@ -21,7 +21,7 @@
     <div class="layui-col-md12 layui-content-white">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="时间" name="date" id="date" style="width:200px;">
+          <!-- <input class="layui-input" placeholder="时间" autocomplete="off" name="date" id="date" style="width:200px;"> -->
           <input type="text" name="code" id="code" placeholder="请输入教师姓名" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
@@ -42,6 +42,19 @@
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
-     
+     <script type="text/html" id="isPartTime">
+  		{{#  if(d.isPartTime == 2){ }}
+    		{{d.isPartTime = "是"}}
+ 	 	{{#  } else { }}
+    		{{d.isPartTime = "否"}}
+  		{{#  } }}
+	</script>
+	<script type="text/html" id="director">
+  		{{#  if(d.director == 1){ }}
+    		{{d.director = "是"}}
+ 	 	{{#  } else { }}
+    		{{d.director = "否"}}
+  		{{#  } }}
+	</script>
   </body>
 </html>
