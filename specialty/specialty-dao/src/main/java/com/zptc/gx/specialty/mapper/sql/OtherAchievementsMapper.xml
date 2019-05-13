@@ -204,7 +204,8 @@
     from other_achievements
     <where>
     	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
-			and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+			<!-- and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR} -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
 		<if test="name != null and name != ''">
 			and instr(name,#{name,jdbcType=VARCHAR})
