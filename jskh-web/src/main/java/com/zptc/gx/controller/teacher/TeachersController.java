@@ -158,14 +158,14 @@ public class TeachersController extends BaseController{
 				    teachers.setCreateUser(user.getTeaName());
 				    teachers.setStatus(1);
 				    //判断传入的值是否为空或""
-//				    if ((ToolUtil.equalBool(director)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(code)&&ToolUtil.equalBool(entryTime)&&ToolUtil.equalBool(birthday)&&ToolUtil.equalBool(graduateSchool)
-//				    		&&ToolUtil.equalBool(finalDegree)&&ToolUtil.equalBool(politicalStatus)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(researchDirection)&&ToolUtil.equalBool(isPartTime)&&ToolUtil.equalBool(specialtyId)) == false) {
-//				    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
-//				    	System.out.println("错误，传入数据缺少");
-//				    	 //接口拿到的数据
-//					    System.out.println("add方法拿到的数据："+teachers.toString());
-//				    	return jsonResult;
-//					}
+				    if ((ToolUtil.equalBool(director)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(code)&&ToolUtil.equalBool(entryTime)&&ToolUtil.equalBool(birthday)&&ToolUtil.equalBool(graduateSchool)
+				    		&&ToolUtil.equalBool(finalDegree)&&ToolUtil.equalBool(politicalStatus)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(researchDirection)&&ToolUtil.equalBool(isPartTime)&&ToolUtil.equalBool(specialtyId)) == false) {
+				    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+				    	System.out.println("错误，传入数据缺少");
+				    	 //接口拿到的数据
+					    System.out.println("add方法拿到的数据："+teachers.toString());
+				    	return jsonResult;
+					}
 				    System.out.println("成功，传入数据错误");
 				    System.out.println("add方法拿到的数据："+teachers.toString());
 				    //查询当前教师是否存在
@@ -764,14 +764,14 @@ public class TeachersController extends BaseController{
 			}
 		   
 		    //判断传入的值是否为空或""
-//		    if ((ToolUtil.equalBool(director)&&ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(code)&&ToolUtil.equalBool(entryTime)&&ToolUtil.equalBool(birthday)&&ToolUtil.equalBool(graduateSchool)
-//		    		&&ToolUtil.equalBool(finalDegree)&&ToolUtil.equalBool(politicalStatus)&&ToolUtil.equalBool(specialtyCode)&&ToolUtil.equalBool(specialtyName)&&ToolUtil.equalBool(researchDirection)&&ToolUtil.equalBool(isPartTime)&&ToolUtil.equalBool(specialtyId)) == false) {
-//		    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
-//		    	System.out.println("错误，传入数据缺少");
-//		    	 //接口拿到的数据
-//			    System.out.println("update方法拿到的数据："+teachers.toString());
-//		    	return jsonResult;
-//			}
+		    if ((ToolUtil.equalBool(director)&&ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(code)&&ToolUtil.equalBool(entryTime)&&ToolUtil.equalBool(birthday)&&ToolUtil.equalBool(graduateSchool)
+		    		&&ToolUtil.equalBool(finalDegree)&&ToolUtil.equalBool(politicalStatus)&&ToolUtil.equalBool(researchDirection)&&ToolUtil.equalBool(isPartTime)&&ToolUtil.equalBool(specialtyId)) == false) {
+		    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
+		    	System.out.println("错误，传入数据缺少");
+		    	 //接口拿到的数据
+			    System.out.println("update方法拿到的数据："+teachers.toString());
+		    	return jsonResult;
+			}
 		    
 		    	System.out.println("传入数据成功");
 				try {

@@ -34,9 +34,9 @@ public class TeacherTeamServiceImpl implements TeacherTeamService {
 		return teacherTeam;
 	}
 	@Override
-	public int selectCounts(Map<String, Object> counts) {
+	public int selectCounts(Map<String, Object> count) {
 		// TODO Auto-generated method stub
-		return teacherTeamMapper.selectCounts(counts);
+		return teacherTeamMapper.selectCounts(count);
 	}
 	@Override
 	public List<TeacherTeam> getTeacherTeamList(Object data) {
@@ -55,8 +55,13 @@ public class TeacherTeamServiceImpl implements TeacherTeamService {
 		return teacherTeam;
 	}
 	@Override
-	public int modifySpecialtyProfile(TeacherTeam teacherTeam) {
+	public List<TeacherTeam> getTeacherTeamList(Map<String, Object> data) {
 		// TODO Auto-generated method stub
-		return 0;
+		return teacherTeamMapper.TeacherTeamList(data);
+	}
+	@Override
+	public int Counts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return teacherTeamMapper.selectCounts(count);
 	}
 }

@@ -24,4 +24,6 @@ public interface TeacherTeamMapper {
     List<TeacherTeam> getTeacherTeamList(Object data);
 
 	TeacherTeam selectByIdAndLatest(Map<String, Object> data);
+
+	List<TeacherTeam> TeacherTeamList(Map<String, Object> data);
 }

@@ -186,19 +186,42 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
  <!-- 查询列表数据 -->
+ <!-- 这个是教师所要用到的方法 ,暂未用到-->
   <select id="getTeacherTeamList" resultType="map" parameterType="com.zptc.gx.specialty.entity.TeacherTeam" >
     select
     <include refid="Base_Column_List" />
     from teacher_team
     
   </select>
-  
+  <!-- 教师团队获取列表的方法 -->
+  <select id="TeacherTeamList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from teacher_team
+    <where>
+     	<if test="director != null and director != ''">
+			and instr(director,#{director,jdbcType=VARCHAR})
+		</if>
+		<if test="latest != null and latest != ''">
+			and instr(latest,#{latest,jdbcType=CHAR})
+		</if>
+	 </where>
+     limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!-- 统计 -->
   <select id="selectCounts" resultType="int" parameterType="map">
 		select
 			count(*)
 		from
 			teacher_team
-	
+		<where>
+	     	<if test="director != null and director != ''">
+				and instr(director,#{director,jdbcType=VARCHAR})
+			</if>
+			<if test="latest != null and latest != ''">
+				and instr(latest,#{latest,jdbcType=CHAR})
+			</if>
+		 </where>
 	</select>
 	<!-- 获取id和latest==1的数据 -->
 	 <select id="selectByIdAndLatest" resultMap="BaseResultMap" parameterType="java.util.Map" >

@@ -23,7 +23,9 @@ public interface TeacherTeamService {
 	
 	public List<TeacherTeam> getTeacherTeamList(Object data);
 
-	public int modifySpecialtyProfile(TeacherTeam teacherTeam);
+	public List<TeacherTeam> getTeacherTeamList(Map<String, Object> data);
+
+	public int Counts(Map<String, Object> count);
 
 	
 
