@@ -181,7 +181,7 @@
 											parent.window.location.reload();
 									},500);
 								} else if(data.code != 0) {
-									layer.msg("失败,可能为数据填写错误或缺少必要数据！");
+									layer.msg(data.msg);
 								}
 							}
 						} ,error:function(code){

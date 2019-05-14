@@ -24,21 +24,21 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'date', title:'时间', width:130,}
-		      ,{field:'code', title:'立项编号', width:130, }
-		      ,{field:'name', title:'课题名称', width:150, }
-		      ,{field:'sources', title:'课题来源', width:150, } 
-		      ,{field:'host', title:'主持人', width:130, }
-		      ,{field:'participants', title:'参与人', width:130, }
+		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
+		      ,{field:'date', title:'时间', width:130,align:'center'}
+		      ,{field:'code', title:'立项编号', width:130,align:'center' }
+		      ,{field:'name', title:'课题名称', width:150,align:'center' }
+		      ,{field:'sources', title:'课题来源', width:150,align:'center' } 
+		      ,{field:'host', title:'主持人', width:130,align:'center' }
+		      ,{field:'participants', title:'参与人', width:130,align:'center' }
 		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
-		      ,{field:'specialty_name', title:'专业名称', width:130, }
+		      ,{field:'specialty_name', title:'专业名称', width:130,align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{field:'awards_construction', title:'获奖及建设情况', width:230, }
-		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:150, }
-		      ,{field:'modify_time', title:'修改时间', width:150, }
-		      ,{field:'modify_user', title:'修改人', width:130, }
+		      ,{field:'awards_construction', title:'获奖及建设情况', width:230,align:'center' }
+		      ,{field:'create_time', title:'创建时间', width:150,align:'center' }
+		      ,{field:'create_user', title:'创建人', width:150,align:'center' }
+		      ,{field:'modify_time', title:'修改时间', width:150,align:'center' }
+		      ,{field:'modify_user', title:'修改人', width:130,align:'center' }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
 		  });  

@@ -84,7 +84,7 @@
 					<label class="layui-form-label">是否兼职</label>
 					<div class="layui-input-block">
 						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="isPartTime" id="isPartTime"  value="1" title="否" class="layui-input" >					
+						<input type="radio" name="isPartTime" id="isPartTime1"  value="1" title="否" class="layui-input" >					
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -98,8 +98,8 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="director" id="director"  value="2" title="否" class="layui-input" >					
+						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" >
+						<input type="radio" name="director" id="director1"  value="2" title="否" class="layui-input" checked="checked">					
 					</div>
 				</div>
 			</div>
@@ -117,7 +117,7 @@
 	var specialty_name = "";
 	function init(data) {
 
-		$("#id").val(data.id);
+		id = data.id;
 		$("#name").val(data.name);
 		$("#code").val(data.code);
 		$("#entryTime").val((data.entryTime.split(' '))[0]);
@@ -129,8 +129,8 @@
 		$("#specialtyName").val(data.specialtyId);
 		$("#specialtyName").val(data.specialtyName);
 		$("#researchDirection").val(data.researchDirection);
-		$("input[name='isPartTime']:checked").val();
-		$("#director").val(data.director);
+		$('input[name="isPartTime"]:checked').val();
+		$('input[name="director"]:checked').val();
 		$("#createTime").val(data.createTime);
 		$("#createUser").val(data.createUser);
 		$("#modifyTime").val(data.modifyTime);
@@ -149,8 +149,8 @@
 			dataType:"json",
 			success:function(data){
 				layer.msg("获取成功");
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+				//console.log(names);
 				let option = "";
 				if (data.code == 0) {
 					if(ids == 'code'){
@@ -184,7 +184,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+					//console.log("option:"+option);
 					
 				} else {
 					layer.msg(data.msg);
@@ -228,7 +228,7 @@
 			params.graduate_school = $("#graduateSchool").val();
 			params.final_degree = $("#finalDegree").val();
 			params.political_status = $("#politicalStatus").val();
-			params.specialty_code = $("#specialtyCode").val();
+			//params.specialty_code = $("#specialtyCode").val();
 			params.research_direction = $("#researchDirection").val();
 			params.is_part_time = $("input[name='isPartTime']:checked").val();
 			params.director = $("input[name='director']:checked").val();
@@ -238,7 +238,7 @@
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/teachers/addTeacher',
+				        url:window.path+'/teachers/updateTeacher?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 

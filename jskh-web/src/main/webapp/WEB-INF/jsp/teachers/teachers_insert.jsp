@@ -98,8 +98,8 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="director" id="director"  value="2" title="否" class="layui-input" >					
+						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" >
+						<input type="radio" name="director" id="director"  value="2" title="否" class="layui-input" checked="checked">					
 					</div>
 				</div>
 			</div>

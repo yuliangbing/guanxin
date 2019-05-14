@@ -21,8 +21,8 @@
     <div class="layui-col-md12 layui-content-white">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="时间" name="date" id="date" style="width:200px;">
-          <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
+          <input type="text" name="director" id="director" placeholder="请输入团队总负责人" autocomplete="off" class="layui-input">
+          <input type="text" name="latest" id="latest" placeholder="请输入是否为最新" autocomplete="off" class="layui-input">
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
         </form>
@@ -30,16 +30,15 @@
        <table class="layui-hide" id="test" lay-filter="test"></table>
     </div>
     
-    <script type="text/html" id="toolbarDemo">
-		<div style="margin:-5px -1px;">
-			<button class="layui-btn layui-btn-danger" lay-event="delData"><i class="layui-icon"></i>批量删除</button>
-			<button class="layui-btn" lay-submit lay-filter="insertAdd" id="insert"><i class="layui-icon"></i>添加</button>
-		</div>
-	</script> 
+<!--      <script type="text/html" id="toolbarDemo"> -->
+<!-- 		<div style="margin:-5px -1px;"> -->
+<!-- 			<button class="layui-btn layui-btn-danger" lay-event="delData"><i class="layui-icon"></i>批量删除</button> -->
+<!-- 			<button class="layui-btn" lay-submsit lay-filter="insertAdd" id="insert"><i class="layui-icon"></i>添加</button> -->
+<!-- 		</div> -->
+<!-- 	</script>  -->
     <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
-     
   </body>
+  	
 </html>

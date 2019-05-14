@@ -5,39 +5,29 @@ layui.use('element', function() {
 layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				/*
-				 实现时间选择
-				 */
-				var laydate = layui.laydate;
-
-				//执行一个laydate实例
-				laydate.render({
-					elem: '#date' //指定元素	
-					,range: '~' //或 range: '~' 来自定义分割字符
-				});
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/issuesList/getIssuesList'
+		    ,url:window.path +'/teachersTeam/getTeachersTeamList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true}
-		      ,{field:'specialty_code', title:'专业编码', width:150, }
-		      ,{field:'specialty_name', title:'专业名称', width:150, }
-		      ,{field:'date', title:'团队变更时间', width:150, } 
-		      ,{field:'specialty_teachers', title:'专业教师团队', width:150, }
-		      ,{field:'part_time_teachers', title:'兼职教师团队', width:150, }
-		      ,{field:'director', title:'团队总负责人', width:150, }
-		      ,{field:'latest', title:'是否最新', width:150,}
-		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:130, }
-		      ,{field:'modify_time', title:'修改时间', width:150, }
-		      ,{field:'modify_user', title:'修改人', width:130, }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
+		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
+		      ,{field:'specialtyId', title:'专业id', width:130,hide:true}
+		      ,{field:'specialtyCode', title:'专业编码', width:150,align:'center' }
+		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center' }
+		      ,{field:'date', title:'团队变更时间', width:150,align:'center' } 
+		      ,{field:'specialtyTeachers', title:'专业教师团队', width:150,align:'center' }
+		      ,{field:'partTimeTeachers', title:'兼职教师团队', width:150,align:'center' }
+		      ,{field:'director', title:'团队总负责人', width:150,align:'center' }
+		      ,{field:'latest', title:'是否最新', width:150,templet:'latest',align:'center'}
+		      ,{field:'createTime', title:'创建时间', width:150,align:'center',hide:true }
+		      ,{field:'createUser', title:'创建人', width:130,align:'center',hide:true }
+		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center',hide:true }
+		      ,{field:'modifyUser', title:'修改人', width:130,align:'center',hide:true }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150,align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
@@ -83,7 +73,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					}
 				});
 				});
-	    }/*else if(layEvent === 'edit'){//编辑
+	    }else if(layEvent === 'edit'){//编辑
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
@@ -98,7 +88,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					iframe.init(data);
 				} 
 			});
-			}*/
+			}
 		});
 
 		/* 搜索功能 */

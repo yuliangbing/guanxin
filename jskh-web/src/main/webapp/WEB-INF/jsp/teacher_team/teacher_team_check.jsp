@@ -24,13 +24,13 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">专业编码</label>
 					<div class="layui-input-inline">
-						<input name="specialty_code" id="specialty_code" disabled autocomplete="off" class="layui-input">
+						<input name="specialtyCode" id="specialtyCode" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">专业id</label>
 					<div class="layui-input-inline">
-						<input name="specialty_name" id="specialty_name" disabled autocomplete="off" class="layui-input">
+						<input name="specialtyName" id="specialtyName" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
@@ -43,13 +43,13 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">专业教师团队</label>
 					<div class="layui-input-inline">
-						<input name="specialty_teachers" id="specialty_teachers" disabled autocomplete="off" class="layui-input">
+						<input name="specialtyTeachers" id="specialtyTeachers" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">兼职教师团队</label>
 					<div class="layui-input-inline"  >
-						<input name="part_time_teachers" id="part_time_teachers" disabled autocomplete="off" class="layui-input">
+						<input name="partTimeTeachers" id="partTimeTeachers" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				
@@ -68,25 +68,25 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">创建时间</label>
 					<div class="layui-input-inline">
-						<input name="create_time"  id="create_time" disabled autocomplete="off" class="layui-input">
+						<input name="createTime"  id="createTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">创建人</label>
 					<div class="layui-input-inline">
-						<input name="create_user"  id="create_user" disabled autocomplete="off" class="layui-input">
+						<input name="createUser"  id="createUser" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">修改时间</label>
 					<div class="layui-input-inline">
-						<input name="modify_time"  id="modify_time" disabled autocomplete="off" class="layui-input">
+						<input name="modifyTime"  id="modifyTime" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">修改人</label>
 					<div class="layui-input-inline">
-						<input name="modify_user"  id="modify_user" disabled autocomplete="off" class="layui-input">
+						<input name="modifyUser"  id="modifyUser" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			</div>
@@ -98,19 +98,18 @@
    	function init(data) {
 
    		$("#id").val(data.id);
-		$("#specialty_id").val(data.specialty_id);
-		$("#specialty_code").val(data.specialty_code);
-		$("#specialty_name").val(data.specialty_id);
+		$("#specialtyId").val(data.specialtyId);
+		$("#specialtyCode").val(data.specialtyCode);
+		$("#specialtyName").val(data.specialtyName);
 		$("#date").val((data.date.split(' '))[0]);
-		$("#specialty_teachers").val(data.specialty_teachers);
-		$("#part_time_teachers").val(data.part_time_teachers);
+		$("#specialtyTeachers").val(data.specialtyTeachers);
+		$("#partTimeTeachers").val(data.partTimeTeachers);
 		$("#director").val(data.director);
 		$("#latest").val(data.latest);
-		$("#specialty_name").val(data.specialty_name);
-		$("#create_time").val(data.create_time);
-		$("#create_user").val(data.create_user);
-		$("#modify_time").val(data.modify_time);
-		$("#modify_user").val(data.modify_user);
+		$("#createTime").val(data.createTime);
+		$("#createUser").val(data.createUser);
+		$("#modifyTime").val(data.modifyTime);
+		$("#modifyUser").val(data.modifyUser);
 		specialty_name = data.specialty_name;
 	}
    	</script>
