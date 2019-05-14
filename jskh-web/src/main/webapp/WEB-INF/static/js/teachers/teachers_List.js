@@ -24,28 +24,28 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true}
+		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
 		      ,{field:'name', title:'教师姓名', width:130,align:'center'}
-		      ,{field:'code', title:'教师编号', width:130, }
-		      ,{field:'entryTime', title:'入职时间', width:150, }
-		      ,{field:'birthday', title:'出生时间', width:150, } 
-		      ,{field:'graduateSchool', title:'毕业院校', width:150, }
-		      ,{field:'finalDegree', title:'最终学历学位', width:150, }
-		      ,{field:'politicalStatus', title:'政治面貌', width:150, }
+		      ,{field:'code', title:'教师编号', width:130,align:'center' }
+		      ,{field:'entryTime', title:'入职时间', width:150,align:'center' }
+		      ,{field:'birthday', title:'出生时间', width:150,align:'center' } 
+		      ,{field:'graduateSchool', title:'毕业院校', width:150,align:'center' }
+		      ,{field:'finalDegree', title:'最终学历学位', width:150,align:'center' }
+		      ,{field:'politicalStatus', title:'政治面貌', width:150,align:'center' }
 		      ,{field:'specialtyCode', title:'专业编码', width:150,hide:true}
-		      ,{field:'specialtyName', title:'专业名称', width:150, }
-		      ,{field:'researchDirection', title:'研究方向', width:150, }
-		      ,{field:'isPartTime', title:'是否兼职', width:150,templet: '#isPartTime' }
-		      ,{field:'director', title:'团队负责人', width:150,templet: '#director' }
+		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center' }
+		      ,{field:'researchDirection', title:'研究方向', width:150,align:'center' }
+		      ,{field:'isPartTime', title:'是否兼职', width:150,templet: '#isPartTime',align:'center' }
+		      ,{field:'director', title:'团队负责人', width:150,templet: '#director',align:'center' }
 		      ,{field:'specialtyId', title:'专业id', width:150,hide:true }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:150,hide:true }
-		      ,{field:'createTime', title:'创建时间', width:150, }
-		      ,{field:'createUser', title:'创建人', width:150, }
-		      ,{field:'modifyTime', title:'修改时间', width:150, }
-		      ,{field:'modifyUser', title:'修改人', width:130, }
+		      ,{field:'createTime', title:'创建时间', width:150,align:'center' }
+		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
+		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
+		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
 		    ]]
-		  });  
+		  });
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
@@ -143,33 +143,33 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    switch(obj.event){
 		      case 'delData':
 		        var data = checkStatus.data;
-		        var param = [{}];
+		        var ids = "";
 		       // layer.alert(JSON.stringify(data));
 		        for(var i=0;i< data.length;i++){
-		        	param = data[i].id;
-//		        	layer.alert(JSON.stringify(data[i].id));
-		        	console.log(param);
+		        	if (i == 0) {
+						ids = data[i].id;
+					} else {
+						ids += "," + data[i].id;
+					}
 		        	//向服务端发送删除指令*/		
-					$.ajax({
-						url:'/teachers/deleteTeachers',
-						type:"POST",
-						data:{id:param},
-						dataType:"json",
-						success:function(data){
-							var nowPage = tableIns.config.page.curr;//返回当前页数
-				        	var reloadPage = (nowPage-1) > 0? nowPage:1;
-							layer.msg("删除成功");
-							//layer.close(index);
-			    			tableIns.reload({
-			    				page:{
-			    					curr:reloadPage
-			    				}
-			    			});
-						}
-					});
-		        	
-		        	
 		        }
+		        $.ajax({
+					url:'/teachers/deleteTeachers',
+					type:"POST",
+					data:{ids:ids},
+					dataType:"json",
+					success:function(data){
+						var nowPage = tableIns.config.page.curr;//返回当前页数
+			        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+						layer.msg("删除成功");
+						//layer.close(index);
+		    			tableIns.reload({
+		    				page:{
+		    					curr:reloadPage
+		    				}
+		    			});
+					}
+				});
 		       //layer.alert(JSON.stringify(param));
 		        
 		      break;

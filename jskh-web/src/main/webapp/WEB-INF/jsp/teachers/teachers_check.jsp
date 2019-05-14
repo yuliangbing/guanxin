@@ -123,7 +123,9 @@
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
+
 	<script>
+	
 	//表格数据传值
 	function init(data) {
 
@@ -138,8 +140,8 @@
 		/* $("#specialtyCode").val(data.specialtyCode); */
 		$("#specialtyName").val(data.specialtyName);
 		$("#researchDirection").val(data.researchDirection);
-		$("#isPartTime").val(data.isPartTime);
-		$("#director").val(data.director);
+		$("#isPartTime").val(data.isPartTime=1?'否':'是');
+		$("#director").val(data.director=2?'否':'是');
 		$("#createTime").val(data.createTime);
 		$("#createUser").val(data.createUser);
 		$("#modifyTime").val(data.modifyTime);
