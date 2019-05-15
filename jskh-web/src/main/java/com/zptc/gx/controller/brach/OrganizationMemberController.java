@@ -143,8 +143,8 @@ public class OrganizationMemberController extends BaseController{
 		    organizationMember.setId(id);
 		    organizationMember.setName(name);
 		    organizationMember.setPosition(position);
-		    organizationMember.setCreateTime(new Date());
-		    organizationMember.setCreateUser(user.getTeaName());
+		    organizationMember.setModifyTime(new Date());
+		    organizationMember.setModifyUser(user.getTeaName());
 		    int result = organizationMemberService.modifyOrganizationMember(organizationMember);
 		    if (result>0) {
 				jsonResult = JsonResult.build(FLAG_SUCCESS);

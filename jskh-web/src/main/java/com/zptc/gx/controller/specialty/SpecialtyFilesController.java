@@ -76,7 +76,7 @@ public class SpecialtyFilesController extends BaseController {
 		count.put("cate_name", cate_name);
 		count.put("reviser", reviser);
 //		count.put("specialty_id", specialty_id);
-		count.put("date1", date1);
+		count.put("date1 ", date1);
 		count.put("date2", date2);
 		count.put("status", 1);
 		//定义返回的数据条总数

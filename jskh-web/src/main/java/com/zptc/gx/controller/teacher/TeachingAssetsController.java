@@ -78,8 +78,8 @@ public class TeachingAssetsController extends BaseController{
 		   teachingAssets.setStatus(1);;
 	   if ((ToolUtil.equalBool(cate_code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(country_code)&&ToolUtil.equalBool(code)
 			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(total_amount)
-			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(use_person)
-			&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(training_room)&&ToolUtil.equalBool(status_code)
+			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(training_room)
+			&&ToolUtil.equalBool(status_code)&&ToolUtil.equalBool(remark)
 			&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
 		   jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 			return jsonResult;

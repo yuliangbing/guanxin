@@ -142,6 +142,8 @@ public class SubjectCompetitionController extends BaseController{
 	 subjectCompetition.setTeachers(teachers);
 	 subjectCompetition.setSpecialtyId(specialty_id);
 	 subjectCompetition.setSpecialtyName(specialty_name);
+	 subjectCompetition.setModifyTime(new Date());
+     subjectCompetition.setModifyUser(user.getTeaName());
 //	判断传入的值是否为空或""
 	 if ((ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(award_level)&&ToolUtil.equalBool(students)&&ToolUtil.equalBool(teachers)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
