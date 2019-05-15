@@ -7,14 +7,14 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/innovation_entrepreneurial_achievements/innovation_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+     <div class="layui-form-item" style="margin-left:10%;margin-top:2%">
 				<!-- <div class="layui-inline">
 					<label class="layui-form-label">主键</label>
 					<div class="layui-input-inline">
@@ -29,36 +29,19 @@
 				</div>
 				
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果名称</label>
+					<label class="layui-form-label">成果内容</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name" disabled autocomplete="off" class="layui-input">
+						<input name="content" id="content" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label" >成果来源</label>
+					<label class="layui-form-label">参与人员</label>
 					<div class="layui-input-inline">
-						<input name="sources" id="sources" disabled autocomplete="off" class="layui-input">
+						<input name="participants" id="participants" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果级别</label>
-					<div class="layui-input-inline">
-						<input name="level" id="level" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
-					<div class="layui-input-inline"  >
-						<input name="first_author" id="first_author" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">其他作者情况</label>
-					<div class="layui-input-inline"  >
-						<input name="other_author" id="other_author" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
+			
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
@@ -74,13 +57,10 @@
    	<script>
    	function init(data) {
 
-   		//$("#id").val(data.date);
-   		$("#date").val((data.date.split(' '))[0]);
-		$("#name").val(data.name);
-		$("#sources").val(data.sources);
-		$("#level").val(data.level);
-		$("#first_author").val(data.firstAuthor);
-		$("#other_author").val(data.otherAuthors);
+   		//$("#id").val((data.date.split(' '))[0]);
+		$("#date").val((data.date.split(' '))[0]);
+		$("#content").val(data.content);
+		$("#participants").val(data.participants);
 		$("#specialtyName").val(data.specialtyName);
 	}
    	</script>

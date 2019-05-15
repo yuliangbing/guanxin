@@ -22,34 +22,28 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果名称</label>
+					<label class="layui-form-label">竞赛名称</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label">成果来源</label>
+					<label class="layui-form-label">获奖级别</label>
 					<div class="layui-input-inline">
-						<input name="sources" id="sources"  autocomplete="off" class="layui-input" type="text">
+						<input name="award_level" id="award_level"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果级别</label>
+					<label class="layui-form-label">获奖学生</label>
 					<div class="layui-input-inline">
-						<input name="level" id="level"  autocomplete="off" class="layui-input" type="text">
+						<input name="students" id="students"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">指导老师</label>
 					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">其他作者情况</label>
-					<div class="layui-input-inline">
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input" type="text">
+						<input name="teachers" id="teachers"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -61,6 +55,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
@@ -69,7 +64,7 @@
 	</body>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+		<script type="text/javascript" src="${path}/static/js/subject_competition/competition_List.js"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
 	function ajax_h(form,url,object,ids){
@@ -125,19 +120,18 @@
 			/*获取$值存入params */
 			var params = {};
 			params.date = $("#date").val();
-			params.sources = $("#sources").val();
 			params.name = $("#name").val();
 		/* 	params.cate_name = $("#cate_name").val(); */
-			params.level = $("#level").val();
-			params.first_author = $("#first_author").val();
-			params.other_authors = $("#other_authors").val();
+			params.award_level = $("#award_level").val();
+			params.students = $("#students").val();
+			params.teachers= $("#teachers").val();
 			params.specialty_name = $("#specialtyName option:checked").text();
 			params.specialty_id = $("#specialtyName option:checked").val();
 		console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/otherAchievements/addOtherAchievements',
+				        url:window.path+'/subjectCompetition/addSubjectCompetition',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 

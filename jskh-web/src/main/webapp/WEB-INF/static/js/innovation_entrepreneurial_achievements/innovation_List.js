@@ -47,20 +47,18 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  var tableIns = table.render({
 		    elem: '#test'
 		    	,defaultToolbar:[]
-		    ,url:window.path +'/otherAchievements/getOtherAchievementsList'
+		    ,url:window.path +'/IEAchievements/ListIEAchievements'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true , align:'center'}
+		      ,{field:'id', title:'主键', width:100,sort: true, align:'center'}
 		      ,{field:'date', title:'时间', width:130,align:'center'}	     
-		      ,{field:'name', title:'成果名称', width:150, align:'center'}
-		      ,{field:'sources', title:'成果来源', width:150,align:'center' } 
-		      ,{field:'level', title:'成果级别', width:130, align:'center'}
-		      ,{field:'firstAuthor', title:'第一作者', width:130, align:'center'}
-		      ,{field:'otherAuthors', title:'其他作者情况', width:130, align:'center'}
-		      ,{field:'specialtyName', title:'专业名称', width:130, align:'center'}
+		      ,{field:'content', title:'成果内容', width:150, align:'center'}
+		      ,{field:'participants', title:'参与人员', width:150,align:'center' } 
+		      ,{field:'specialtyName', title:'专业名称', width:130,align:'center'}
+		     
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
 		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
@@ -78,7 +76,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/other_check'],
+	    		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_check'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -95,7 +93,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				layer.close(index);
 				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/otherAchievements/delOtherAchievements',
+					url:'/IEAchievements/delIEAchievements',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
@@ -118,7 +116,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=other_achievements/other_update'],
+	    		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -141,7 +139,6 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 				arr.date2 = data.field.date.split('~')[1];
 			}
-			console.log(arr);
 			tableIns.reload({
 				where:arr,
 				page: {
@@ -175,7 +172,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=other_achievements/other_insert'],
+	  		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
@@ -197,7 +194,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/otherAchievements/delOtherAchievements',
+						url:'/IEAchievements/delIEAchievements',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",

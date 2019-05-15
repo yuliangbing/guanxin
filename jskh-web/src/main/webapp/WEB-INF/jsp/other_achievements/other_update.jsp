@@ -15,7 +15,7 @@
 
 			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
 				
-				<div class="layui-inline">
+                <div class="layui-inline">
 					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
 						<input name="date" id="date"  autocomplete="off" class="layui-input" type="text">
@@ -55,11 +55,13 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
-						<select  type="text" id="specialtyName" lay-filter="specialtyName" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+						<select  type="text" id="specialtyId" lay-filter="specialtyId" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
 							</select>
 					</div>
 				</div>
+			</div>
+				
 			</div>
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
@@ -67,33 +69,74 @@
 			</div>
 		</form>
 	</body>
-		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
-		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<%-- 	<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script> --%>
+	<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+	<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
-	function ajax_h(form,url,object,ids){
-		//获取下拉列表(公共方法)
+	//表格数据传值
+	var id = 0;
+	var specialtyName = "";
+	function init(data) {
+
+		id = data.id;
+		$("#date").val((data.date.split(' '))[0]);
+		$("#name").val(data.name);
+		$("#sources").val(data.sources);
+		$("#level").val(data.level);
+		$("#first_author").val(data.firstAuthor);
+		$("#other_authors").val(data.otherAuthors);
+		$("#specialtyId").val(data.specialtyId);
+		specialtyName = data.specialtyName;
+	}
+	
+	function ajax_h(form,names,url,object,ids)
+	{
 		$.ajax({
 			url:url,
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				console.log(data);
-				//layer.msg("获取成功");
-				console.log(data.data.length);
+				layer.msg("获取成功");
+				console.log("长度"+data.data.length);
+				console.log(names);
+				let option = "";
 				if (data.code == 0) {
-						let option = "";
-						for (let i=0;i<data.data.length;i++) {
-							option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+					if(ids == 'code'){
+						for (let i=0;i<data.data.length;i++)
+						{
+							if(data.data[i].name == names)
+							{
+								option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+							}
+							else
+							{
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+							}
 						}
 						$("#"+object).append(option);
-							var form = layui.form;
-							form.render('select');
-						
+						form.render('select');
+					}
+				 	else if(ids == 'id')
+				 	{
+						for (let j=0;j<data.data.length;j++)
+						{
+							if(data.data[j].name == names )
+							{
+								option += "<option value='"+data.data[j].id+"' selected='selected'>"+data.data[j].name+"</option>";
+							}
+							else
+							{
+								option += "<option value='"+data.data[j].id+"'>"+data.data[j].name+"</option>";
+							}
+						}
+						$("#"+object).append(option);
+						form.render('select');
+					} 
+					console.log("option:"+option);
 					
 				} else {
-					layer.msg("请检查网络连接！");
+					layer.msg(data.msg);
 				}
 				
 			} ,error:function(code){
@@ -101,43 +144,43 @@
 	        }
 		});
 	}
-	//时间控件
-	layui.use(['form','laydate'], function() {	
-		
-	var form = layui.form;
-	var laydate = layui.laydate;
-	var url="";
-	var object = "";
-	var ids= "";
-	url = '/specialty/getSpecialtyList';
-	object = 'specialtyName';
+	layui.use(['form', 'table', 'laydate'], function() {
+		var form = layui.form;
+		var laydate = layui.laydate;
+		/*
+		下拉列表数据获取  开始
+	*/
+	var url ="";
+	var object="";
+	var ids="";
+	var name;
+	//专业
 	ids = 'id';
-	ajax_h(form,url,object,ids);
-	laydate.render({
+	url = '/specialty/getSpecialtyList';
+	object = 'specialtyId';
+	names= specialtyName;
+	ajax_h(form,names,url,object,ids);
+		laydate.render({
+			elem: '#date' //指定元素	
+		});
 		
-	    elem: '#date'
-	  });
-	laydate.render({
-		elem: '#date1' //指定元素	
-	});
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
 			params.date = $("#date").val();
-			params.sources = $("#sources").val();
 			params.name = $("#name").val();
-		/* 	params.cate_name = $("#cate_name").val(); */
+			params.sources = $("#sources").val();
 			params.level = $("#level").val();
 			params.first_author = $("#first_author").val();
 			params.other_authors = $("#other_authors").val();
-			params.specialty_name = $("#specialtyName option:checked").text();
-			params.specialty_id = $("#specialtyName option:checked").val();
-		console.log(params);
+			params.specialty_id= $("#specialtyId option:checked").val();
+			params.specialty_name = $("#specialtyId option:checked").text();
+			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/otherAchievements/addOtherAchievements',
+				        url:window.path+'/ otherAchievements/updateOtherAchievements?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
@@ -165,6 +208,4 @@
 		});
 });
 	</script>
-</html>
-
 </html>

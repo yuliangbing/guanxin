@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/subject_competition/competition_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -20,7 +20,7 @@
 					<div class="layui-input-inline">
 						<input name="id" id="id" disabled  autocomplete="off" class="layui-input">
 					</div>
-				</div> -->
+				</div>  -->
 				<div class="layui-inline">
 					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
@@ -29,34 +29,28 @@
 				</div>
 				
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果名称</label>
+					<label class="layui-form-label">竞赛名称</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label" >成果来源</label>
+					<label class="layui-form-label">获奖级别</label>
 					<div class="layui-input-inline">
-						<input name="sources" id="sources" disabled autocomplete="off" class="layui-input">
+						<input name="award_level" id="award_level" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果级别</label>
-					<div class="layui-input-inline">
-						<input name="level" id="level" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
+					<label class="layui-form-label">获奖学生</label>
 					<div class="layui-input-inline"  >
-						<input name="first_author" id="first_author" disabled autocomplete="off" class="layui-input">
+						<input name="students" id="students" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">其他作者情况</label>
+					<label class="layui-form-label">指导老师</label>
 					<div class="layui-input-inline"  >
-						<input name="other_author" id="other_author" disabled autocomplete="off" class="layui-input">
+						<input name="teachers" id="teachers" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -67,6 +61,7 @@
 				</div>
 				
 			</div>
+			
 		</form>
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
@@ -74,14 +69,14 @@
    	<script>
    	function init(data) {
 
-   		//$("#id").val(data.date);
-   		$("#date").val((data.date.split(' '))[0]);
+   		//$("#id").val((data.date.split(' '))[0]);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#name").val(data.name);
-		$("#sources").val(data.sources);
-		$("#level").val(data.level);
-		$("#first_author").val(data.firstAuthor);
-		$("#other_author").val(data.otherAuthors);
+		$("#award_level").val(data.awardLevel);
+		$("#students").val(data.students);
+		$("#teachers").val(data.teachers);
 		$("#specialtyName").val(data.specialtyName);
+		
 	}
    	</script>
 </html>

@@ -22,36 +22,19 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果名称</label>
+					<label class="layui-form-label">成果内容</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
+						<input name="content" id="content"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
-					<label class="layui-form-label">成果来源</label>
+					<label class="layui-form-label">参与人员</label>
 					<div class="layui-input-inline">
-						<input name="sources" id="sources"  autocomplete="off" class="layui-input" type="text">
+						<input name="participants" id="participants"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果级别</label>
-					<div class="layui-input-inline">
-						<input name="level" id="level"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">第一作者</label>
-					<div class="layui-input-inline">
-						<input name="first_author" id="first_author"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">其他作者情况</label>
-					<div class="layui-input-inline">
-						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
+				
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
@@ -69,7 +52,7 @@
 	</body>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+		<script type="text/javascript" src="${path}/static/js/innovation_entrepreneurial_achievements/innovation_List.js"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
 	function ajax_h(form,url,object,ids){
@@ -125,19 +108,16 @@
 			/*获取$值存入params */
 			var params = {};
 			params.date = $("#date").val();
-			params.sources = $("#sources").val();
-			params.name = $("#name").val();
+			params.content = $("#content").val();
+			params.participants = $("#participants").val();
 		/* 	params.cate_name = $("#cate_name").val(); */
-			params.level = $("#level").val();
-			params.first_author = $("#first_author").val();
-			params.other_authors = $("#other_authors").val();
 			params.specialty_name = $("#specialtyName option:checked").text();
 			params.specialty_id = $("#specialtyName option:checked").val();
 		console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/otherAchievements/addOtherAchievements',
+				        url:window.path+'/IEAchievements/addIEAchievements',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
