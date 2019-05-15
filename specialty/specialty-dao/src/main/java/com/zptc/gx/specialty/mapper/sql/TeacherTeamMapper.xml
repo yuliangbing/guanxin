@@ -129,7 +129,7 @@
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zptc.gx.specialty.entity.TeacherTeam" >
     update teacher_team
-    <set >
+  <!--   <set >
       <if test="specialtyId != null" >
         specialty_id = #{specialtyId,jdbcType=BIGINT},
       </if>
@@ -164,6 +164,44 @@
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="modifyUser != null" >
+        modify_user = #{modifyUser,jdbcType=VARCHAR},
+      </if>
+    </set> -->
+      <set >
+      <if test="specialtyId != null and specialtyId != ''" >
+        specialty_id = #{specialtyId,jdbcType=BIGINT},
+      </if>
+      <if test="specialtyCode != null and specialtyCode != ''" >
+        specialty_code = #{specialtyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="specialtyName != null and specialtyName != ''" >
+        specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null and date != ''" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="specialtyTeachers != null and specialtyTeachers != ''" >
+        specialty_teachers = #{specialtyTeachers,jdbcType=VARCHAR},
+      </if>
+      <if test="partTimeTeachers != null and partTimeTeachers != ''" >
+        part_time_teachers = #{partTimeTeachers,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null and director != ''" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="latest != null and latest != ''" >
+        latest = #{latest,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null and createTime != ''" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null and createUser != ''" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyTime != null and modifyTime != ''" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyUser != null and modifyUser != ''" >
         modify_user = #{modifyUser,jdbcType=VARCHAR},
       </if>
     </set>

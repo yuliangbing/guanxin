@@ -3,13 +3,14 @@ package com.zptc.gx.specialty.service;
 import java.util.List;
 import java.util.Map;
 
+import com.zptc.gx.specialty.entity.TeacherTeam;
 import com.zptc.gx.specialty.entity.Teachers;
 
 public interface TeachersService {
 
 	public int addTeachers(Teachers teachers);
 
-	public int modifyTeachers(Teachers teachers);
+	public int modifyTeachers(Teachers teas);
 
 	public void deleteTeachersById(Long id);
 

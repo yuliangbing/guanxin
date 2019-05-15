@@ -148,7 +148,7 @@ public class SpecialtyConstructionMeasuresController extends BaseController {
 			String measures = ToolUtil.str("measures", request);
 		    Long specialtyId = ToolUtil.lon("specialtyId", request);
 		    String specialtyName = ToolUtil.str("specialty_name", request);
-		    Date date = ToolUtil.date1("date", request);
+		    Date date = ToolUtil.date2("date", request);
 		    
 		    SpecialtyConstructionMeasures specialtyConstructionMeasures = specialtyConstructionMeasuresService.findSpecialtyConstructionMeasuresById(specialtyMeasuresId);
 		    if (specialtyConstructionMeasures == null) {

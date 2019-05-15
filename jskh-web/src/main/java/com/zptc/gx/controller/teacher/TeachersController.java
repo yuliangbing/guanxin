@@ -166,7 +166,7 @@ public class TeachersController extends BaseController{
 					    System.out.println("add方法拿到的数据："+teachers.toString());
 				    	return jsonResult;
 					}
-				    System.out.println("成功，传入数据错误");
+				    System.out.println("成功，传入数据");
 				    System.out.println("add方法拿到的数据："+teachers.toString());
 				    //查询当前教师是否存在
 				    Map<String, Object> map = new HashMap<>();
@@ -178,14 +178,30 @@ public class TeachersController extends BaseController{
 						return jsonResult;
 					}
 				    System.out.println("教师不存在，可以继续添加！");
-				    
-				    //存放查询参数
+				    /**
+					 * 新增				    
+					 */
+				    int rs = teachersService.addTeachers(teachers);
+				    if (rs == 1) {
+						jsonResult = jsonResult.build(FLAG_SUCCESS,"教师团队新增成功");
+					}else if (rs <0){
+						jsonResult = jsonResult.build(FLAG_FAILED,"教师团队新增失败");
+					}else if (rs == 404) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "找不到该团队负责人");
+					}else if (rs == 201) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
+					}
+				    /*//存放查询参数
 				    Map<String, Object> data =new HashMap<>();
 				    data.put("specialty_id", specialtyId);
 				    data.put("latest", "1");
 				    TeacherTeam teacherTeam = teacherTeamService.findTeacherTeamByIdAndLatest(data);
-				    TeacherTeam teacherTeam2 = new TeacherTeam();
-				    if (teacherTeam == null) {//专业团队不存在
+				    TeacherTeam teacherTeam2 = new TeacherTeam();*/
+				    
+					
+				   // String Latest = teacherTeam.getLatest();//存放的是是否最新
+				    
+				  /*  if (teacherTeam == null) {//专业团队不存在
 						System.out.println("专业团队不存在，将创建新团队");
 						//System.out.println("教师团队拿到的数据："+teacherTeam.toString());
 						  //判断是不是团队负责人
@@ -218,10 +234,10 @@ public class TeachersController extends BaseController{
 					}
 				    
 				    String Latest = teacherTeam.getLatest();//存放的是是否最新
-				    
+*/				    
 				    //存在专业团队
 				    
-				    int updT = 0;//当前教师团队是否为最新的返回值
+				   /* int updT = 0;//当前教师团队是否为最新的返回值
 				    int addT = 0;//当前教师团队新增团队的返回值
 				    String getTeachers ="";//返回非最新团队的团队成员成员
 				    //判断是不是团队负责人
@@ -333,7 +349,7 @@ public class TeachersController extends BaseController{
 						jsonResult = jsonResult.build(FLAG_SUCCESS,"添加成功");
 					}else {
 						jsonResult = jsonResult.build(FLAG_FAILED,"添加失败");
-					}
+					}*/
 				
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -359,13 +375,34 @@ public class TeachersController extends BaseController{
 		 	String graduateSchool = ToolUtil.str("graduate_school", request);
 		 	String finalDegree = ToolUtil.str("final_degree", request);
 			String politicalStatus = ToolUtil.str("political_status", request);
-			String specialtyCode = ToolUtil.str("specialty_code", request);
-		 	String specialtyName = ToolUtil.str("specialty_name", request);
+			/*String specialtyCode = ToolUtil.str("specialty_code", request);
+		 	String specialtyName = ToolUtil.str("specialty_name", request);*/
+			String specialtyCode = "";
+			String specialtyName = "";
 		 	String researchDirection = ToolUtil.str("research_direction", request);
 		 	Integer isPartTime = ToolUtil.integer("is_part_time", request);
 		 	Long specialtyId = ToolUtil.lon("specialty_id", request);
 		 	String director = ToolUtil.str("director", request);
-			//根据id,查找教师数据
+		 	
+		 	//根据specialty_id查出专业code和专业name
+		 	Specialty specialty = specialtyService.findSpecialtyById(specialtyId);
+		 	if (specialty == null) {
+				System.out.println("没有该专业");
+				jsonResult = jsonResult.build(FLAG_FAILED, "该专业不存在");
+				return jsonResult;
+			}
+		 	specialtyCode = specialty.getCode();
+		 	specialtyName = specialty.getName();
+		 	
+		 	
+		 	
+//		 	Teachers teachers2 = teachersService.findTeachersById(id);//未修改之前的数据
+//		    if (teachers2 == null) {
+//		    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师！");
+//				return jsonResult;
+//			}
+		 	
+			/*//根据id,查找教师数据
 		    Teachers teachers = teachersService.findTeachersById(id);//未修改之前的数据
 		    if (teachers == null) {
 		    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师！");
@@ -389,9 +426,9 @@ public class TeachersController extends BaseController{
 		    	teacherTeam.setLatest("2");//设置不是最新
 		    	updT = teacherTeamService.modifyTeacherTeam(teacherTeam);//修改数据为旧数据
 		    	
-		    	/**
-		    	 * 判断是不是团队负责人(原团队负责人是不是当前更改的该教师)
-		    	 */
+//		    	/**
+//		    	 * 判断是不是团队负责人(原团队负责人是不是当前更改的该教师)
+//		    	 /*
 		    	if (teachers.getName().equals(teacherTeam.getDirector())) {//相等，是同人
 					//删除该团队负责人
 		    		teacherTeam.setDirector(null);
@@ -399,7 +436,7 @@ public class TeachersController extends BaseController{
 		    	
 		    	/**
 		    	 * 变更专业id
-		    	 */
+		    	 /*
 
 	    		teacherTeam.setLatest("1");//设置最新
 			 	teacherTeam.setDate(new Date());
@@ -442,7 +479,7 @@ public class TeachersController extends BaseController{
 		    	
 		    	/**
 		    	 * 变更到那条专业id的教师团队加数据
-		    	 */
+		    	 /*
 		    	//根据修改的专业id查询到专业团队（本质就是新增新增）
 		    	Map<String, Object> map = new HashMap<>();
 				map.put("specialty_id", specialtyId);
@@ -516,7 +553,7 @@ public class TeachersController extends BaseController{
 			    	
 			    	/**
 			    	 * 判断是不是团队负责人
-			    	 */
+			    	 /*
 			    	
 				    if (director.equals("1")) {
 				    	//是团队负责人
@@ -613,7 +650,7 @@ public class TeachersController extends BaseController{
 				    	
 				    	/**
 				    	 * 判断是不是团队负责人
-				    	 */
+				    	 /*
 					    if (director.equals("1")) {
 					    	//是团队负责人
 					    	if (teacherTeam.getDirector() != null && !"".equals(teacherTeam.getDirector()) ) {//当有团队负责人时
@@ -762,7 +799,26 @@ public class TeachersController extends BaseController{
 				}				
 				}
 			}
-		   
+		   */
+		 	ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+		 	Teachers teachers = new Teachers();
+		 		teachers.setId(id);
+			    teachers.setName(name);
+			    teachers.setCode(code);
+			    teachers.setEntryTime(entryTime);
+			    teachers.setBirthday(birthday);
+			    teachers.setGraduateSchool(graduateSchool);
+			    teachers.setFinalDegree(finalDegree);
+			    teachers.setPoliticalStatus(politicalStatus);
+			    teachers.setSpecialtyCode(specialtyCode);
+			    teachers.setSpecialtyName(specialtyName);
+			    teachers.setSpecialtyId(specialtyId);
+			    teachers.setResearchDirection(researchDirection);
+			    teachers.setIsPartTime(isPartTime);
+			    teachers.setDirector(director);
+			    teachers.setModifyTime(new Date());
+			    teachers.setModifyUser(user.getTeaName());
+			    System.out.println("update方法拿到的数据："+teachers.toString());
 		    //判断传入的值是否为空或""
 		    if ((ToolUtil.equalBool(director)&&ToolUtil.equalBool(id)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(code)&&ToolUtil.equalBool(entryTime)&&ToolUtil.equalBool(birthday)&&ToolUtil.equalBool(graduateSchool)
 		    		&&ToolUtil.equalBool(finalDegree)&&ToolUtil.equalBool(politicalStatus)&&ToolUtil.equalBool(researchDirection)&&ToolUtil.equalBool(isPartTime)&&ToolUtil.equalBool(specialtyId)) == false) {
@@ -776,30 +832,21 @@ public class TeachersController extends BaseController{
 		    	System.out.println("传入数据成功");
 				try {
 					
-      				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-				   
-				    teachers.setName(name);
-				    teachers.setCode(code);
-				    teachers.setEntryTime(entryTime);
-				    teachers.setBirthday(birthday);
-				    teachers.setGraduateSchool(graduateSchool);
-				    teachers.setFinalDegree(finalDegree);
-				    teachers.setPoliticalStatus(politicalStatus);
-				    teachers.setSpecialtyCode(specialtyCode);
-				    teachers.setSpecialtyName(specialtyName);
-				    teachers.setSpecialtyId(specialtyId);
-				    teachers.setResearchDirection(researchDirection);
-				    teachers.setIsPartTime(isPartTime);
-				    teachers.setDirector(director);
-				    teachers.setModifyTime(new Date());
-				    teachers.setModifyUser(user.getTeaName());
-				    System.out.println("update方法拿到的数据："+teachers.toString());
-				    
 				    int result = teachersService.modifyTeachers(teachers);
-				    if (result > 0) {
+				    if (result == 1) {
 				    	jsonResult = JsonResult.build(FLAG_SUCCESS,"修改成功");
-					} else {
+					} else if(result < 0){
 						jsonResult = JsonResult.build(FLAG_FAILED,"修改失败");
+					}else if (result == 404) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "没有该教师");
+					}else if(result == 405) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "找不到该团队的负责人");
+					}else if (result == 780) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "修改专业后，添加数据失败！");
+					}else if (result == 781) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
+					}else if (result == 881) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "修改是否兼职后，添加数据失败!");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -815,82 +862,129 @@ public class TeachersController extends BaseController{
 		public JsonResult deleteTeachersIf(HttpServletRequest request, HttpServletResponse response) {
 			JsonResult jsonResult = new JsonResult();
 			System.out.println("启用deleteTeachers方法");
+			
 			try {
 				ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-				Long id = ToolUtil.lon("id", request);
-				System.out.println("要删除的数据id是"+id);
-			    //判断是否有该专业
-				Teachers teachers = teachersService.findTeachersById(id);
-				if (teachers == null) {
-					jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师！");
-					return jsonResult;
-				}
-				/*
-				 * 删除教师团队里的该教师
+				Teachers teachers = new Teachers();
+				int result = 0;//删除方法调用后的返回值
+				/**
+				 * 单个删除
 				 */
-				//拿到未修改前的教师团队最新数据（拿同等数据的）
-			    Map<String, Object> data = new HashMap<>();
-			    data.put("specialty_id", teachers.getSpecialtyId());
-			    data.put("latest", "1");
-			    TeacherTeam teacherTeam = teacherTeamService.findTeacherTeamByIdAndLatest(data);
-			    
-			    int updT = 0;//当前教师团队是否为最新的返回值
-			    int addT = 0;//当前教师团队新增团队的返回值
-			   String teacherNames = "";
-				//更新教师团队为不是最新
-		    	teacherTeam.setLatest("2");//设置不是最新
-		    	updT = teacherTeamService.modifyTeacherTeam(teacherTeam);//修改数据为旧数据
-		    	//新增最新团队
-		    	teacherTeam.setLatest("1");//设置最新
-			 	teacherTeam.setDate(new Date());
-				teacherTeam.setId(null);
-				//拿到未修改之前的specialty_id都相同的（不含当前修改的数据），加入到新组合中
-				Map<String, Object> Tdata = new HashMap<>();
-				Tdata.put("specialty_id", teachers.getSpecialtyId());
-				Tdata.put("status", 1);
-				Tdata.put("is_part_time", teachers.getIsPartTime());//4
-				List<String> tList = teachersService.getTeachersByIdList(Tdata);
-				System.out.println("所有未修改前相同专业id的教师姓名"+tList);
-				//获取list所存取的name值,就是一个新的教师团队
-				for(int i=0;i<tList.size();i++) {
-					if (!teachers.getName().equals(tList.get(i))) {//比较tList中不等于查询出的教师姓名,才进行赋值
-						if (teacherNames.equals("")) {
-							teacherNames +=tList.get(i); 
-						}else {
-							teacherNames +=","+tList.get(i); 
-						}
-					}	
+				Long id = ToolUtil.lon("id", request);
+				if (id != null && id != -1) {
+					System.out.println("要删除的数据id是"+id);
+					//判断是否有该专业
+					teachers = teachersService.findTeachersById(id);
+					if (teachers == null) {
+						jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师！");
+						return jsonResult;
+					}else {//存在该教师即去删除
+						result = teachersService.delTeachers(teachers);//删除的返回值
+					}
 				}
-				if (teachers.getName().equals(teacherTeam.getDirector())) {//判断是不是团队负责人
-					//是团队负责人
-					teacherTeam.setDirector(null);//删除团队负责人
+				/**
+				 * 批量删除
+				 */
+				String ids = ToolUtil.str("ids", request);
+				if (!"".equals(ids)&&ids != null) {
+					System.out.println("要批量删除的数据id组是"+ids); 
+					String[] idd = ids.split(","); 
+
+					for (int i = 0 ; i <idd.length ; i++ ) 
+					{
+						Long idi = (long) Integer.parseInt(idd[i]);
+						System.out.println("拆开的idi="+idi);
+						if (idi != null && idi != -1) {
+							//判断是否有该专业
+							teachers = teachersService.findTeachersById(idi);
+							if (teachers == null) {
+								jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师！");
+								return jsonResult;
+							}else {//存在该教师即去删除
+								result = teachersService.delTeachers(teachers);//删除的返回值  
+							}
+						}
+					}
+				    
 				}
 				
-				if (teachers.getIsPartTime() ==1) {//判断原来的团队是否为兼职
-					
-					//专业教师
-					teacherTeam.setSpecialtyTeachers(null);//设置专业教师团队为空
-					teacherTeam.setSpecialtyTeachers(teacherNames);
-				}else {
-					
-					//兼职教师
-					teacherTeam.setPartTimeTeachers(null);//设置兼职教师团队为空
-					teacherTeam.setPartTimeTeachers(teacherNames);//新的兼职教师团队
-				}
-				int	addTName = teacherTeamService.addTeacherTeam(teacherTeam);//新增团队新数据
-				if (addTName < 0) {
-					jsonResult.build(FLAG_FAILED, "教师团队数据删除失败");
-					System.out.println("教师团队数据删除失败");
-					return jsonResult;
-				}
-				//这里才开始删除教师数据
-				teachers.setStatus(2);
-			    int result = teachersService.delTeachers(teachers);
-			    if (result > 0) {
-			    	jsonResult = JsonResult.build(FLAG_SUCCESS,"删除成功");
-				} else {
-					jsonResult = JsonResult.build(FLAG_FAILED,"删除失败");
-				}
+				//判断删除的状态
+				 if (result == 1) {
+				    	jsonResult = JsonResult.build(FLAG_SUCCESS,"删除成功");
+					} else if (result < 0){
+						jsonResult = JsonResult.build(FLAG_FAILED,"删除失败");
+					}else if (result == 58) {
+						jsonResult = jsonResult.build(FLAG_FAILED, "教师团队数据删除失败");
+					}
+				
+//				/*
+//				 * 删除教师团队里的该教师
+//				 */
+//				//拿到未修改前的教师团队最新数据（拿同等数据的）
+//			    Map<String, Object> data = new HashMap<>();
+//			    data.put("specialty_id", teachers.getSpecialtyId());
+//			    data.put("latest", "1");
+//			    TeacherTeam teacherTeam = teacherTeamService.findTeacherTeamByIdAndLatest(data);
+//			    
+//			    int updT = 0;//当前教师团队是否为最新的返回值
+//			    int addT = 0;//当前教师团队新增团队的返回值
+//			    String teacherNames = "";
+//				//更新教师团队为不是最新
+//		    	teacherTeam.setLatest("2");//设置不是最新
+//		    	updT = teacherTeamService.modifyTeacherTeam(teacherTeam);//修改数据为旧数据
+//		    	//新增最新团队
+//		    	teacherTeam.setLatest("1");//设置最新
+//			 	teacherTeam.setDate(new Date());
+//				teacherTeam.setId(null);
+//				//拿到未修改之前的specialty_id都相同的（不含当前修改的数据），加入到新组合中
+//				Map<String, Object> Tdata = new HashMap<>();
+//				Tdata.put("specialty_id", teachers.getSpecialtyId());
+//				Tdata.put("status", 1);
+//				Tdata.put("is_part_time", teachers.getIsPartTime());//4
+//				List<String> tList = teachersService.getTeachersByIdList(Tdata);
+//				System.out.println("所有未修改前相同专业id的教师姓名"+tList);
+//				//获取list所存取的name值,就是一个新的教师团队
+//				for(int i=0;i<tList.size();i++) {
+//					if (!teachers.getName().equals(tList.get(i))) {//比较tList中不等于查询出的教师姓名,才进行赋值
+//						if (teacherNames.equals("")) {
+//							teacherNames +=tList.get(i); 
+//						}else {
+//							teacherNames +=","+tList.get(i); 
+//						}
+//					}	
+//				}
+//				if (teachers.getName().equals(teacherTeam.getDirector())) {//判断是不是团队负责人
+//					//是团队负责人
+//					teacherTeam.setDirector(null);//删除团队负责人
+//				}
+//				
+//				if (teachers.getIsPartTime() ==1) {//判断原来的团队是否为兼职
+//					
+//					//专业教师
+//					teacherTeam.setSpecialtyTeachers(null);//设置专业教师团队为空
+//					teacherTeam.setSpecialtyTeachers(teacherNames);
+//				}else {
+//					
+//					//兼职教师
+//					teacherTeam.setPartTimeTeachers(null);//设置兼职教师团队为空
+//					teacherTeam.setPartTimeTeachers(teacherNames);//新的兼职教师团队
+//				}
+//				int	addTName = teacherTeamService.addTeacherTeam(teacherTeam);//新增团队新数据
+//				if (addTName < 0) {
+//					jsonResult.build(FLAG_FAILED, "教师团队数据删除失败");
+//					System.out.println("教师团队数据删除失败");
+//					return jsonResult;
+//				}
+//				//这里才开始删除教师数据
+//				teachers.setStatus(2);
+//			    int result = teachersService.delTeachers(teachers);
+//			    if (result == 1) {
+//			    	jsonResult = JsonResult.build(FLAG_SUCCESS,"删除成功");
+//				} else if (result < 0){
+//					jsonResult = JsonResult.build(FLAG_FAILED,"删除失败");
+//				}else if (result == 58) {
+//					jsonResult = jsonResult.build(FLAG_FAILED, "教师团队数据删除失败");
+//				}
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
