@@ -132,4 +132,13 @@ public class ForeignExchange {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "ForeignExchange [id=" + id + ", date=" + date + ", content=" + content + ", units=" + units
+				+ ", participants=" + participants + ", achievements=" + achievements + ", specialtyId=" + specialtyId
+				+ ", specialtyName=" + specialtyName + ", status=" + status + ", createTime=" + createTime
+				+ ", createUser=" + createUser + ", modifyTime=" + modifyTime + ", modifyUser=" + modifyUser + "]";
+	}
+    
 }

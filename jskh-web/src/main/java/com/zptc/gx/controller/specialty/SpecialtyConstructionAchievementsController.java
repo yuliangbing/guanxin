@@ -46,12 +46,6 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			Map<String, Object> data = new HashMap<>();
 			//获取请求参数
 			String level = ToolUtil.str("level", request);
-		    /*String name = ToolUtil.str("name", request);
-		    String cate_name = ToolUtil.str("cate_name", request);
-		    String reviser = ToolUtil.str("reviser", request);
-		    Integer status = ToolUtil.integer("status", request);
-		    String date1 = ToolUtil.str("date1", request);
-		    String date2 = ToolUtil.str("date2", request);*/
 		    Integer limit = ToolUtil.integer("limit", request);
 		    Integer page = ToolUtil.integer("page", request);
 		    PageVO pageVO = new PageVO(page, limit);
@@ -59,24 +53,12 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			//用于分页的数据
 		    pages = pageVO.getBeginNum();
 			//存入data,用于获取表格数据
-		  /*data.put("code", code);
-		    data.put("name", name);
-		    data.put("cate_name", cate_name);
-		    data.put("reviser", reviser);
-		    data.put("date1", date1);
-		    data.put("date2", date2);*/
 			data.put("level", level);
 			data.put("limit", pageVO.getLimit());
 			data.put("pages", pages);
 			data.put("status", 1);
 			Map<String, Object> count = new HashMap<>();
 			//存入count,用于获取表格数据条总数
-		/*	count.put("code", code);
-			count.put("name", name);
-			count.put("cate_name", cate_name);
-			count.put("reviser", reviser);
-			count.put("date1", date1);
-			count.put("date2", date2);*/
 			count.put("level", level);
 			count.put("status", 1);
 			//定义返回的数据条总数
