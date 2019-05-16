@@ -46,21 +46,20 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/organizationType/getorganizationTypeList'
+		    ,url:window.path +'/specialtyProfile/getSpecialtyProfileList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true}
-		      
-		      ,{field:'specialty_name', title:'专业名称', width:150, } 
-		      ,{field:'date', title:'年份', width:130,}	     
-		      ,{field:'position', title:'专业定位', width:130, }
-		      ,{field:'characteristic', title:'专业特色', width:130, }
-		      ,{field:'director_id', title:'专业负责人Id', width:130, }
-		      ,{field:'director_name', title:'专业负责人姓名', width:150, }
-		    //  ,{field:'branch_introduction', title:'学院id', width:130, }
+		      ,{field:'specialtyId', title:'专业id', width:150,hide:true } 
+		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center'} 
+		      ,{field:'date', title:'年份', width:130,align:'center'}	     
+		      ,{field:'position', title:'专业定位', width:130,align:'center'}
+		      ,{field:'characteristic', title:'专业特色', width:130,align:'center'}
+		      ,{field:'directorId', title:'专业负责人Id', width:130, }
+		      ,{field:'directorName', title:'专业负责人姓名', width:150,align:'center'}
+		     ,{field:'branchIntroduction', title:'学院id', width:130, }
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
 		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
@@ -78,7 +77,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	
 	    	layer.open({
 				title:"查看",
-	    		type:2,
+	    		type:2,	 
 	    		content:['/toPage?page=specialty_profile/speProfile_check'],
 	    		maxmin:true,
 	    		resize:false,
@@ -97,7 +96,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				//向服务端发送删除指令*/	
 	    		console.log(data.id);
 				$.ajax({
-					url:'/specialtyProfile/delSpecialtyProfile?id=1',
+					url:'/specialtyProfile/delSpecialtyProfile',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
@@ -198,7 +197,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/specialtyProfile/delSpecialtyProfile?id=1',
+						url:'/specialtyProfile/delSpecialtyProfile',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",

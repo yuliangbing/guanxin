@@ -69,7 +69,7 @@
    	function init(data) {
 
    		$("#id").val(data.id);
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#name").val(data.name);
 		$("#sources").val(data.sources);
 		$("#level").val(data.level);

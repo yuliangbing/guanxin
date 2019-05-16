@@ -50,7 +50,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
-						<select  type="text" id="specialtyName" lay-filter="specialtyName" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+						<select  type="text" id="specialtyName"  lay-filter="specialtyName" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
 							</select>
 					</div>
@@ -70,64 +70,74 @@
 	<script type="text/javascript" src="${path}/static/js/specialty_achievements/speConAch_List.js"></script>
 	<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
-	function ajax_h(form,url,object,ids){
-		//获取下拉列表(公共方法)
+	//表格数据传值
+	var id = 0;
+	var specialtyName = "";
+	function init(data) {
+		id= data.id;
+		$("#date").val((data.date.split(' '))[0]);
+		$("#name").val(data.name);
+		$("#sources").val(data.sources);
+		$("#level").val(data.level);
+		$("#author").val(data.author);
+	//$("#specialtyName").val(data.specialtyName);
+		specialtyName = data.specialtyName;
+
+	}
+	
+	function ajax_h(form,names,url,object,ids)
+	{
 		$.ajax({
 			url:url,
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				console.log(data);
-				//layer.msg("获取成功");
-				console.log(data.data.length);
-				if (data.code == 0) {
-						let option = "";
-						for (let i=0;i<data.data.length;i++) {
-							option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+				layer.msg("获取成功");
+				console.log("长度"+data.data.length);
+				console.log(names);
+				let option = "";
+				 if(ids == 'id')
+				 	{
+						for (let j=0;j<data.data.length;j++)
+						{
+							if(data.data[j].name == names )
+							{
+								option += "<option value='"+data.data[j].id+"' selected='selected'>"+data.data[j].name+"</option>";
+							}
+							else
+							{
+								option += "<option value='"+data.data[j].id+"'>"+data.data[j].name+"</option>";
+							}
 						}
 						$("#"+object).append(option);
 						form.render('select');
-					
-				} else {
-					layer.msg("请检查网络连接！");
-				}
-				
+					} 
+					console.log("option:"+option);
 			} ,error:function(code){
 	           layer.alert("发生错误,请联系管理员");
 	        }
 		});
 	}
-	//表格数据传值
-	var id = 0;
-	function init(data) {
-
-		id = data.id;
-		$("#date").val(data.date);
-		$("#level").val(data.level);
-		$("#name").val(data.name);
-		$("#author").val(data.author);
-		$("#specialtyName").val(data.specialtyName);
-		$("#sources").val(data.sources);
-	}
-	//编辑保存效果
-	layui.use(['form','laydate'], function() {	
-	var form = layui.form;
-	var laydate = layui.laydate;
-	//获取下拉框属性
+	layui.use(['form', 'table', 'laydate'], function() {
+		var form = layui.form;
+		var laydate = layui.laydate;
+		/*
+		下拉列表数据获取  开始
+	*/
+	var url ="";
+	var object="";
+	var ids="";
+	var name;
 	//专业
- 	url = '/specialty/getSpecialtyList';
-	object = 'specialtyName';
 	ids = 'id';
-	ajax_h(form,url,object,ids);
-	laydate.render({
-		elem: '#date' //指定元素	
-	});
-	laydate.render({
-		elem: '#date1' //指定元素	
-	});
-	laydate.render({
-		elem: '#date2' //指定元素	
-	});
+	url = '/specialty/getSpecialtyList';
+	object = 'specialtyName';
+	names = specialtyName;
+	ajax_h(form,names,url,object,ids);
+		laydate.render({
+			elem: '#date' //指定元素	
+		});
+		
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
@@ -137,11 +147,14 @@
 			params.name = $("#name").val();
 			params.level = $("#level").val();
 			params.author = $("#author").val();
-			params.specialtyName = $("#specialtyName").val();
+			params.specialty_id = $("#specialtyName option:checked").val();
+			params.specialty_name = $("#specialtyName option:checked").text();
+console.log(params);
+
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'specialtyConstructionAchievements/updateSpecialtyConstructionAchievementsIf?id='+id,
+				        url:window.path+'/specialtyConstructionAchievements/updateSpecialtyConstructionAchievementsIf?id='+id,
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 

@@ -7,8 +7,6 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-	<script type="text/javascript" src="${path}/static/js/specialty_profile/speProfile_List.js"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
@@ -19,7 +17,9 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
-						<input name="specialty_name"  id="specialty_name" autocomplete="off" class="layui-input" type="text">
+						<select  type="text" id="specialty_name" lay-filter="specialty_name" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+								<option value="">请选择</option>
+							</select>
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -42,12 +42,6 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业负责人ID</label>
-					<div class="layui-input-inline">
-						<input name="director_id" id="director_id"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
 					<label class="layui-form-label">专业负责人姓名</label>
 					<div class="layui-input-inline">
 						<input name="director_name" id="director_name"  autocomplete="off" class="layui-input" type="text">
@@ -62,37 +56,72 @@
 		</form>
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  	<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+  	<script type="text/javascript" src="${path}/static/js/specialty_profile/speProfile_List.js"></script>
+    <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
-	
+	function ajax_h(form,url,object,ids){
+		//获取下拉列表(公共方法)
+		$.ajax({
+			url:url,
+			type:"POST",
+			dataType:"json",
+			success:function(data){
+				console.log(data);
+				//layer.msg("获取成功");
+				console.log(data.data.length);
+				if (data.code == 0) {
+						let option = "";
+						for (let i=0;i<data.data.length;i++) {
+							option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+						}
+						$("#"+object).append(option);
+						form.render('select');
+					
+				} else {
+					layer.msg("请检查网络连接！");
+				}
+				
+			} ,error:function(code){
+	           layer.alert("发生错误,请联系管理员");
+	        }
+		});
+	}
 	//时间控件
-	layui.use(['form','laydate'], function() {	
+		layui.use(['form','laydate'], function() {	
 	var form = layui.form;
 	var laydate = layui.laydate;
+	//获取下拉框属性
+	//专业
+ 	url = '/specialty/getSpecialtyList';
+	object = 'specialty_name';
+	ids = 'id';
+	ajax_h(form,url,object,ids);
 	laydate.render({
-	    elem: '#date'
-	  });
+		elem: '#date' //指定元素	
+	});
 	laydate.render({
 		elem: '#date1' //指定元素	
+	});
+	laydate.render({
+		elem: '#date2' //指定元素	
 	});
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
+			params.specialty_name = $("#specialty_name option:checked").text(); 
 			params.date = $("#date").val();
 			params.position = $("#position").val();
 			params.characteristic = $("#characteristic").val();
-			params.specialty_name = $("#specialty_name").val();
-			params.specialty_id = $("#specialty_id").val();
-			params.director_id = $("#director_id").val(); 
 			params.director_name = $("#director_name").val();
-			//params.branch_introduction = $("#branch_introduction").val();
+			params.specialty_id = $("#specialty_name option:checked").val();
 
 		console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/issuesList/addIssues',
+				        url:window.path+'/specialtyProfile/addSpecialtyProfile',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
