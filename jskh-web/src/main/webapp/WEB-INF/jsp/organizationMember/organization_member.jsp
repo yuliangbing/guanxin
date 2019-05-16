@@ -22,7 +22,7 @@
 								<div class="layui-inline">
 									<label class="layui-form-label" for="code">职务</label>
 									<div class="layui-input-inline">
-										<input  type="text" id="code" name="code" lay-verify="" placeholder="请输入职务" autocomplete="off" class="layui-input">
+										<input  type="text" id="position" name="position" lay-verify="" placeholder="请输入职务" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">

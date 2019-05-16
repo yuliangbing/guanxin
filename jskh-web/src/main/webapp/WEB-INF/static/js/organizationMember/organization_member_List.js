@@ -20,9 +20,7 @@
 
 	
 	/*表格 */
-	layui.use('table', function(){
-	      var table = layui.table;
-	table.render({
+	      var tableIns = table.render({
 	    elem: '#test'
 	    ,height: 312
 	    ,method:'post'
@@ -42,7 +40,7 @@
 	      ,{align:'center', toolbar: '#barDemo',title:'操作',width:237,align:'center'}
 	      ]]
 	  });
-	});
+	
 
 	
 	
