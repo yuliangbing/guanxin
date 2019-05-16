@@ -167,6 +167,10 @@
     <include refid="Base_Column_List" />
     from innovation_entrepreneurial_achievements
      <where>
+     	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR} -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
      	<if test="participants != null and participants != ''">
 			and instr(participants,#{participants,jdbcType=VARCHAR})
 		</if>
@@ -183,6 +187,10 @@
 		from
 			innovation_entrepreneurial_achievements
 			<where>
+				<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					<!-- and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR} -->
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
 				<if test="participants != null and participants != ''">
 					and instr(participants,#{participants,jdbcType=VARCHAR})
 				</if>

@@ -57,13 +57,13 @@ public class OtherAchievementsController extends BaseController {
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("date1", date1);
-		data.put("data2", data);
+		data.put("date2", date2);
 		data.put("name", name);
 		data.put("status", 1);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 		count.put("date1", date1);
-		count.put("data2", data);
+		count.put("date2", date2);
 		count.put("name", name);
 		count.put("status", 1);
 		//定义返回的数据条总数
