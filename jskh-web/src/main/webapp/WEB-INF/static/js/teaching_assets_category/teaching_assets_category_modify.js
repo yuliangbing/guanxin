@@ -1,21 +1,13 @@
 /**
  * 修改页面的js
  */
+	
 	// 初始化赋值
 	function init(data) {
-		//$("#status").val(data.status);
 		$("#id").val(data.id);
-		$("#date").val(data.date);
+		$("#code").val(data.code);
 		$("#name").val(data.name);
-		$("#press").val(data.press);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
-//		$("#create_time").val(data.create_time);
-//		$("#create_user").val(data.create_user);
-//		$("#modify_time").val(data.modify_time);
-//		$("#modify_user").val(data.modify_user);
 	}
-	
 	
 		//关闭监听
 		function exit(){
@@ -30,23 +22,28 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
+			
 		
-		
+			// 实现文件时间选择
+			var laydate = layui.laydate;
+			//执行一个laydate实例
+			laydate.render({
+				elem: '#date' //指定元素
+				//,range: '~' //或 range: '~' 来自定义分割字符
+			});
 			
 		 	// 提交功能
 		 	form.on('submit(submit)', function(data) { 
 				/*获取$值存入params */
 				var params = {};
 				params.id = $("#id").val();
+				params.code = $("#code").val();
 				params.name = $("#name").val();
-				params.date = $("#date").val();
-				params.press = $("#press").val();
-				params.first_author = $("#first_author").val();
-				params.other_authors = $("#other_authors").val();
+				console.log(params);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					       // url:'/organizationMember/updateOrganizationMember',
+					        url:'/teachingAssetsCategory/updateTeachingAssetsCategory',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

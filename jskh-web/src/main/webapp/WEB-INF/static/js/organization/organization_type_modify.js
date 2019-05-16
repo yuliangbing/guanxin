@@ -5,11 +5,7 @@
 	function init(data) {
 		//$("#status").val(data.status);
 		$("#id").val(data.id);
-		$("#date").val(data.date);
 		$("#name").val(data.name);
-		$("#press").val(data.press);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
 //		$("#create_time").val(data.create_time);
 //		$("#create_user").val(data.create_user);
 //		$("#modify_time").val(data.modify_time);
@@ -39,14 +35,11 @@
 				var params = {};
 				params.id = $("#id").val();
 				params.name = $("#name").val();
-				params.date = $("#date").val();
-				params.press = $("#press").val();
-				params.first_author = $("#first_author").val();
-				params.other_authors = $("#other_authors").val();
+				console.log(params);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					       // url:'/organizationMember/updateOrganizationMember',
+					        url:'/organizationType/updateOrganizationType',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

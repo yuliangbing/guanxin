@@ -15,7 +15,7 @@
 				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#date',
-				range: true //或 range: '~' 来自定义分割字符
+				//range: true //或 range: '~' 来自定义分割字符
 				});
 			
 
@@ -31,38 +31,17 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID'}
-	      ,{field:'name', title:'组织机构类别名称'}
-	      ,{field:'createUser', title:'创建人'}
-	      ,{field:'createTime', title:'创建时间'}
-	      ,{field:'modifyUser', title:'修改人'}
-	      ,{field:'modifyTime', title:'修改时间'}
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237}
+	      ,{field:'id',title:'ID',align:'center'}
+	      ,{field:'name', title:'组织机构类别名称',align:'center'}
+	      ,{field:'create_user', title:'创建人',align:'center'}
+	      ,{field:'create_time', title:'创建时间',align:'center'}
+	      ,{field:'modify_user', title:'修改人',align:'center'}
+	      ,{field:'modify_time', title:'修改时间',align:'center'}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
 	      ]]
 	  });
 	
 
-	/* 搜索功能 */
-//	form.on('submit(search)', function(data) {
-//		//layer.alert(JSON.stringify($("#cate_name option:checked").text()));
-//		
-//		let arr = {};
-//		arr = data.field;
-//		arr.cate_name = $("#cate_name option:checked").text();
-//		//console.log(arr);
-//		/*layer.alert(JSON.stringify(arr));*/
-//		if(arr.data != "" && arr.date != null){
-//			arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-//			arr.date2 = data.field.date.split('~')[1];
-//		}
-//		tableIns.reload({
-//			where:arr,
-//			page: {
-//				curr: 1
-//			}
-//		});
-//		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-//	});
 	
 	
 	/*新增功能*/
@@ -72,7 +51,7 @@
 			title:'添加窗口',
 			area:['90%','90%'],
 			anim:0,
-			content: "/toPage?page=organization/organization_add"
+			content: "/toPage?page=organization/organization_type_add"
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	   
@@ -88,7 +67,7 @@
 			    	layer.open({
 						title:"查看",
 			    		type:2,
-			    		content:'/toPage?page=organization/organization_check',
+			    		content:'/toPage?page=organization/organization_type_check',
 			    		area:['90%','90%'],
 			    		resize:false,
 			    		success : function(layero, index) {
@@ -98,15 +77,15 @@
 							iframe.init(data);
 						} 
 			    	});
-			    }else if(layEvent === 'del'){//删除
+			    }else if(layEvent === 'dels'){//删除
 			    	layer.confirm('真的删除行么', function(index) {
 						/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 						layer.close(index);
 						//向服务端发送删除指令*/		
 						$.ajax({
-							//url:'/organizationType/deleteOrganizationType',
+							url:'/organizationType/deleteOrganizationType',
 							type:"POST",
-							data:{Id:data.id},
+							data:{id:data.id},
 							dataType:"json",
 							success:function(data){
 								var nowPage = tableIns.config.page.curr;//返回当前页数
@@ -127,7 +106,7 @@
 			    	layer.open({
 			    		title:"编辑",
 			    		type:2,
-			    		content:['/toPage?page=organization/organization_modify'],
+			    		content:['/toPage?page=organization/organization_type_modify'],
 			    		maxmin:true,
 			    		resize:false,
 			    		area:['90%','90%'],
@@ -140,5 +119,66 @@
 					});
 					}
 				});
+			  
+
+				/* 搜索功能 */
+			  form.on('submit(search)', function(data) {
+					/*layer.alert(JSON.stringify(data.field));*/
+					let arr = {};
+					arr = data.field;
+					if(arr.data != "" && arr.date != null){
+						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+						arr.date2 = data.field.date.split('~')[1];
+					}
+					tableIns.reload({
+						where:arr,
+						page: {
+							curr: 1
+						}
+					});
+					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				});
+			  
+			//批量删除
+			  table.on('toolbar(test)', function(obj){
+				    var checkStatus = table.checkStatus(obj.config.id);
+//				    alert(JSON.stringify(checkStatus.data.id));
+				    
+				    switch(obj.event){
+				      case 'dels':
+				        var data = checkStatus.data;
+				        var param = [{}];
+				       // layer.alert(JSON.stringify(data));
+				        for(var i=0;i< data.length;i++){
+				        	param = data[i].id;
+//				        	layer.alert(JSON.stringify(data[i].id));
+				        	console.log(param);
+				        	//向服务端发送删除指令*/		
+							$.ajax({
+								url:'/organizationType/deleteOrganizationType',
+								type:"POST",
+								data:{id:param},
+								dataType:"json",
+								success:function(data){
+									var nowPage = tableIns.config.page.curr;//返回当前页数
+						        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+									layer.msg("删除成功");
+									//layer.close(index);
+					    			tableIns.reload({
+					    				page:{
+					    					curr:reloadPage
+					    				}
+					    			});
+								}
+							});
+				        	
+				        	
+				        }
+				      layer.alert(JSON.stringify(param));
+				        
+				      break;
+				    };
+				    
+				  });
 
 			});

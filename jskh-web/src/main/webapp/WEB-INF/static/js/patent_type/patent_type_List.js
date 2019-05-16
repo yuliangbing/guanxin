@@ -15,7 +15,7 @@
 				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#date',
-				//range: true //或 range: '~' 来自定义分割字符
+				range: true //或 range: '~' 来自定义分割字符
 				});
 			
 
@@ -32,17 +32,12 @@
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
 	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'date',title:'发表时间',width:100,align:'center'}
-	      ,{field:'content',title:'交流学习内容',width:100,align:'center'}
-	      ,{field:'units', title:'单位',width:100,align:'center'}
-	      ,{field:'participants',title:'参与人员',width:100,align:'center'}
-	      ,{field:'achievements', title:'成果',width:100,align:'center'}
-	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center'}
-	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center'}
-	      ,{field:'createUser', title:'创建人',width:100,align:'center'}
-	      ,{field:'createTime', title:'创建时间',width:100,align:'center'}
-	      ,{field:'modifyUser', title:'修改人',width:100,align:'center'}
-	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center'}
+	      ,{field:'code',title:'类型编号',align:'center'}
+	      ,{field:'name', title:'类型名称',align:'center'}
+	      ,{field:'create_user', title:'创建人',align:'center'}
+	      ,{field:'create_time', title:'创建时间',align:'center'}
+	      ,{field:'modify_user', title:'修改人',align:'center'}
+	      ,{field:'modify_time', title:'修改时间',align:'center'}
 	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
 	      ]]
 	  });
@@ -57,7 +52,7 @@
 			title:'添加窗口',
 			area:['90%','90%'],
 			anim:0,
-			content: "/toPage?page=patent/patent_add"
+			content: "/toPage?page=patent_type/patent_type_add"
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	   
@@ -73,7 +68,7 @@
 			    	layer.open({
 						title:"查看",
 			    		type:2,
-			    		content:'/toPage?page=patent/patent_check',
+			    		content:'/toPage?page=patent_type/patent_type_check',
 			    		area:['90%','90%'],
 			    		resize:false,
 			    		success : function(layero, index) {
@@ -83,7 +78,7 @@
 							iframe.init(data);
 						} 
 			    	});
-			    }else if(layEvent === 'dels'){//删除
+			    }else if(layEvent === 'del'){//删除
 			    	layer.confirm('真的删除行么', function(index) {
 						/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 						layer.close(index);
@@ -112,7 +107,7 @@
 			    	layer.open({
 			    		title:"编辑",
 			    		type:2,
-			    		content:['/toPage?page=patent/patent_modify'],
+			    		content:['/toPage?page=patent_type/patent_type_modify'],
 			    		maxmin:true,
 			    		resize:false,
 			    		area:['90%','90%'],
