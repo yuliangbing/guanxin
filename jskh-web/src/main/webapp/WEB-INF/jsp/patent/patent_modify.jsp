@@ -8,99 +8,97 @@
 <link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
 <script type="text/javascript"
 	src="${path}/static/public/lib/layui/layui.js"></script>
-	<style type="text/css">
-.all1 {
-				margin-left:30%;
-			
-			}
-</style>
+	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${path}/static/js/patent/patent_modify.js"></script>
 </head>
-<body>
-<form class="layui-form layui-form-pane" action="">
-<!--时间-->
-<div class="all1">
-		<div class=" layui-form-item">
-			<div class="layui-inline">
-             <label class="layui-label">发表时间</label>
-				<div class="layui-inline">
-						<input type="text" class="layui-input" id="date" name="date" placeholder="YYYY-MM-DD">
-				</div>
-			</div>
-        <!--专利号-->
-        
-            <lable>&emsp;专利号&nbsp;</lable>
-			<div class="layui-inline">
+ <body style="margin-left: 25%;">
+<form class="layui-form" action="">
+		  <div class="layui-form-item" style="margin-top:5%;" >
+				  <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">发表时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
+						<input type="text" id="date" name="date"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
 				</div>
-			</div>
-		</div>	
+			</div>	
+				<div>
+			 <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">专利号</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="code" name="code"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div>
+			 <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">专利名称</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="name" name="name"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div>
+			 <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">专利类型</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="type" name="type"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div>
+			 <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">第一作者</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="first_author" name="first_author"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div>
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">其他作者情况</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="other_authors" name="other_authors"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div class="layui-inline">
+						<label class="layui-form-label" style="width:150px;">专业id</label>
+						<div class="layui-input-inline">
+							<select type="text" id="specialty_id" lay-filter="specialty_id"
+								autocomplete="off" placeholder="" lay-verify="required"
+								class="layui-select" lay-search>
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
+           
+          
 			
-        <!--专利名称-->
-       <div class=" layui-form-item">
-        <lable>专利名称</lable>
-           <div class="layui-inline"> 
-            
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-			
-        <!--专利类型-->
-       
-            <lable class="magin-right:10%;">专利类型</lable>
-			<div class="layui-inline">
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-		 </div>
-		 <!--作者-->
-       <div class=" layui-form-item">
-        <lable>第一作者</lable> 
-			<div class="layui-inline">
-			 
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-			
-            <lable>其他作者</lable>
-			<div class="layui-inline">
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-		</div>
-		
-		<div style="margin: center">
+      </div>
+      <div style="margin-right: -5%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">增加</button>
+						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
 			</div>
-		</div>
-        
-		
-	</form>
-</body>
-<script>
-	layui.use('element', function() {
-    	var element = layui.element;
-
-	});
-	layui.use(['form', 'table', 'laydate'], function() {
-		var table = layui.table;
-
-		
-			//时间控件
-			var laydate = layui.laydate;
-			laydate.render({
-			elem: '#date'
-			});
-
-    });
-	</script>
+  </form>
+  </body>
 </html>

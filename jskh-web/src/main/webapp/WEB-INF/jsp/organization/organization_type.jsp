@@ -18,20 +18,6 @@
 					<div class="layui-col-md12 layui-content-white">
 						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
-							<div class="layui-inline">
-							<label class="layui-form-label" >时间</label>
-								<div class="layui-inline">
-									<div class="layui-input-inline">
-										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="code">ID</label>
-									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入ID" autocomplete="off" class="layui-input">
-									</div>
-								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label" for="name" style="width:120px;">组织机构类别名称</label>
 									<div class="layui-input-inline">

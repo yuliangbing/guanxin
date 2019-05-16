@@ -25,27 +25,9 @@
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label" for="code">专利号</label>
+									<label class="layui-form-label" for="name">第一作者</label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入专利号" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="name">专利名称</label>
-									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入专利类型" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="name">专利类型</label>
-									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入专利类型" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="name">作者</label>
-									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+										<input type="text" id="first_author" name="first_author" lay-verify="" placeholder="请输入姓名" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 							</div>
@@ -56,13 +38,13 @@
 						    </a>
 						</form>
 					</div>
-    <table class="layui-table" id="demo" lay-filter="test"></table>
+    <table class="layui-hide" id="test" lay-filter="test"></table>
     </div>
 
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">

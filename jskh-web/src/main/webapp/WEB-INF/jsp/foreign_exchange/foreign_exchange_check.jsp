@@ -7,90 +7,130 @@
 <title>查看页面</title>
 <link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
 <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
 <script src="${path}/static/js/foreign_exchange/foreign_exchange_check.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 </head>
-<body>
-<form class="layui-form layui-form-pane" action="">
-<!--时间-->
-		<div class=" layui-form-item">
-			<div class="layui-inline">
-             <label class="layui-label">时间</label>
-				<div class="layui-inline">
-						<input type="text" class="layui-input" id="date1" name="date" placeholder="YYYY-MM-DD">
-				</div>
-			</div>
-			<!--单位-->
-       
-            <lable class="magin-right:10%;">单位</lable>
-			<div class="layui-inline">
+<body style="margin-left: 25%;">
+		<form class="layui-form" action="">
+		  <div class="layui-form-item" style="margin-top:5%;">
+		  <div>
+		  <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
+						<input type="text" id="date" name="date"  disabled class="layui-input">
+					
+				
+			</div>	
 				</div>
-			</div>
-		 </div>
-        <!--交流学习内容-->
-         <div class=" layui-form-item">
-            <lable>交流学习内容</lable>
-			<div class="layui-inline">
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">交流学习内容</label>
 				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
+						<input type="text" id="content" name="content"  disabled class="layui-input">
+					
 				</div>
-			</div>
+			</div>	
+           
+         
+           <div>
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">单位</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="units" name="units"  disabled class="layui-input">
+					
+				</div>
+			</div>	
+           
+           
+          
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">参与人员</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="participants" name="participants"  disabled class="layui-input">
+					
+				</div>
+			</div>	
+           </div>
+           
+           <div>
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">成果</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="achievements" name="achievements"  disabled class="layui-input">
+					
+				</div>
+			</div>	
+           
+           
+        <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">专业id</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="achievements" name="achievements"  disabled class="layui-input">
+					
+				</div>
+			</div>	
+           
+          
+        
+            </div>
+         
+            
+           <div>
+			 <div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">专业名称</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="specialty_name" name="specialty_name"  class="layui-input" disabled>
+					
+				</div>
+			</div>	
+           </div>
+           
+            
+			<div class="layui-inline">
+			<lable class="layui-form-label" style="width:150px;">创建人</lable>
+				<div class="layui-input-inline">
+					<input type="text" name="create_user" id="create_user" disabled  class="layui-input">
+				</div>
 			</div>
 			
-        <!--参与人员-->
-       <div class=" layui-form-item">
-        <lable>参与人员</lable>
-           <div class="layui-inline"> 
-            
+		<div>
+		   <div class="layui-inline">
+             <label class="layui-form-label" style="width:150px;">创建时间</label>
 				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					<input type="text" class="layui-input" id="create_time" disabled name="create_time" >
+				</div>
+			</div>
+			</div>
+			<div >
+            
+			<div class="layui-inline">
+			<lable class="layui-form-label" style="width:150px;">修改人</lable>
+				<div class="layui-input-inline">
+					<input type="text" name="modify_user" lay-verify="required" disabled id="modify_user" class="layui-input">
+				</div>
+			</div>
+			</div>
+		<div>
+		   <div class="layui-inline">
+             <label class="layui-form-label" style="width:150px;">修改时间</label>
+				<div class="layui-input-inline">
+						<input type="text" class="layui-input" disabled name="modify_time" id="modify_time">
 				</div>
 			</div>
 		</div>	
-        
-		 <!--成果-->
-       <div class=" layui-form-item">
-        <lable>成果</lable> 
-			<div class="layui-inline">
-
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
+			
 			</div>
 			
-		</div>
-		
-		 <!--创建时间-->
-       <div class=" layui-form-item">
-        <lable>创建时间</lable> 
-			<div class="layui-inline">
-
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
 			
 		</div>
-		
-		 <!--创建人-->
-       <div class=" layui-form-item">
-        <lable>创建人</lable> 
-			<div class="layui-inline">
-
-				<div class="layui-input-inline">
-					<input type="text" name="username" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-				</div>
-			</div>
-			
-		</div>
-		
-		
-
-       
-		
 	</form>
 </body>
 </html>

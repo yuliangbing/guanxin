@@ -4,98 +4,73 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>专业成果</title>
+<title>添加页面</title>
 <link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript"
-	src="${path}/static/public/lib/layui/layui.js"></script>
-<style>
-			.all {
-				position: absolute;
-				left: 38%;
-				top: 10%;
-				
-			}
-		</style>
+<link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
+<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${path}/static/js/text_mon_list/text_mon_add.js"></script>
+<script type="text/javascript" src="./js/xadmin.js"></script>
 </head>
-<body>
-<div class="all">
-		<!--时间-->
-		<div class="layui-form-item ">
-			<div class="layui-inline">
-             <label class="layui-form-label">出版时间</label>
+<body style="margin-left: 25%;">
+		<form class="layui-form" action="">
+		  <div class="layui-form-item" style="margin-top:5%;">
+		  <div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">出版时间</label>
 				<div class="layui-input-inline">
-						<input type="text" class="layui-input" id="date" name="date" placeholder="YYYY-MM-DD">
+					
+						<input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
 				</div>
-			</div>
-		</div>
-		
-		<!--教材或者专著名称-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">教材或者专著名称</label>
-					<div class="layui-input-inline ">
-						<input type="tel " name="phone " lay-verify="required|phone " autocomplete="off " class="layui-input ">
-					</div>
+			</div>	
+				
+			<div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">教材或专著名称</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
 				</div>
-			</div>
+			</div>	
 			
-		<!--出版社-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">出版社</label>
-					<div class="layui-input-inline ">
-						<input type="tel " name="phone " lay-verify="required|phone " autocomplete="off " class="layui-input ">
-					</div>
+			<div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">出版社</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
 				</div>
-			</div>
-		
-		<!--第一作者-->
-		
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">第一作者</label>
-					<div class="layui-input-inline ">
-						<input type="tel " name="phone " lay-verify="required|phone " autocomplete="off " class="layui-input ">
-					</div>
+			</div>	
+			
+			<div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">第一作者</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
 				</div>
-			</div>
-		
-		<!--其他作者-->
-			<div class="layui-form-item ">
-				<div class="layui-inline ">
-					<label class="layui-form-label ">其他作者</label>
-					<div class="layui-input-inline ">
-						<input type="tel " name="phone " lay-verify="required|phone " autocomplete="off " class="layui-input ">
-					</div>
+			</div>	
+			
+			<div class="layui-inline">
+			    <label for="job"class="layui-form-label" style="width:150px;">其他作者情况</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="name" name="name" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+					
 				</div>
-			</div>
-		
-			<div style="margin-left: -5%;">
+			</div>	
+           
+			
+			<div style="margin-right: -5%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit="" lay-filter="demo1">增加</button>
+						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
 						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 					</div>
 				</div>
 			</div>
+			
 		</div>
-		
+	</form>
 </body>
-<script>
-	layui.use('element', function() {
-    	var element = layui.element;
-
-	});
-	layui.use(['form', 'table', 'laydate'], function() {
-		var table = layui.table;
-
-		
-			//时间控件
-			var laydate = layui.laydate;
-			laydate.render({
-			elem: '#date'
-			});
-
-    });
-	</script>
 </html>

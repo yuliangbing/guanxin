@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/enrollment_history/enrollment_historyList.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -22,7 +23,7 @@
 							<label class="layui-form-label" >时间</label>
 								<div class="layui-inline">
 									<div class="layui-input-inline">
-										<input type="text" id="date1" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
+										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								</div>
@@ -47,7 +48,7 @@
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">

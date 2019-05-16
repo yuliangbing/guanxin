@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assetsList.js"></script>
 </head>
 <body>
@@ -28,21 +29,21 @@
 								</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label" >成果名称</label>
+									<label class="layui-form-label" >分类号</label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
+										<input type="text" id="cate_code" name="cate_code" lay-verify="" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label"  style="width:120px;">成果来源</label>
+									<label class="layui-form-label"  style="width:120px;">仪器名称</label>
 									<div class="layui-input-inline">
 										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入成果来源" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
-									<label class="layui-form-label" for="name" style="width:120px;">作者</label>
+									<label class="layui-form-label"  style="width:120px;">型号</label>
 									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入作者" autocomplete="off" class="layui-input">
+										<input type="text" id="model_num" name="model_num" lay-verify="" placeholder="请输入作者" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 							</div>
@@ -59,7 +60,7 @@
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">
