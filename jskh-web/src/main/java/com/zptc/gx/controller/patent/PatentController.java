@@ -46,6 +46,9 @@ public class PatentController extends BaseController {
 		System.out.println("列表信息");
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
+		String date1 = ToolUtil.str("date1", request);
+		String date2 = ToolUtil.str("date2", request);
+		String firstAuthor = ToolUtil.str("first_author", request);
 		Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -53,12 +56,18 @@ public class PatentController extends BaseController {
 	    //用于分页的数据
 	    pages = pageVO.getBeginNum();
 	    //存入data,用于获取表格数据
+	    data.put("date1", date1);
+	    data.put("date2", date2);
+	    data.put("first_author", firstAuthor);
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
   		data.put("status", 1);
   		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 		count.put("status", 1);
+		count.put("date1", date1);
+		count.put("date2", date2);
+		count.put("first_author", firstAuthor);
 		//定义返回的数据条总数
 		int counts = 0;
 		//定义返回的msg
@@ -222,7 +231,7 @@ public class PatentController extends BaseController {
 		    //判断是否有该专业
 			Patent patent = patentService.findPatentById(patentId);
 			if (patent == null) {
-				jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
+				jsonResult = JsonResult.build(FLAG_FAILED, "没有该专利！");
 				return jsonResult;
 			}
 			patent.setStatus(status);
