@@ -174,7 +174,7 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 	    String units = ToolUtil.str("units", request);
 	    String participants = ToolUtil.str("participants", request);
 	    String achievements = ToolUtil.str("achievements", request);
-	    //Long specialtyId = ToolUtil.lon("specialty_id", request);
+	    Long specialtyId = ToolUtil.lon("specialty_id", request);
 	    String specialtyName = ToolUtil.str("specialty_name", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
@@ -189,7 +189,7 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 	    data.put("units", units);
 	    data.put("participants", participants);
 	    data.put("achievements", achievements);
-	    //data.put("specialtyId", specialtyId);
+	    data.put("specialtyId", specialtyId);
 	    data.put("specialtyName", specialtyName);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
@@ -203,7 +203,7 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		count.put("units", units);
 		count.put("participants", participants);
 		count.put("achievements", achievements);
-		//count.put("specialtyId", specialtyId);
+		count.put("specialtyId", specialtyId);
 		count.put("specialtyName", specialtyName);
 		count.put("limit", pageVO.getLimit());
 		count.put("pages", pages);

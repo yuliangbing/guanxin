@@ -80,9 +80,9 @@
 		<if test="teachers != null and teachers != ''">
 			and instr(teachers,#{teachers,jdbcType=VARCHAR})
 		</if>
-		<if test="specialty_id != null and specialty_id != ''">
+		<!-- <if test="specialty_id != null and specialty_id != ''">
 			and instr(specialty_id,#{specialty_id,jdbcType=INTEGER})
-		</if>
+		</if> -->
 		<if test="specialty_name != null and specialty_name != ''">
 			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
 		</if>

@@ -174,4 +174,70 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!--根据status修改状态(删除)-->
+	 <update id="updateByStautsDel" parameterType="com.zptc.gx.specialty.entity.EnrollmentHistory" >
+	    update enrollment_history
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 查询列表数据 -->
+  <select id="getEnrollmentHistoryList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from enrollment_history
+    <where>
+    	 <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<!-- <if test="plan_num != null and plan_num != ''">
+			and instr(plan_num,#{plan_num,jdbcType=INTEGER})
+		</if>
+		<if test="actual_num != null and actual_num != ''">
+			and instr(actual_num,#{actual_num,jdbcType=INTEGER})
+		</if> -->
+		<if test="specialty_name != null and specialty_name != ''">
+			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+		</if> 
+		<if test="rate != null and rate != ''">
+			and instr(rate,#{rate,jdbcType=DECIMAL})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+    <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			enrollment_history
+	  <where>
+		<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<!-- <if test="plan_num != null and plan_num != ''">
+			and instr(plan_num,#{plan_num,jdbcType=INTEGER})
+		</if>
+		<if test="actual_num != null and actual_num != ''">
+			and instr(actual_num,#{actual_num,jdbcType=INTEGER})
+		</if> -->
+		 <if test="specialty_name != null and specialty_name != ''">
+			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+		</if> 
+		<if test="rate != null and rate != ''">
+			and instr(rate,#{rate,jdbcType=DECIMAL})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+	</select>
 </mapper>

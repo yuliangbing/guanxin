@@ -47,7 +47,7 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 			 Date date = ToolUtil.date2("date", request);
 			String content = ToolUtil.str("content", request);
 		    String participants = ToolUtil.str("participants", request);
-		    //Long specialtyId = ToolUtil.lon("specialty_id", request);
+		    Long specialtyId = ToolUtil.lon("specialty_id", request);
 		    String specialtyName = ToolUtil.str("specialty_name", request);
 		    Integer status = ToolUtil.integer("status", request);
 		    
@@ -55,15 +55,16 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 		    trainingEnvironmentConstruction.setContent(content);
 		   trainingEnvironmentConstruction.setDate(date);
 		   trainingEnvironmentConstruction.setParticipants(participants);
+		   trainingEnvironmentConstruction.setSpecialtyId(specialtyId);
 		   trainingEnvironmentConstruction.setSpecialtyName(specialtyName);
 		   trainingEnvironmentConstruction.setStatus(1);
 		   trainingEnvironmentConstruction.setCreateTime(new Date());
 		   trainingEnvironmentConstruction.setCreateUser(user.getTeaName());
 //		   判断数据是否为空
-//		   if ((ToolUtil.equalBool(content)&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(specialtyName)) == false) {
-//				    jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
-//					return jsonResult;
-//			  }
+		   if ((ToolUtil.equalBool(content)&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)) == false) {
+				    jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+					return jsonResult;
+			  }
 		   System.out.println("传入数据成功");
 		   System.out.println("addTrainingEnvironmentConstruction方法拿到数据");
 		   int result = trainingEnvironmentConstructionService.addTrainingEnvironmentConstruction(trainingEnvironmentConstruction);
@@ -93,7 +94,7 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 			 System.out.println("id"+id);
 			 TrainingEnvironmentConstruction trainingEnvironmentConstruction= trainingEnvironmentConstructionService.findTrainingEnvironmentConstructionById(id);
 		     if (trainingEnvironmentConstruction == null) {
-				jsonResult = JsonResult.build(FLAG_SUCCESS);
+				jsonResult = JsonResult.build(FLAG_FAILED,"没有该条信息！");
 				return jsonResult;
 			}
 		     trainingEnvironmentConstruction.setStatus(2);
@@ -121,8 +122,8 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 		 Date date = ToolUtil.date2("date", request);
 		String content = ToolUtil.str("content", request);
 	    String participants = ToolUtil.str("participants", request);
-	    //Long specialtyId = ToolUtil.lon("specialty_id", request);
-	    String specialty_name = ToolUtil.str("specialty_name", request);
+	    Long specialtyId = ToolUtil.lon("specialty_id", request);
+	    String specialtyName = ToolUtil.str("specialty_name", request);
 //	    根据id查找修改信息
 	    TrainingEnvironmentConstruction trainingEnvironmentConstruction = trainingEnvironmentConstructionService.findTrainingEnvironmentConstructionById(id);
 	    if (trainingEnvironmentConstruction == null) {
@@ -132,16 +133,16 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 	    trainingEnvironmentConstruction.setDate(date);
 	    trainingEnvironmentConstruction.setContent(content);
 	    trainingEnvironmentConstruction.setParticipants(participants);
-	    //trainingEnvironmentConstruction.setSpecialtyId(specialtyId);
-	    trainingEnvironmentConstruction.setSpecialtyName(specialty_name);
+	    trainingEnvironmentConstruction.setSpecialtyId(specialtyId);
+	    trainingEnvironmentConstruction.setSpecialtyName(specialtyName);
 	    trainingEnvironmentConstruction.setStatus(1);
 	    trainingEnvironmentConstruction.setModifyTime(new Date());
 	    trainingEnvironmentConstruction.setModifyUser(user.getTeaName());
 //	    判断数据传入是否为空
-//	    if ((ToolUtil.equalBool(date)&&ToolUtil.equalBool(content)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(specialty_name)) == false) {
-//	 		    jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
-//	 			return jsonResult;
-//	 		}
+	    if ((ToolUtil.equalBool(date)&&ToolUtil.equalBool(content)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)) == false) {
+	 		    jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
+	 			return jsonResult;
+	 		}
 	    System.out.println("传入数据成功");
 	    try {
 			int result = trainingEnvironmentConstructionService.modifyTrainingEnvironmentConstruction(trainingEnvironmentConstruction);
@@ -158,9 +159,9 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 	    return jsonResult;
 	 }
 //	 获取实训环境信息列表
-	 @RequestMapping("/getSchoolEnterpriseCooperation")
+	 @RequestMapping("/getTrainingEnvironmentConstruction")
 	 @ResponseBody
-	 public JsonResult getSpecialtyProfile(HttpServletRequest request, HttpServletResponse responses) {
+	 public JsonResult getTrainingEnvironmentConstruction(HttpServletRequest request, HttpServletResponse responses) {
 		 System.out.println(" 获取实训环境信息列表接口");
 			JsonResult jsonResult = new JsonResult();
 			Map<String, Object> data = new HashMap<>();

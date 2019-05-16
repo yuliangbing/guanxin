@@ -217,9 +217,9 @@
 		<if test="achievements != null and achievements != ''">
 			and instr(achievements,#{achievements,jdbcType=VARCHAR})
 		</if>
-		<if test="specialtyId != null and specialtyId != ''">
+		<!-- <if test="specialtyId != null and specialtyId != ''">
 			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
-		</if>
+		</if> -->
 		<if test="specialtyName != null and specialtyName != ''">
 			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
 		</if>
@@ -253,9 +253,9 @@
 		<if test="achievements != null and achievements != ''">
 			and instr(achievements,#{achievements,jdbcType=VARCHAR})
 		</if>
-		<if test="specialtyId != null and specialtyId != ''">
+		<!-- <if test="specialtyId != null and specialtyId != ''">
 			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
-		</if>
+		</if> -->
 		<if test="specialtyName != null and specialtyName != ''">
 			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
 		</if>
