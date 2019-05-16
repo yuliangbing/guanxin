@@ -21,6 +21,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,url:window.path +'/graduateHistory/ListGraduateHistory'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
+		    ,defaultToolbar: []
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
@@ -37,7 +38,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
 		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
 		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

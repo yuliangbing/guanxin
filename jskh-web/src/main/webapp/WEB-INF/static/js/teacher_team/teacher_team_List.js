@@ -8,6 +8,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
+		    ,defaultToolbar: []
 		    ,url:window.path +'/teachersTeam/getTeachersTeamList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
@@ -29,7 +30,21 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'modifyUser', title:'修改人', width:130,align:'center',hide:true }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150,align:'center'}
 		    ]]
-		  });  
+	  ,done: function(res, page, count){
+			//如果是异步请求数据方式，res即为你接口返回的信息。
+			//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+			
+			//分类显示中文名称
+			$("[data-field='latest']").children().each(function(){
+					if($(this).text()=='1'){
+					   $(this).text("是")
+					}else if($(this).text()=='2'){
+					   $(this).text("否")
+					}
+			})
+ }       
+});
+		
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;

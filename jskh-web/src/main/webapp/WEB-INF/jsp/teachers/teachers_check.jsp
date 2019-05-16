@@ -128,20 +128,19 @@
 	
 	//表格数据传值
 	function init(data) {
-
 		$("#id").val(data.id);
 		$("#name").val(data.name);
 		$("#code").val(data.code);
-		$("#entryTime").val(data.entryTime);
-		$("#birthday").val(data.birthday);
+		$("#entryTime").val((data.entryTime.split(' '))[0]);
+		$("#birthday").val((data.birthday.split(' '))[0]);
 		$("#graduateSchool").val(data.graduateSchool);
 		$("#finalDegree").val(data.finalDegree);
 		$("#politicalStatus").val(data.politicalStatus);
 		/* $("#specialtyCode").val(data.specialtyCode); */
 		$("#specialtyName").val(data.specialtyName);
 		$("#researchDirection").val(data.researchDirection);
-		$("#isPartTime").val(data.isPartTime=1?'否':'是');
-		$("#director").val(data.director=2?'否':'是');
+		$("#isPartTime").val(data.isPartTime==2?'是':'否');
+		$("#director").val(data.director==1?'是':'否');
 		$("#createTime").val(data.createTime);
 		$("#createUser").val(data.createUser);
 		$("#modifyTime").val(data.modifyTime);

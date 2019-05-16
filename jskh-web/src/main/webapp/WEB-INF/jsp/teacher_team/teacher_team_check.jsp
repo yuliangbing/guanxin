@@ -65,7 +65,7 @@
 						<input name="latest"  id="latest" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">创建时间</label>
 					<div class="layui-input-inline">
 						<input name="createTime"  id="createTime" disabled autocomplete="off" class="layui-input">
@@ -88,7 +88,7 @@
 					<div class="layui-input-inline">
 						<input name="modifyUser"  id="modifyUser" disabled autocomplete="off" class="layui-input">
 					</div>
-				</div>
+				</div> -->
 			</div>
 		</form>
 	</body>
@@ -96,7 +96,6 @@
    	<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
    	<script>
    	function init(data) {
-
    		$("#id").val(data.id);
 		$("#specialtyId").val(data.specialtyId);
 		$("#specialtyCode").val(data.specialtyCode);
@@ -105,7 +104,7 @@
 		$("#specialtyTeachers").val(data.specialtyTeachers);
 		$("#partTimeTeachers").val(data.partTimeTeachers);
 		$("#director").val(data.director);
-		$("#latest").val(data.latest);
+		$("#latest").val(data.latest==1?'是':'否');
 		$("#createTime").val(data.createTime);
 		$("#createUser").val(data.createUser);
 		$("#modifyTime").val(data.modifyTime);

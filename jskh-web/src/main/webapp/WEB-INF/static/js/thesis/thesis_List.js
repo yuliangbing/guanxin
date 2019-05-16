@@ -19,28 +19,29 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
+		    ,defaultToolbar: []
 		    ,url:window.path +'/thesisList/getThesisList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true}
-		      ,{field:'date', title:'发表时间', width:130,}
-		      ,{field:'published_journal', title:'发表期刊', width:130, }
-		      ,{field:'name', title:'论文题目', width:150, }
-		      ,{field:'index_level', title:'索引或级别', width:150, } 
-		      ,{field:'first_author', title:'第一作者', width:130, }
-		      ,{field:'other_authors', title:'其他作者情况', width:130, }
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true }
-		      ,{field:'specialty_name', title:'专业名称', width:130,}
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true }
-		      ,{field:'awards', title:'获奖情况', width:230, }
-		      ,{field:'create_time', title:'创建时间', width:150, }
-		      ,{field:'create_user', title:'创建人', width:150, }
-		      ,{field:'modify_time', title:'修改时间', width:150, }
-		      ,{field:'modify_user', title:'修改人', width:130, }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
+		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
+		      ,{field:'date', title:'发表时间', width:130,align:'center'}
+		      ,{field:'published_journal', title:'发表期刊', width:130,align:'center' }
+		      ,{field:'name', title:'论文题目', width:150,align:'center' }
+		      ,{field:'index_level', title:'索引或级别', width:150,align:'center' } 
+		      ,{field:'first_author', title:'第一作者', width:130,align:'center' }
+		      ,{field:'other_authors', title:'其他作者情况', width:130,align:'center' }
+		      ,{field:'specialty_id', title:'专业id', width:130,hide:true,align:'center' }
+		      ,{field:'specialty_name', title:'专业名称', width:130,align:'center'}
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true,align:'center'}
+		      ,{field:'awards', title:'获奖情况', width:230,align:'center' }
+		      ,{field:'create_time', title:'创建时间', width:150,align:'center' }
+		      ,{field:'create_user', title:'创建人', width:150,align:'center' }
+		      ,{field:'modify_time', title:'修改时间', width:150,align:'center' }
+		      ,{field:'modify_user', title:'修改人', width:130,align:'center' }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

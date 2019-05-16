@@ -104,7 +104,7 @@
 				</div>
 			</div>
 			<div style="text-align:center;">
-			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
+			<button class="layui-btn layui-right" lay-submit lay-filter="submit" data-method="confirmTrans">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>
 		</form>
@@ -218,6 +218,7 @@
 			elem: '#birthday' //指定元素	
 		});
 	/*提交功能*/
+	
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
