@@ -168,7 +168,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    String author = ToolUtil.str("author", request);
 			    Long specialtyId = ToolUtil.lon("specialty_id", request);
 			    String specialtyName = ToolUtil.str("specialty_name", request);
-			    Date date = ToolUtil.date1("date", request);
+			    Date date = ToolUtil.date2("date", request);
 			    
 			    SpecialtyConstructionAchievements specialtyConstructionAchievements = specialtyConstructionAchievementsService.findSpecialtyConstructionAchievementsById(specialtyAchievementsId);
 			    if (specialtyConstructionAchievements == null) {
@@ -223,7 +223,7 @@ public class SpecialtyConstructionAchievementsController extends BaseController 
 			    String level = ToolUtil.str("level", request);
 			    String author = ToolUtil.str("author", request);
 			    Long specialty_id = ToolUtil.lon("specialty_id", request);
-			    Date date = ToolUtil.date1("date", request);
+			    Date date = ToolUtil.date2("date", request);
 			    
 			    SpecialtyConstructionAchievements specialtyConstructionAchievements = specialtyConstructionAchievementsService.findSpecialtyConstructionAchievementsById(specialtyAchievementsId);
 			    if (specialtyConstructionAchievements == null) {
