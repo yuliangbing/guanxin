@@ -98,13 +98,13 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" >
-						<input type="radio" name="director" id="director1"  value="2" title="否" class="layui-input" checked="checked">					
+						<input type="radio" name="director" id="director"  value="1" title="是" lay-filter="TeamMember" class="layui-input" >
+						<input type="radio" name="director" id="director1"  value="2" title="否" lay-filter="TeamMember" class="layui-input" checked="checked">					
 					</div>
 				</div>
 			</div>
 			<div style="text-align:center;">
-			<button class="layui-btn layui-right" lay-submit lay-filter="submit" data-method="confirmTrans">保存</button>
+			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>
 		</form>
@@ -112,6 +112,7 @@
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
+	
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
@@ -195,12 +196,28 @@
 	        }
 		});
 	}
-	layui.use(['form', 'table', 'laydate'], function() {
+	layui.use(['form', 'table', 'laydate','layer'], function() {
 		var form = layui.form;
 		var laydate = layui.laydate;
-		/*
-		下拉列表数据获取  开始
-	*/
+		layer = layui.layer;
+
+		//团队负责人判断	
+			form.on('radio(TeamMember)', function (data) {
+				var val = $("input[name='director']:checked").val();
+				if(val == 1){
+					layer.confirm("是否确认("+$("#name").val()+")为团队负责人", {
+					  btn: ['确认','取消'] //按钮
+					});
+				}else{
+					layer.confirm("是否取消("+$("#name").val()+")为团队负责人", {
+						  btn: ['确认','取消'] //按钮
+						});
+				}
+			});
+			
+			/*
+			下拉列表数据获取  开始
+		*/
 	var url ="";
 	var object="";
 	var ids="";

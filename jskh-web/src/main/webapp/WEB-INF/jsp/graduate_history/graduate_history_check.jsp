@@ -53,7 +53,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业id</label>
+					<label class="layui-form-label">专业</label>
 					<div class="layui-input-inline">
 						<input name="specialty_name"  id="specialty_name" disabled autocomplete="off" class="layui-input">
 					</div>

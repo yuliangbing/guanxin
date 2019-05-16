@@ -19,38 +19,38 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">教师姓名</label>
 					<div class="layui-input-inline">
-						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
+						<input name="name" id="name" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">教师编号</label>
 					<div class="layui-input-inline">
-						<input name="code" id="code"  autocomplete="off" class="layui-input" type="text">
+						<input name="code" id="code" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">入职时间</label>
 					<div class="layui-input-inline">
-						<input name="entryTime" id="entryTime"  autocomplete="off" class="layui-input" type="text">
+						<input name="entryTime" id="entryTime" lay-verify="required|date" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
 					<label class="layui-form-label">出生时间</label>
 					<div class="layui-input-inline">
-						<input name="birthday" id="birthday"  autocomplete="off" class="layui-input" type="text">
+						<input name="birthday" id="birthday"  autocomplete="off" lay-verify="required|date" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">毕业院校</label>
 					<div class="layui-input-inline">
-						<input name="graduateSchool" id="graduateSchool"  autocomplete="off" class="layui-input" type="text">
+						<input name="graduateSchool" id="graduateSchool" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">学历学位</label>
 					<div class="layui-input-inline"  >
-						<select name="finalDegree"  id="finalDegree" autocomplete="off" class="layui-input" type="text">
+						<select name="finalDegree"  id="finalDegree" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 							<option value="高中">高中</option>
 							<option value="大专">大专</option>
@@ -65,7 +65,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">政治面貌</label>
 					<div class="layui-input-inline">
-						<select name="politicalStatus"  id="politicalStatus" autocomplete="off" class="layui-input" type="text">
+						<select name="politicalStatus"  id="politicalStatus" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 							<option value="中共党员">中共党员</option>
 							<option value="中共预备党员">中共预备党员</option>
@@ -77,7 +77,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">研究方向</label>
 					<div class="layui-input-inline">
-						<input name="researchDirection" id="researchDirection"  autocomplete="off" class="layui-input" type="text">
+						<input name="researchDirection" id="researchDirection"  lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
@@ -90,7 +90,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业</label>
 					<div class="layui-input-inline">
-						<select name="specialtyId"  id="specialtyId" autocomplete="off" class="layui-input" type="text">
+						<select name="specialtyId"  id="specialtyId" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 						</select>
 					</div>
@@ -98,8 +98,8 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"  value="1" title="是" class="layui-input" >
-						<input type="radio" name="director" id="director"  value="2" title="否" class="layui-input" checked="checked">					
+						<input type="radio" name="director" id="director" lay-filter="TeamMember"  value="1" title="是" class="layui-input" >
+						<input type="radio" name="director" id="director1" lay-filter="TeamMember"  value="2" title="否" class="layui-input" checked="checked">					
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,11 @@
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
+  		<script>
+  		
+  		</script>
 	<script>
+
 	//专业id select
 	var id = 0;
 	var specialty_name = "";	
@@ -122,7 +126,7 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
+				//layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";
@@ -169,12 +173,26 @@
 	        }
 		});
 	}
-	layui.use(['form', 'table', 'laydate'], function() {
+	layui.use(['form', 'table', 'laydate','layer'], function() {
 		var form = layui.form;
 		var laydate = layui.laydate;
-		/*
-		下拉列表数据获取  开始
-	*/
+		layer = layui.layer;
+	
+	//团队负责人判断
+
+			form.on('radio(TeamMember)', function (data) {
+				var val = $("input[name='director']:checked").val();
+				if(val == 1){
+				layer.confirm("是否确认("+$("#name").val()+")为团队负责人", {
+					  btn: ['确认','取消'] //按钮
+					});
+				}else{
+					
+				}
+			});
+			/*
+			下拉列表数据获取  开始
+		*/
 	var url ="";
 	var object="";
 	var ids="";

@@ -49,7 +49,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业id</label>
+					<label class="layui-form-label">专业</label>
 					<div class="layui-input-inline">
 						<select name="specialty_id"  id="specialty_id" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
@@ -104,7 +104,7 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
+				//layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

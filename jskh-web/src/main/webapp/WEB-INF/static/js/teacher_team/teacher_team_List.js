@@ -8,7 +8,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,defaultToolbar: []
+		    ,defaultToolbar: ['print', 'exports']
 		    ,url:window.path +'/teachersTeam/getTeachersTeamList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'

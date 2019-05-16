@@ -21,7 +21,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,url:window.path +'/graduateHistory/ListGraduateHistory'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
-		    ,defaultToolbar: []
+		    ,defaultToolbar: ['print', 'exports']
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
