@@ -194,7 +194,7 @@
 	    from specialty_construction_achievements
 	    <where>
 	    	<if test="level !=null and level != ''">
-				and level = #{level,jdbcType=INTEGER}
+				and instr(level,#{level,jdbcType=VARCHAR})
 			</if>
 	    	<if test="status !=null and status != ''">
 				and status = #{status,jdbcType=INTEGER}
@@ -210,7 +210,7 @@
 			specialty_construction_achievements
 			<where>
 				<if test="level !=null and level != ''">
-					and level = #{level,jdbcType=INTEGER}
+					and instr(level,#{level,jdbcType=VARCHAR})
 				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
