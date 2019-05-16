@@ -189,8 +189,8 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		JsonResult jsonResult = new JsonResult();
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
-		 Date date1 = ToolUtil.date1("date1", request);
-		 Date date2 = ToolUtil.date2("date2", request);
+		String date1 = ToolUtil.str("date1", request);
+		String date2 = ToolUtil.str("date2", request);
 		String specialty_name = ToolUtil.str("specialty_name", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);

@@ -168,8 +168,8 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		Map<String, Object> data = new HashMap<>();
 //		获取请求参数
 		// Long id = ToolUtil.lon("id", request);
-		Date date1 = ToolUtil.date1("date1", request);
-		Date date2 = ToolUtil.date2("date2", request);
+		String date1 = ToolUtil.str("date1", request);
+		String date2 = ToolUtil.str("date2", request);
 		String content = ToolUtil.str("content", request);
 	    String units = ToolUtil.str("units", request);
 	    String participants = ToolUtil.str("participants", request);

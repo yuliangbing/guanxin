@@ -175,13 +175,13 @@ public class SubjectCompetitionController extends BaseController{
 	 Map< String, Object> data = new HashMap<>();
 //	 获取请求参数
 	 //Long id = ToolUtil.lon("id", request);
-	 Date  date1 = ToolUtil.date1("date1", request);
-	 Date  date2 = ToolUtil.date2("date2", request);
+	 String  date1 = ToolUtil.str("date1", request);
+	 String  date2 = ToolUtil.str("date2", request);
      String name = ToolUtil.str("name", request);
 	 String award_level = ToolUtil.str("award_level", request);
 	  String students = ToolUtil.str("students", request);
 	  String teachers = ToolUtil.str("teachers", request);
-	 // Long specialty_id = ToolUtil.lon("specialty_id", request); 
+	  Long specialty_id = ToolUtil.lon("specialty_id", request); 
 	  String specialty_name = ToolUtil.str("specialty_name", request);   
 	//  Integer status = ToolUtil.integer("status", request);
 	  Integer limit = ToolUtil.integer("limit", request);
@@ -198,7 +198,7 @@ public class SubjectCompetitionController extends BaseController{
 	    data.put("award_level", award_level);
 	    data.put("students", students);
 	    data.put("teachers", teachers);
-		//data.put("specialty_id", specialty_id);
+		data.put("specialty_id", specialty_id);
 		data.put("specialty_name", specialty_name);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
@@ -213,7 +213,7 @@ public class SubjectCompetitionController extends BaseController{
 		count.put("award_level", award_level);
 		count.put("students", students);
 		count.put("teachers", teachers);
-		//count.put("specialty_id", specialty_id);
+		count.put("specialty_id", specialty_id);
 		count.put("specialty_name", specialty_name);
 		count.put("status", 1);
 		//定义返回的数据条总数

@@ -210,8 +210,8 @@ public class TeachingAssetsController extends BaseController{
 	  JsonResult jsonResult = new JsonResult();
 	  Map<String, Object> data = new HashMap<>();
 //	  获取请求参数
-	  Date date1 = ToolUtil.date1("date1", request);
-	  Date date2 = ToolUtil.date2("date2", request);
+	  String date1 = ToolUtil.str("date1", request);
+	  String date2 = ToolUtil.str("date2", request);
 	  String cate_code = ToolUtil.str("cate_code", request);
 	    String name = ToolUtil.str("name", request);
 	    String model_num = ToolUtil.str("model_num", request);
