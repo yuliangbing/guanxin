@@ -185,4 +185,50 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 查询列表数据 -->
+  <select id="textbookOrMonographList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from textbook_or_monograph
+    <where>
+    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="first_author != null and first_author != ''">
+			and instr(first_author,#{first_author,jdbcType=VARCHAR})
+		</if> -->
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="Counts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			textbook_or_monograph
+			<where>
+				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
+				<if test="first_author != null and first_author != ''">
+					and instr(first_author,#{first_author,jdbcType=VARCHAR})
+				</if> -->
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	<!--根据status修改状态(删除)-->
+	 <update id="updateByPrimaryKeyDel" parameterType="com.zptc.gx.specialty.entity.TextbookOrMonograph" >
+	    update textbook_or_monograph
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

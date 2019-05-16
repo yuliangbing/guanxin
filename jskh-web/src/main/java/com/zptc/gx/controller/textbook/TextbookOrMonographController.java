@@ -1,4 +1,4 @@
-package com.zptc.gx.controller.foreignExchange;
+package com.zptc.gx.controller.textbook;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -18,32 +18,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.zptc.gx.common.util.Constant;
 import com.zptc.gx.common.util.JsonResult;
 import com.zptc.gx.controller.BaseController;
-import com.zptc.gx.controller.patent.PatentController;
+import com.zptc.gx.controller.foreignExchange.ForeignExchangeController;
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.specialty.entity.ForeignExchange;
-import com.zptc.gx.specialty.entity.Patent;
-import com.zptc.gx.specialty.service.ForeignExchangeService;
+import com.zptc.gx.specialty.entity.TextbookOrMonograph;
+import com.zptc.gx.specialty.service.TextbookOrMonographService;
 import com.zptc.gx.util.ToolUtil;
 import com.zptc.gx.vo.PageVO;
 
 /**
- * 对外学习交流
+ * 教材或专著
  * @author Administrator
  *
  */
 @Controller
-@RequestMapping("/foreignExchange")
-public class ForeignExchangeController extends BaseController {
-	private Logger logger = Logger.getLogger(ForeignExchangeController.class);
+@RequestMapping("/TextbookOrMonograph")
+public class TextbookOrMonographController extends BaseController {
+	
+	private Logger logger = Logger.getLogger(TextbookOrMonographController.class);
 	
 	@Autowired
-	private ForeignExchangeService fService;
+	private TextbookOrMonographService tService;
+	
 	/**
 	 * 获取列表
 	 */
-	@RequestMapping("/getForeignExchangeList")
+	@RequestMapping("/getTextbookOrMonographList")
 	@ResponseBody
-	public JsonResult getForeignExchangeList(HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult getTextbookOrMonographList(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("列表信息");
 		Integer limit = ToolUtil.integer("limit", request);
@@ -66,10 +68,10 @@ public class ForeignExchangeController extends BaseController {
 		String msg = "获取成功";
 		try {
 			//获取所有status == 1 的所有数据
-			List<ForeignExchange> fList = fService.getForeignExchangeList(data);
-			System.out.println("返回的数据："+fList);
-			counts = fService.selectCounts(count);
-			jsonResult = JsonResult.build(FLAG_SUCCESS, fList,msg,counts);
+			List<TextbookOrMonograph> tList = tService.getTextbookOrMonographList(data);
+			System.out.println("返回的数据："+tList);
+			counts = tService.selectCounts(count);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, tList,msg,counts);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -80,32 +82,32 @@ public class ForeignExchangeController extends BaseController {
 	/**
 	 * 添加
 	 */
-	@RequestMapping("/addForeignExchange")
+	@RequestMapping("/addTextbookOrMonograph")
 	@ResponseBody
-	public JsonResult addForeignExchange(@RequestBody ForeignExchange fExchange,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult addTextbookOrMonograph(@RequestBody TextbookOrMonograph tOrMonograph,HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用addForeignExchange方法");
 	    
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 	    
-	    fExchange.setStatus(1);
-	    fExchange.setCreateTime(new Date());
-	    fExchange.setCreateUser(user.getTeaName());
-	   System.out.println("获取到的数据="+fExchange.toString());
+	    tOrMonograph.setStatus(1);
+	    tOrMonograph.setCreateTime(new Date());
+	    tOrMonograph.setCreateUser(user.getTeaName());
+	   System.out.println("获取到的数据="+tOrMonograph.toString());
 	    /*判断传入的值是否为空或""*/
-	    if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
-	    		&&ToolUtil.equalBool(fExchange.getSpecialtyId())&&ToolUtil.equalBool(fExchange.getSpecialtyName())) == false) {
+	    if ((ToolUtil.equalBool(tOrMonograph.getDate())&&ToolUtil.equalBool(tOrMonograph.getName())&&ToolUtil.equalBool(tOrMonograph.getPress())&&ToolUtil.equalBool(tOrMonograph.getFirstAuthor())&&ToolUtil.equalBool(tOrMonograph.getOtherAuthors())
+	    		&&ToolUtil.equalBool(tOrMonograph.getSpecialtyId())&&ToolUtil.equalBool(tOrMonograph.getSpecialtyName())) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
-		    System.out.println("方法拿到的数据："+fExchange.toString());
+		    System.out.println("方法拿到的数据："+tOrMonograph.toString());
 	    	return jsonResult;
 		}
 	    System.out.println("传入数据成功");
-	    System.out.println("方法拿到的数据："+fExchange.toString());
+	    System.out.println("方法拿到的数据："+tOrMonograph.toString());
 		try {
 			
-			int result = fService.addForeignExchange(fExchange);
+			int result = tService.addTextbookOrMonograph(tOrMonograph);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS,"添加成功");
 			} else {
@@ -121,47 +123,36 @@ public class ForeignExchangeController extends BaseController {
 	/**
 	 * 修改
 	 */
-	@RequestMapping("/updateForeignExchange")
+	@RequestMapping("/updateTextbookOrMonograph")
 	@ResponseBody
-	public JsonResult updateForeignExchange(@RequestBody ForeignExchange fExchange,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult updateTextbookOrMonograph(@RequestBody TextbookOrMonograph tOrMonograph,HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用updateForeignExchange方法");
+		System.out.println("启用updateTextbookOrMonograph方法");
 	    
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 	    
-	    fExchange.setStatus(1);
-	    fExchange.setModifyTime(new Date());
-	    fExchange.setModifyUser(user.getTeaName());
-	    System.out.println("获取到的数据="+fExchange.toString());
-	    ForeignExchange foreignExchange = fService.findForeignExchangeById(fExchange.getId());
-	    if (foreignExchange == null) {
-	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该 对外学习交流信息！");
+	    TextbookOrMonograph textbookOrMonograph = tService.findTextbookOrMonographById(tOrMonograph.getId());
+	    if (textbookOrMonograph == null) {
+	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该教材或专著信息！");
 			return jsonResult;
 		}
+	    tOrMonograph.setModifyTime(new Date());
+	    tOrMonograph.setModifyUser(user.getTeaName());
+	   System.out.println("获取到的数据="+tOrMonograph.toString());
 	    /*判断传入的值是否为空或""*/
-	    if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
-	    		&&ToolUtil.equalBool(fExchange.getSpecialtyId())&&ToolUtil.equalBool(fExchange.getSpecialtyName())) == false) {
+	    if ((ToolUtil.equalBool(tOrMonograph.getDate())&&ToolUtil.equalBool(tOrMonograph.getName())&&ToolUtil.equalBool(tOrMonograph.getPress())&&ToolUtil.equalBool(tOrMonograph.getFirstAuthor())&&ToolUtil.equalBool(tOrMonograph.getOtherAuthors())
+	    		&&ToolUtil.equalBool(tOrMonograph.getSpecialtyId())&&ToolUtil.equalBool(tOrMonograph.getSpecialtyName())) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
-		    System.out.println("方法拿到的数据："+fExchange.toString());
+		    System.out.println("方法拿到的数据："+tOrMonograph.toString());
 	    	return jsonResult;
 		}
 	    System.out.println("传入数据成功");
-	    System.out.println("方法拿到的数据："+fExchange.toString());
-	    //将传入的数据注入将要修改的数据中
-	    foreignExchange.setDate(fExchange.getDate());
-	    foreignExchange.setContent(fExchange.getContent());
-	    foreignExchange.setUnits(fExchange.getUnits());
-	    foreignExchange.setParticipants(fExchange .getParticipants());
-	    foreignExchange.setAchievements(fExchange.getAchievements());
-		foreignExchange.setSpecialtyId(fExchange.getSpecialtyId());
-		foreignExchange.setSpecialtyName(fExchange.getSpecialtyName());
-		foreignExchange.setModifyTime(new Date());
-		foreignExchange.setModifyUser(user.getTeaName());
-	    try {
+	    System.out.println("方法拿到的数据："+tOrMonograph.toString());
+		try {
 			
-			int result = fService.modifyForeignExchange(foreignExchange);
+			int result = tService.modifyTextbookOrMonograph(tOrMonograph);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS,"修改成功");
 			} else {
@@ -180,25 +171,25 @@ public class ForeignExchangeController extends BaseController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping("/delForeignExchange")
+	@RequestMapping("/delTextbookOrMonograph")
 	@ResponseBody
-	public JsonResult delForeignExchange(HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult delTextbookOrMonograph(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
-		System.out.println("启用delForeignExchange方法");
+		System.out.println("启用delTextbookOrMonograph方法");
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			Long id = ToolUtil.lon("id", request);
 			System.out.println("id="+id);
 		    //判断是否有该专业
 			
-			ForeignExchange foreignExchange = fService.findForeignExchangeById(id);
-			if (foreignExchange == null) {
-				jsonResult = JsonResult.build(FLAG_FAILED, "没有该 对外学习交流信息！");
+			TextbookOrMonograph textbookOrMonograph = tService.findTextbookOrMonographById(id);
+			if (textbookOrMonograph == null) {
+				jsonResult = JsonResult.build(FLAG_FAILED, "没有该对外学习交流信息！");
 				return jsonResult;
 			}
-			foreignExchange.setStatus(2);
-		    int result = fService.delForeignExchange(foreignExchange);
-		    System.out.println("要删除的数据是："+foreignExchange.toString());
+			textbookOrMonograph.setStatus(2);
+		    int result = tService.delTextbookOrMonograph(textbookOrMonograph);
+		    System.out.println("要删除的数据是："+textbookOrMonograph.toString());
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS,"删除成功");
 			} else {
@@ -210,5 +201,5 @@ public class ForeignExchangeController extends BaseController {
 			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
 		}
 		return jsonResult;
-	}
+	}	
 }

@@ -132,4 +132,13 @@ public class TextbookOrMonograph {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "TextbookOrMonograph [id=" + id + ", date=" + date + ", name=" + name + ", press=" + press
+				+ ", firstAuthor=" + firstAuthor + ", otherAuthors=" + otherAuthors + ", specialtyId=" + specialtyId
+				+ ", specialtyName=" + specialtyName + ", status=" + status + ", createTime=" + createTime
+				+ ", createUser=" + createUser + ", modifyTime=" + modifyTime + ", modifyUser=" + modifyUser + "]";
+	}
+    
 }

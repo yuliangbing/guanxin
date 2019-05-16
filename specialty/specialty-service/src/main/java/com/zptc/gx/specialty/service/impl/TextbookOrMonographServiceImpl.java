@@ -1,5 +1,8 @@
 package com.zptc.gx.specialty.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,12 +17,12 @@ public class TextbookOrMonographServiceImpl implements TextbookOrMonographServic
 	private TextbookOrMonographMapper textbookOrMonographMapper;
 
 	@Override
-	public void addTextbookOrMonograph(TextbookOrMonograph textbookOrMonograph){
-		textbookOrMonographMapper.insertSelective(textbookOrMonograph);
+	public int addTextbookOrMonograph(TextbookOrMonograph textbookOrMonograph){
+		return textbookOrMonographMapper.insertSelective(textbookOrMonograph);
 	}
 	@Override
-	public void modifyTextbookOrMonograph(TextbookOrMonograph textbookOrMonograph){
-		textbookOrMonographMapper.updateByPrimaryKeySelective(textbookOrMonograph);
+	public int modifyTextbookOrMonograph(TextbookOrMonograph textbookOrMonograph){
+		return textbookOrMonographMapper.updateByPrimaryKeySelective(textbookOrMonograph);
 	}
 	@Override
 	public void deleteTextbookOrMonographById(Long id){
@@ -29,5 +32,23 @@ public class TextbookOrMonographServiceImpl implements TextbookOrMonographServic
 	public TextbookOrMonograph findTextbookOrMonographById(Long id){
 		TextbookOrMonograph textbookOrMonograph = textbookOrMonographMapper.selectByPrimaryKey(id);
 		return textbookOrMonograph;
+	}
+	//列表
+	@Override
+	public List<TextbookOrMonograph> getTextbookOrMonographList(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return textbookOrMonographMapper.textbookOrMonographList(data);
+	}
+	//统计
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return textbookOrMonographMapper.Counts(count);
+	}
+	//软删除
+	@Override
+	public int delTextbookOrMonograph(TextbookOrMonograph textbookOrMonograph) {
+		// TODO Auto-generated method stub
+		return textbookOrMonographMapper.updateByPrimaryKeyDel(textbookOrMonograph);
 	}
 }
