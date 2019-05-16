@@ -93,14 +93,14 @@ public class ForeignExchangeController extends BaseController {
 	    fExchange.setCreateUser(user.getTeaName());
 	   System.out.println("获取到的数据="+fExchange.toString());
 	    /*判断传入的值是否为空或""*/
-	 /*   if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
+	    if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
 	    		&&ToolUtil.equalBool(fExchange.getSpecialtyId())&&ToolUtil.equalBool(fExchange.getSpecialtyName())) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
 		    System.out.println("方法拿到的数据："+fExchange.toString());
 	    	return jsonResult;
-		}*/
+		}
 	    System.out.println("传入数据成功");
 	    System.out.println("方法拿到的数据："+fExchange.toString());
 		try {
@@ -139,14 +139,14 @@ public class ForeignExchangeController extends BaseController {
 			return jsonResult;
 		}
 	    /*判断传入的值是否为空或""*/
-	 /*   if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
+	    if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
 	    		&&ToolUtil.equalBool(fExchange.getSpecialtyId())&&ToolUtil.equalBool(fExchange.getSpecialtyName())) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
 		    System.out.println("方法拿到的数据："+fExchange.toString());
 	    	return jsonResult;
-		}*/
+		}
 	    System.out.println("传入数据成功");
 	    System.out.println("方法拿到的数据："+fExchange.toString());
 	    //将传入的数据注入将要修改的数据中
