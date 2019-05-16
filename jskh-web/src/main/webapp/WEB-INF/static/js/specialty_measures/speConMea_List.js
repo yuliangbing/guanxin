@@ -1,30 +1,3 @@
-//function ajax_h(form,url,object,ids){
-//			//获取下拉列表(公共方法)
-//			$.ajax({
-//				url:url,
-//				type:"POST",
-//				dataType:"json",
-//				success:function(data){
-//					console.log(data);
-//					//layer.msg("获取成功");
-//					console.log(data.data.length);
-//					if (data.code == 0) {
-//							let option = "";
-//							for (let i=0;i<data.data.length;i++) {
-//								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
-//							}
-//							$("#"+object).append(option);
-//							form.render('select');
-//						
-//					} else {
-//						layer.msg("请检查网络连接！");
-//					}
-//					
-//				} ,error:function(code){
-//		           layer.alert("发生错误,请联系管理员");
-//		        }
-//			});
-//		}
 layui.use('element', function() {
 				var element = layui.element;
 
@@ -32,7 +5,6 @@ layui.use('element', function() {
 layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
 				/*
 				 实现时间选择
 				 */
@@ -46,39 +18,35 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/specialtyConstructionAchievements/getSpecialtyConstructionAchievements'
+		    ,url:window.path +'/specialtyConstructionMeasures/getSpecialtyConstructionMeasures'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:200,align:'center'}	     
-		      ,{field:'name', title:'成果名称', width:150,align:'center'}
-		      ,{field:'sources', title:'成果来源', width:150,align:'center'} 
-		      ,{field:'level', title:'成果级别', width:130,align:'center'}
-		      ,{field:'author', title:'作者', width:130,align:'center'}
-		      ,{field:'specialtyName', title:'专业名称', width:130,align:'center'}
-		      ,{field:'specialtyId', title:'专业id', width:130,hide:true }
-		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
-		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
-		     // ,{field:'modify_time', title:'修改时间', width:150,  hide:true}
-		     // ,{field:'modify_user', title:'修改人', width:130, hide:true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
+		      ,{field:'date', title:'时间', width:240,align:'center'}
+		      ,{field:'measures', title:'举措', width:400,align:'center'}
+		     // ,{field:'specialtyId', title:'专业id', width:130,align:'center'}
+		      ,{field:'specialtyName', title:'专业名称', width:200,align:'center'}
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
+		      ,{field:'createTime', title:'创建时间', width:150, hide:true}
+		      ,{field:'createUser', title:'创建人', width:150, hide:true}
+		      ,{field:'modifyTime', title:'修改时间', width:150, hide:true}
+		      ,{field:'modifyUser', title:'修改人', width:130, hide:true}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:300,align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
-	    
 	    var layEvent = obj.event;
 	    if(layEvent === 'detail'){//查看
 	    	
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=specialty_achievements/speConAch_check'],
+	    		content:['/toPage?page=specialty_measures/speConMea_check'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -93,10 +61,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.confirm('真的删除行么', function(index) {
 				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 				layer.close(index);
-				//向服务端发送删除指令*/	
-	    		console.log(data.id);
+				//向服务端发送删除指令*/		
 				$.ajax({
-					url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
+					url:'/specialtyConstructionMeasures/delMeasures',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
@@ -119,7 +86,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=specialty_achievements/speConAch_update'],
+	    		content:['/toPage?page=specialty_measures/speConMea_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -150,32 +117,12 @@ layui.use(['form', 'table', 'laydate'], function() {
 			});
 			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 		});
-	  
-		
-		layui.use('element', function() {
-			var element = layui.element;
-
-		});
-
-		layui.use(['form','laydate'], function() {
-			var form = layui.form;
-			
-		
-			/*
-			 实现文件时间选择
-			 */
-			var laydate = layui.laydate;
-			
-			laydate.render({
-				elem: '#date' //指定元素
-			});
-			
 	//添加按钮点击事件
 	  $("#insert").click(function(){
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=specialty_achievements/speConAch_insert'],
+	  		content:['/toPage?page=specialty_measures/speConMea_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
@@ -184,7 +131,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  //批量删除
 	  table.on('toolbar(test)', function(obj){
 		    var checkStatus = table.checkStatus(obj.config.id);
-		    //console.log(JSON.stringify(checkStatus.data.id));
+//		    alert(JSON.stringify(checkStatus.data.id));
 		    
 		    switch(obj.event){
 		      case 'delData':
@@ -197,7 +144,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
+						url:'/specialtyConstructionMeasures/delMeasures',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",
@@ -222,5 +169,4 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    };
 		    
 		  });
-});
 });
