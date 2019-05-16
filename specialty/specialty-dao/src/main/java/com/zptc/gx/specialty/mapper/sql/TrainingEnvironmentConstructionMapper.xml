@@ -161,4 +161,71 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <!--根据status修改状态(删除)-->
+<update id="modifyTrainingEnvironmentConstructionDel" parameterType="com.zptc.gx.specialty.entity.TrainingEnvironmentConstruction" >
+	    update training_environment_construction
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <!-- 查询列表数据 -->
+  <select id="getTrainingEnvironmentConstructionList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from training_environment_construction
+    <where>
+    	 <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="content != null and content != ''">
+			and instr(content,#{content,jdbcType=VARCHAR})
+		</if>
+		<if test="participants != null and participants != ''">
+			and instr(participants,#{participants,jdbcType=VARCHAR})
+		</if>
+		<if test="specialtyId != null and specialtyId != ''">
+			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
+		</if>
+		<if test="specialtyName != null and specialtyName != ''">
+			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			training_environment_construction
+			    <where>
+    	
+		 <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="content != null and content != ''">
+			and instr(content,#{content,jdbcType=VARCHAR})
+		</if>
+		<if test="participants != null and participants != ''">
+			and instr(participants,#{participants,jdbcType=VARCHAR})
+		</if>
+		<if test="specialtyId != null and specialtyId != ''">
+			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
+		</if>
+		<if test="specialtyName != null and specialtyName != ''">
+			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+	</select>
 </mapper>

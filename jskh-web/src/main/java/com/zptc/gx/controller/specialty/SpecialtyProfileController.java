@@ -189,6 +189,8 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		JsonResult jsonResult = new JsonResult();
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
+		 Date date1 = ToolUtil.date1("date1", request);
+		 Date date2 = ToolUtil.date2("date2", request);
 		String specialty_name = ToolUtil.str("specialty_name", request);
 	    String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
@@ -201,6 +203,8 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		//用于分页的数据
 	    pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 	    data.put("specialty_name", specialty_name);
 	    data.put("position", position);
 	    data.put("characteristic", characteristic);
@@ -213,6 +217,8 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		System.out.println("pages:"+pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("specialty_name", specialty_name);
 		count.put("position", position);
 		count.put("characteristic", characteristic);

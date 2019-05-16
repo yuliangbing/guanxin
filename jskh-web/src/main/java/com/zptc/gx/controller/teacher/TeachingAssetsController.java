@@ -210,6 +210,8 @@ public class TeachingAssetsController extends BaseController{
 	  JsonResult jsonResult = new JsonResult();
 	  Map<String, Object> data = new HashMap<>();
 //	  获取请求参数
+	  Date date1 = ToolUtil.date1("date1", request);
+	  Date date2 = ToolUtil.date2("date2", request);
 	  String cate_code = ToolUtil.str("cate_code", request);
 	    String name = ToolUtil.str("name", request);
 	    String model_num = ToolUtil.str("model_num", request);
@@ -234,6 +236,8 @@ public class TeachingAssetsController extends BaseController{
 	  //用于分页的数据
 	    pages = pageVO.getBeginNum();
 	  //存入data,用于获取表格数据
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 	    data.put("cate_code", cate_code);
 	    data.put("name", name);
 	    data.put("model_num", model_num);
@@ -256,6 +260,8 @@ public class TeachingAssetsController extends BaseController{
 	    System.out.println("pages:"+pages);
 	  //存入count,用于获取表格数据条总数
 		Map<String, Object> count = new HashMap<>();
+		count.put("date1", date1);
+	    count.put("date2", date2);
 		count.put("cate_code", cate_code);
 		count.put("name", name);
 		count.put("model_num", model_num);

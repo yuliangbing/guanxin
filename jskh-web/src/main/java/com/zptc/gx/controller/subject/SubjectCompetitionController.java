@@ -175,6 +175,8 @@ public class SubjectCompetitionController extends BaseController{
 	 Map< String, Object> data = new HashMap<>();
 //	 获取请求参数
 	 //Long id = ToolUtil.lon("id", request);
+	 Date  date1 = ToolUtil.date1("date1", request);
+	 Date  date2 = ToolUtil.date2("date2", request);
      String name = ToolUtil.str("name", request);
 	 String award_level = ToolUtil.str("award_level", request);
 	  String students = ToolUtil.str("students", request);
@@ -190,6 +192,8 @@ public class SubjectCompetitionController extends BaseController{
 	  pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
 	    //data.put("id", id);
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 	    data.put("name", name);
 	    data.put("award_level", award_level);
 	    data.put("students", students);
@@ -203,6 +207,8 @@ public class SubjectCompetitionController extends BaseController{
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
 	//	count.put("id", id);
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("name", name);
 		count.put("award_level", award_level);
 		count.put("students", students);

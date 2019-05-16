@@ -168,7 +168,8 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		Map<String, Object> data = new HashMap<>();
 //		获取请求参数
 		// Long id = ToolUtil.lon("id", request);
-		 Date date = ToolUtil.date2("date", request);
+		Date date1 = ToolUtil.date1("date1", request);
+		Date date2 = ToolUtil.date2("date2", request);
 		String content = ToolUtil.str("content", request);
 	    String units = ToolUtil.str("units", request);
 	    String participants = ToolUtil.str("participants", request);
@@ -182,7 +183,8 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		//用于分页的数据
 	    pages = pageVO.getBeginNum();
 	  //存入data,用于获取表格数据
-	    data.put("date", date);
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 	    data.put("content", content);
 	    data.put("units", units);
 	    data.put("participants", participants);
@@ -195,7 +197,8 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		System.out.println("pages:"+pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-		count.put("date", date);
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("content", content);
 		count.put("units", units);
 		count.put("participants", participants);
