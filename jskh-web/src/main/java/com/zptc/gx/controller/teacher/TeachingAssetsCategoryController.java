@@ -112,6 +112,8 @@ public class TeachingAssetsCategoryController extends BaseController{
 	teachingAssetsCategory.setId(id);
 	teachingAssetsCategory.setCode(code);
 	teachingAssetsCategory.setName(name);
+	teachingAssetsCategory.setModifyTime(new Date());
+	teachingAssetsCategory.setModifyUser(user.getTeaName());
 	 if ((ToolUtil.equalBool(code)&&ToolUtil.equalBool(name)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");

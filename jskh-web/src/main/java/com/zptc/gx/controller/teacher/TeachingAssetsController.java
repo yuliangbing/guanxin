@@ -64,6 +64,7 @@ public class TeachingAssetsController extends BaseController{
 		   teachingAssets.setCateCode(cate_code);
 		   teachingAssets.setName(name);
 		   teachingAssets.setModelNum(model_num);
+		   teachingAssets.setSpecification(specification);
 		   teachingAssets.setSources(sources);
 		   teachingAssets.setTotalAmount(total_amount);
 		   teachingAssets.setCountryCode(country_code);
@@ -77,7 +78,7 @@ public class TeachingAssetsController extends BaseController{
 		   teachingAssets.setSpecialtyName(specialty_name);
 		   teachingAssets.setStatus(1);;
 	   if ((ToolUtil.equalBool(cate_code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(country_code)&&ToolUtil.equalBool(code)
-			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(total_amount)
+			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(specification)&&ToolUtil.equalBool(total_amount)
 			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(training_room)
 			&&ToolUtil.equalBool(status_code)&&ToolUtil.equalBool(remark)
 			&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
@@ -169,6 +170,7 @@ public class TeachingAssetsController extends BaseController{
   teachingAssets.setName(name);
   teachingAssets.setModelNum(model_num);
   teachingAssets.setSources(sources);
+  teachingAssets.setSpecification(specification);
   teachingAssets.setTotalAmount(total_amount);
   teachingAssets.setCountryCode(country_code);
   teachingAssets.setCode(code);
@@ -181,7 +183,7 @@ public class TeachingAssetsController extends BaseController{
 //  判断是否缺少数据
   if ((ToolUtil.equalBool(cate_code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(country_code)&&ToolUtil.equalBool(code)
 			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(total_amount)
-			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(training_room)
+			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(specification)&&ToolUtil.equalBool(training_room)
 			&&ToolUtil.equalBool(status_code)&&ToolUtil.equalBool(remark)
 			&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
 		   jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
