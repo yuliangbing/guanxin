@@ -8,14 +8,11 @@
 		$("#date").val(data.date);
 		$("#name").val(data.name);
 		$("#press").val(data.press);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
-//		$("#create_time").val(data.create_time);
-//		$("#create_user").val(data.create_user);
-//		$("#modify_time").val(data.modify_time);
-//		$("#modify_user").val(data.modify_user);
+		$("#first_author").val(data.firstAuthor);
+		$("#other_authors").val(data.otherAuthors);
+		$("#specialty_id").val(data.specialtyId);
+		specialty_name = data.specialtyName;
 	}
-	
 	
 		//关闭监听
 		function exit(){
@@ -31,45 +28,41 @@
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
 		
-		
-			
-		 	// 提交功能
-		 	form.on('submit(submit)', function(data) { 
-				/*获取$值存入params */
-				var params = {};
-				params.id = $("#id").val();
-				params.name = $("#name").val();
-				params.date = $("#date").val();
-				params.press = $("#press").val();
-				params.first_author = $("#first_author").val();
-				params.other_authors = $("#other_authors").val();
-				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
-				    $.ajax({
-					        type:"POST",
-					       // url:'/organizationMember/updateOrganizationMember',
-							data:$.param(params),
-					        //预期服务器返回数据的类型
-					        dataType:"json", 
-					        success:function(data){
-					        	if(data){
-									console.log($.param(params));
-									if (data.code == 0) {
-										layer.msg("成功");
-										setTimeout(function(){
-												parent.window.location.reload();
-										},500);
-									} else if(data.code != 0) {
-										layer.msg("失败,数据缺少!");
+			 //提交
+			form.on('submit(submit)', function(data) {
+				var date=$("#date").val;
+				var name=$("#name").val;
+				var press=$("#press").val;
+				var first_author=$("#first_author").val;
+				var other_authors=$("#other_authors").val;
+				$.ajax({
+					url:"/TextbookOrMonograph/addTextbookOrMonograph",
+					type:"post",
+					//发送的数据
+					date:JSON.stringify({date:date,name:name,press:press,first_author:first_author,other_authors:other_authors}),
+					//发送请求的数据的格式为JSON字符串
+					contentType:"application/json;charset=UTF-8",
+					dataType:"json",
+					success:function(data){
+						        	if(data){
+										if (data.code == 0) {
+											layer.msg("成功");
+											setTimeout(function(){
+													parent.window.location.reload();
+											},500);
+										} else if(data.code != 0) {
+											layer.msg("失败,可能为数据填写错误或缺少必要数据！");
+										}
 									}
-								}
-							} ,error:function(code1){
-					           alert("发生错误,请联系管理员");
-					        }
-					});
-				  layer.close(index);
+								} ,error:function(code){
+						           layer.alert("发生错误,请联系管理员");
+						}
+					
 				});
-									
-				return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-			});  
+				 layer.close(index);
+			});
+			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+			
+		 
 			
 		});

@@ -18,30 +18,14 @@
 					<div class="layui-col-md12 layui-content-white">
 						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
-							<label class="layui-form-label" >出版时间</label>
-								<div class="layui-inline">
-									<div class="layui-input-inline">
-										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
-									</div>
-								</div>
+							
 								<div class="layui-inline">
 									<label class="layui-form-label" for="code">教材或专著名称</label>
 									<div class="layui-input-inline">
 										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入教材或专著名称" autocomplete="off" class="layui-input">
 									</div>
 								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="code">出版社</label>
-									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入出版社" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" for="name">作者</label>
-									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入姓名" autocomplete="off" class="layui-input">
-									</div>
-								</div>
+		
 							</div>
 							<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
@@ -52,11 +36,11 @@
 					</div>
     <table class="layui-table" id="demo" lay-filter="test"></table>
     </div>
-
+</div>
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">

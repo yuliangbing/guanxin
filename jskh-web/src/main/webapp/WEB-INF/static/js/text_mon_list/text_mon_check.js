@@ -8,12 +8,15 @@
 		$("#name").val(data.name);
 		$("#date").val(data.date);
 		$("#press").val(data.press);
-		$("#first_author").val(data.first_author);
-		$("#other_authors").val(data.other_authors);
+		$("#first_author").val(data.firstAuthor);
+		$("#other_authors").val(data.otherAuthors);
+		$("#specialty_id").val(data.specialtyId);
+		$("#specialty_name").val(data.specialtyName);
 		$("#create_time").val(data.create_time);
 		$("#create_user").val(data.create_user);
 		$("#modify_time").val(data.modify_time);
 		$("#modify_user").val(data.modify_user);
+		specialty_name = data.specialtyName;
 	}
 
 		//关闭监听

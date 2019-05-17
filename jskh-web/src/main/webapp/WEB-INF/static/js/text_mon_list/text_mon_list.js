@@ -21,30 +21,32 @@
 
 
 				/*表格 */
-				layui.use('table', function(){
-				      var table = layui.table;
-				table.render({
+				var tableIns = table.render({
 				    elem: '#demo'
 				    ,height: 312
 				    ,method:'post'
-				   // ,url: '/demo/table/user/' //数据接口
-				    ,data:[{"id":1,"name":'jsdgufay'}]
+				    ,url: '/TextbookOrMonograph/getTextbookOrMonographList' //数据接口
+				   // ,data:[{"id":1,"name":'jsdgufay'}]
 				    ,page: true //开启分页
 				    ,toolbar:"#toolbarDemo"
 				    ,cols: [[ //表头
 				       {type:'checkbox', fixed: 'left'}
 				      ,{field:'id',title:'ID',align:'center'}
-				      ,{field:'date',title:'出版时间',align:'center'}
-				      ,{field:'name', title:'教材或专著名称',align:'center'}
-				      ,{field:'press', title:'出版社',align:'center'}
-				      ,{field:'first_author', title:'第一作者',align:'center'}
-				      ,{field:'other_authors', title:'其他作者情况',align:'center'}
-				      ,{field:'create-user', title:'创建人',align:'center'}
-				      ,{field:'create-time', title:'创建时间',align:'center'}
-				      ,{align:'center',toolbar: '#barDemo',title:'操作',align:'center'}
+				      ,{field:'date',title:'出版时间',align:'center',width:200}
+				      ,{field:'name', title:'教材或专著名称',align:'center',width:200}
+				      ,{field:'press', title:'出版社',align:'center',width:200}
+				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:200}
+				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:200}
+				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:200}
+				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:200}
+				      ,{field:'createUser', title:'创建人',align:'center',width:200}
+				      ,{field:'createTime', title:'创建时间',align:'center',width:200}
+				      ,{field:'modifyUser', title:'修改人',align:'center',width:200}
+				      ,{field:'modifyTime', title:'修改时间',align:'center',width:200}
+				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:270}
 				      ]]
 				  });
-				});
+				
 
 
 
@@ -57,7 +59,8 @@
 			title:'添加窗口',
 			area:['90%','90%'],
 			anim:0,
-			content: "/toPage?page=organization/organization_type_add"
+			shadeClose: false,
+			content: "/toPage?page=text_mon_list/text_mon_add"
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	   
@@ -73,9 +76,9 @@
 			    	layer.open({
 						title:"查看",
 			    		type:2,
-			    		content:'/toPage?page=organization/organization_type_check',
+			    		content:'/toPage?page=text_mon_list/text_mon_check',
 			    		area:['90%','90%'],
-			    		resize:false,
+			    		//resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];
@@ -83,13 +86,13 @@
 							iframe.init(data);
 						} 
 			    	});
-			    }else if(layEvent === 'del'){//删除
+			    }else if(layEvent === 'dels'){//删除
 			    	layer.confirm('真的删除行么', function(index) {
 						/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 						layer.close(index);
 						//向服务端发送删除指令*/		
 						$.ajax({
-							url:'/organizationType/deleteOrganizationType',
+							url:'/TextbookOrMonograph/delTextbookOrMonograph',
 							type:"POST",
 							data:{id:data.id},
 							dataType:"json",
@@ -112,7 +115,7 @@
 			    	layer.open({
 			    		title:"编辑",
 			    		type:2,
-			    		content:['/toPage?page=organization/organization_type_modify'],
+			    		content:['/toPage?page=text_mon_list/text_mon_modify'],
 			    		maxmin:true,
 			    		resize:false,
 			    		area:['90%','90%'],
@@ -161,7 +164,7 @@
 				        	console.log(param);
 				        	//向服务端发送删除指令*/		
 							$.ajax({
-								url:'/organizationType/deleteOrganizationType',
+								url:'/TextbookOrMonograph/delTextbookOrMonograph',
 								type:"POST",
 								data:{id:param},
 								dataType:"json",
