@@ -165,4 +165,53 @@
 			and password = #{password,jdbcType=VARCHAR}
 		</if>
 	</select>
+	 <!-- 查询列表数据 -->
+  <select id="getZptcUserList" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from zptc_user
+    <where>
+    	 <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="teaCode != null and teaCode != ''">
+			and instr(teaCode,#{teaCode,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+    limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+  </select>
+  <!--统计数据条数-->
+  <select id="selectCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			zptc_user
+			    <where>
+    	
+		<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
+			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+		</if>
+		<if test="teaCode != null and teaCode != ''">
+			and instr(teaCode,#{teaCode,jdbcType=VARCHAR})
+		</if>
+		<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+	</where>
+	</select>
+	  <!--根据status修改状态(删除)-->
+<update id="deleteByStauts" parameterType="com.zptc.gx.permission.entity.ZptcUser" >
+	    update zptc_user
+	    <set>
+	    	<if test="status !=null and status !=''">
+				status = #{status,jdbcType=INTEGER}
+			</if>
+	    </set>  
+	    where id = #{id,jdbcType=BIGINT}
+  </update>
 </mapper>

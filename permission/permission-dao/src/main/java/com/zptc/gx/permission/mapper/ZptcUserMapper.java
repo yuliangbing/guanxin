@@ -19,4 +19,10 @@ public interface ZptcUserMapper {
     int updateByPrimaryKey(ZptcUser record);
     
     List<ZptcUser> findByParam(Map<String, Object> par);
+//获取列表数据
+	List<ZptcUser> getZptcUserList(Map<String, Object> data);
+//统计数据条数
+	int selectCounts(Map<String, Object> count);
+//软删除，改变stauts
+	int deleteByStauts(ZptcUser zptcUser);
 }

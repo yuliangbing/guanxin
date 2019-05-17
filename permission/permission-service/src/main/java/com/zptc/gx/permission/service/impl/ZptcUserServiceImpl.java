@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.permission.entity.ZptcUser;
 import com.zptc.gx.permission.mapper.ZptcUserMapper;
@@ -37,5 +38,22 @@ public class ZptcUserServiceImpl implements ZptcUserService {
 	public List<ZptcUser> findByParam(Map<String, Object> par) {
 		// TODO Auto-generated method stub
 		return zptcUserMapper.findByParam(par);
+	}
+	@Override
+	public List<ZptcUser> getZptcUser(Map<String, Object> data) {
+		// TODO Auto-generated method stub
+		return zptcUserMapper.getZptcUserList(data);
+	}
+	@Override
+	public int selectCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return zptcUserMapper.selectCounts(count);
+	}
+//	软删除处理
+	@Override
+	@Transactional//事务回滚
+	public int modifyZptcUserDel(ZptcUser zptcUser) {
+		// TODO Auto-generated method stub
+		return zptcUserMapper.deleteByStauts(zptcUser);
 	}
 }
