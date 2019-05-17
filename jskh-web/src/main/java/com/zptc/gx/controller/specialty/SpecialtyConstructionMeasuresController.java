@@ -46,6 +46,8 @@ public class SpecialtyConstructionMeasuresController extends BaseController {
 		System.out.println("列表信息");
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
+		String date1 = ToolUtil.str("date1", request);
+		String date2 = ToolUtil.str("date2", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -54,11 +56,15 @@ public class SpecialtyConstructionMeasuresController extends BaseController {
 	    pages = pageVO.getBeginNum();
 	    System.out.println("pages:"+pages);
 		//存入data,用于获取表格数据
+	    data.put("date1", date1);
+	    data.put("date2", date2);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;

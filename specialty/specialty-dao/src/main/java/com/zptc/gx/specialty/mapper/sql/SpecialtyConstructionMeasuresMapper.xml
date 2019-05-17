@@ -157,6 +157,9 @@
 	    <include refid="Base_Column_List" />
 	    from specialty_construction_measures
 	    <where>
+	   	 	<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+				and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+			</if>
 	    	<if test="status !=null and status != ''">
 				and status = #{status,jdbcType=INTEGER}
 			</if>
@@ -170,6 +173,9 @@
 		from
 			specialty_construction_measures
 			<where>
+				<if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
 				</if>
