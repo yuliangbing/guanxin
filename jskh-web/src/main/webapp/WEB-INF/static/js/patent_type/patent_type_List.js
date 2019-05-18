@@ -23,21 +23,22 @@
 	/*表格 */
 		var tableIns = table.render({
 	    elem: '#test'
-	    ,height: 312
+	   // ,height: 312
+	    	,defaultToolbar: ['print', 'exports']
 	    ,method:'post'
-	    ,url: 'patent/getPatentList' //数据接口
+	    ,url: '/patentType/getPatentTypeList' //数据接口
 	  //  ,data:[{"id":1,"name":'jsdgufay'}]
 	    ,page: true //开启分页
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'code',title:'类型编号',align:'center'}
-	      ,{field:'name', title:'类型名称',align:'center'}
-	      ,{field:'create_user', title:'创建人',align:'center'}
-	      ,{field:'create_time', title:'创建时间',align:'center'}
-	      ,{field:'modify_user', title:'修改人',align:'center'}
-	      ,{field:'modify_time', title:'修改时间',align:'center'}
+	      ,{field:'id',title:'ID',align:'center',unresize: true}
+	      ,{field:'code',title:'类型编号',align:'center',unresize: true}
+	      ,{field:'name', title:'类型名称',align:'center',unresize: true}
+	      ,{field:'createUser', title:'创建人',align:'center',unresize: true}
+	      ,{field:'createTime', title:'创建时间',align:'center',unresize: true}
+	      ,{field:'modifyUser', title:'修改人',align:'center',unresize: true}
+	      ,{field:'modifyTime', title:'修改时间',align:'center',unresize: true}
 	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
 	      ]]
 	  });
@@ -78,13 +79,13 @@
 							iframe.init(data);
 						} 
 			    	});
-			    }else if(layEvent === 'del'){//删除
+			    }else if(layEvent === 'dels'){//删除
 			    	layer.confirm('真的删除行么', function(index) {
 						/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 						layer.close(index);
 						//向服务端发送删除指令*/		
 						$.ajax({
-							url:'/patent/delPatent',
+							url:'/patentType/delPatentType',
 							type:"POST",
 							data:{id:data.id},
 							dataType:"json",
@@ -156,7 +157,7 @@
 				        	console.log(param);
 				        	//向服务端发送删除指令*/		
 							$.ajax({
-								url:'/patent/delPatent',
+								url:'/patentType/delPatentType',
 								type:"POST",
 								data:{id:param},
 								dataType:"json",

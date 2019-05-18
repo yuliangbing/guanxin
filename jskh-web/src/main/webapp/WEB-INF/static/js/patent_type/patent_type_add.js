@@ -29,7 +29,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					       url:'/patent/addPatent',
+					       url:'/patentType/addPatentType',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

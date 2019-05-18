@@ -7,10 +7,7 @@
 		$("#id").val(data.id);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-//		$("#create_time").val(data.create_time);
-//		$("#create_user").val(data.create_user);
-//		$("#modify_time").val(data.modify_time);
-//		$("#modify_user").val(data.modify_user);
+
 	}
 	
 	
@@ -40,7 +37,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/patent/addPatent',
+					        url:'/patentType/updatePatentType',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

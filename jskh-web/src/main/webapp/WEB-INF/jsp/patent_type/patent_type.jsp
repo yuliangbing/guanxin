@@ -18,18 +18,11 @@
 					<div class="layui-col-md12 layui-content-white">
 						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
-							<div class="layui-inline">
-							<label class="layui-form-label" >类型编号</label>
-								<div class="layui-inline">
-									<div class="layui-input-inline">
-										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								</div>
+						
 								<div class="layui-inline">
 									<label class="layui-form-label" for="code">类型名称</label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入ID" autocomplete="off" class="layui-input">
+										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								
@@ -47,7 +40,7 @@
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">

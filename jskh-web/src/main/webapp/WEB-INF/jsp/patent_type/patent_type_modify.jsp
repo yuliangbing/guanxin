@@ -26,9 +26,7 @@
 			 <div class="layui-inline">
 			    <label class="layui-form-label" style="width:150px;">类型名称</label>
 				<div class="layui-input-inline">
-					<input id="id" type="hidden"/>
 						<input type="text" name="name" id="name" lay-verify="required"  autocomplete="off" class="layui-input">
-					
 				</div>
 			</div>	
 		

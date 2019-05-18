@@ -23,7 +23,8 @@
 	/*表格 */
 		var tableIns = table.render({
 	    elem: '#test'
-	    ,height: 312
+	    	,defaultToolbar: ['print', 'exports']
+	   // ,height: 312
 	    ,method:'post'
 	    ,url: 'patent/getPatentList' //数据接口
 	  //  ,data:[{"id":1,"name":'jsdgufay'}]
@@ -31,20 +32,20 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'date',title:'发表时间',width:100,align:'center'}
-	      ,{field:'code',title:'专利号',width:100,align:'center'}
-	      ,{field:'name', title:'专利名称',width:100,align:'center'}
-	      ,{field:'type',title:'专利类型',width:100,align:'center'}
-	      ,{field:'firstAuthor', title:'第一作者',width:100,align:'center'}
-	      ,{field:'otherAuthors', title:'其他作者情况',width:150,align:'center'}
-	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center'}
-	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center'}
-	      ,{field:'createUser', title:'创建人',width:100,align:'center'}
-	      ,{field:'createTime', title:'创建时间',width:100,align:'center'}
-	      ,{field:'modifyUser', title:'修改人',width:100,align:'center'}
-	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center'}
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
+	      ,{field:'id',title:'ID',align:'center',unresize: true}
+	      ,{field:'date',title:'发表时间',width:100,align:'center',unresize: true}
+	      ,{field:'code',title:'专利号',width:100,align:'center',unresize: true}
+	      ,{field:'name', title:'专利名称',width:100,align:'center',unresize: true}
+	      ,{field:'type',title:'专利类型',width:100,align:'center',unresize: true}
+	      ,{field:'firstAuthor', title:'第一作者',width:100,align:'center',unresize: true}
+	      ,{field:'otherAuthors', title:'其他作者情况',width:150,align:'center',unresize: true}
+	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',unresize: true}
+	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',unresize: true}
+	      ,{field:'createUser', title:'创建人',width:100,align:'center',unresize: true}
+	      ,{field:'createTime', title:'创建时间',width:100,align:'center',unresize: true}
+	      ,{field:'modifyUser', title:'修改人',width:100,align:'center',unresize: true}
+	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center',unresize: true}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
 	      ]]
 	  });
 	
