@@ -22,15 +22,15 @@
 						<form class="layui-form" style="padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
 								<div class="layui-inline">
-									<label class="layui-form-label" for="date">时间</label>
+									<label class="layui-form-label" for="date">年级</label>
 									<div class="layui-input-inline">
-										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
+										<input type="text" id="date" name="date"  placeholder="请选择年级" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label alignment">专业</label>
 									<div class="layui-input-inline">
-										<select name="specialtyId"  id="specialtyId" lay-verify="required" autocomplete="off" class="layui-input" type="text">
+										<select name="specialtyId"  id="specialtyId"  autocomplete="off" class="layui-input" type="text">
 											<option value="">请选择</option>
 										</select>
 									</div>

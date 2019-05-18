@@ -37,7 +37,7 @@ function ajax_h(form)
 				var laydate = layui.laydate;
 				laydate.render({
 					elem: '#date' //指定元素	
-					,range: '~' //或 range: '~' 来自定义分割字符
+					,type: 'year'
 				});
 
 
