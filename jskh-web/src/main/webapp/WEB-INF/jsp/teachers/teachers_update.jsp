@@ -5,10 +5,10 @@
 <%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
-<link rel="stylesheet" href="/static/public/layui/css/layui.css">
-<link rel="stylesheet" href="/static/public/css/xadmin.css">
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${path}/static/js/teachers/teachers_List.js"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
@@ -83,7 +83,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">是否兼职</label>
 					<div class="layui-input-block">
-						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" checked="checked">
+						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" >
 						<input type="radio" name="isPartTime" id="isPartTime1"  value="1" title="否" class="layui-input" >					
 					</div>
 				</div>
@@ -98,8 +98,8 @@
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"  value="1" title="是" lay-filter="TeamMember" class="layui-input" >
-						<input type="radio" name="director" id="director1"  value="2" title="否" lay-filter="TeamMember" class="layui-input" checked="checked">					
+						<input type="radio" name="director" id="director"   value="1" title="是"  class="layui-input" >
+						<input type="radio" name="director" id="director1"  value="2" title="否"  class="layui-input" >					
 					</div>
 				</div>
 			</div>
@@ -110,14 +110,14 @@
 		</form>
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-  		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
-	
+
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
 	function init(data) {
-
+		
 		id = data.id;
 		$("#name").val(data.name);
 		$("#code").val(data.code);
@@ -130,18 +130,30 @@
 		$("#specialtyName").val(data.specialtyId);
 		$("#specialtyName").val(data.specialtyName);
 		$("#researchDirection").val(data.researchDirection);
-		$('input[name="isPartTime"]:checked').val();
-		$('input[name="director"]:checked').val();
-		$("#createTime").val(data.createTime);
-		$("#createUser").val(data.createUser);
-		$("#modifyTime").val(data.modifyTime);
-		$("#modifyUser").val(data.modifyUser);
+		
+		if(data.isPartTime == "1"){//非兼职
+			$("#isPartTime").prop("checked",false);
+			$("#isPartTime1").prop("checked",true);
+			
+		}else{//兼职
+			$("#isPartTime").prop("checked",true);	
+			$("#isPartTime1").prop("checked",false);
+			
+		}
+		if(data.director == "1"){//是团队负责人
+			$("#director").prop("checked",true);
+			$("#director1").prop("checked",false);
+			
+		}else{//不是团队负责人
+			$("#director").prop("checked",false);	
+			$("#director1").prop("checked",true);
+			
+		}
 		$("#specialtyId").val(data.specialtyId);
 		specialty_name = data.specialtyName;
+		
 	}
 	//专业id select
-	/* var id = 0;
-	var specialty_name = ""; */	
 	function ajax_h(form,names,url,object,ids)
 	{
 		$.ajax({
@@ -168,6 +180,7 @@
 						}
 						$("#"+object).append(option);
 						form.render('select');
+						form.render('radio');
 					}
 				 	else if(ids == 'id')
 				 	{
@@ -184,6 +197,7 @@
 						}
 						$("#"+object).append(option);
 						form.render('select');
+						form.render('radio');
 					} 
 					//console.log("option:"+option);
 					
@@ -238,6 +252,7 @@
 	
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
+			
 			var params = {};
 			params.name = $("#name").val();
 			params.code = $("#code").val();

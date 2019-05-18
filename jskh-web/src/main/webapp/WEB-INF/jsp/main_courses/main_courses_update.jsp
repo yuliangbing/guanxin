@@ -6,9 +6,9 @@
 <html>
 <head>
 <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script>
+<script type="text/javascript" src="${path}/static/js/main_courses/main_courses_List.js"></script>
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
@@ -17,42 +17,23 @@
 			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
 				
 				<div class="layui-inline">
-					<label class="layui-form-label">时间</label>
-					<div class="layui-input-inline">
-						<input name="date" id="date" lay-verify="required|date" autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">毕业人数</label>
-					<div class="layui-input-inline">
-						<input name="graduate_num" id="graduate_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">就业人数</label>
-					<div class="layui-input-inline">
-						<input name="employed_num" id="employed_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-			
-				<div class="layui-inline">
-					<label class="layui-form-label">创业人数</label>
-					<div class="layui-input-inline">
-						<input name="entrepreneurs_num" id="entrepreneurs_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">就业对口率</label>
-					<div class="layui-input-inline">
-						<input name="employment_rate" id="employment_rate" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
-				<div class="layui-inline">
 					<label class="layui-form-label">专业</label>
 					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" lay-verify="required" autocomplete="off" class="layui-input" type="text">
+						<select name="specialtyId"  id="specialtyId" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">年级</label>
+					<div class="layui-input-inline">
+						<input name="date" id="date" lay-verify="required" autocomplete="off" class="layui-input" type="text">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">课程</label>
+					<div class="layui-input-inline">
+						<input name="courses" id="courses" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			</div>
@@ -65,21 +46,21 @@
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
+
 	//表格数据传值
 	var id = 0;
 	var specialty_name = "";
 	function init(data) {
-			
+		
 		id = data.id;
+		$("#courses").val(data.courses);
 		$("#date").val((data.date.split(' '))[0]);
-		$("#graduate_num").val(data.graduateNum);
-		$("#employed_num").val(data.employedNum);
-		$("#entrepreneurs_num").val(data.entrepreneursNum);
-		$("#employment_rate").val(data.employmentRate);
-		$("#specialty_id").val(data.specialtyId);
+		$("#specialtyName").val(data.specialtyName);
 		specialty_name = data.specialtyName;
 	}
-	
+	//专业id select
+	var id = 0;
+	var specialty_name = "";	
 	function ajax_h(form,names,url,object,ids)
 	{
 		$.ajax({
@@ -88,8 +69,8 @@
 			dataType:"json",
 			success:function(data){
 				layer.msg("获取成功");
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+				//console.log(names);
 				let option = "";
 				if (data.code == 0) {
 					if(ids == 'code'){
@@ -123,7 +104,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+					//console.log("option:"+option);
 					
 				} else {
 					layer.msg(data.msg);
@@ -137,9 +118,10 @@
 	layui.use(['form', 'table', 'laydate'], function() {
 		var form = layui.form;
 		var laydate = layui.laydate;
-		/*
-		下拉列表数据获取  开始
-	*/
+	
+			/*
+			下拉列表数据获取  开始
+		*/
 	var url ="";
 	var object="";
 	var ids="";
@@ -147,30 +129,26 @@
 	//专业
 	ids = 'id';
 	url = '/specialty/getSpecialtyList';
-	object = 'specialty_id';
+	object = 'specialtyId';
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
-		laydate.render({
-			elem: '#date', //指定元素
-			
-		});
-		
+	laydate.render({
+		elem: '#date' //指定元素	
+		,type: 'year'
+	});
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
-			var params = {};
-			params.date = $("#date").val();
-			params.graduate_num = $("#graduate_num").val();
-			params.employed_num = $("#employed_num").val();
-			params.entrepreneurs_num = $("#entrepreneurs_num").val();
-			params.employment_rate = $("#employment_rate").val();
-			params.specialty_id = $("#specialty_id option:checked").val();
-			params.specialty_name = $("#specialty_id option:checked").text();
+			var date = $("#date").val();
+			var courses = $("#courses").val();
+			var specialtyId = $("#specialtyId option:checked").val();
+			var specialtyName = $("#specialtyId option:checked").text();
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/graduateHistory/updateGraduateHistory?id='+id,
-						data:$.param(params),
+				        url:window.path+'/MainCourses/updateMainCourses',
+						data:JSON.stringify({id:id,date:date,courses:courses,specialtyId:specialtyId,specialtyName:specialtyName}),
+						contentType:"application/json;charset=UTF-8",
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
 				        success:function(data){

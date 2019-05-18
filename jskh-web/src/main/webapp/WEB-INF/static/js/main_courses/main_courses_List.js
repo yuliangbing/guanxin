@@ -1,3 +1,46 @@
+//搜索专业select
+function ajax_h(form)
+			{
+				//获取专业
+				$.ajax({
+					url:'/specialty/getSpecialtyList',
+					type:"POST",
+					dataType:"json",
+					success:function(data){
+						console.log(data);
+						//layer.msg("获取成功");
+						console.log(data.data.length);
+						if (data.code == 0) {
+							
+							let option = "";
+							for (let i=0;i<data.data.length;i++) {
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+							}
+							$("#specialtyId").append(option);
+							form.render('select');
+						} else {
+							layer.msg("网络错误，请检查网络！");
+						}
+						
+					} ,error:function(code){
+			           layer.alert("发生错误,请联系管理员");
+			        }
+				});
+			}
+			layui.use(['form', 'table', 'laydate'], function() {
+				var form = layui.form;
+				var table = layui.table;
+				//获取下拉列表
+				ajax_h(form);
+				
+				/* 实现时间选择 */
+				var laydate = layui.laydate;
+				laydate.render({
+					elem: '#date' //指定元素	
+					,range: '~' //或 range: '~' 来自定义分割字符
+				});
+
+
 layui.use('element', function() {
 				var element = layui.element;
 
@@ -5,7 +48,6 @@ layui.use('element', function() {
 layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
 				/*
 				 实现时间选择
 				 */
@@ -20,30 +62,25 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  var tableIns = table.render({
 		    elem: '#test'
 		    ,defaultToolbar: ['print', 'exports']
-		    ,url:window.path +'/thesisList/getThesisList'
+		    ,url:window.path +'/MainCourses/getMainCoursesList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'date', title:'发表时间', width:130,align:'center'}
-		      ,{field:'published_journal', title:'发表期刊', width:130,align:'center' }
-		      ,{field:'name', title:'论文题目', width:150,align:'center' }
-		      ,{field:'index_level', title:'索引或级别', width:150,align:'center' } 
-		      ,{field:'first_author', title:'第一作者', width:130,align:'center' }
-		      ,{field:'other_authors', title:'其他作者情况', width:130,align:'center' }
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true,align:'center' }
-		      ,{field:'specialty_name', title:'专业名称', width:130,align:'center'}
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true,align:'center'}
-		      ,{field:'awards', title:'获奖情况', width:230,align:'center' }
-		      ,{field:'create_time', title:'创建时间', width:150,align:'center' }
-		      ,{field:'create_user', title:'创建人', width:150,align:'center' }
-		      ,{field:'modify_time', title:'修改时间', width:150,align:'center' }
-		      ,{field:'modify_user', title:'修改人', width:130,align:'center' }
+		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center' }
+		      ,{field:'specialtyId', title:'专业id', width:150,hide:true }
+		      ,{field:'date', title:'年级', width:150,align:'center' }
+		      ,{field:'courses', title:'课程', width:150,align:'center' } 
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:150,hide:true }
+		      ,{field:'createTime', title:'创建时间', width:150,align:'center' }
+		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
+		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
+		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
 		    ]]
-		  });  
+		  });
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
@@ -53,9 +90,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:'/toPage?page=thesis/thesis_check',
-	    		area:['90%','90%'],
+	    		content:['/toPage?page=main_courses/main_courses_check'],
+	    		maxmin:true,
 	    		resize:false,
+	    		area:['90%','90%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -63,22 +101,19 @@ layui.use(['form', 'table', 'laydate'], function() {
 					iframe.init(data);
 				} 
 	    	});
-	    	
 	    }else if(layEvent === 'del'){//删除
 	    	layer.confirm('真的删除行么', function(index) {
-				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+				 //删除对应行（tr）的DOM结构，并更新缓存
 				layer.close(index);
-				//向服务端发送删除指令*/		
+				//向服务端发送删除指令		
 				$.ajax({
-					url:'/thesisList/delThesisList',
+					url:'/MainCourses/delMainCourses',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
 			        	var reloadPage = (nowPage-1) > 0? nowPage:1;
-			        	//console.log((nowPage-1));
-			        	//console.log(reloadPage);
 						layer.msg("删除成功");
 						layer.close(index);
 		    			tableIns.reload({
@@ -93,7 +128,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=thesis/thesis_update'],
+	    		content:['/toPage?page=main_courses/main_courses_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -102,19 +137,20 @@ layui.use(['form', 'table', 'laydate'], function() {
 					var iframe = window['layui-layer-iframe' + index];
 					// 向子页面的全局函数child传参
 					iframe.init(data);
-				}
+				} 
 			});
 			}
 		});
+
 		/* 搜索功能 */
 	  form.on('submit(search)', function(data) {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-//			if(arr.data != "" && arr.date != null){
-//				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-//				arr.date2 = data.field.date.split('~')[1];
-//			}
+			if(arr.data != "" && arr.date != null){
+				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+				arr.date2 = data.field.date.split('~')[1];
+			}
 			tableIns.reload({
 				where:arr,
 				page: {
@@ -128,13 +164,13 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=thesis/thesis_insert'],
+	  		content:['/toPage?page=main_courses/main_courses_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
 	  	});
 	  });
-	  //批量删除
+	//批量删除
 	  table.on('toolbar(test)', function(obj){
 		    var checkStatus = table.checkStatus(obj.config.id);
 //		    alert(JSON.stringify(checkStatus.data.id));
@@ -150,7 +186,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/thesisList/delThesisList',
+						url:'/MainCourses/delMainCourses',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",
@@ -176,3 +212,4 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    
 		  });
 });
+			});
