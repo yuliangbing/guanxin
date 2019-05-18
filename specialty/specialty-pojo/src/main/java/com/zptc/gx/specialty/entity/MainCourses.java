@@ -10,7 +10,7 @@ public class MainCourses {
     private Long specialtyId;
 
     private String specialtyName;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy")
     private Date date;
 
     private String courses;
