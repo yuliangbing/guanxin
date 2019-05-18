@@ -76,6 +76,8 @@ public class TeachingAssetsController extends BaseController{
 		   teachingAssets.setRemark(remark);
 		   teachingAssets.setSpecialtyId(specialty_id);
 		   teachingAssets.setSpecialtyName(specialty_name);
+		   teachingAssets.setCreateTime(new Date());
+		   teachingAssets.setCreateUser(user.getTeaName());
 		   teachingAssets.setStatus(1);;
 	   if ((ToolUtil.equalBool(cate_code)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(country_code)&&ToolUtil.equalBool(code)
 			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(specification)&&ToolUtil.equalBool(total_amount)
