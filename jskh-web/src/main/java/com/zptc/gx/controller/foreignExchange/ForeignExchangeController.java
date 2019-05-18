@@ -80,12 +80,27 @@ public class ForeignExchangeController extends BaseController {
 	 */
 	@RequestMapping("/addForeignExchange")
 	@ResponseBody
-	public JsonResult addForeignExchange(@RequestBody ForeignExchange fExchange,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult addForeignExchange(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用addForeignExchange方法");
-	    
+	   
+		Date date = ToolUtil.date2("date", request);
+		String content = ToolUtil.str("content", request);
+		String units = ToolUtil.str("units", request);
+		String participants = ToolUtil.str("participants", request);
+		String achievements = ToolUtil.str("achievements", request);
+		Long specialtyId = ToolUtil.lon("specialty_id", request);
+		String specialtyName = ToolUtil.str("specialty_name", request);
+		
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-	    
+	    ForeignExchange fExchange = new ForeignExchange();
+	    fExchange.setDate(date);
+	    fExchange.setContent(content);
+	    fExchange.setUnits(units);
+	    fExchange.setParticipants(participants);
+	    fExchange.setAchievements(achievements);
+	    fExchange.setSpecialtyId(specialtyId);
+	    fExchange.setSpecialtyName(specialtyName);
 	    fExchange.setStatus(1);
 	    fExchange.setCreateTime(new Date());
 	    fExchange.setCreateUser(user.getTeaName());
@@ -121,45 +136,52 @@ public class ForeignExchangeController extends BaseController {
 	 */
 	@RequestMapping("/updateForeignExchange")
 	@ResponseBody
-	public JsonResult updateForeignExchange(@RequestBody ForeignExchange fExchange,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult updateForeignExchange(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用updateForeignExchange方法");
 	    
-	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-	    
-	    fExchange.setStatus(1);
-	    fExchange.setModifyTime(new Date());
-	    fExchange.setModifyUser(user.getTeaName());
-	    System.out.println("获取到的数据="+fExchange.toString());
-	    ForeignExchange foreignExchange = fService.findForeignExchangeById(fExchange.getId());
-	    if (foreignExchange == null) {
+		Long id = ToolUtil.lon("id", request);
+		Date date = ToolUtil.date2("date", request);
+		String content = ToolUtil.str("content", request);
+		String units = ToolUtil.str("units", request);
+		String participants = ToolUtil.str("participants", request);
+		String achievements = ToolUtil.str("achievements", request);
+		Long specialtyId = ToolUtil.lon("specialty_id", request);
+		String specialtyName = ToolUtil.str("specialty_name", request);
+		
+	    ForeignExchange fExchange = fService.findForeignExchangeById(id);//查询该id的数据
+	    if (fExchange == null) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该 对外学习交流信息！");
 			return jsonResult;
 		}
+	    
+	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+	    //将传入的数据注入将要修改的数据中
+	    fExchange.setDate(fExchange.getDate());
+	    fExchange.setContent(fExchange.getContent());
+	    fExchange.setUnits(fExchange.getUnits());
+	    fExchange.setParticipants(fExchange .getParticipants());
+	    fExchange.setAchievements(fExchange.getAchievements());
+	    fExchange.setSpecialtyId(fExchange.getSpecialtyId());
+	    fExchange.setSpecialtyName(fExchange.getSpecialtyName());
+	    fExchange.setModifyTime(new Date());
+	    fExchange.setModifyUser(user.getTeaName());
+	    
 	    /*判断传入的值是否为空或""*/
-	    if ((ToolUtil.equalBool(fExchange.getDate())&&ToolUtil.equalBool(fExchange.getContent())&&ToolUtil.equalBool(fExchange.getUnits())&&ToolUtil.equalBool(fExchange.getParticipants())&&ToolUtil.equalBool(fExchange.getAchievements())
-	    		&&ToolUtil.equalBool(fExchange.getSpecialtyId())&&ToolUtil.equalBool(fExchange.getSpecialtyName())) == false) {
+	    if ((ToolUtil.equalBool(date)&&ToolUtil.equalBool(content)&&ToolUtil.equalBool(units)&&ToolUtil.equalBool(participants)&&ToolUtil.equalBool(achievements)
+	    		&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
-	    	 //接口拿到的数据
+	    	//接口拿到的数据
 		    System.out.println("方法拿到的数据："+fExchange.toString());
 	    	return jsonResult;
 		}
 	    System.out.println("传入数据成功");
 	    System.out.println("方法拿到的数据："+fExchange.toString());
-	    //将传入的数据注入将要修改的数据中
-	    foreignExchange.setDate(fExchange.getDate());
-	    foreignExchange.setContent(fExchange.getContent());
-	    foreignExchange.setUnits(fExchange.getUnits());
-	    foreignExchange.setParticipants(fExchange .getParticipants());
-	    foreignExchange.setAchievements(fExchange.getAchievements());
-		foreignExchange.setSpecialtyId(fExchange.getSpecialtyId());
-		foreignExchange.setSpecialtyName(fExchange.getSpecialtyName());
-		foreignExchange.setModifyTime(new Date());
-		foreignExchange.setModifyUser(user.getTeaName());
+	    
 	    try {
 			
-			int result = fService.modifyForeignExchange(foreignExchange);
+			int result = fService.modifyForeignExchange(fExchange);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS,"修改成功");
 			} else {

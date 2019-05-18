@@ -84,18 +84,33 @@ public class TextbookOrMonographController extends BaseController {
 	 */
 	@RequestMapping("/addTextbookOrMonograph")
 	@ResponseBody
-	public JsonResult addTextbookOrMonograph(@RequestBody TextbookOrMonograph tOrMonograph,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult addTextbookOrMonograph(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用addForeignExchange方法");
-	    
+		
+		String name = ToolUtil.str("name", request);
+		Date date = ToolUtil.date2("date", request);
+		String press = ToolUtil.str("press", request);
+		String firstAuthor = ToolUtil.str("first_author", request);
+		String otherAuthors = ToolUtil.str("other_authors", request);
+		Long specialtyId = ToolUtil.lon("specialty_id", request);
+		String specialtyName = ToolUtil.str("specialty_name", request);
+		
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
-	    
+	    TextbookOrMonograph tOrMonograph = new TextbookOrMonograph();
+	    tOrMonograph.setName(name);
+	    tOrMonograph.setDate(date);
+	    tOrMonograph.setPress(press);
+	    tOrMonograph.setFirstAuthor(firstAuthor);
+	    tOrMonograph.setOtherAuthors(otherAuthors);
+	    tOrMonograph.setSpecialtyId(specialtyId);
+	    tOrMonograph.setSpecialtyName(specialtyName);
 	    tOrMonograph.setStatus(1);
 	    tOrMonograph.setCreateTime(new Date());
 	    tOrMonograph.setCreateUser(user.getTeaName());
 	   System.out.println("获取到的数据="+tOrMonograph.toString());
 	    /*判断传入的值是否为空或""*/
-	    if ((ToolUtil.equalBool(tOrMonograph.getDate())&&ToolUtil.equalBool(tOrMonograph.getName())&&ToolUtil.equalBool(tOrMonograph.getPress())&&ToolUtil.equalBool(tOrMonograph.getFirstAuthor())&&ToolUtil.equalBool(tOrMonograph.getOtherAuthors())
+	   if ((ToolUtil.equalBool(tOrMonograph.getDate())&&ToolUtil.equalBool(tOrMonograph.getName())&&ToolUtil.equalBool(tOrMonograph.getPress())&&ToolUtil.equalBool(tOrMonograph.getFirstAuthor())&&ToolUtil.equalBool(tOrMonograph.getOtherAuthors())
 	    		&&ToolUtil.equalBool(tOrMonograph.getSpecialtyId())&&ToolUtil.equalBool(tOrMonograph.getSpecialtyName())) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
@@ -125,34 +140,50 @@ public class TextbookOrMonographController extends BaseController {
 	 */
 	@RequestMapping("/updateTextbookOrMonograph")
 	@ResponseBody
-	public JsonResult updateTextbookOrMonograph(@RequestBody TextbookOrMonograph tOrMonograph,HttpServletRequest request, HttpServletResponse response) {
+	public JsonResult updateTextbookOrMonograph(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("启用updateTextbookOrMonograph方法");
 	    
+		Long id = ToolUtil.lon("id", request);
+		String name = ToolUtil.str("name", request);
+		Date date = ToolUtil.date2("date", request);
+		String press = ToolUtil.str("press", request);
+		String firstAuthor = ToolUtil.str("first_author", request);
+		String otherAuthors = ToolUtil.str("other_authors", request);
+		Long specialtyId = ToolUtil.lon("specialty_id", request);
+		String specialtyName = ToolUtil.str("specialty_name", request);
+		
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 	    
-	    TextbookOrMonograph textbookOrMonograph = tService.findTextbookOrMonographById(tOrMonograph.getId());
+	    TextbookOrMonograph textbookOrMonograph = tService.findTextbookOrMonographById(id);
 	    if (textbookOrMonograph == null) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该教材或专著信息！");
 			return jsonResult;
 		}
-	    tOrMonograph.setModifyTime(new Date());
-	    tOrMonograph.setModifyUser(user.getTeaName());
-	   System.out.println("获取到的数据="+tOrMonograph.toString());
+	    textbookOrMonograph.setName(name);
+	    textbookOrMonograph.setDate(date);
+	    textbookOrMonograph.setPress(press);
+	    textbookOrMonograph.setFirstAuthor(firstAuthor);
+	    textbookOrMonograph.setOtherAuthors(otherAuthors);
+	    textbookOrMonograph.setSpecialtyId(specialtyId);
+	    textbookOrMonograph.setSpecialtyName(specialtyName);
+	    textbookOrMonograph.setModifyTime(new Date());
+	    textbookOrMonograph.setModifyUser(user.getTeaName());
+	   System.out.println("获取到的数据="+textbookOrMonograph.toString());
 	    /*判断传入的值是否为空或""*/
-	    if ((ToolUtil.equalBool(tOrMonograph.getDate())&&ToolUtil.equalBool(tOrMonograph.getName())&&ToolUtil.equalBool(tOrMonograph.getPress())&&ToolUtil.equalBool(tOrMonograph.getFirstAuthor())&&ToolUtil.equalBool(tOrMonograph.getOtherAuthors())
-	    		&&ToolUtil.equalBool(tOrMonograph.getSpecialtyId())&&ToolUtil.equalBool(tOrMonograph.getSpecialtyName())) == false) {
+	    if ((ToolUtil.equalBool(date)&&ToolUtil.equalBool(name)&&ToolUtil.equalBool(press)&&ToolUtil.equalBool(firstAuthor)&&ToolUtil.equalBool(otherAuthors)
+	    		&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据
-		    System.out.println("方法拿到的数据："+tOrMonograph.toString());
+		    System.out.println("方法拿到的数据："+textbookOrMonograph.toString());
 	    	return jsonResult;
 		}
 	    System.out.println("传入数据成功");
-	    System.out.println("方法拿到的数据："+tOrMonograph.toString());
+	    System.out.println("方法拿到的数据："+textbookOrMonograph.toString());
 		try {
 			
-			int result = tService.modifyTextbookOrMonograph(tOrMonograph);
+			int result = tService.modifyTextbookOrMonograph(textbookOrMonograph);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS,"修改成功");
 			} else {

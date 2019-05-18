@@ -585,53 +585,39 @@ public class ToolUtil {
 	//判断是否存在
 	public static boolean equalBool(String str) {
 		Boolean flag = false;
-		if(!str.equals("") &&str != null) {
+		if(str != null&&!str.equals("")) {
 			flag = true;
-		}
-		else {
-			flag = flag;
 		}
 		return flag;
 	}
 	
 	public static boolean equalBool(Date date) {
 		Boolean flag = false;
-		if(!"".equals(date) && date != null) {
+		if(date != null) {
 			flag = true;
-		}
-		else {
-			flag = flag;
 		}
 		return flag;
 	}
 	
 	public static boolean equalBool(Integer integer) {
 		Boolean flag = false;
-		if(!integer.equals("") && integer != null) {
+		if(integer != null) {
 			flag = true;
-		}
-		else {
-			flag = flag;
 		}
 		return flag;
 	}
 	
 	public static boolean equalBool(Long long1) {
 		Boolean flag = false;
-		if(!long1.equals("") &&long1 != null) {
+		if(long1 != null) {
 			flag = true;
-		}
-		else {
-			flag = flag;
 		}
 		return flag;
 	}
 	public static boolean equalBool(BigDecimal bigDecimal) {
 		Boolean flag = false;
-		if (!"".equals(bigDecimal) && bigDecimal != null) {
+		if (bigDecimal != null) {
 			flag = true;
-		}else {
-			flag = flag;
 		}
 		return flag;
 	}

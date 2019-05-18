@@ -22,8 +22,8 @@
 				dataType:"json",
 				success:function(data){
 					//layer.msg("获取成功");
-					console.log("长度"+data.data.length);
-					console.log(names);
+					/*console.log("长度"+data.data.length);
+					console.log(names);*/
 					let option = "";
 					if (data.code == 0) {
 						if(ids == 'code'){
@@ -57,7 +57,7 @@
 							$("#"+object).append(option);
 							form.render('select');
 						} 
-						console.log("option:"+option);
+						//console.log("option:"+option);
 						
 					} else {
 						layer.msg(data.msg);
@@ -102,21 +102,28 @@
 			
 		    //提交
 		form.on('submit(submit)', function(data) {
-				var date=$("#date").val;
-				var name=$("#name").val;
-				var press=$("#press").val;
-				var specialtyId = $("#specialty_id option:checked").val();
-				var specialtyName = $("#specialty_id option:checked").text();
-				var firstAuthor=$("#first_author").val;
-				var otherAuthors=$("#other_authors").val;
-				console.log(specialtyId);
-				$.ajax({
+//				var date= data.field.date;
+//				var name= data.field.name;
+//				var press= data.field.press;
+//				var specialtyId = $("#specialty_id option:checked").val();
+//				var specialtyName = $("#specialty_id option:checked").text();
+//				var firstAuthor=$("#first_author").val;
+//				var otherAuthors=$("#other_authors").val;
+				var params = {};
+				params.date = $("#date").val();
+				params.press = $("#press").val();
+				params.name = $("#name").val();
+				params.first_author = $("#first_author").val();
+				params.other_authors = $("#other_authors").val();
+				params.specialty_id = $("#specialty_id option:checked").val();
+				params.specialty_name = $("#specialty_id option:checked").text();
+				/*$.ajax({
 					url:"/TextbookOrMonograph/addTextbookOrMonograph",
 					type:"post",
 					//发送的数据
-					date:JSON.stringify({date:date,name:name,press:press,firstAuthor:firstAuthor,otherAuthors:otherAuthors,specialtyId:specialtyId,specialtyName:specialtyName}),
-					//发送请求的数据的格式为JSON字符串
 					contentType:"application/json;charset=UTF-8",
+					date:JSON.stringify({name:name,press:press}),
+					//发送请求的数据的格式为JSON字符串
 					dataType:"json",
 					success:function(data){
 						        	if(data){
@@ -135,7 +142,30 @@
 					
 				});
 				 layer.close(index);
-			});
+			});*/
+				$.ajax({
+				            type:"post",
+				            url:'/TextbookOrMonograph/addTextbookOrMonograph',
+				    		data: $.param(params),
+			    			//contentType:"application/json;charset=UTF-8",
+				            //预期服务器返回数据的类型
+				            dataType:"json", 
+				            success:function(data){
+				            if(data){
+						       if (data.code == 0) {
+						    	   layer.msg("成功");
+						    	   setTimeout(function(){
+						           parent.window.location.reload();
+					    	   		},500);
+						        } else if(data.code != 0) {
+						         layer.msg(data.msg);
+						        }
+				       		}
+				      } ,error:function(code){
+				               layer.alert("发生错误,请联系管理员");
+				            }
+				    });
+				//layer.close(index);
 			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-			
+		});
 		});
