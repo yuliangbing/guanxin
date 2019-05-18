@@ -94,7 +94,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=teachers/teachers_update','no'],
+	    		content:['/toPage?page=teachers/teachers_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
