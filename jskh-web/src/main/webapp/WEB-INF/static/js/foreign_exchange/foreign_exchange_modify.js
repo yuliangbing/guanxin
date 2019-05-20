@@ -7,7 +7,7 @@
 	var specialty_name = "";
 	function init(data) {
 		//$("#status").val(data.status);
-		id = data.id;
+		$("#id").val(data.id);
 		$("#date").val(data.date);
 		$("#content").val(data.content);
 		$("#units").val(data.units);
@@ -33,7 +33,7 @@
 				type:"POST",
 				dataType:"json",
 				success:function(data){
-					layer.msg("获取成功");
+					//layer.msg("获取成功");
 					console.log("长度"+data.data.length);
 					console.log(names);
 					let option = "";
@@ -132,7 +132,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/patent/updatePatent?id='+id,
+					        url:'/EnrollmentHistory/updateEnrollmentHistory?id='+id,
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

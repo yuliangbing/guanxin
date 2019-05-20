@@ -20,19 +20,20 @@ layui.use('element', function() {
 		    ,url:'/teachingAssetsCategory/getTeachingAssetsCategoryList'
 		    //,data:[{"id":1,"content":'jsdgufay'}]
 		    ,method:'post'
-		    ,height: 312
+		   // ,height: 312
+		    	,defaultToolbar: ['print', 'exports']
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'id', width:100,sort: true,align:'center'}
-		      ,{field:'code', title:'分类号', width:130,align:'center'}
-		      ,{field:'name', title:'分类名称', width:130,align:'center' }
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center' }
-		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
-		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
-		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
+		      ,{field:'id', title:'id', width:100,sort: true,align:'center',unresize: true}
+		      ,{field:'code', title:'分类号', width:130,align:'center',unresize: true}
+		      ,{field:'name', title:'分类名称', width:130,align:'center' ,unresize: true}
+		      ,{field:'createTime', title:'创建时间', width:150,align:'center',unresize: true }
+		      ,{field:'createUser', title:'创建人', width:150,align:'center',unresize: true }
+		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' ,unresize: true}
+		      ,{field:'modifyUser', title:'修改人', width:130,align:'center',unresize: true }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center',unresize: true}
 		    ]]
 		  });  
 	  
@@ -169,6 +170,6 @@ layui.use('element', function() {
 					      break;
 					    };
 					    
-					  });  
+					  });
 				  
 	});

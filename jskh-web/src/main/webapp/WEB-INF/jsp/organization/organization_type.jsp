@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8">
 <title>组织机构</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css" >
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/organization/organization_type_List.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -32,13 +32,14 @@
 						    </a>
 						</form>
 					</div>
+					 </div>
     <table class="layui-hide" id=test lay-filter="test"></table>
-    </div>
-
+   
+</div>
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">

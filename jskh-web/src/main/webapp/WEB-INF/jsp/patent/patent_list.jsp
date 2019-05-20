@@ -18,12 +18,6 @@
 					<div class="layui-col-md12 layui-content-white">
 						<form class="layui-form" style="background-color: #f2f2f2;padding: 9px;" onsubmit="return false;">
 							<div class="layui-form-item">
-							<label class="layui-form-label" >发表时间</label>
-								<div class="layui-inline">
-									<div class="layui-input-inline">
-										<input type="text" id="date" name="date" lay-verify="" placeholder="请选择时间" autocomplete="off" class="layui-input">
-									</div>
-								</div>
 								<div class="layui-inline">
 									<label class="layui-form-label" for="name">第一作者</label>
 									<div class="layui-input-inline">

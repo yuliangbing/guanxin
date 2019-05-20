@@ -22,7 +22,8 @@
 	/*表格 */
 	      var tableIns = table.render({
 	    elem: '#test'
-	    ,height: 312
+	    ,defaultToolbar: ['print', 'exports']
+	    //,height: 312
 	    ,method:'post'
 	    ,url: '/organizationMember/getOrganizationMemberList' //数据接口
 	   // ,data:[{"id":1,"name":'jsdgufay'}]
@@ -30,14 +31,14 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'position',title:'职务',align:'center'}
-	      ,{field:'name', title:'成员姓名',align:'center'}
-	      ,{field:'create_user', title:'创建人',align:'center'}
-	      ,{field:'create_time', title:'创建时间',align:'center'}
-	      ,{field:'modify_user', title:'修改人',align:'center'}
-	      ,{field:'modify_time', title:'修改时间',align:'center'}
-	      ,{align:'center', toolbar: '#barDemo',title:'操作',width:237,align:'center'}
+	      ,{field:'id',title:'ID',align:'center',unresize: true}
+	      ,{field:'position',title:'职务',align:'center',unresize: true}
+	      ,{field:'name', title:'成员姓名',align:'center',unresize: true}
+	      ,{field:'create_user', title:'创建人',align:'center',unresize: true}
+	      ,{field:'create_time', title:'创建时间',align:'center',unresize: true}
+	      ,{field:'modify_user', title:'修改人',align:'center',unresize: true}
+	      ,{field:'modify_time', title:'修改时间',align:'center',unresize: true}
+	      ,{align:'center', toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
 	      ]]
 	  });
 	

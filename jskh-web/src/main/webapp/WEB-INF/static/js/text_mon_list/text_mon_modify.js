@@ -36,7 +36,7 @@
 				var first_author=$("#first_author").val;
 				var other_authors=$("#other_authors").val;
 				$.ajax({
-					url:"/TextbookOrMonograph/addTextbookOrMonograph",
+					url:"/TextbookOrMonograph/updateTextbookOrMonograph",
 					type:"post",
 					//发送的数据
 					date:JSON.stringify({date:date,name:name,press:press,first_author:first_author,other_authors:other_authors}),
