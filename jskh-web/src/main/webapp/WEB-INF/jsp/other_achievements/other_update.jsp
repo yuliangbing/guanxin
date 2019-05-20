@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 
-<title>浙江邮电职业技术学院管理系统</title>
+<title></title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
@@ -97,7 +97,7 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
+				
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";
