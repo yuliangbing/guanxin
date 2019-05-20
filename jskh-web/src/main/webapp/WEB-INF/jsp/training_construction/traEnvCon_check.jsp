@@ -7,7 +7,7 @@
 <head>
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/school_enterprise_cooperation/schEntCoo_List.js"></script>
+		<script type="text/javascript" src="${path}/static/js/training_construction/traEnvCon_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
@@ -29,30 +29,20 @@
 				</div>
 				
 				<div class="layui-inline">
-					<label class="layui-form-label">合作内容</label>
+					<label class="layui-form-label">建设内容</label>
 					<div class="layui-input-inline">
 						<input name="content" id="content" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 			
+				
 				<div class="layui-inline">
-					<label class="layui-form-label">合作单位</label>
-					<div class="layui-input-inline">
-						<input name="units" id="units" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">参与单位</label>
+					<label class="layui-form-label">参与人员</label>
 					<div class="layui-input-inline">
 						<input name="participants" id="participants" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">取得成果</label>
-					<div class="layui-input-inline"  >
-						<input name="achievements" id="achievements" disabled autocomplete="off" class="layui-input">
-					</div>
-				</div>
+				
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
@@ -71,9 +61,7 @@
    		$("#id").val(data.id);
 		$("#date").val((data.date.split(' '))[0]);
 		$("#content").val(data.content);
-		$("#units").val(data.units);
 		$("#participants").val(data.participants);
-		$("#achievements").val(data.achievements);
 		$("#specialtyName").val(data.specialtyName);
 	}
    	</script>

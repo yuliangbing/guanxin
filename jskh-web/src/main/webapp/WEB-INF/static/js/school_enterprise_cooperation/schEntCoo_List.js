@@ -50,6 +50,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
+		    ,method:'post'
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
@@ -143,7 +144,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date2 = data.field.date.split('~')[1];
 			}
 			tableIns.reload({
-				where:arr,
+				where:{"units":"案"},
 				page: {
 					curr: 1
 				}

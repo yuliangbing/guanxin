@@ -22,30 +22,20 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">合作内容</label>
+					<label class="layui-form-label">建设内容</label>
 					<div class="layui-input-inline">
 						<input name="content" id="content"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
-				<div class="layui-inline">
-					<label class="layui-form-label">合作单位</label>
-					<div class="layui-input-inline">
-						<input name="units" id="units"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
+				
 				<div class="layui-inline">
 					<label class="layui-form-label">参与人员</label>
 					<div class="layui-input-inline">
 						<input name="participants" id="participants"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">主持人</label>
-					<div class="layui-input-inline">
-						<input name="achievements" id="achievements"  autocomplete="off" class="layui-input" type="text">
-					</div>
-				</div>
+				
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
@@ -63,7 +53,7 @@
 	</body>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript" src="${path}/static/js/school_enterprise_cooperation/schEntCoo_List.js"></script>
+		<script type="text/javascript" src="${path}/static/js/training_construction/traEnvCon_List.js"></script>
 		<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
 	function ajax_h(form,url,object,ids){
@@ -120,17 +110,15 @@
 			var params = {};
 			params.date = $("#date").val();
 			params.content = $("#content").val();
-			params.units = $("#units").val();
 		/* 	params.cate_name = $("#cate_name").val(); */
 			params.participants = $("#participants").val();
-			params.achievements = $("#achievements").val();
 			params.specialty_name = $("#specialtyName option:checked").text();
 			params.specialty_id = $("#specialtyName option:checked").val();
 		console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
-				        url:window.path+'/SchoolEnterpriseCooperation/addSchoolEnterpriseCooperation',
+				        url:window.path+'/TrainingEnvironmentConstruction/addTrainingEnvironmentConstruction',
 						data:$.param(params),
 				        //预期服务器返回数据的类型
 				        dataType:"json", 
