@@ -9,7 +9,6 @@
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
-<title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
@@ -99,7 +98,6 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

@@ -9,7 +9,6 @@
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${path}/static/js/outstanding_graduate_history/outstanding_graduate_history_List.js"></script>
-<title>浙江邮电职业技术学院管理系统</title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
@@ -66,7 +65,7 @@
 				</div>
 				<label class="layui-form-label">照片 </label>
 				<div class="layui-upload" style="margin-left: 10.5%;">
-  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 32%;top: 70%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
+  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 32%;top: 45%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
   					<div class="layui-upload-list">
     					<img class="layui-upload-img"  style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="image">
   					</div>

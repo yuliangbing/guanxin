@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/subject_competition/competition_List.js"></script>
-<title>浙江邮电职业技术学院管理系统</title>
+<title></title>
 </head>
 <body class="layui-layout-body">
 
@@ -19,8 +19,8 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
     <div class="layui-col-md12 layui-content-white">
-      <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
+      <div class="layui-row" >
+        <form class="layui-form-item layui-col-md12 x-so" onsubmit="return false;">
           <input class="layui-input" placeholder="时间" name="date" id="date" style="width:200px;">
           <input type="text" name="award_level" id="award_level" placeholder="请输入获奖级别" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->

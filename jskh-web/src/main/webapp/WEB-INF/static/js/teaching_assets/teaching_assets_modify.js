@@ -7,27 +7,24 @@
 	// 初始化赋值
 	function init(data) {
 		id = data.id;
-		$("#cate_code").val(data.cate_code);
+		$("#cate_code").val(data.cateCode);
 		$("#name").val(data.name);
-		$("#model_num").val(data.model_num);
+		$("#model_num").val(data.modelNum);
 		$("#specification").val(data.specification);
 		$("#sources").val(data.sources);
 		$("#date").val(data.date);
-		$("#total_amount").val(data.total_amount);
-		$("#country_code").val(data.country_code);
+		$("#total_amount").val(data.totalAmount);
+		$("#country_code").val(data.countryCode);
 		$("#code").val(data.code);
 		$("#manufacturer").val(data.manufacturer);
-		$("#use_person").val(data.use_person);
-		$("#status_code").val(data.status_code);
-		$("#training_room").val(data.training_room);
+		$("#use_person").val(data.usePerson);
+		$("#status_code").val(data.statusCode);
+		$("#training_room").val(data.trainingRoom);
 		$("#remark").val(data.remark);
 		$("#specialty_id").val(data.specialtyId);
 		$("#specialty_name").val(data.specialtyName);
-		$("#create_time").val(data.createTime);
-		$("#create_user").val(data.createUser);
-		$("#modify_time").val(data.modifyTime);
-		$("#modify_user").val(data.modifyUser);
-		specialty_name = data.specialty_name;
+		
+		specialty_name = data.specialtyName;
 	}
 	//获取下拉列表(公共方法)
 	function ajax_h(form,names,url,object,ids)
@@ -153,7 +150,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/TeachingAssets/updateTeachingAssets',
+					        url:'/TeachingAssets/updateTeachingAssets?id='+id,
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

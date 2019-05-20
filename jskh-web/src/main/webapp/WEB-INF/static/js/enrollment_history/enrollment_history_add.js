@@ -21,7 +21,7 @@
 				type:"POST",
 				dataType:"json",
 				success:function(data){
-					layer.msg("获取成功");
+					//layer.msg("");
 					console.log("长度"+data.data.length);
 					console.log(names);
 					let option = "";
@@ -84,9 +84,7 @@
 		object = 'specialty_id';
 		names= specialty_name;
 		ajax_h(form,names,url,object,ids);
-			laydate.render({
-				elem: '#date' //指定元素	
-			});
+			
 			
 		
 		layui.use('element', function() {
@@ -119,7 +117,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					       url:'/patent/addPatent',
+					       url:'/EnrollmentHistory/addEnrollmentHistory',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

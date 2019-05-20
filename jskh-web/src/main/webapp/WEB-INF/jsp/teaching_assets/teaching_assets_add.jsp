@@ -5,8 +5,8 @@
 <head>
 <meta charset="utf-8">
 <title>添加页面</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assets_add.js"></script>

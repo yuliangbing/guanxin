@@ -8,11 +8,13 @@
 	function init(data) {
 		//$("#status").val(data.status);
 		id = data.id;
+		
 		$("#date").val(data.date);
-		$("#plan_num").val(data.plan_num);
-		$("#actual_num").val(data.actual_num);
+		$("#plan_num").val(data.planNum);
+		$("#actual_num").val(data.actualNum);
 		$("#rate").val(data.rate);
 		$("#specialty_id").val(data.specialtyId);
+		$("#specialty_name").val(data.specialtyName);
 		specialty_name = data.specialtyName;
     	
 	}
@@ -32,7 +34,7 @@
 				type:"POST",
 				dataType:"json",
 				success:function(data){
-					layer.msg("获取成功");
+					//layer.msg("获取成功");
 					console.log("长度"+data.data.length);
 					console.log(names);
 					let option = "";
@@ -95,9 +97,6 @@
 		object = 'specialty_id';
 		names= specialty_name;
 		ajax_h(form,names,url,object,ids);
-			laydate.render({
-				elem: '#date' //指定元素	
-			});
 			
 		
 		layui.use('element', function() {
@@ -119,18 +118,18 @@
 		 	form.on('submit(submit)', function(data) { 
 				/*获取$值存入params */
 				var params = {};
-				//params.id = $("#id").val();
+				params.id = $("#id").val();
 				params.date = $("#date").val();
 				params.plan_num = $("#plan_num").val();
 				params.actual_num = $("#actual_num").val();
 				params.rate = $("#rate").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
-				console.log(params);
+				//console.log(params);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/patent/updatePatent?id='+id,
+					        url:'/EnrollmentHistory/updateEnrollmentHistory?id='+id,
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

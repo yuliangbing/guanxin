@@ -33,21 +33,21 @@
 	<div>
 		<div class="layui-form-item">
 			<label class="layui-form-label my-label">专业设立情况</label>
-			<div class="layui-input-block my-input-block situation"></div>
+			<div class="layui-input-block my-input-block situation" id="specialtyInfo"></div>
 		</div>
 	</div>
 
 	<div>
 		<div class="layui-form-item">
 			<label class="layui-form-label my-label">分院特色</label>
-			<div class="layui-input-block characteristic my-input-block"></div>
+			<div class="layui-input-block characteristic my-input-block" id="branchCharacteristic"></div>
 		</div>
 	</div>
 
 	<div style="margin-left: -5%;">
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit="" lay-filter="demo1" onclick="save()">保存</button>
+				<button class="layui-btn" lay-submit="" lay-filter="submit" onclick="save()">保存</button>
 				<button type="cancel" class="layui-btn layui-btn-primary">取消</button>
 			</div>
 		</div>

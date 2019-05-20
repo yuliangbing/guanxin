@@ -23,27 +23,28 @@
 	/*表格 */
 		var tableIns = table.render({
 	    elem: '#test'
-	    ,height: 312
+	   // ,height: 312
+	    ,defaultToolbar: ['print', 'exports']
 	    ,method:'post'
-	    ,url: 'patent/getPatentList' //数据接口
+	    ,url: window.path +'/foreignExchange/getForeignExchangeList' //数据接口
 	  //  ,data:[{"id":1,"name":'jsdgufay'}]
 	    ,page: true //开启分页
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'date',title:'发表时间',width:100,align:'center'}
-	      ,{field:'content',title:'交流学习内容',width:100,align:'center'}
-	      ,{field:'units', title:'单位',width:100,align:'center'}
-	      ,{field:'participants',title:'参与人员',width:100,align:'center'}
-	      ,{field:'achievements', title:'成果',width:100,align:'center'}
-	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center'}
-	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center'}
-	      ,{field:'createUser', title:'创建人',width:100,align:'center'}
-	      ,{field:'createTime', title:'创建时间',width:100,align:'center'}
-	      ,{field:'modifyUser', title:'修改人',width:100,align:'center'}
-	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center'}
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
+	      ,{field:'id',title:'ID',align:'center',unresize: true}
+	      ,{field:'date',title:'发表时间',width:100,align:'center',unresize: true}
+	      ,{field:'content',title:'交流学习内容',width:100,align:'center',unresize: true}
+	      ,{field:'units', title:'单位',width:100,align:'center',unresize: true}
+	      ,{field:'participants',title:'参与人员',width:100,align:'center',unresize: true}
+	      ,{field:'achievements', title:'成果',width:100,align:'center',unresize: true}
+	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',unresize: true}
+	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',unresize: true}
+	      ,{field:'createUser', title:'创建人',width:100,align:'center',unresize: true}
+	      ,{field:'createTime', title:'创建时间',width:100,align:'center',unresize: true}
+	      ,{field:'modifyUser', title:'修改人',width:100,align:'center',unresize: true}
+	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center',unresize: true}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
 	      ]]
 	  });
 	
@@ -57,7 +58,7 @@
 			title:'添加窗口',
 			area:['90%','90%'],
 			anim:0,
-			content: "/toPage?page=patent/patent_add"
+			content: "/toPage?page=foreign_exchange/foreign_exchange_add"
 		});
 		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	   
@@ -73,7 +74,7 @@
 			    	layer.open({
 						title:"查看",
 			    		type:2,
-			    		content:'/toPage?page=patent/patent_check',
+			    		content:'/toPage?page=foreign_exchange/foreign_exchange_check',
 			    		area:['90%','90%'],
 			    		resize:false,
 			    		success : function(layero, index) {
@@ -89,7 +90,7 @@
 						layer.close(index);
 						//向服务端发送删除指令*/		
 						$.ajax({
-							url:'/patent/delPatent',
+							url:'/foreignExchange/delForeignExchange',
 							type:"POST",
 							data:{id:data.id},
 							dataType:"json",
@@ -112,7 +113,7 @@
 			    	layer.open({
 			    		title:"编辑",
 			    		type:2,
-			    		content:['/toPage?page=patent/patent_modify'],
+			    		content:['/toPage?page=foreign_exchange/foreign_exchange_modify'],
 			    		maxmin:true,
 			    		resize:false,
 			    		area:['90%','90%'],
@@ -161,7 +162,7 @@
 				        	console.log(param);
 				        	//向服务端发送删除指令*/		
 							$.ajax({
-								url:'/patent/delPatent',
+								url:'/foreignExchange/delForeignExchange',
 								type:"POST",
 								data:{id:param},
 								dataType:"json",

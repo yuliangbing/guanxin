@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 <script type="text/javascript" src="${path}/static/js/subject_competition/competition_List.js"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
-<title>浙江邮电职业技术学院管理系统</title>
+<title></title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/static/public/layui/css/layui.css">
 <link rel="stylesheet" href="/static/public/css/xadmin.css">
 
-<title>浙江邮电职业技术学院管理系统</title>
+<title></title>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">

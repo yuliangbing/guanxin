@@ -23,7 +23,8 @@
 	/*表格 */
 		var tableIns = table.render({
 	    elem: '#test'
-	    ,height: 312
+	    ,defaultToolbar: ['print', 'exports']
+	    //,height: 312
 	    ,method:'post'
 	    ,url: '/organizationType/getOrganizationTypeList' //数据接口
 	  //  ,data:[{"id":1,"name":'jsdgufay'}]
@@ -31,13 +32,13 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center'}
-	      ,{field:'name', title:'组织机构类别名称',align:'center'}
-	      ,{field:'create_user', title:'创建人',align:'center'}
-	      ,{field:'create_time', title:'创建时间',align:'center'}
-	      ,{field:'modify_user', title:'修改人',align:'center'}
-	      ,{field:'modify_time', title:'修改时间',align:'center'}
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center'}
+	      ,{field:'id',title:'ID',align:'center',unresize: true}
+	      ,{field:'name', title:'组织机构类别名称',align:'center',unresize: true}
+	      ,{field:'create_user', title:'创建人',align:'center',unresize: true}
+	      ,{field:'create_time', title:'创建时间',align:'center',unresize: true}
+	      ,{field:'modify_user', title:'修改人',align:'center',unresize: true}
+	      ,{field:'modify_time', title:'修改时间',align:'center',unresize: true}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
 	      ]]
 	  });
 	

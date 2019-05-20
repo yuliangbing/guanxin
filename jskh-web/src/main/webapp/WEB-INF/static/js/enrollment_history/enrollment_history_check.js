@@ -6,8 +6,8 @@
 		$("#status").val(data.status);
 		id = data.id;
 		$("#date").val(data.date);
-		$("#plan_num").val(data.plan_num);
-		$("#actual_num").val(data.actual_num);
+		$("#plan_num").val(data.planNum);
+		$("#actual_num").val(data.actualNum);
 		$("#rate").val(data.rate);
 		$("#specialty_id").val(data.specialtyId);
 		$("#specialty_name").val(data.specialtyName);

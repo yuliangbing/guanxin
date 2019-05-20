@@ -5,12 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>查看页面</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
 <script src="${path}/static/js/foreign_exchange/foreign_exchange_check.js"></script>
-<script type="text/javascript" src="./js/xadmin.js"></script>
 </head>
 <body style="margin-left: 25%;">
 		<form class="layui-form" action="">

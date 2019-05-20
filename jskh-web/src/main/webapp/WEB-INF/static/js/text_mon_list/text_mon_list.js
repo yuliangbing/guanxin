@@ -23,7 +23,8 @@
 				/*表格 */
 				var tableIns = table.render({
 				    elem: '#demo'
-				    ,height: 312
+				    //,height: 312
+				    	,defaultToolbar: ['print', 'exports']
 				    ,method:'post'
 				    ,url: '/TextbookOrMonograph/getTextbookOrMonographList' //数据接口
 				   // ,data:[{"id":1,"name":'jsdgufay'}]
@@ -31,19 +32,19 @@
 				    ,toolbar:"#toolbarDemo"
 				    ,cols: [[ //表头
 				       {type:'checkbox', fixed: 'left'}
-				      ,{field:'id',title:'ID',align:'center'}
-				      ,{field:'date',title:'出版时间',align:'center',width:200}
-				      ,{field:'name', title:'教材或专著名称',align:'center',width:200}
-				      ,{field:'press', title:'出版社',align:'center',width:200}
-				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:200}
-				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:200}
-				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:200}
-				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:200}
-				      ,{field:'createUser', title:'创建人',align:'center',width:200}
-				      ,{field:'createTime', title:'创建时间',align:'center',width:200}
-				      ,{field:'modifyUser', title:'修改人',align:'center',width:200}
-				      ,{field:'modifyTime', title:'修改时间',align:'center',width:200}
-				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:270}
+				      ,{field:'id',title:'ID',align:'center',unresize: true}
+				      ,{field:'date',title:'出版时间',align:'center',width:200,unresize: true}
+				      ,{field:'name', title:'教材或专著名称',align:'center',width:200,unresize: true}
+				      ,{field:'press', title:'出版社',align:'center',width:200,unresize: true}
+				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:200,unresize: true}
+				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:200,unresize: true}
+				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:200,unresize: true}
+				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:200,unresize: true}
+				      ,{field:'createUser', title:'创建人',align:'center',width:200,unresize: true}
+				      ,{field:'createTime', title:'创建时间',align:'center',width:200,unresize: true}
+				      ,{field:'modifyUser', title:'修改人',align:'center',width:200,unresize: true}
+				      ,{field:'modifyTime', title:'修改时间',align:'center',width:200,unresize: true}
+				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:270,unresize: true}
 				      ]]
 				  });
 				
