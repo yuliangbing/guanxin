@@ -7,9 +7,10 @@
 		$("#date").val(data.date);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-		$("#cate_name").val(data.cate_name);
+		$("#cate_name").val(data.cateName);
 		$("#reviser").val(data.reviser);
-		$("#specialty_name").val(data.specialty_name);
+		$("#specialty_name").val(data.specialtyName);
+		$("#showFile").text(data.urlFileName);
 	}
 
 		//关闭监听

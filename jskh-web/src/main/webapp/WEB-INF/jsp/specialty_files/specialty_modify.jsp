@@ -46,13 +46,17 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label" for="specialty_id">专业id</label>
+						<label class="layui-form-label" for="specialty_id">专业</label>
 					    <div class="layui-input-inline">
 							<select id="specialty_id" lay-filter="specialty_id" lay-verify="required" class="layui-select" lay-search>
 								<option value="">请选择</option>
-								
 							</select>
 						</div>
+					</div>
+					<div>
+						<label class="layui-form-label" for="uploadFile">上传附件</label>
+						<button type="button" class="layui-btn" id="uploadFile">选择文件</button>
+						<span id="showFile"></span>
 					</div>
 			    </div>
 				<div style="margin: 0% 0% 0% 6%;" >

@@ -19,6 +19,10 @@ public class SpecialtyFiles {
 
     private String specialtyName;
 
+    private String urlFileName;
+
+    private String urlFile;
+
     private Integer status;
 
     private Date createTime;
@@ -93,6 +97,22 @@ public class SpecialtyFiles {
         this.specialtyName = specialtyName == null ? null : specialtyName.trim();
     }
 
+    public String getUrlFileName() {
+        return urlFileName;
+    }
+
+    public void setUrlFileName(String urlFileName) {
+        this.urlFileName = urlFileName == null ? null : urlFileName.trim();
+    }
+
+    public String getUrlFile() {
+        return urlFile;
+    }
+
+    public void setUrlFile(String urlFile) {
+        this.urlFile = urlFile == null ? null : urlFile.trim();
+    }
+
     public Integer getStatus() {
         return status;
     }
@@ -132,4 +152,14 @@ public class SpecialtyFiles {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SpecialtyFiles [id=" + id + ", date=" + date + ", code=" + code + ", name=" + name + ", cateName="
+				+ cateName + ", reviser=" + reviser + ", specialtyId=" + specialtyId + ", specialtyName="
+				+ specialtyName + ", urlFileName=" + urlFileName + ", urlFile=" + urlFile + ", status=" + status
+				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
+				+ ", modifyUser=" + modifyUser + "]";
+	}
+    
 }

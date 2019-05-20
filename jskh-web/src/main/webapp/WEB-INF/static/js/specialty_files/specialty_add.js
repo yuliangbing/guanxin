@@ -1,6 +1,8 @@
 /**
  * 新增页面的js
  */
+var fileUrl="";
+var urlFileName="";
 // 关闭弹窗监听
 function exit() {
 	var index = parent.layer.getFrameIndex(window.name); // 先得到当前iframe层的索引
@@ -60,6 +62,8 @@ layui.use(['element','upload'], function() {
 		auto : true,
 		done : function(res) {
 			console.log(res);
+			fileUrl = res.url;
+			urlFileName = res.original;
 			$("#showFile").text(res.original);
 		}
 	})
@@ -103,6 +107,8 @@ layui.use([ 'form', 'laydate' ], function() {
 		params.reviser = $("#reviser").val();
 		params.specialty_id = $("#specialty_id option:checked").val();
 		params.specialty_name = $("#specialty_id option:checked").text();
+		params.url_file = fileUrl;
+		params.url_file_name = urlFileName;
 		layer.confirm('确定提交吗?', {
 			icon : 3,
 			title : '提示'

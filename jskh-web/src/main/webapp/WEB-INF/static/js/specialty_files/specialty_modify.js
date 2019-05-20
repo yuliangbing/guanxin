@@ -1,18 +1,24 @@
 /**
  * 修改页面的js
  */
+	var fileUrl="";
+	var urlFileName="";
 	var cate_name = "";
 	var specialty_name = "";
 	var id=0;
 	// 初始化赋值
 	function init(data) {
 		id = data.id;
-		$("#date").val(data.date);
+		$("#date").val((data.date.split(' '))[0]);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-		cate_name = data.cate_name;
+		cate_name = data.cateName;
 		$("#reviser").val(data.reviser);
-		specialty_name = data.specialty_name;
+		fileUrl = data.urlFile;
+		urlFileName = data.urlFileName;
+		$("#showFile").text(urlFileName);
+		specialty_name = data.specialtyName;
+		
 	}
 	//获取下拉列表(公共方法)
 	function ajax_h(form,names,url,object,ids)
@@ -23,8 +29,8 @@
 			dataType:"json",
 			success:function(data){
 				//layer.msg("获取成功");
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+				//console.log(names);
 				let option = "";
 				if (data.code == 0) {
 					if(ids == 'code'){
@@ -58,7 +64,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+					//console.log("option:"+option);
 					
 				} else {
 					layer.msg(data.msg);
@@ -76,9 +82,24 @@
 			parent.layer.close(index); //再执行关闭  
 		}
 		
-		layui.use('element', function() {
+		layui.use(['element','upload'], function() {
 			var element = layui.element;
 
+			var upload = layui.upload;
+			// 选完文件后不自动上传
+			upload.render({
+				elem : '#uploadFile',
+				url : '/ueditor/jsp/controller.jsp?action=uploadfile',
+			    method: 'post',
+			    accept: 'file',
+				auto : true,
+				done : function(res) {
+					console.log(res);
+					fileUrl = res.url;
+					urlFileName = res.original;
+					$("#showFile").text(res.original);
+				}
+			})
 		});
 
 		layui.use(['form', 'table', 'laydate'], function() {
@@ -126,6 +147,9 @@
 				params.reviser = $("#reviser").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
+				params.url_file = fileUrl;
+				params.url_file_name = urlFileName;
+				//params.url = $()
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",

@@ -52,7 +52,7 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-						<label class="layui-form-label" for="specialty_id">专业id</label>
+						<label class="layui-form-label" for="specialty_id">专业</label>
 						<div class="layui-input-inline">
 							<select type="text" id="specialty_id" lay-filter="specialty_id"
 								autocomplete="off" placeholder="" lay-verify="required"

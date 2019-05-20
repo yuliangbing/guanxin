@@ -44,10 +44,15 @@
 						</div>
 					</div>
 					<div class="layui-inline">
-					 <label class="layui-form-label" for="specialty_id">专业id名称</label>
+					 <label class="layui-form-label" for="specialty_id">专业</label>
 					    <div class="layui-input-inline">
 								<input disabled type="text" id="specialty_name" name="specialty_name" class="layui-input">
 						</div>
+					</div>
+					<div style="margin: 13px 0px 0px 27px;">
+						文件附件:&nbsp;&nbsp;&nbsp;<span id="showFile"></span>
+						
+						<!-- <button type="button" class="layui-btn" id="uploadFile">文件下载</button> -->
 					</div>
 			    </div>
 			</div>

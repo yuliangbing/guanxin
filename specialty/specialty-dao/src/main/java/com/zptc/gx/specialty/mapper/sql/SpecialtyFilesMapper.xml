@@ -10,6 +10,8 @@
     <result column="reviser" property="reviser" jdbcType="VARCHAR" />
     <result column="specialty_id" property="specialtyId" jdbcType="BIGINT" />
     <result column="specialty_name" property="specialtyName" jdbcType="VARCHAR" />
+    <result column="url_file_name" property="urlFileName" jdbcType="VARCHAR" />
+    <result column="url_file" property="urlFile" jdbcType="VARCHAR" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
@@ -17,8 +19,8 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, date, code, name, cate_name, reviser, specialty_id, specialty_name, status, create_time, 
-    create_user, modify_time, modify_user
+    id, date, code, name, cate_name, reviser, specialty_id, specialty_name, url_file_name, 
+    url_file, status, create_time, create_user, modify_time, modify_user
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -33,14 +35,16 @@
   <insert id="insert" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
     insert into specialty_files (id, date, code, 
       name, cate_name, reviser, 
-      specialty_id, specialty_name, status, 
-      create_time, create_user, modify_time, 
-      modify_user)
+      specialty_id, specialty_name, url_file_name, 
+      url_file, status, create_time, 
+      create_user, modify_time, modify_user
+      )
     values (#{id,jdbcType=BIGINT}, #{date,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{cateName,jdbcType=VARCHAR}, #{reviser,jdbcType=VARCHAR}, 
-      #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{modifyUser,jdbcType=VARCHAR})
+      #{specialtyId,jdbcType=BIGINT}, #{specialtyName,jdbcType=VARCHAR}, #{urlFileName,jdbcType=VARCHAR}, 
+      #{urlFile,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.SpecialtyFiles" >
     insert into specialty_files
@@ -68,6 +72,12 @@
       </if>
       <if test="specialtyName != null" >
         specialty_name,
+      </if>
+      <if test="urlFileName != null" >
+        url_file_name,
+      </if>
+      <if test="urlFile != null" >
+        url_file,
       </if>
       <if test="status != null" >
         status,
@@ -110,6 +120,12 @@
       <if test="specialtyName != null" >
         #{specialtyName,jdbcType=VARCHAR},
       </if>
+      <if test="urlFileName != null" >
+        #{urlFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFile != null" >
+        #{urlFile,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
@@ -151,6 +167,12 @@
       <if test="specialtyName != null" >
         specialty_name = #{specialtyName,jdbcType=VARCHAR},
       </if>
+      <if test="urlFileName != null" >
+        url_file_name = #{urlFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="urlFile != null" >
+        url_file = #{urlFile,jdbcType=VARCHAR},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=INTEGER},
       </if>
@@ -178,6 +200,8 @@
       reviser = #{reviser,jdbcType=VARCHAR},
       specialty_id = #{specialtyId,jdbcType=BIGINT},
       specialty_name = #{specialtyName,jdbcType=VARCHAR},
+      url_file_name = #{urlFileName,jdbcType=VARCHAR},
+      url_file = #{urlFile,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
@@ -185,12 +209,9 @@
       modify_user = #{modifyUser,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  
-  <!--  id, date, code, name, cate_name, reviser, specialty_id, status, create_time, create_user, 
-    modify_time, modify_user -->
-    <!-- 自定义 -->
+  <!-- 自定义 -->
   <!-- 查询列表数据 -->
-  <select id="getSpecialtyFilesList" resultType="map" parameterType="map" >
+  <select id="getSpecialtyFilesList" resultMap="BaseResultMap" parameterType="map" >
     select
     <include refid="Base_Column_List" />
     from specialty_files

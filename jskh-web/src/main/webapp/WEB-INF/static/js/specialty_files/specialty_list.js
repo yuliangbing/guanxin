@@ -1,4 +1,5 @@
 //JavaScript代码区域
+ 
 			function ajax_h(form)
 			{
 				//获取文件类型
@@ -7,9 +8,9 @@
 					type:"POST",
 					dataType:"json",
 					success:function(data){
-						console.log(data);
+						/*console.log(data);
 						layer.msg("获取成功");
-						console.log(data.data.length);
+						console.log(data.data.length);*/
 						if (data.code == 0) {
 							
 							let option = "";
@@ -77,8 +78,14 @@
 								title: '文件名称',
 								width: '10%',
 								align: 'center'
-							}, {
-								field: 'cate_name',
+							},{
+								field: 'urlFileName',
+								title: '上传的文件名称',
+								width: '14%',
+								sort: false,
+								align: 'center'
+							},{
+								field: 'cateName',
 								title: '文件类型名称',
 								width: '10%',
 								align: 'center'
@@ -89,14 +96,14 @@
 								sort: false,
 								align: 'center'
 							}, {
-								field: 'specialty_id',
+								field: 'specialtyId',
 								title: '专业id',
 								width: '10%',
 								sort: false,
 								align: 'center',
 								hide:true
 							}, {
-								field: 'specialty_name',
+								field: 'specialtyName',
 								title: '专业名称',
 								width: '10%',
 								sort: false,
@@ -108,25 +115,25 @@
 								align: 'center',
 								hide:true//隐藏
 							},{
-								field: 'create_user',
+								field: 'createUser',
 								title: '创建人',
 								width: '10%',
 								sort: true,
 								align: 'center'
 							},{
-								field: 'create_time',
+								field: 'createTime',
 								title: '创建时间',
 								width: '15%',
 								sort: true,
 								align: 'center'
 							},{
-								field: 'modify_user',
+								field: 'modifyUser',
 								title: '修改人',
 								width: '10%',
 								sort: true,
 								align: 'center'
 							},{
-								field: 'modify_time',
+								field: 'modifyTime',
 								title: '修改时间',
 								width: '15%',
 								sort: true,
@@ -193,10 +200,12 @@
 								data:{specialtyFilesId:data.id},
 								dataType:"json",
 								success:function(data){
-									var nowPage = tableIns.config.page.curr;//返回当前页数
-						        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+									var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
+									var nowPage = tableIns.config.page.curr;//返回当前总页数
+									//console.log(page);
+						        	var reloadPage = (page-1) > 0? page:1;
 									layer.msg("删除成功");
-									layer.close(index);
+									//layer.close(index);
 					    			tableIns.reload({
 					    				page:{
 					    					curr:reloadPage
@@ -258,7 +267,7 @@
 				 //批量删除
 				 table.on('toolbar(demoList)', function(res){
 					    var checkStatus = table.checkStatus(res.config.id);
-					    console.log(checkStatus.data.length);
+					    //console.log(checkStatus.data.length);
 					    switch(res.event){
 					      case 'dels':
 					        var data = checkStatus.data;
@@ -268,7 +277,7 @@
 					        	 for(var i=0;i< data.length;i++)
 					        	 {
 							        	param = data[i].id;
-							        	console.log(param);
+							        	//console.log(param);
 							        	//向服务端发送删除指令*/		
 										$.ajax({
 											url:'/specialtyFiles/delSpecialtyFiles',
@@ -276,15 +285,19 @@
 											data:{specialtyFilesId:param},
 											dataType:"json",
 											success:function(data){
-												var nowPage = tableIns.config.page.curr;//返回当前页数
-									        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+												/*var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
+												var nowPage = tableIns.config.page.curr;//返回当前总页数
+									        	var reloadPage = (page-1) > 0? page:1;*/
+									        	//console.log(reloadPage);
 												layer.msg("删除成功");
 								    			tableIns.reload({
 								    				page:{
-								    					curr:reloadPage
+								    					curr:1
 								    				}
 								    			});
-											}
+											},error:function(code){
+										           layer.alert("发生错误,删除失败");
+										        }
 										});
 							      
 							        }
