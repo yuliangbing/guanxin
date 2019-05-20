@@ -5,9 +5,9 @@
 <head>
 <meta charset="utf-8">
 <title>组织机构成员</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css" >
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/static/js/text_mon_list/text_mon_list.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -34,8 +34,9 @@
 						    </a>
 						</form>
 					</div>
+					 </div>
     <table class="layui-table" id="demo" lay-filter="test"></table>
-    </div>
+   
 </div>
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>

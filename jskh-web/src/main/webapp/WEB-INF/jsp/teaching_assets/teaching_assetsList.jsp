@@ -5,13 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>教学资产</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
-<script type="text/javascript" src="./js/xadmin.js"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assetsList.js"></script>
+<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assetsList.js"></script>
 </head>
-<body>
 <body class="layui-layout-body">
      <div class="layui-layout layui-layout-admin">
      <!--<div class="layui-body">-->
@@ -28,24 +26,14 @@
 									</div>
 								</div>
 								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label" >分类号</label>
-									<div class="layui-input-inline">
-										<input type="text" id="cate_code" name="cate_code" lay-verify="" placeholder="请输入成果名称" autocomplete="off" class="layui-input">
-									</div>
-								</div>
+								
 								<div class="layui-inline">
 									<label class="layui-form-label"  style="width:120px;">仪器名称</label>
 									<div class="layui-input-inline">
 										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入成果来源" autocomplete="off" class="layui-input">
 									</div>
 								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label"  style="width:120px;">型号</label>
-									<div class="layui-input-inline">
-										<input type="text" id="model_num" name="model_num" lay-verify="" placeholder="请输入作者" autocomplete="off" class="layui-input">
-									</div>
-								</div>
+								
 							</div>
 							<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
@@ -54,9 +42,10 @@
 						    </a>
 						</form>
 					</div>
+					</div>
                   <table class="layui-hide" id=test lay-filter="test"></table>
-              </div>
-
+              
+</div>
 	<script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="check"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>

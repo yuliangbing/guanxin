@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>查看页面</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/teaching_assets/teaching_assets_check.js"></script>
@@ -14,7 +14,7 @@
 <body style="margin-left: 25%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
- <div>
+ 
 		  <div class="layui-inline">
 			    <label class="layui-form-label" style="width:150px;">分类号</label>
 				<div class="layui-input-inline">
@@ -148,12 +148,19 @@
 			    <label class="layui-form-label" style="width:150px;">专业id</label>
 				<div class="layui-input-inline">
 					
-						<input type="text" id="remark" name="remark" disabled class="layui-input">
+						<input type="text" id="specialty_id" name="specialty_id" disabled class="layui-input">
 					
 				</div>
 			</div>	          
          
-			</div>
+			<div class="layui-inline">
+			    <label class="layui-form-label" style="width:150px;">专业名称</label>
+				<div class="layui-input-inline">
+					
+						<input type="text" id="specialty_name" name="specialty_name" disabled class="layui-input">
+					
+				</div>
+			</div>	
 		<div class="layui-inline">
 			<lable class="layui-form-label" style="width:150px;">创建人</lable>
 				<div class="layui-input-inline">

@@ -5,11 +5,10 @@
 <head>
 <meta charset="utf-8">
 <title>专业成果</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript"
-	src="${path}/static/public/lib/layui/layui.js"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/js/patent/patent_modify.js"></script>
+<script type="text/javascript" src="${path}/static/js/patent/patent_modify.js"></script>
 </head>
  <body style="margin-left: 25%;">
 <form class="layui-form" action="">

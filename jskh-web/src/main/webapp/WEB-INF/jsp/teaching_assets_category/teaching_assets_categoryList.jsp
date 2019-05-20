@@ -5,9 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>教学资产分类</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/lib/layui/layui.js"></script>
-<script type="text/javascript" src="./js/xadmin.js"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/teaching_assets_category/teaching_assets_categoryList.js"></script>
 </head>
@@ -21,16 +20,16 @@
 							<div class="layui-form-item">
 							
 								<div class="layui-inline">
-									<label class="layui-form-label" >分类号</label>
+									<label class="layui-form-label" ></label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入报到率" autocomplete="off" class="layui-input">
+										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入分类号" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								
 								<div class="layui-inline">
-									<label class="layui-form-label" >分类名称</label>
+									<label class="layui-form-label" ></label>
 									<div class="layui-input-inline">
-										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入报到率" autocomplete="off" class="layui-input">
+										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入分类名称" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 								
@@ -42,6 +41,7 @@
 						    </a>
 						</form>
 					</div>
+					</div>
                   <table class="layui-hide" id=test lay-filter="test"></table>
               </div>
 
@@ -52,7 +52,7 @@
 	</script>
     <script type="text/html" id="toolbarDemo">
     <div style="margin:-5px -1px;">
-	 <button class="layui-btn layui-btn-danger" lay-event="dels""><i class="layui-icon">&#xe640;</i>批量删除</button>
+	 <button class="layui-btn layui-btn-danger" lay-event="dels"><i class="layui-icon">&#xe640;</i>批量删除</button>
 	 <button class="layui-btn layui-bg-blue" lay-submit lay-filter="add"><i class="layui-icon">&#xe654;</i>添加</button>
     </div>
     </script>

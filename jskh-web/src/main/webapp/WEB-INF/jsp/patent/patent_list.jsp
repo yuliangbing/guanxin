@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>专利</title>
-<link rel="stylesheet" href="${path}/static/public/lib/layui/css/layui.css" >
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css" >
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/patent/patent_List.js"></script>
@@ -37,6 +37,7 @@
 						       <i class="layui-icon" style="line-height:30px">ဂ</i>
 						    </a>
 						</form>
+					</div>
 					</div>
     <table class="layui-hide" id="test" lay-filter="test"></table>
     </div>
