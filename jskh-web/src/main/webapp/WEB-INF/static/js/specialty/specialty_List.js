@@ -40,13 +40,13 @@ layui.use(['form', 'table', 'laydate'], function() {
 
 				//执行一个laydate实例
 				laydate.render({
-					elem: '#date' //指定元素	
+					elem: '#setup_date' //指定元素	
 					,range: '~' //或 range: '~' 来自定义分割字符
 				});
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		    ,url:window.path +'/specialtyConstructionAchievements/getSpecialtyConstructionAchievements'
+		    ,url:window.path +'/specialty/ListSpecialty'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -54,13 +54,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:200,align:'center'}	     
-		      ,{field:'name', title:'成果名称', width:150,align:'center'}
-		      ,{field:'sources', title:'成果来源', width:150,align:'center'} 
-		      ,{field:'level', title:'成果级别', width:130,align:'center'}
-		      ,{field:'author', title:'作者', width:130,align:'center'}
-		      ,{field:'specialtyName', title:'专业名称', width:130,align:'center'}
-		      ,{field:'specialtyId', title:'专业id', width:130,hide:true }
+		      ,{field:'setup_date', title:'设立时间', width:200,align:'center'}	     
+		      ,{field:'code', title:'专业编码', width:150,align:'center'}
+		      ,{field:'name', title:'专业名称', width:150,align:'center'} 
+
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
 		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
@@ -79,7 +76,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 				title:"查看",
 	    		type:2,
-	    		content:['/toPage?page=specialty_achievements/speConAch_check'],
+	    		content:['/toPage?page=specialty/specialty_check'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -97,7 +94,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				//向服务端发送删除指令*/	
 	    		console.log(data.id);
 				$.ajax({
-					url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
+					url:'/specialty/delSpecialty',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
@@ -120,7 +117,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    	layer.open({
 	    		title:"编辑",
 	    		type:2,
-	    		content:['/toPage?page=specialty_achievements/speConAch_update'],
+	    		content:['/toPage?page=specialty/specialty_update'],
 	    		maxmin:true,
 	    		resize:false,
 	    		area:['90%','90%'],
@@ -144,7 +141,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date2 = data.field.date.split('~')[1];
 			}
 			tableIns.reload({
-				where:{"level":"单"},
+				where:{"units":"案"},
 				page: {
 					curr: 1
 				}
@@ -176,7 +173,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
-	  		content:['/toPage?page=specialty_achievements/speConAch_insert'],
+	  		content:['/toPage?page=specialty/specialty_insert'],
 	  		maxmin:true,
 	  		resize:false,
 	  		area:['90%','90%']
@@ -198,7 +195,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/specialtyConstructionAchievements/delSpecialtyAchievements',
+						url:'/specialty/delSpecialty',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",
