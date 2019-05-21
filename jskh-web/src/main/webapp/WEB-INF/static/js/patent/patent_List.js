@@ -32,20 +32,20 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center',unresize: true}
-	      ,{field:'date',title:'发表时间',width:100,align:'center',unresize: true}
-	      ,{field:'code',title:'专利号',width:100,align:'center',unresize: true}
-	      ,{field:'name', title:'专利名称',width:100,align:'center',unresize: true}
-	      ,{field:'type',title:'专利类型',width:100,align:'center',unresize: true}
-	      ,{field:'firstAuthor', title:'第一作者',width:100,align:'center',unresize: true}
-	      ,{field:'otherAuthors', title:'其他作者情况',width:150,align:'center',unresize: true}
-	      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',unresize: true}
-	      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',unresize: true}
-	      ,{field:'createUser', title:'创建人',width:100,align:'center',unresize: true}
-	      ,{field:'createTime', title:'创建时间',width:100,align:'center',unresize: true}
-	      ,{field:'modifyUser', title:'修改人',width:100,align:'center',unresize: true}
-	      ,{field:'modifyTime', title:'修改时间',width:100,align:'center',unresize: true}
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
+	      ,{field:'id',title:'主键',align:'center',width:'5%'}
+	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
+	      ,{field:'code',title:'专利号',width:'15%',align:'center',}
+	      ,{field:'name', title:'专利名称',width:'15%',align:'center',}
+	      ,{field:'type',title:'专利类型',width:'15%',align:'center',}
+	      ,{field:'firstAuthor', title:'第一作者',width:'15%',align:'center',}
+	      ,{field:'otherAuthors', title:'其他作者情况',width:'15%',align:'center',}
+	      ,{field:'specialtyId', title:'专业id',width:'15%',hide:true,align:'center',}
+	      ,{field:'specialtyName', title:'专业名称',width:'15%',align:'center',}
+	      ,{field:'createUser', title:'创建人',width:'15%',align:'center',}
+	      ,{field:'createTime', title:'创建时间',width:'15%',align:'center',}
+	      ,{field:'modifyUser', title:'修改人',width:'15%',align:'center',}
+	      ,{field:'modifyTime', title:'修改时间',width:'15%',align:'center',}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'19%',align:'center',}
 	      ]]
 	  });
 	
@@ -53,30 +53,29 @@
 	
 	
 	/*新增功能*/
-	form.on('submit(add)', function(data) {
-		layer.open({
-			type:2,
-			title:'添加窗口',
-			area:['90%','90%'],
-			anim:0,
-			content: "/toPage?page=patent/patent_add"
-		});
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	   
-	 });
+		  $("#insert").click(function(){
+			  	layer.open({
+			  		title:"添加",
+			  		type:2,
+			  		content:['/toPage?page=patent/patent_add'],
+			  		maxmin:true,
+			  		resize:false,
+			  		area:['60%','75%']
+			  	});
+			  });
 
 
 			 //监听列工具事件
 			  table.on('tool(test)', function(obj){
 			    var data = obj.data;
 			    var layEvent = obj.event;
-			    if(layEvent === 'check'){//查看
+			    if(layEvent === 'detail'){//查看
 			    	
 			    	layer.open({
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=patent/patent_check',
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
@@ -117,7 +116,7 @@
 			    		content:['/toPage?page=patent/patent_modify'],
 			    		maxmin:true,
 			    		resize:false,
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];
@@ -153,7 +152,7 @@
 //				    alert(JSON.stringify(checkStatus.data.id));
 				    
 				    switch(obj.event){
-				      case 'dels':
+				      case 'delData':
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));

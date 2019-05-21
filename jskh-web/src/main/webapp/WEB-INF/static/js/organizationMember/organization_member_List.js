@@ -31,14 +31,14 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'ID',align:'center',unresize: true}
-	      ,{field:'position',title:'职务',align:'center',unresize: true}
-	      ,{field:'name', title:'成员姓名',align:'center',unresize: true}
-	      ,{field:'create_user', title:'创建人',align:'center',unresize: true}
-	      ,{field:'create_time', title:'创建时间',align:'center',unresize: true}
-	      ,{field:'modify_user', title:'修改人',align:'center',unresize: true}
-	      ,{field:'modify_time', title:'修改时间',align:'center',unresize: true}
-	      ,{align:'center', toolbar: '#barDemo',title:'操作',width:237,align:'center',unresize: true}
+	      ,{field:'id',title:'主键',align:'center',width:'5%',sort: true}
+	      ,{field:'position',title:'职务',align:'center',width:'15%'}
+	      ,{field:'name', title:'成员姓名',align:'center',width:'15%'}
+	      ,{field:'create_user', title:'创建人',align:'center',width:'15%'}
+	      ,{field:'create_time', title:'创建时间',align:'center',width:'15%'}
+	      ,{field:'modify_user', title:'修改人',align:'center',width:'15%'}
+	      ,{field:'modify_time', title:'修改时间',align:'center',width:'15%'}
+	      ,{fixed:'right', toolbar: '#barDemo',title:'操作',align:'center',width:'19%'}
 	      ]]
 	  });
 	
@@ -46,29 +46,28 @@
 	
 	
 	/*新增功能*/
-	form.on('submit(add)', function(data) {
-		layer.open({
-			type:2,
-			title:'添加窗口',
-			area:['90%','90%'],
-			anim:0,
-			content: "/toPage?page=organizationMember/organization_member_add"
-		});
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	   
-	 });
+	      $("#insert").click(function(){
+	  	  	layer.open({
+	  	  		title:"添加",
+	  	  		type:2,
+	  	  		content:['/toPage?page=organizationMember/organization_member_add'],
+	  	  		maxmin:true,
+	  	  		resize:false,
+	  	  		area:['60%','75%']
+	  	  	});
+	  	  });
 	
 	//监听列工具事件
 	  table.on('tool(test)', function(obj){
 	    var data = obj.data;
 	    var layEvent = obj.event;
-	    if(layEvent === 'check'){//查看
+	    if(layEvent === 'detail'){//查看
 	    	
 	    	layer.open({
 				title:"查看",
 	    		type:2,
 	    		content:'/toPage?page=organizationMember/organization_member_check',
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		resize:false,
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
@@ -109,7 +108,7 @@
 	    		content:['/toPage?page=organizationMember/organization_member_modify'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -145,7 +144,7 @@
 //		    alert(JSON.stringify(checkStatus.data.id));
 		    
 		    switch(obj.event){
-		      case 'dels':
+		      case 'delData':
 		        var data = checkStatus.data;
 		        var param = [{}];
 		       // layer.alert(JSON.stringify(data));

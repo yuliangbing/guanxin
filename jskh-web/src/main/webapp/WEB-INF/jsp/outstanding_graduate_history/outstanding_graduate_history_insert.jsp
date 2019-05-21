@@ -12,7 +12,7 @@
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				  
 				<div class="layui-inline" >
@@ -59,20 +59,20 @@
 					<div class="layui-inline">
 						<label  class="layui-form-label">先进描述</label>
 							<div class="layui-input-inline">
-								<textarea  class="layui-textarea" lay-verify="required" id="advanced_description" style="width: 440%;"></textarea>
+								<textarea  class="layui-textarea" lay-verify="required" id="advanced_description" style="width: 272%;"></textarea>
 							</div>			
 					</div>
 				</div>
 				<label class="layui-form-label">照片 </label>
 				<div class="layui-upload" style="margin-left: 10.5%;">
-  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 32%;top: 45%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
+  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 43%;top: 46%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
   					<div class="layui-upload-list">
-    					<img class="layui-upload-img"  style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="image">
+    					<img class="layui-upload-img"  style="width: 130px;height: 170px;position: absolute;left: 29.1%;" id="image">
   					</div>
 				</div>
 			
 			</div>
-			<div style="text-align:center;margin-top: 13%;">
+			<div style="text-align:center;margin-top: 18%;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>
@@ -103,7 +103,6 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				//layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

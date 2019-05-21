@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				<div class="layui-inline">
 					<label class="layui-form-label">主键</label>
 					<div class="layui-input-inline">
@@ -85,14 +85,14 @@
 				
 					<label  class="layui-form-label">先进描述</label>
 					<div class="layui-input-inline">
-						<textarea  class="layui-textarea" disabled id="advanced_description" style="width: 440%;"></textarea>
+						<textarea  class="layui-textarea" disabled id="advanced_description" style="width: 272%;"></textarea>
 					</div>
 				
 				</div>
 				<label class="layui-form-label">照片 </label>
-				<div class="layui-upload" style="margin-left: 10.5%;">
+				<div class="layui-upload" >
   					<div class="layui-upload-list">
-    					<img url="" class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 19.7%;" id="image">
+    					<img url="" class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 29.3%;" id="image">
   					</div>
 				</div>
 			</div>

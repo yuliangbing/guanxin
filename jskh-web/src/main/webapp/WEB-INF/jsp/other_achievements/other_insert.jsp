@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">时间</label>
@@ -80,7 +80,6 @@
 			dataType:"json",
 			success:function(data){
 				console.log(data);
-				//layer.msg("获取成功");
 				console.log(data.data.length);
 				if (data.code == 0) {
 						let option = "";

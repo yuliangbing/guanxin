@@ -25,20 +25,20 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:130,align:'center'}
-		      ,{field:'graduateNum', title:'毕业人数', width:130,align:'center' }
-		      ,{field:'employedNum', title:'就业人数', width:150,align:'center' }
-		      ,{field:'entrepreneursNum', title:'创业人数', width:150,align:'center' } 
-		      ,{field:'employmentRate', title:'就业对口率', width:130,align:'center' }
-		      ,{field:'specialtyId', title:'专业id', width:130,hide:true }
-		      ,{field:'specialtyName', title:'专业名称', width:130,align:'center' }
+		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'date', title:'时间', width:'15%',align:'center'}
+		      ,{field:'graduateNum', title:'毕业人数', width:'15%',align:'center' }
+		      ,{field:'employedNum', title:'就业人数', width:'15%',align:'center' }
+		      ,{field:'entrepreneursNum', title:'创业人数', width:'15%',align:'center' } 
+		      ,{field:'employmentRate', title:'就业对口率', width:'15%',align:'center' }
+		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true }
+		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center' }
-		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
-		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
-		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
+		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' }
+		      ,{field:'createUser', title:'创建人', width:'15%',align:'center' }
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' }
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
@@ -53,7 +53,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=graduate_history/graduate_history_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -93,7 +93,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=graduate_history/graduate_history_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -129,7 +129,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=graduate_history/graduate_history_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['90%','90%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除

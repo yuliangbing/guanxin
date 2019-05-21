@@ -17,6 +17,7 @@ layui.use('element', function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
+		    	
 		    ,url:'/teachingAssetsCategory/getTeachingAssetsCategoryList'
 		    //,data:[{"id":1,"content":'jsdgufay'}]
 		    ,method:'post'
@@ -26,42 +27,41 @@ layui.use('element', function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'id', width:100,sort: true,align:'center',unresize: true}
-		      ,{field:'code', title:'分类号', width:130,align:'center',unresize: true}
-		      ,{field:'name', title:'分类名称', width:130,align:'center' ,unresize: true}
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center',unresize: true }
-		      ,{field:'createUser', title:'创建人', width:150,align:'center',unresize: true }
-		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' ,unresize: true}
-		      ,{field:'modifyUser', title:'修改人', width:130,align:'center',unresize: true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center',unresize: true}
+		      ,{field:'id', title:'id', width:'5%',sort: true,align:'center',}
+		      ,{field:'code', title:'分类号', width:'15%',align:'center',}
+		      ,{field:'name', title:'分类名称', width:'15%',align:'center' ,}
+		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center', }
+		      ,{field:'createUser', title:'创建人', width:'15%',align:'center', }
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' ,}
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center', }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center',}
 		    ]]
 		  });  
 	  
 	  /*新增功能*/
-		form.on('submit(add)', function(data) {
-			layer.open({
-				type:2,
-				title:'添加窗口',
-				area:['90%','90%'],
-				anim:0,
-				content: '/toPage?page=teaching_assets_category/teaching_assets_category_add'
-			});
-			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-		   
-		 });
+	  $("#insert").click(function(){
+		  	layer.open({
+		  		title:"添加",
+		  		type:2,
+		  		content:['/toPage?page=teaching_assets_category/teaching_assets_category_add'],
+		  		maxmin:true,
+		  		resize:false,
+		  		area:['60%','75%']
+		  	});
+		  });
 
 
 				 //监听列工具事件
 				  table.on('tool(test)', function(obj){
 				    var data = obj.data;
 				    var layEvent = obj.event;
-				    if(layEvent === 'check'){//查看
+				    if(layEvent === 'detail'){//查看
 				    	
 				    	layer.open({
 							title:"查看",
 				    		type:2,
 				    		content:'/toPage?page=teaching_assets_category/teaching_assets_category_check',
-				    		area:['90%','90%'],
+				    		area:['60%','75%'],
 				    		resize:false,
 				    		success : function(layero, index) {
 								// 获取子页面的iframe
@@ -102,7 +102,7 @@ layui.use('element', function() {
 				    		content:['/toPage?page=teaching_assets_category/teaching_assets_category_modify'],
 				    		maxmin:true,
 				    		resize:false,
-				    		area:['90%','90%'],
+				    		area:['60%','75%'],
 				    		success : function(layero, index) {
 								// 获取子页面的iframe
 								var iframe = window['layui-layer-iframe' + index];
@@ -136,7 +136,7 @@ layui.use('element', function() {
 //					    alert(JSON.stringify(checkStatus.data.id));
 					    
 					    switch(obj.event){
-					      case 'dels':
+					      case 'delData':
 					        var data = checkStatus.data;
 					        var param = [{}];
 					       // layer.alert(JSON.stringify(data));

@@ -15,20 +15,20 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'specialtyId', title:'专业id', width:130,hide:true}
-		      ,{field:'specialtyCode', title:'专业编码', width:150,align:'center' }
-		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center' }
-		      ,{field:'date', title:'团队变更时间', width:150,align:'center' } 
-		      ,{field:'specialtyTeachers', title:'专业教师团队', width:150,align:'center' }
-		      ,{field:'partTimeTeachers', title:'兼职教师团队', width:150,align:'center' }
-		      ,{field:'director', title:'团队总负责人', width:150,align:'center' }
-		      ,{field:'latest', title:'是否最新', width:150,templet:'latest',align:'center'}
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center',hide:true }
+		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true}
+		      ,{field:'specialtyCode', title:'专业编码', width:'15%',align:'center' }
+		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
+		      ,{field:'date', title:'团队变更时间', width:'15%',align:'center' } 
+		      ,{field:'specialtyTeachers', title:'专业教师团队', width:'15%',align:'center' }
+		      ,{field:'partTimeTeachers', title:'兼职教师团队', width:'15%',align:'center' }
+		      ,{field:'director', title:'团队总负责人', width:'15%',align:'center' }
+		      ,{field:'latest', title:'是否最新', width:'15%',templet:'latest',align:'center'}
+		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center',hide:true }
 		      ,{field:'createUser', title:'创建人', width:130,align:'center',hide:true }
-		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center',hide:true }
-		      ,{field:'modifyUser', title:'修改人', width:130,align:'center',hide:true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150,align:'center'}
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center',hide:true }
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center',hide:true }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'15%',align:'center'}
 		    ]]
 	  ,done: function(res, page, count){
 			//如果是异步请求数据方式，res即为你接口返回的信息。
@@ -57,7 +57,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=teacher_team/teacher_team_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];

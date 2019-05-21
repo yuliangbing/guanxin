@@ -25,25 +25,25 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'name', title:'教师姓名', width:130,align:'center'}
-		      ,{field:'code', title:'教师编号', width:130,align:'center' }
-		      ,{field:'entryTime', title:'入职时间', width:150,align:'center' }
-		      ,{field:'birthday', title:'出生时间', width:150,align:'center' } 
-		      ,{field:'graduateSchool', title:'毕业院校', width:150,align:'center' }
-		      ,{field:'finalDegree', title:'最终学历学位', width:150,align:'center' }
-		      ,{field:'politicalStatus', title:'政治面貌', width:150,align:'center' }
-		      ,{field:'specialtyCode', title:'专业编码', width:150,hide:true}
-		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center' }
-		      ,{field:'researchDirection', title:'研究方向', width:150,align:'center' }
-		      ,{field:'isPartTime', title:'是否兼职', width:150,templet: '#isPartTime',align:'center' }
-		      ,{field:'director', title:'团队负责人', width:150,templet: '#director',align:'center' }
-		      ,{field:'specialtyId', title:'专业id', width:150,hide:true }
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:150,hide:true }
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center' }
-		      ,{field:'createUser', title:'创建人', width:150,align:'center' }
-		      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' }
-		      ,{field:'modifyUser', title:'修改人', width:130,align:'center' }
+		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'name', title:'教师姓名', width:'15%',align:'center'}
+		      ,{field:'code', title:'教师编号', width:'15%',align:'center' }
+		      ,{field:'entryTime', title:'入职时间', width:'15%',align:'center' }
+		      ,{field:'birthday', title:'出生时间', width:'15%',align:'center' } 
+		      ,{field:'graduateSchool', title:'毕业院校', width:'15%',align:'center' }
+		      ,{field:'finalDegree', title:'最终学历学位', width:'15%',align:'center' }
+		      ,{field:'politicalStatus', title:'政治面貌', width:'15%',align:'center' }
+		      ,{field:'specialtyCode', title:'专业编码', width:'15%',hide:true}
+		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
+		      ,{field:'researchDirection', title:'研究方向', width:'15%',align:'center' }
+		      ,{field:'isPartTime', title:'是否兼职', width:'15%',templet: '#isPartTime',align:'center' }
+		      ,{field:'director', title:'团队负责人', width:'15%',templet: '#director',align:'center' }
+		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true }
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true }
+		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' }
+		      ,{field:'createUser', title:'创建人', width:'15%',align:'center' }
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' }
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
 		    ]]
 		  });
@@ -59,7 +59,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=teachers/teachers_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['55%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -97,7 +97,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=teachers/teachers_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['55%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -133,7 +133,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=teachers/teachers_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['90%','90%']
+	  		area:['55%','75%']
 	  	});
 	  });
 	  //批量删除

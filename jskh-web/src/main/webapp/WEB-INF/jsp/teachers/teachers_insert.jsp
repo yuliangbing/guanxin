@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">教师姓名</label>
@@ -80,14 +80,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">是否兼职</label>
-					<div class="layui-input-block">
-						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" checked="checked">
-						<input type="radio" name="isPartTime" id="isPartTime"  value="1" title="否" class="layui-input" >					
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">专业</label>
+					<label class="layui-form-label" >专业</label>
 					<div class="layui-input-inline">
 						<select name="specialtyId"  id="specialtyId" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
@@ -95,7 +88,15 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
+					<label class="layui-form-label">是否兼职</label>
+					<div class="layui-input-block">
+						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" checked="checked">
+						<input type="radio" name="isPartTime" id="isPartTime"  value="1" title="否" class="layui-input" >					
+					</div>
+				</div>
+				
+				<div class="layui-inline" >
+					<label class="layui-form-label" >团队负责人</label>
 					<div class="layui-input-block">
 						<input type="radio" name="director" id="director" lay-filter="TeamMember"  value="1" title="是" class="layui-input" >
 						<input type="radio" name="director" id="director1" lay-filter="TeamMember"  value="2" title="否" class="layui-input" checked="checked">					
@@ -125,7 +126,6 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				//layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

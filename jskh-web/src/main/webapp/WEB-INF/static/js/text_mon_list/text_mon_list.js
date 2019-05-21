@@ -32,19 +32,19 @@
 				    ,toolbar:"#toolbarDemo"
 				    ,cols: [[ //表头
 				       {type:'checkbox', fixed: 'left'}
-				      ,{field:'id',title:'ID',align:'center',unresize: true}
-				      ,{field:'date',title:'出版时间',align:'center',width:200,unresize: true}
-				      ,{field:'name', title:'教材或专著名称',align:'center',width:200,unresize: true}
-				      ,{field:'press', title:'出版社',align:'center',width:200,unresize: true}
-				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:200,unresize: true}
-				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:200,unresize: true}
-				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:200,unresize: true}
-				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:200,unresize: true}
-				      ,{field:'createUser', title:'创建人',align:'center',width:200,unresize: true}
-				      ,{field:'createTime', title:'创建时间',align:'center',width:200,unresize: true}
-				      ,{field:'modifyUser', title:'修改人',align:'center',width:200,unresize: true}
-				      ,{field:'modifyTime', title:'修改时间',align:'center',width:200,unresize: true}
-				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:270,unresize: true}
+				      ,{field:'id',title:'ID',align:'center',width:'5%'}
+				      ,{field:'date',title:'出版时间',align:'center',width:'15%',}
+				      ,{field:'name', title:'教材或专著名称',align:'center',width:'15%',}
+				      ,{field:'press', title:'出版社',align:'center',width:'15%',}
+				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:'15%',}
+				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:'15%',}
+				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:'15%',}
+				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:'15%',}
+				      ,{field:'createUser', title:'创建人',align:'center',width:'15%',}
+				      ,{field:'createTime', title:'创建时间',align:'center',width:'15%',}
+				      ,{field:'modifyUser', title:'修改人',align:'center',width:'15%',}
+				      ,{field:'modifyTime', title:'修改时间',align:'center',width:'15%',}
+				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:'19%',}
 				      ]]
 				  });
 				
@@ -54,31 +54,29 @@
 	
 	
 	/*新增功能*/
-	form.on('submit(add)', function(data) {
-		layer.open({
-			type:2,
-			title:'添加窗口',
-			area:['90%','90%'],
-			anim:0,
-			shadeClose: false,
-			content: "/toPage?page=text_mon_list/text_mon_add"
-		});
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	   
-	 });
+				  $("#insert").click(function(){
+					  	layer.open({
+					  		title:"添加",
+					  		type:2,
+					  		content:['/toPage?page=text_mon_list/text_mon_add'],
+					  		maxmin:true,
+					  		resize:false,
+					  		area:['60%','75%']
+					  	});
+					  });
 
 
 			 //监听列工具事件
 			  table.on('tool(test)', function(obj){
 			    var data = obj.data;
 			    var layEvent = obj.event;
-			    if(layEvent === 'check'){//查看
+			    if(layEvent === 'detail'){//查看
 			    	
 			    	layer.open({
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=text_mon_list/text_mon_check',
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		//resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
@@ -119,7 +117,7 @@
 			    		content:'/toPage?page=text_mon_list/text_mon_midify',
 			    		maxmin:true,
 			    		resize:false,
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];
@@ -155,7 +153,7 @@
 //				    alert(JSON.stringify(checkStatus.data.id));
 				    
 				    switch(obj.event){
-				      case 'dels':
+				      case 'delData':
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));

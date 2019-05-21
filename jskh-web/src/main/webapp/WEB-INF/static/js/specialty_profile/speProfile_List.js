@@ -46,26 +46,28 @@ layui.use(['form', 'table', 'laydate'], function() {
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
+		    ,defaultToolbar: ['print', 'exports']
 		    ,url:window.path +'/specialtyProfile/getSpecialtyProfileList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'specialtyId', title:'专业id', width:150,hide:true } 
-		      ,{field:'specialtyName', title:'专业名称', width:150,align:'center'} 
-		      ,{field:'date', title:'年份', width:130,align:'center'}	     
-		      ,{field:'position', title:'专业定位', width:130,align:'center'}
-		      ,{field:'characteristic', title:'专业特色', width:130,align:'center'}
-		      ,{field:'directorId', title:'专业负责人Id', width:130, }
-		      ,{field:'directorName', title:'专业负责人姓名', width:150,align:'center'}
-		     ,{field:'branchIntroduction', title:'学院id', width:130, }
-		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
-		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
-		     // ,{field:'modify_time', title:'修改时间', width:150,  hide:true}
-		     // ,{field:'modify_user', title:'修改人', width:130, hide:true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237}
+		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true } 
+		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'} 
+		      ,{field:'date', title:'年份', width:'15%',align:'center'}	     
+		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
+		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
+		      //,{field:'directorId', title:'专业负责人Id', width:'15%',align:'center'}
+		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center'}
+		      //,{field:'branchIntroduction', title:'学院id', width:'15%',align:'center' }
+		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
+		      //,{field:'create_time', title:'创建时间', width:'15%',align:'center'}
+		      //,{field:'create_user', title:'创建人', width:'15%',align:'center'}
+		      //,{field:'modify_time', title:'修改时间', width:'15%',align:'center'}
+		      //,{field:'modify_user', title:'修改人', width:'15%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
@@ -81,7 +83,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=specialty_profile/speProfile_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -122,7 +124,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=specialty_profile/speProfile_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -178,7 +180,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=specialty_profile/speProfile_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['90%','90%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除

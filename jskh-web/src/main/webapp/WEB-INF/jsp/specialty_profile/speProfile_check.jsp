@@ -14,7 +14,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业负责人姓名</label>
+					<label class="layui-form-label" >专业负责人</label>
 					<div class="layui-input-inline"  >
 						<input name="directorName" id="directorName" disabled autocomplete="off" class="layui-input">
 					</div>

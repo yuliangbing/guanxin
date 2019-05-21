@@ -44,22 +44,22 @@
 				/*表格 */
 				var tableIns = table.render({
 					elem: '#demoList'
+					,defaultToolbar: ['print', 'exports']
 					,method:'post'
 					,id:'idTest'
 					,url: window.path +'/specialtyFiles/getSpecialtyFilesList' //数据接口
 					,page: true
 				    ,toolbar:'#toolbarDemo'
-				    ,defaultToolbar:true
 					,limits: [10, 15, 20,25] //每页条数的选择项，默认：[10,20,30,40,50,60,70,80,90]
 					,loading: true
 					,limit: 10
 					,cols: [
 						[ //表头
-							{type: 'checkbox', fixed: 'left',width:'8%'},
+							{type: 'checkbox', fixed: 'left'},
 							{
 								field: 'id',
 								title: '主键',
-								width: '10%',
+								width: '5%',
 								sort: true,
 								align: 'center'
 							}, {
@@ -76,48 +76,48 @@
 							}, {
 								field: 'name',
 								title: '文件名称',
-								width: '10%',
+								width: '15%',
 								align: 'center'
 							},{
 								field: 'urlFileName',
 								title: '上传的文件名称',
-								width: '14%',
+								width: '15%',
 								sort: false,
 								align: 'center'
 							},{
 								field: 'cateName',
 								title: '文件类型名称',
-								width: '10%',
+								width: '15%',
 								align: 'center'
 							}, {
 								field: 'reviser',
 								title: '修订人',
-								width: '10%',
+								width: '15%',
 								sort: false,
 								align: 'center'
 							}, {
 								field: 'specialtyId',
 								title: '专业id',
-								width: '10%',
+								width: '15%',
 								sort: false,
 								align: 'center',
 								hide:true
 							}, {
 								field: 'specialtyName',
 								title: '专业名称',
-								width: '10%',
+								width: '15%',
 								sort: false,
 								align: 'center'
 							},{
 								field: 'status',
 								title: '状态',
-								width: '10%',
+								width: '15%',
 								align: 'center',
 								hide:true//隐藏
 							},{
 								field: 'createUser',
 								title: '创建人',
-								width: '10%',
+								width: '15%',
 								sort: true,
 								align: 'center'
 							},{
@@ -129,7 +129,7 @@
 							},{
 								field: 'modifyUser',
 								title: '修改人',
-								width: '10%',
+								width: '15%',
 								sort: true,
 								align: 'center'
 							},{
@@ -142,7 +142,7 @@
 								fixed: 'right',
 								title: '操作',
 								toolbar: '#barDemo',
-								width: '24%',
+								width: '19%',
 								sort: false,
 								align: 'center'
 							}
@@ -173,16 +173,16 @@
 				});
 				
 				/*新增功能*/
-				form.on('submit(add)', function(data) {
-					layer.open({
-						type:2,
-						title:'添加窗口',
-						area:['90%','90%'],
-						anim:0,
-						content: "/toPage?page=specialty_files/specialty_add"
-					});
-					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-				});
+				$("#insert").click(function(){
+				  	layer.open({
+				  		title:"添加",
+				  		type:2,
+				  		content:['/toPage?page=specialty_files/specialty_add'],
+				  		maxmin:true,
+				  		resize:false,
+				  		area:['90%','90%']
+				  	});
+				  });
 				//监听工具条
 				table.on('tool(demoList)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 					var data = obj.data; //获得当前行数据
@@ -269,7 +269,7 @@
 					    var checkStatus = table.checkStatus(res.config.id);
 					    //console.log(checkStatus.data.length);
 					    switch(res.event){
-					      case 'dels':
+					      case 'delData':
 					        var data = checkStatus.data;
 					        var param = [{}];
 					      //  layer.alert(JSON.stringify(data));

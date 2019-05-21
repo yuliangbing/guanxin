@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">教师姓名</label>
@@ -80,14 +80,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">是否兼职</label>
-					<div class="layui-input-block">
-						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" >
-						<input type="radio" name="isPartTime" id="isPartTime1"  value="1" title="否" class="layui-input" >					
-					</div>
-				</div>
-				<div class="layui-inline">
-					<label class="layui-form-label">专业</label>
+					<label class="layui-form-label" >专业</label>
 					<div class="layui-input-inline">
 						<select name="specialtyId"  id="specialtyId" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
@@ -95,12 +88,21 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width: 33%;">团队负责人</label>
+					<label class="layui-form-label">是否兼职</label>
 					<div class="layui-input-block">
-						<input type="radio" name="director" id="director"   value="1" title="是"  class="layui-input" >
-						<input type="radio" name="director" id="director1"  value="2" title="否"  class="layui-input" >					
+						<input type="radio" name="isPartTime" id="isPartTime"  value="2" title="是" class="layui-input" >
+						<input type="radio" name="isPartTime" id="isPartTime1"  value="1" title="否" class="layui-input" >					
 					</div>
 				</div>
+				<div class="layui-inline" >
+					<label class="layui-form-label">团队负责人</label>
+					<div class="layui-input-block">
+						<input type="radio" name="director" id="director"   value="1" title="是" lay-filter="TeamMember"  class="layui-input" >
+						<input type="radio" name="director" id="director1"  value="2" title="否"  lay-filter="TeamMember" class="layui-input" >					
+					</div>
+				</div>
+				
+				
 			</div>
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>

@@ -31,58 +31,56 @@
 					    ,page: true
 					    ,cols: [[
 					      {type: 'checkbox', fixed: 'left'}
-					      ,{field:'id', title:'id', width:100,sort: true,align:'center',unresize: true}
-					      ,{field:'cateCode', title:'分类号', width:130,align:'center',unresize: true}
-					      ,{field:'name', title:'仪器名称', width:130,align:'center',unresize: true }
-					      ,{field:'modelNum', title:'型号', width:130,align:'center',unresize: true }
-					      ,{field:'specification', title:'规格', width:130,align:'center',unresize: true }
-					      ,{field:'sources', title:'仪器来源', width:130,align:'center',unresize: true }
-					      ,{field:'date', title:'购置日期', width:130,align:'center',unresize: true }
-					      ,{field:'totalAmount', title:'总金额', width:130,align:'center',unresize: true }
-					      ,{field:'countryCode', title:'国别码', width:130,align:'center',unresize: true }
-					      ,{field:'code', title:'资产编号', width:130,align:'center',unresize: true }
-					      ,{field:'manufacturer', title:'生产厂家', width:130,align:'center' ,unresize: true}
-					      ,{field:'usePerson', title:'领用人', width:130,align:'center' ,unresize: true}
-					      ,{field:'statusCode', title:'现状码', width:130,align:'center' ,unresize: true}
-					      ,{field:'trainingRoom', title:'所在实训室', width:130,align:'center',unresize: true }
-					      ,{field:'remark', title:'备注', width:130,align:'center',unresize: true }
-					      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',unresize: true}
-					      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',unresize: true}
-					      ,{field:'createTime', title:'创建时间', width:150,align:'center' ,unresize: true}
-					      ,{field:'createUser', title:'创建人', width:150,align:'center' ,unresize: true}
-					      ,{field:'modifyTime', title:'修改时间', width:150,align:'center' ,unresize: true}
-					      ,{field:'modifyUser', title:'修改人', width:130,align:'center' ,unresize: true}
-					      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center',unresize: true}
+					      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center',}
+					      ,{field:'cateCode', title:'分类号', width:'15%',align:'center',}
+					      ,{field:'name', title:'仪器名称', width:'15%',align:'center', }
+					      ,{field:'modelNum', title:'型号', width:'15%',align:'center', }
+					      ,{field:'specification', title:'规格', width:'15%',align:'center', }
+					      ,{field:'sources', title:'仪器来源', width:'15%',align:'center', }
+					      ,{field:'date', title:'购置日期', width:'15%',align:'center', }
+					      ,{field:'totalAmount', title:'总金额', width:'15%',align:'center', }
+					      ,{field:'countryCode', title:'国别码', width:'15%',align:'center', }
+					      ,{field:'code', title:'资产编号', width:'15%',align:'center', }
+					      ,{field:'manufacturer', title:'生产厂家', width:'15%',align:'center' ,}
+					      ,{field:'usePerson', title:'领用人', width:'15%',align:'center' ,}
+					      ,{field:'statusCode', title:'现状码', width:'15%',align:'center' ,}
+					      ,{field:'trainingRoom', title:'所在实训室', width:'15%',align:'center', }
+					      ,{field:'remark', title:'备注', width:'15%',align:'center', }
+					      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',}
+					      ,{field:'specialtyName', title:'专业名称',width:'15%',align:'center',}
+					      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' ,}
+					      ,{field:'createUser', title:'创建人', width:'15%',align:'center' ,}
+					      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' ,}
+					      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' ,}
+					      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center',}
 					    ]]
 					  });  
 
 	
 	
 	/*新增功能*/
-	form.on('submit(add)', function(data) {
-		layer.open({
-			type:2,
-			title:'添加窗口',
-			area:['90%','90%'],
-			anim:0,
-			content: "/toPage?page=teaching_assets/teaching_assets_add"
-		});
-		return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-	   
-	 });
-
+				  $("#insert").click(function(){
+					  	layer.open({
+					  		title:"添加",
+					  		type:2,
+					  		content:['/toPage?page=teaching_assets/teaching_assets_add'],
+					  		maxmin:true,
+					  		resize:false,
+					  		area:['60%','75%']
+					  	});
+					  });
 
 			 //监听列工具事件
 			  table.on('tool(test)', function(obj){
 			    var data = obj.data;
 			    var layEvent = obj.event;
-			    if(layEvent === 'check'){//查看
+			    if(layEvent === 'detail'){//查看
 			    	
 			    	layer.open({
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=teaching_assets/teaching_assets_check',
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
@@ -123,7 +121,7 @@
 			    		content:['/toPage?page=teaching_assets/teaching_assets_modify'],
 			    		maxmin:true,
 			    		resize:false,
-			    		area:['90%','90%'],
+			    		area:['60%','75%'],
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];
@@ -159,7 +157,7 @@
 //				    alert(JSON.stringify(checkStatus.data.id));
 				    
 				    switch(obj.event){
-				      case 'dels':
+				      case 'delData':
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));

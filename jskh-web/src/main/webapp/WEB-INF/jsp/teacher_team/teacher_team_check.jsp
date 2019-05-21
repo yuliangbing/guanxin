@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				<div class="layui-inline">
 					<label class="layui-form-label" style="width: 84px;">主键</label>
 					<div class="layui-input-inline">

@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 	       <div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
@@ -43,7 +43,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">专业负责人姓名</label>
+					<label class="layui-form-label">专业负责人</label>
 					<div class="layui-input-inline"  >
 						<input name="directorName" id="directorName"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -88,7 +88,6 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

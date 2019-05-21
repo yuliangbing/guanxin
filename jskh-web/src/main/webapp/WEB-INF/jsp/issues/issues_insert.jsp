@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">时间</label>
@@ -66,7 +66,7 @@
 				
 					<label  class="layui-form-label">获奖情况</label>
 					<div class="layui-input-inline">
-						<textarea  class="layui-textarea" id="awards_construction" style="width: 440%;"></textarea>
+						<textarea  class="layui-textarea" id="awards_construction" style="width: 272%;"></textarea>
 					</div>
 				
 				</div>
@@ -94,7 +94,6 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				//layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";

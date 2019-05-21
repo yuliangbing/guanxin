@@ -67,7 +67,7 @@
 						</div>
 					</div>
 			
-			<div style="margin-right: 20%; margin-top:10%;">
+			<div style="margin-left: 23%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>

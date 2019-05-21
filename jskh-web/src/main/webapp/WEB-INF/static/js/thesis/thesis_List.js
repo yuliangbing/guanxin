@@ -26,22 +26,22 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true,align:'center'}
-		      ,{field:'date', title:'发表时间', width:130,align:'center'}
-		      ,{field:'published_journal', title:'发表期刊', width:130,align:'center' }
-		      ,{field:'name', title:'论文题目', width:150,align:'center' }
-		      ,{field:'index_level', title:'索引或级别', width:150,align:'center' } 
-		      ,{field:'first_author', title:'第一作者', width:130,align:'center' }
-		      ,{field:'other_authors', title:'其他作者情况', width:130,align:'center' }
-		      ,{field:'specialty_id', title:'专业id', width:130,hide:true,align:'center' }
-		      ,{field:'specialty_name', title:'专业名称', width:130,align:'center'}
+		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'date', title:'发表时间', width:'15%',align:'center'}
+		      ,{field:'published_journal', title:'发表期刊', width:'15%',align:'center' }
+		      ,{field:'name', title:'论文题目', width:'15%',align:'center' }
+		      ,{field:'index_level', title:'索引或级别', width:'15%',align:'center' } 
+		      ,{field:'first_author', title:'第一作者', width:'15%',align:'center' }
+		      ,{field:'other_authors', title:'其他作者情况', width:'15%',align:'center' }
+		      ,{field:'specialty_id', title:'专业id', width:'15%',hide:true,align:'center' }
+		      ,{field:'specialty_name', title:'专业名称', width:'15%',align:'center'}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true,align:'center'}
-		      ,{field:'awards', title:'获奖情况', width:230,align:'center' }
-		      ,{field:'create_time', title:'创建时间', width:150,align:'center' }
-		      ,{field:'create_user', title:'创建人', width:150,align:'center' }
-		      ,{field:'modify_time', title:'修改时间', width:150,align:'center' }
-		      ,{field:'modify_user', title:'修改人', width:130,align:'center' }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237,align:'center'}
+		      ,{field:'awards', title:'获奖情况', width:'18%',align:'center' }
+		      ,{field:'create_time', title:'创建时间', width:'15%',align:'center' }
+		      ,{field:'create_user', title:'创建人', width:'15%',align:'center' }
+		      ,{field:'modify_time', title:'修改时间', width:'15%',align:'center' }
+		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
@@ -54,7 +54,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				title:"查看",
 	    		type:2,
 	    		content:'/toPage?page=thesis/thesis_check',
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		resize:false,
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
@@ -96,7 +96,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=thesis/thesis_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -131,7 +131,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=thesis/thesis_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['90%','90%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除

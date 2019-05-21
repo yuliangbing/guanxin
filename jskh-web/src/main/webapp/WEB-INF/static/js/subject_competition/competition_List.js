@@ -53,19 +53,19 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true ,align:'center'}
-		      ,{field:'date', title:'时间', width:130,align:'center'}	     
-		      ,{field:'name', title:'竞赛名称', width:150, align:'center'}
-		      ,{field:'awardLevel', title:'获奖级别', width:130, align:'center'}
-		      ,{field:'students', title:'获奖学生', width:130, align:'center'}
-		      ,{field:'teachers', title:'指导老师', width:130,align:'center' }
-		      ,{field:'specialtyName', title:'专业名称', width:130,align:'center' }
+		      ,{field:'id', title:'主键', width:'5%',sort: true ,align:'center'}
+		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
+		      ,{field:'name', title:'竞赛名称', width:'15%', align:'center'}
+		      ,{field:'awardLevel', title:'获奖级别', width:'15%', align:'center'}
+		      ,{field:'students', title:'获奖学生', width:'15%', align:'center'}
+		      ,{field:'teachers', title:'指导老师', width:'15%',align:'center' }
+		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
 		
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
-		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
-		     // ,{field:'modify_time', title:'修改时间', width:150,  hide:true}
-		     // ,{field:'modify_user', title:'修改人', width:130, hide:true }
+		     // ,{field:'create_time', title:'创建时间', width:'15%',  hide:true}
+		   //   ,{field:'create_user', title:'创建人', width:'15%', hide:true }
+		     // ,{field:'modify_time', title:'修改时间', width:'15%',  hide:true}
+		     // ,{field:'modify_user', title:'修改人', width:'15%', hide:true }
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237 ,align:'center'}
 		    ]]
 		  });  
@@ -81,7 +81,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=subject_competition/competition_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -121,7 +121,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=subject_competition/competition_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['90%','90%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -178,7 +178,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=subject_competition/competition_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['90%','90%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除

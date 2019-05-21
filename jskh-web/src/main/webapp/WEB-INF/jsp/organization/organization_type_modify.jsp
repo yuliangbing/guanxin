@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/js/organization/organization_type_modify.js"></script>
 </head>
-<body style="margin-left: 25%;">
+<body style="margin-left: 32%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div class="layui-inline">
@@ -25,7 +25,7 @@
 			
 			
 		
-			<div style="margin-right: -5%; margin-top:10%;">
+			<div style="margin-left: 8%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>

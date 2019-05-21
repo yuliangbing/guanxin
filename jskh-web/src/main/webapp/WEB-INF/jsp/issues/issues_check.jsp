@@ -13,7 +13,7 @@
 <body >
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				<div class="layui-inline">
 					<label class="layui-form-label">主键</label>
 					<div class="layui-input-inline">
@@ -91,7 +91,7 @@
 				
 					<label  class="layui-form-label">获奖情况</label>
 					<div class="layui-input-inline">
-						<textarea  class="layui-textarea" disabled id="awards_construction" style="width: 440%;"></textarea>
+						<textarea  class="layui-textarea" disabled id="awards_construction" style="width:272%;"></textarea>
 					</div>
 				
 				</div>
