@@ -11,7 +11,7 @@
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/thesis/thesis_List.js"></script>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
 
     <div>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">

@@ -15,10 +15,10 @@ function save() {
 	console.log("situationUEStr==" + situationUEStr);//控制台打印富文本框内容
 	console.log("characteristicUEStr==" + characteristicUEStr);
 	var params = {};
-	params.specialtyInfo = situationUEStr.getContent()
+	params.specialtyInfo = situationUEStr
 	params.date = $("#date").val();
-	params.branchCharacteristic = characteristicUE.getContent();
-	return false;
+	params.branchCharacteristic = characteristicUEStr;
+	layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 	$.ajax({
 		type : "POST",
 		url : '/branch/addBranch',
@@ -38,8 +38,13 @@ function save() {
 				}
 			}
 		},
-		error : function(code1) {
+		error : function(code) {
 			alert("发生错误,请联系管理员");
 		}
+		
 	});
+	 layer.close(index);
+	});
+			
+	return false;
 }

@@ -157,13 +157,13 @@ public class ForeignExchangeController extends BaseController {
 	    
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 	    //将传入的数据注入将要修改的数据中
-	    fExchange.setDate(fExchange.getDate());
-	    fExchange.setContent(fExchange.getContent());
-	    fExchange.setUnits(fExchange.getUnits());
-	    fExchange.setParticipants(fExchange .getParticipants());
-	    fExchange.setAchievements(fExchange.getAchievements());
-	    fExchange.setSpecialtyId(fExchange.getSpecialtyId());
-	    fExchange.setSpecialtyName(fExchange.getSpecialtyName());
+	    fExchange.setDate(date);
+	    fExchange.setContent(content);
+	    fExchange.setUnits(units);
+	    fExchange.setParticipants(participants);
+	    fExchange.setAchievements(achievements);
+	    fExchange.setSpecialtyId(specialtyId);
+	    fExchange.setSpecialtyName(specialtyName);
 	    fExchange.setModifyTime(new Date());
 	    fExchange.setModifyUser(user.getTeaName());
 	    

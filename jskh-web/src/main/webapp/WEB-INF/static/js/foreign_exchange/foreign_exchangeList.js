@@ -26,7 +26,7 @@
 	   // ,height: 312
 	    ,defaultToolbar: ['print', 'exports']
 	    ,method:'post'
-	    ,url: window.path +'/foreignExchange/getForeignExchangeList' //数据接口
+	    ,url: '/foreignExchange/getForeignExchangeList' //数据接口
 	  //  ,data:[{"id":1,"name":'jsdgufay'}]
 	    ,page: true //开启分页
 	    ,toolbar:"#toolbarDemo"

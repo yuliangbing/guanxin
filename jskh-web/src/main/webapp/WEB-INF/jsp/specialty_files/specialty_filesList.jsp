@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/static/public/css/specialty_files/specialty_filesList.css">
 
 </head>
-		<body class="layui-layout-body" style="background-color: #ffff;padding: 10px;"  >
+		<body class="layui-layout-body" style="background-color: #ffff;padding: 10px;position:absolute; height:400px; overflow:auto"  >
 		<div class="layui-layout layui-layout-admin">
 
 			<!--<div class="layui-body">-->

@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/js/foreign_exchange/foreign_exchange_modify.js"></script>
 </head>
-<body style="margin-left: 25%;">
+<body style="margin-left: 10%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div>
@@ -81,7 +81,7 @@
             </div>
          
 			</div>
-			<div style="margin-right: -5%; margin-top:10%;">
+			<div style="margin-left:20%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>

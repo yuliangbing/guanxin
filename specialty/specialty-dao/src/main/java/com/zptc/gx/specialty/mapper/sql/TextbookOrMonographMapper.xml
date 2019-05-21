@@ -191,12 +191,12 @@
     <include refid="Base_Column_List" />
     from textbook_or_monograph
     <where>
-    	<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
+    	<!--  <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
-		</if>
-		<if test="first_author != null and first_author != ''">
-			and instr(first_author,#{first_author,jdbcType=VARCHAR})
 		</if> -->
+		<if test="name != null and name != ''">
+					and instr(name,#{name,jdbcType=VARCHAR})
+		</if>
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
 		</if>
@@ -212,10 +212,7 @@
 			<where>
 				<!-- <if test="date1 != null and date1 != ''and date2 != null and date2 !=''">
 					and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
-				</if>
-				<if test="first_author != null and first_author != ''">
-					and instr(first_author,#{first_author,jdbcType=VARCHAR})
-				</if> -->
+				</if>-->
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
 				</if>

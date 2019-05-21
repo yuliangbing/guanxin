@@ -51,7 +51,7 @@ public class BrachController extends BaseController {
 		    String name = ToolUtil.str("name", request);
 		    String specialtyInfo = ToolUtil.str("specialtyInfo", request);
 		    String branchCharacteristic = ToolUtil.str("branchCharacteristic", request);
-		    Date date = ToolUtil.date1("date", request);
+		    Date date = ToolUtil.date2("date", request);
 		    Integer status = ToolUtil.integer("status", request);
 		    
 		    BranchIntroduction branch = new BranchIntroduction();

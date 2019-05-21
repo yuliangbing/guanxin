@@ -12,7 +12,7 @@
 <script type="text/javascript" src="${path}/static/js/specialty_profile/speProfile_List.js"></script>
 <title>浙江邮电职业技术学院管理系统</title>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
 
     <div>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">

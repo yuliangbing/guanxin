@@ -116,7 +116,7 @@
 			    	layer.open({
 			    		title:"编辑",
 			    		type:2,
-			    		content:['/toPage?page=text_mon_list/text_mon_modify'],
+			    		content:'/toPage?page=text_mon_list/text_mon_midify',
 			    		maxmin:true,
 			    		resize:false,
 			    		area:['90%','90%'],

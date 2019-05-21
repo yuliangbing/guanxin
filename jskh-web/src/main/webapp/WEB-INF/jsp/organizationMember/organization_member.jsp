@@ -5,12 +5,13 @@
 <head>
 <meta charset="utf-8">
 <title>组织机构成员</title>
-<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
-<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
+<link rel="stylesheet" href="/static/public/layui/css/layui.css">
+<link rel="stylesheet" href="/static/public/css/xadmin.css">
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/organizationMember/organization_member_List.js"></script>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
      <div class="layui-layout layui-layout-admin">
      <!--<div class="layui-body">-->
 				<div class="layui-row layui-col-space15">

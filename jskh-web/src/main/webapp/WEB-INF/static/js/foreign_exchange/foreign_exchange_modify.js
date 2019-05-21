@@ -5,8 +5,10 @@
  */
 	// 初始化赋值
 	var specialty_name = "";
+	var id = "";
 	function init(data) {
 		//$("#status").val(data.status);
+		id = data.id
 		$("#id").val(data.id);
 		$("#date").val(data.date);
 		$("#content").val(data.content);
@@ -120,7 +122,7 @@
 		 	form.on('submit(submit)', function(data) { 
 				/*获取$值存入params */
 				var params = {};
-				//params.id = $("#id").val();
+				params.id = id;
 				params.date = $("#date").val();
 				params.content = $("#content").val();
 				params.units = $("#units").val();
@@ -132,7 +134,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/EnrollmentHistory/updateEnrollmentHistory?id='+id,
+					        url:'/foreignExchange/updateForeignExchange',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

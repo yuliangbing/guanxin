@@ -10,7 +10,7 @@
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script type="text/javascript" src="${path}/static/js/text_mon_list/text_mon_list.js"></script>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
      <div class="layui-layout layui-layout-admin">
      <!--<div class="layui-body">-->
 				<div class="layui-row layui-col-space15">
@@ -22,7 +22,7 @@
 								<div class="layui-inline">
 									<label class="layui-form-label" for="code">教材或专著名称</label>
 									<div class="layui-input-inline">
-										<input type="text" id="code" name="code" lay-verify="" placeholder="请输入教材或专著名称" autocomplete="off" class="layui-input">
+										<input type="text" id="name" name="name" lay-verify="" placeholder="请输入教材或专著名称" autocomplete="off" class="layui-input">
 									</div>
 								</div>
 		

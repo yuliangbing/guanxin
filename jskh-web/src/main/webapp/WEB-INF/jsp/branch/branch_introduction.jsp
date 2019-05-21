@@ -8,16 +8,18 @@
 <meta charset="utf-8">
 <title>学院介绍</title>
 <style type="text/css">
-.my-label {
+/* .my-label {
 	width: 100px;
 }
-
 .my-input-block {
 	margin-left: 130px;
-}
+} */
 </style>
+<link rel="stylesheet" href="/static/public/layui/css/layui.css">
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+<script type="text/javascript" src="${path}/static/js/branch/branch_introduction.js"></script>
 </head>
-<body>
 <body class="all">
 	<h1 style="text-align: center;">学院简介</h1>
 	<div>
@@ -52,7 +54,6 @@
 			</div>
 		</div>
 	</div>
-</body>
 </body>
 <script type="text/javascript"
 	src="${path}/static/js/branch/branch_introduction.js"></script>

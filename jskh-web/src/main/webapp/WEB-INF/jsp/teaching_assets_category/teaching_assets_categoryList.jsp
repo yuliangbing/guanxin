@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" src="${path}/static/js/teaching_assets_category/teaching_assets_categoryList.js"></script>
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
      <div class="layui-layout layui-layout-admin">
      <!--<div class="layui-body">-->
 				<div class="layui-row layui-col-space15">

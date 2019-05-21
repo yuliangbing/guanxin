@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/js/foreign_exchange/foreign_exchange_check.js"></script>
 </head>
-<body style="margin-left: 25%;">
+<body style="margin-left: 15%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div>

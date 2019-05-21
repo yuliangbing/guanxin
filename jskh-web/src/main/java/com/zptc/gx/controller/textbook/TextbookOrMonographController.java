@@ -48,6 +48,7 @@ public class TextbookOrMonographController extends BaseController {
 	public JsonResult getTextbookOrMonographList(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("列表信息");
+		String name = ToolUtil.str("name", request);
 		Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 		Map<String, Object> data = new HashMap<>();
@@ -56,6 +57,7 @@ public class TextbookOrMonographController extends BaseController {
 	    //用于分页的数据
 	    pages = pageVO.getBeginNum();
 	    //存入data,用于获取表格数据
+	    data.put("name", name);
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
   		data.put("status", 1);
