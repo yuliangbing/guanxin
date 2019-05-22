@@ -61,11 +61,23 @@ public class SpecialtyFilesServiceImpl implements SpecialtyFilesService {
 		// TODO Auto-generated method stub
 		return specialtyFilesMapper.selectCounts(count);
 	}
+	//统计文件类型相同条数
+	@Override
+	public int nameCounts(Map<String,Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyFilesMapper.nameCount(count);
+	}
 	//根据status修改状态（删除，@Transactional是回滚）
 	@Override
 	@Transactional
 	public int modifSpecialtyFilesDel(SpecialtyFiles specialtyFiles) {
 		// TODO Auto-generated method stub
 		return specialtyFilesMapper.updateByPrimaryKeyDel(specialtyFiles);
+	}
+	//统计相同专业的数据条数
+	@Override
+	public int specialtyCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyFilesMapper.specialtyCount(count);
 	}
 }

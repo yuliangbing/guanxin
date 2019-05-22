@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.SSLEngineResult.Status;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,6 +32,36 @@ public class SpecialtyController extends BaseController {
 	@Autowired
 	private SpecialtyService specialtyService; 
 	private Integer status; 
+	
+	/**
+	 * 获得从建校起到date时间段内的所有专业数量
+	 */
+	@RequestMapping("/specialtyCounts")
+	@ResponseBody
+	public JsonResult specialtyCounts(HttpServletRequest request, HttpServletResponse response) {
+		JsonResult jsonResult = new JsonResult();
+	    String setup_date = ToolUtil.str("setup_date", request);//当前时间
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+		count.put("setup_date", setup_date);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		//String msg = "success";
+		try {
+			counts = specialtyService.datesCounts(count);
+			//返回接口的具体数据
+			jsonResult = JsonResult.build(counts);
+			System.out.println("获得的数据："+count);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
 	/**
 	 * 获取下拉列表专业id的，不要修改
 	 * @param request

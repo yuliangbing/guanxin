@@ -73,4 +73,10 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 		// TODO Auto-generated method stub
 		return specialtyMapper.SpecialtyLists(data);
 	}
+	//获取在这个时间之前包括该时间段中的专业数量
+	@Override
+	public int datesCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return specialtyMapper.dateCounts(count);
+	}
 }

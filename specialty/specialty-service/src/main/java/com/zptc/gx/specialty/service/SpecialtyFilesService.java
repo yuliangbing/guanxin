@@ -26,4 +26,8 @@ public interface SpecialtyFilesService {
 	
 	//根据status修改状态（删除）
 	public int modifSpecialtyFilesDel(SpecialtyFiles specialtyFiles);
+	//统计相同name的数据条数
+	public int nameCounts(Map<String, Object> count);
+	//统计相同专业的数据条数
+	public int specialtyCounts(Map<String, Object> count);
 }

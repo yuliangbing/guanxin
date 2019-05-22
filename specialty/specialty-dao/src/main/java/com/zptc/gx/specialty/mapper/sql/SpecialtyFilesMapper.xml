@@ -282,4 +282,37 @@
 	    </set>  
 	    where id = #{id,jdbcType=BIGINT}
   </update>
+  <!--统计相同文件类型的数据条数-->
+  <select id="nameCount" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_files
+			<where>
+				<if test="cate_name != null and cate_name != ''">
+					and cate_name = #{cate_name,jdbcType=VARCHAR}
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+		</where>
+	</select>
+	  <!--统计相同专业的数据条数-->
+  <select id="specialtyCount" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty_files
+			<where>
+				<if test="specialty_name != null and specialty_name != ''">
+					and specialty_name = #{specialty_name,jdbcType=VARCHAR}
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+				<if test="specialty_name != null and specialty_name != ''">
+					and url_file_name != ""
+				</if>
+		</where>
+	</select>
 </mapper>

@@ -28,4 +28,6 @@ public interface SpecialtyMapper {
 	int selectCounts(Map<String,Object> counts);
 	//根据status修改状态（删除）
 	int updateByPrimaryKeyDel(Specialty specialty);
+	//获取在这个时间之前包括该时间段中的专业数量
+	int dateCounts(Map<String, Object> count);
 }

@@ -31,4 +31,6 @@ public interface SpecialtyService {
 	
 	//根据status修改状态（删除）
 	public int modifSpecialtyDel(Specialty specialty);
+	//获取在这个时间之前包括该时间段中的专业数量
+	public int datesCounts(Map<String, Object> count);
 }

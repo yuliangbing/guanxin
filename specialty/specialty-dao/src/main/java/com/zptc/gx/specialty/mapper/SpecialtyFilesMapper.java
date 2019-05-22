@@ -24,4 +24,8 @@ public interface SpecialtyFilesMapper {
 	int selectCounts(Map<String,Object> counts);
 	//根据status修改状态（删除）
 	int updateByPrimaryKeyDel(SpecialtyFiles specialtyFilesId);
+	//统计相同name的数据
+	int nameCount(Map<String, Object> count);
+	//统计相同专业的数据条数
+	int specialtyCount(Map<String, Object> count);
 }

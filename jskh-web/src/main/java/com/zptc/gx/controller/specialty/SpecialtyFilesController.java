@@ -31,6 +31,71 @@ public class SpecialtyFilesController extends BaseController {
 	@Autowired
 	private SpecialtyFilesService specialtyFilesService; 
 	
+
+	/*获得某专业文件数量数据统计的方法*/
+	
+	@RequestMapping("/specialtyFilesCounts")
+	@ResponseBody
+	public JsonResult specialtyFilesCounts(HttpServletRequest request, HttpServletResponse responses) {
+		
+		JsonResult jsonResult = new JsonResult();
+		//获取请求参数
+		
+	    String specialty_name = ToolUtil.str("specialty_name", request);
+	
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+		count.put("specialty_name", specialty_name);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		//String msg = "获取成功";
+		try {
+			//获取所有status == 1 和 name = name的数据条总数
+			counts = specialtyFilesService.specialtyCounts(count);
+			//返回接口的具体数据
+			jsonResult = JsonResult.build(counts);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
+	/*获得文件类型数据统计的方法*/
+	
+	@RequestMapping("/FilesCounts")
+	@ResponseBody
+	public JsonResult FilesCounts(HttpServletRequest request, HttpServletResponse responses) {
+		
+		JsonResult jsonResult = new JsonResult();
+		//获取请求参数
+		
+	    String cate_name = ToolUtil.str("cate_name", request);
+	
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+		count.put("cate_name", cate_name);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		//String msg = "获取成功";
+		try {
+			//获取所有status == 1 和 name = name的数据条总数
+			counts = specialtyFilesService.nameCounts(count);
+			//返回接口的具体数据
+			jsonResult = JsonResult.build(counts);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
 	/*获取列表*/
 	
 	@RequestMapping("/getSpecialtyFilesList")
@@ -66,7 +131,7 @@ public class SpecialtyFilesController extends BaseController {
 		System.out.println("pages:"+pages);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-		count.put("counts", count);
+		//count.put("counts", count);
 		count.put("code", code);
 		count.put("name", name);
 		count.put("cate_name", cate_name);
@@ -87,7 +152,7 @@ public class SpecialtyFilesController extends BaseController {
 			//返回接口的具体数据
 			//jsonResult = jsonResult.build(0, specialtyFilesList, msg, counts);
 			jsonResult = JsonResult.build(0, specialtyFilesList, msg, counts);
-			System.out.println("获得的数据："+data);
+			//System.out.println("获得的数据："+specialtyFilesList.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -50,7 +50,7 @@
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src="/toPage?page='desktop'" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src="/toPage?page=statistics_page/statics_page" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

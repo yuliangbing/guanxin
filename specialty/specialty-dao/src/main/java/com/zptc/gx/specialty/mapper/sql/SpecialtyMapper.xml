@@ -213,4 +213,19 @@
 	    </set>  
 	    where id = #{id,jdbcType=BIGINT}
  	</update>
+ 	<!-- 获取在这个时间之前包括该时间段中的专业数量 -->
+ 	 <select id="dateCounts" resultType="int" parameterType="map">
+		select
+			count(*)
+		from
+			specialty
+			<where>
+				<if test="setup_date != null and setup_date != ''">
+					and setup_date <![CDATA[ <= ]]>  #{setup_date,jdbcType=VARCHAR}
+				</if>
+				<if test="status !=null and status != ''">
+					and status = #{status,jdbcType=INTEGER}
+				</if>
+			</where>
+	</select>
 </mapper>
