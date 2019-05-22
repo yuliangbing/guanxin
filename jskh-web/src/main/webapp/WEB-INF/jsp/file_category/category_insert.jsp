@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
 				
 				<div class="layui-inline">
@@ -29,7 +29,8 @@
 						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
-				<div class="layui-inline">
+				</div>
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label"">创建时间</label>
 					<div class="layui-input-inline">
 						<input name="create_time" id="create_time"  autocomplete="off" class="layui-input" type="text">
@@ -52,12 +53,12 @@
 					<div class="layui-input-inline">
 						<input name="modify_user" id="modify_user"  autocomplete="off" class="layui-input" type="text">
 					</div>
-				</div>
+				</div> -->
 			<div style="text-align:center;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>
-			</div>
+			
 		</form>
 	</body>
 		<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>

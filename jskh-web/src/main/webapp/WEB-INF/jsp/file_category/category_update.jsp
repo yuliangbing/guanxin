@@ -13,7 +13,7 @@
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:10%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
 				
                 <div class="layui-inline">
 					<label class="layui-form-label">类型编号</label>
@@ -22,7 +22,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">类型名称</label>
+					<label class="layui-form-label">类型名称</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">创建人</label>
+					<label class="layui-form-label">创建人</label>
 					<div class="layui-input-inline">
 						<input name="create_user" id="create_user"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">修改人</label>
+					<label class="layui-form-label">修改人</label>
 					<div class="layui-input-inline">
 						<input name="modify_user" id="modify_user"  autocomplete="off" class="layui-input" type="text">
 					</div>
