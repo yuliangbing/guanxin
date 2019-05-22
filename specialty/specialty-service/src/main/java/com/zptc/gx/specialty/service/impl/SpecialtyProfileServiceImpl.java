@@ -26,8 +26,12 @@ public class SpecialtyProfileServiceImpl implements SpecialtyProfileService {
 		return count;
 	}
 	@Override
-	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile){
-		return specialtyProfileMapper.updateByPrimaryKeySelective(specialtyProfile);
+	@Transactional
+	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile, boolean changeFlag){
+		int count = 0;
+		count += specialtyProfileMapper.updateBySpecialtyId(specialtyProfile.getSpecialtyId());
+		count += specialtyProfileMapper.updateByPrimaryKeySelective(specialtyProfile);
+		return count;
 	}
 	@Override
 	public void deleteSpecialtyProfileById(Long id){

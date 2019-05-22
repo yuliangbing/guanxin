@@ -172,10 +172,14 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	   // System.out.println("判断返回的值"+(ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)));
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 //		//根据specialtyProfileId
+	    boolean changeFlag = false;
 	    SpecialtyProfile specialtyProfile = specialtyProfileService.findSpecialtyProfileById(id);
 	    if (specialtyProfile == null) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "没有该专业！");
 			return jsonResult;
+		}
+	    if (!specialtyProfile.getSpecialtyId().equals(specialty_id)) {
+	    	changeFlag = true;
 		}
 	    specialtyProfile.setDate(date);
 	    System.out.println(date);
@@ -202,7 +206,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 			try {
 			    //接口拿到的数据
 			    System.out.println("updateSpecialtyProfileIf方法拿到的数据："+specialtyProfile.toString());
-			    int result = specialtyProfileService.modifySpecialtyProfile(specialtyProfile);
+			    int result = specialtyProfileService.modifySpecialtyProfile(specialtyProfile, changeFlag);
 			    if (result > 0) {
 			    	jsonResult = JsonResult.build(FLAG_SUCCESS);
 				} else {
