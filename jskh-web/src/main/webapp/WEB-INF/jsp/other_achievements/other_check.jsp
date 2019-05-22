@@ -5,10 +5,11 @@
 <%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
-<link rel="stylesheet" href="/static/public/layui/css/layui.css">
-<link rel="stylesheet" href="/static/public/css/xadmin.css">
-<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
-<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
+
 <title></title>
 </head>
 <body>
@@ -29,7 +30,7 @@
 				</div>
 				
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果名称</label>
+					<label class="layui-form-label" >成果名称</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name" disabled autocomplete="off" class="layui-input">
 					</div>
@@ -42,7 +43,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">成果级别</label>
+					<label class="layui-form-label">成果级别</label>
 					<div class="layui-input-inline">
 						<input name="level" id="level" disabled autocomplete="off" class="layui-input">
 					</div>
@@ -54,7 +55,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label" style="width:85px;">其他作者情况</label>
+					<label class="layui-form-label">其他作者</label>
 					<div class="layui-input-inline"  >
 						<input name="other_author" id="other_author" disabled autocomplete="off" class="layui-input">
 					</div>
@@ -70,8 +71,8 @@
 		</form>
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-   	<script src="${path}/static/public/lib/layui/layui.js" type="text/javascript" charset="utf-8"></script>
-   	<script>
+  		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script>
    	function init(data) {
 
    		//$("#id").val(data.date);

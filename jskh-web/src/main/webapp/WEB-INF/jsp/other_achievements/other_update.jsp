@@ -5,8 +5,10 @@
 <%@ include file="/WEB-INF/Common.jsp"%>
 <html>
 <head>
-<link rel="stylesheet" href="/static/public/layui/css/layui.css">
-<link rel="stylesheet" href="/static/public/css/xadmin.css">
+<link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+<script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
 
 <title></title>
 </head>
@@ -22,7 +24,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果名称</label>
+					<label class="layui-form-label">成果名称</label>
 					<div class="layui-input-inline">
 						<input name="name" id="name"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -35,7 +37,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">成果级别</label>
+					<label class="layui-form-label">成果级别</label>
 					<div class="layui-input-inline">
 						<input name="level" id="level"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -47,7 +49,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label"style="width:85px;">其他作者情况</label>
+					<label class="layui-form-label">其他作者</label>
 					<div class="layui-input-inline">
 						<input name="other_authors" id="other_authors"  autocomplete="off" class="layui-input" type="text">
 					</div>
@@ -69,10 +71,8 @@
 			</div>
 		</form>
 	</body>
-	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<%-- 	<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script> --%>
-	<script type="text/javascript" src="${path}/static/js/other_achievements/other_List.js"></script>
-	<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
+<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+  		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
 	<script>
 	//表格数据传值
 	var id = 0;

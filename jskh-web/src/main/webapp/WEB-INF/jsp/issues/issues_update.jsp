@@ -79,7 +79,6 @@
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
   		<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script>
-  		<script type="text/javascript" src="${path}/static/js/date.js" charset="utf-8"></script>
 	<script>
 	//表格数据传值
 	var id = 0;
