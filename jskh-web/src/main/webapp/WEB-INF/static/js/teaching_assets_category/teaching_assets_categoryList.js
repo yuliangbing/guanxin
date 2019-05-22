@@ -9,7 +9,8 @@ layui.use('element', function() {
 			//时间控件
 			var laydate = layui.laydate;
 			laydate.render({
-			elem: '#date'
+			elem: '#date',
+			range: true
 			});
 
     

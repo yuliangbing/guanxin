@@ -15,7 +15,7 @@
 				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#date',
-				//range: true //或 range: '~' 来自定义分割字符
+				range: true //或 range: '~' 来自定义分割字符
 				});
 			
 
@@ -32,7 +32,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'5%'}
+	      ,{field:'id',title:'主键',align:'center',width:'8%'}
 	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
 	      ,{field:'content',title:'交流学习内容',width:'15%',align:'center',}
 	      ,{field:'units', title:'单位',width:'15%',align:'center',}

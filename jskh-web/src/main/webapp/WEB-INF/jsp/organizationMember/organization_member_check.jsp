@@ -11,7 +11,7 @@
 <script src="${path}/static/js/organizationMember/organization_member_check.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 </head>
-<body style="margin-left: 32%;">
+<body style="margin-left: 20%;">
 <form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;" >
 				<div class="layui-inline">

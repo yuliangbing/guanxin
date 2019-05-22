@@ -15,7 +15,7 @@
 				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#date',
-				//range: true //或 range: '~' 来自定义分割字符
+				range: true //或 range: '~' 来自定义分割字符
 				});
 			
 
@@ -31,7 +31,7 @@
 					    ,page: true
 					    ,cols: [[
 					      {type: 'checkbox', fixed: 'left'}
-					      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center',}
+					      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center',}
 					      ,{field:'cateCode', title:'分类号', width:'15%',align:'center',}
 					      ,{field:'name', title:'仪器名称', width:'15%',align:'center', }
 					      ,{field:'modelNum', title:'型号', width:'15%',align:'center', }

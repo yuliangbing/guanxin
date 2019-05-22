@@ -31,7 +31,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'5%',sort: true}
+	      ,{field:'id',title:'主键',align:'center',width:'8%',sort: true}
 	      ,{field:'position',title:'职务',align:'center',width:'15%'}
 	      ,{field:'name', title:'成员姓名',align:'center',width:'15%'}
 	      ,{field:'create_user', title:'创建人',align:'center',width:'15%'}

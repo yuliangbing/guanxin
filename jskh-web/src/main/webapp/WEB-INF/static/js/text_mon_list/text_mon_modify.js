@@ -27,6 +27,11 @@
 
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
+             var laydate = layui.laydate;
+			
+			laydate.render({
+				elem: '#date' //指定元素
+			});
 		
 			 //提交
 			form.on('submit(submit)', function(data) {

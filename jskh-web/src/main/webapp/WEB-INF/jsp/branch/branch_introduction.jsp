@@ -50,7 +50,7 @@
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="submit" onclick="save()">保存</button>
-				<button type="cancel" class="layui-btn layui-btn-primary">取消</button>
+				<button type="cancel" class="layui-btn layui-btn-danger">取消</button>
 			</div>
 		</div>
 	</div>
