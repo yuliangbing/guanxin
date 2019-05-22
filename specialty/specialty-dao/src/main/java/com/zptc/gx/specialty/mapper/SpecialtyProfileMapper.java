@@ -23,5 +23,7 @@ public interface SpecialtyProfileMapper {
     int updateByPrimaryKeyDel(SpecialtyProfile record);
 
 	int selectCounts(Map<String, Object> count);
+	// 获取相同专业id，且status==1的数据
+	List<SpecialtyProfile> selectByIdAndStatus(Map<String, Object> map);
 	
 }

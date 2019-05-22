@@ -1,11 +1,14 @@
 /**
- * 折线图的js
+ * 专业时间轴的js
  */
 	
 	var url = "";
 	var param = "";
 	var counts = "";
 	var  rows = "";
+	url = '/specialty/getSpecialtyList';
+	ajax_hx(url);
+	
 	//获取到专业设立时间
 	function ajax_hx(url) {
         	$.ajax({
@@ -17,13 +20,13 @@
         			sort(data);
         			//console.log(JSON.stringify(data));
         			for(var i=0;i < rows.length;i++){
-        				if(param == ""){
+        				if(param == ""){//取出所有排序好的时间
         					param  = rows[i].setupDate.split(' ')[0];
-        					ajax_date(param);
         				}else{
 	       					param += ","+rows[i].setupDate.split(' ')[0];
-	       					ajax_date(rows[i].setupDate.split(' ')[0]);
         				}
+        				ajax_profile(rows[i].id,rows[i].setupDate.split(' ')[0],rows[i].name);//去拿该专业里的各种数据
+        				//console.log(rows[i]);
         			}
         			
         			//console.log(param);
@@ -34,7 +37,7 @@
         	});
         }
 	
-	
+	//时间升序
 	function sort(data){
 		  	rows = data.data;  //
 		    rows.sort(function(a,b){
@@ -44,74 +47,41 @@
 		        console.log(" | " + rows[i].setupDate.split(' ')[0]); //输出
 		    }
 		    console.log("rows:"+JSON.stringify(rows));//输出
-*/		
+		*/
 		}
 	
-	//查从建校日期到该时间的专业数量
-    function ajax_date(param) {
+	
+	
+		function ajax_profile(ids,date,name) {
     	// 获取下拉列表(公共方法)
     	$.ajax({
-    		url :'/specialty/specialtyCounts',
+    		url :'specialtyProfile/ByIdSpecialtyProfile',
     		type : "POST",
     		dataType : "json",
-    		data:{setup_date:param},
+    		data:{specialty_id:ids},
     		async:false,
     		success : function(data) {
-    			
-    				 if(counts == ""){
-    					counts = data.code;
-    					
-    				}else{
-    					counts += ","+data.code;
-    					//console.log(counts);
-    				} 
-    				//console.log("全部的counts:"+counts);
-    			console.log(JSON.stringify(data));
+    				var obj2 = eval(data); //使用eval方法
+    				
+	    			 var h = "";
+	                 
+	                 h += '<i class="layui-icon layui-timeline-axis">&#xe63f;</i>'
+	 				    +'<div class="layui-timeline-content layui-text ">'
+				      +'<h3 class="layui-timeline-title">'+date+'</h3>'+
+				      '<p>'
+				      	+'<a style="color:red;">'+name+'</a>专业诞生了'+'&nbsp;<i class="layui-icon" style="font-size: 17px; color: #d2ffa7;"></i>'
+				        +'<br>'+'本专业'+'<a style="color:blue;">定位</a>'+'为'+'<a style="color:red;">-----</a>'+obj2.data[0].position
+				        +'<br>'+'本专业'+'<a style="color:#cee6ff;">特色</a>'+'为'+'<a style="color:yellow;">-----------</a>'+obj2.data[0].characteristic +
+				      '</p>'+
+				    '</div>'+'<hr class="layui-bg-orange">';
+	                
+	                 $("#Timeline").append(h);
+	    			
     		},
     		error : function(code) {
     			layer.alert("发生错误,请联系管理员");
     		}
     	});
-    }
+		}
 	
-	// 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById('main1'));
-    // 专业设立时间
-	url = '/specialty/getSpecialtyList';
-	ajax_hx(url);
-	var date = param.split(',');
-	var sum = counts.split(',');
-	console.log(sum);
-    // 指定图表的配置项和数据
-    var option = {
-        grid: {
-            top: '5%',
-            right: '1%',
-            left: '1%',
-            bottom: '10%',
-            containLabel: true
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        xAxis: {
-            type: 'category',
-            data: date
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            name:'专业数量',
-            data: sum,
-            type: 'line',
-            smooth: true
-        }]
-    };
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-
-
-
 	

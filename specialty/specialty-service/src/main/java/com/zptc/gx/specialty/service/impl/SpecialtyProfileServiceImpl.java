@@ -51,4 +51,10 @@ public class SpecialtyProfileServiceImpl implements SpecialtyProfileService {
 		// TODO Auto-generated method stub
 		return specialtyProfileMapper.updateByPrimaryKeyDel(specialtyProfile);
 	}
+	// 获取相同专业id，且status==1的数据
+	@Override
+	public List<SpecialtyProfile> findSpecialtyProfileByIdAndStatus(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return specialtyProfileMapper.selectByIdAndStatus(map);
+	}
 }

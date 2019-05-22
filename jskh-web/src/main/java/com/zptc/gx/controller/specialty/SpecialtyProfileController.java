@@ -23,7 +23,11 @@ import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.service.SpecialtyProfileService;
 import com.zptc.gx.util.ToolUtil;
 import com.zptc.gx.vo.PageVO;
-
+/**
+ * 专业概况接口
+ * @author Administrator
+ *
+ */
 @Controller
 @RequestMapping("specialtyProfile")
 public class SpecialtyProfileController extends BaseController{
@@ -32,7 +36,37 @@ public class SpecialtyProfileController extends BaseController{
    @Autowired
    private SpecialtyProfileService specialtyProfileService;
 
-private Long branchIntroduction;
+/**
+ * 获取id为入参specilaty_id的数据(该接口别修改)
+ * @param request
+ * @param response
+ * @return
+ */
+@RequestMapping("/ByIdSpecialtyProfile")
+@ResponseBody
+public JsonResult ByIdSpecialtyProfile(HttpServletRequest request, HttpServletResponse response) {
+	JsonResult jsonResult = new JsonResult();
+	Long specialty_id = ToolUtil.lon("specialty_id", request);
+	Map<String, Object> map = new HashMap<>();
+	map.put("specialty_id", specialty_id);
+	map.put("status", 1);
+	
+  // SpecialtyProfile specialtyProfile = specialtyProfileService.findSpecialtyProfileByIdAndStatus(map);
+   List<SpecialtyProfile> specialtyProfile = specialtyProfileService.findSpecialtyProfileByIdAndStatus(map);
+   Integer count = 0;
+	try {
+	    if (specialtyProfile != null) {
+	    	jsonResult = JsonResult.build(FLAG_SUCCESS,specialtyProfile,"获取成功",count);
+		} else {
+			jsonResult = JsonResult.build(FLAG_FAILED,"不存在数据！");
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+	}
+	return jsonResult;
+}
 
 //增加专业概况信息
 @RequestMapping("/addSpecialtyProfile")

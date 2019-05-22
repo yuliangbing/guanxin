@@ -22,12 +22,16 @@
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
 
-                <div class="layui-col-sm12 layui-col-md12">
+                <div class="layui-col-sm12 layui-col-md12 layui-anim layui-anim-rotate">
                     <div class="layui-card">
-                        <div class="layui-card-header">专业发展</div>
+                        <div class="layui-card-header">专业发展时间轴</div>
                         <div class="layui-card-body" style="min-height: 280px;">
-                            <div id="main1" class="layui-col-sm12" style="height: 300px;"></div>
-
+                            <!--  <div id="main1" class="layui-col-sm12" style="height: 300px;"></div> -->
+							<ul class="layui-timeline">
+							  <li class="layui-timeline-item" id="Timeline">
+							 	 <!-- 时间轴主体，index1.js生成代码 -->
+							  </li>
+							</ul>
                         </div>
                     </div>
                 </div>
@@ -36,11 +40,11 @@
                         <div class="layui-card-header">科研成果</div>
                         <div class="layui-card-body" style="min-height: 280px;">
                             <div id="main5" class="layui-col-sm12" style="height: 300px;"></div>
-
+									<!-- index2.js -->
                         </div>
                     </div>
                 </div>
-                <div class="layui-col-sm12 layui-col-md12">
+             <!--    <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">最新一周PV/UV量</div>
                         <div class="layui-card-body" style="min-height: 280px;">
@@ -48,21 +52,39 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">文件类型</div>
-                        <div class="layui-card-body" style="min-height: 280px;">
-                            <div id="main3" class="layui-col-sm12" style="height: 280px;"></div>
-
+                        <div class="layui-card-body" style="min-height: 70%;">
+                            <div id="main3" class="layui-col-sm12" style="height: 55%;"></div>
+								<!-- index.js -->
                         </div>
                     </div>
                 </div>
                 <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
-                        <div class="layui-card-header">硬盘使用量</div>
-                        <div class="layui-card-body" style="min-height: 280px;">
-                            <div id="main4" class="layui-col-sm12" style="height: 300px;"></div>
+                      <!--   <div class="layui-card-header">校企合作</div> -->
+                        <div class="layui-card-body" style="min-height: 280px;margin:0 auto ;">
+                           <!--  <div id="main4" class="layui-col-sm12" style="height: 300px;"></div> -->
+
+							<!-- 轮播校企合作 -->
+							
+							<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+							  <legend>校企合作</legend>
+							</fieldset>    
+							 
+							<div class="layui-carousel" id="test10">
+							  <div carousel-item="">
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/1.jpg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/2.jpg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/3.jpg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/5.jpg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/6.jpeg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/7.jpeg"></div>
+							    <div><img  style=" width:100%; height:100%;" src="/static/public/images/8.jpeg"></div>
+							  </div>
+							</div>
 
                         </div>
                     </div>
@@ -132,7 +154,7 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+       // myChart.setOption(option);
 
 
        /*  // 基于准备好的dom，初始化echarts实例
@@ -176,9 +198,9 @@
 
 
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+    /*     myChart.setOption(option); */
 
-         // 基于准备好的dom，初始化echarts实例
+      /*    // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main4'));
 
         // 指定图表的配置项和数据
@@ -196,16 +218,68 @@
             ]
         };
         // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
+        myChart.setOption(option); */
     </script>
     <script>
-        var _hmt = _hmt || [];
+      /*   var _hmt = _hmt || [];
         (function() {
           var hm = document.createElement("script");
           hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
           var s = document.getElementsByTagName("script")[0]; 
           s.parentNode.insertBefore(hm, s);
-        })();
+        })(); */
+        
+        layui.use(['carousel', 'form'], function(){
+        	  var carousel = layui.carousel
+        	  ,form = layui.form;
+        	  
+        	  //图片轮播
+        	  carousel.render({
+        	    elem: '#test10'
+        	    ,width: '90%'
+        	    ,height: '80%'
+        	    ,interval: 5000
+        	  });
+        	  
+        	 /*  //事件
+        	  carousel.on('change(test4)', function(res){
+        	    console.log(res)
+        	  }); */
+        	/*   
+        	  var $ = layui.$, active = {
+        	    set: function(othis){
+        	      var THIS = 'layui-bg-normal'
+        	      ,key = othis.data('key')
+        	      ,options = {};
+        	      
+        	      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
+        	      options[key] = othis.data('value');
+        	      ins3.reload(options);
+        	    }
+        	  }; */
+        	  
+        	/*   //监听开关
+        	  form.on('switch(autoplay)', function(){
+        	    ins3.reload({
+        	      autoplay: this.checked
+        	    });
+        	  }); */
+        	  
+        	   $('.demoSet').on('keyup', function(){
+        	    var value = this.value
+        	    ,options = {};
+        	    if(!/^\d+$/.test(value)) return;
+        	    
+        	    options[this.name] = value;
+        	    ins3.reload(options);
+        	  }); 
+        	  
+        	 /*  //其它示例
+        	  $('.demoTest .layui-btn').on('click', function(){
+        	    var othis = $(this), type = othis.data('type');
+        	    active[type] ? active[type].call(this, othis) : '';
+        	  }); */
+        	});
         </script>
     </body>
 </html>

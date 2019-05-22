@@ -34,7 +34,7 @@ public class SpecialtyController extends BaseController {
 	private Integer status; 
 	
 	/**
-	 * 获得从建校起到date时间段内的所有专业数量
+	 * 获得从建校起到date时间段内的所有专业数量(别修改)
 	 */
 	@RequestMapping("/specialtyCounts")
 	@ResponseBody

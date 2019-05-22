@@ -231,8 +231,7 @@
 			count(*)
 		from
 			specialty_profile
-			    <where>
-    	
+		<where>
 		<if test="position != null and position != ''">
 			and instr(position,#{position,jdbcType=VARCHAR})
 		</if>
@@ -260,4 +259,18 @@
 	    </set>  
 	    where id = #{id,jdbcType=BIGINT}
   </update>
+  <!-- 获取相同专业id，且status==1的数据 -->
+   <select id="selectByIdAndStatus" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from specialty_profile
+   <where>
+		<if test="specialty_id != null">
+       		specialty_id = #{specialty_id,jdbcType=BIGINT}
+		</if>
+		<if test="status !=null and status != ''">
+			and status = #{status,jdbcType=INTEGER}
+		</if>
+	</where>
+  </select>
 </mapper>

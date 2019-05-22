@@ -96,8 +96,8 @@
                 {
                     name: '专业文件',
                     type: 'pie',
-                    radius : '55%',//图的大小
-                    center: ['50%', '60%'],//图所在的位置
+                    radius : '55%',//
+                    center: ['50%', '65%'],//图所在的位置
                     data:a,
                   /*   data:[
                         {value:335, name:'直接1访问'},
