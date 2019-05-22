@@ -32,7 +32,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'5%'}
+	      ,{field:'id',title:'主键',align:'center',width:'8%'}
 	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
 	      ,{field:'code',title:'专利号',width:'15%',align:'center',}
 	      ,{field:'name', title:'专利名称',width:'15%',align:'center',}

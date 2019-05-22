@@ -11,7 +11,7 @@
 <script src="${path}/static/js/organization/organization_type_add.js"></script>
 <script type="text/javascript" src="./js/xadmin.js"></script>
 </head>
-<body style="margin-left: 32%;">
+<body style="margin-left: 20%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div class="layui-inline">
@@ -30,7 +30,7 @@
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
-						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 					</div>
 				</div>
 			</div>

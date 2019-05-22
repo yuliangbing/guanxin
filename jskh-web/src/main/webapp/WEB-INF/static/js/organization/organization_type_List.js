@@ -32,7 +32,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'5%',sort: true,}
+	      ,{field:'id',title:'主键',align:'center',width:'8%',sort: true,}
 	      ,{field:'name', title:'组织机构类别名称',align:'center',width:'15%'}
 	      ,{field:'create_user', title:'创建人',align:'center',width:'15%'}
 	      ,{field:'create_time', title:'创建时间',align:'center',width:'15%'}
