@@ -26,4 +26,6 @@ public interface SpecialtyProfileMapper {
 	// 获取相同专业id，且status==1的数据
 	List<SpecialtyProfile> selectByIdAndStatus(Map<String, Object> map);
 	
+	int updateBySpecialtyId(Long specialtyId);
+	
 }

@@ -109,6 +109,7 @@
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
+			params.specialty_id = $("#specialty_name").val(); 
 			params.specialty_name = $("#specialty_name option:checked").text(); 
 			params.date = $("#date").val();
 			params.position = $("#position").val();

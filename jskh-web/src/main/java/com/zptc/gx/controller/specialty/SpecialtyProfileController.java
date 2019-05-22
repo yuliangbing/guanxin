@@ -82,6 +82,7 @@ public JsonResult addSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    String characteristic = ToolUtil.str("characteristic", request);
 	    Date date = ToolUtil.date2("date", request);
 	    String director_name = ToolUtil.str("director_name", request);
+	    Long specialty_id = ToolUtil.lonWithNull("specialty_id", request);
 	    String specialty_name = ToolUtil.str("specialty_name", request);
 	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
 	    Integer status = ToolUtil.integer("status", request);
@@ -92,6 +93,7 @@ public JsonResult addSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	  specialtyProfile.setCharacteristic(characteristic);
 	  specialtyProfile.setDate(date);
 	  specialtyProfile.setDirectorName(director_name);
+	  specialtyProfile.setSpecialtyId(specialty_id);
 	  specialtyProfile.setSpecialtyName(specialty_name);
 	  specialtyProfile.setBranchIntroduction(branch_introduction);
 	  specialtyProfile.setStatus(1);
