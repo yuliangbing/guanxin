@@ -22,4 +22,6 @@ public interface PatentService {
 
 	//根据status修改状态（删除）
 	public int modifyPatentDel(Patent patent);
+	//获得某专利类型数量数据统计的方法
+	public int patentCounts(Map<String, Object> count);
 }

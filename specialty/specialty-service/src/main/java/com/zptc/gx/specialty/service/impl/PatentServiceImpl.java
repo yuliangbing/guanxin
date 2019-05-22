@@ -50,4 +50,10 @@ public class PatentServiceImpl implements PatentService {
 		// TODO Auto-generated method stub
 		return patentMapper.updateByPrimaryKeyDel(patent);
 	}
+	//获得某专利类型数量数据统计的方法
+	@Override
+	public int patentCounts(Map<String, Object> count) {
+		// TODO Auto-generated method stub
+		return patentMapper.PCounts(count);
+	}
 }

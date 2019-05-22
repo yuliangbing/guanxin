@@ -29,7 +29,7 @@ import com.zptc.gx.vo.PageVO;
 public class IssuesListController extends BaseController{
 	@Autowired
 	private IssuesService issuesService;
-	private Long issuesId;
+	//private Long issuesId;
 	/*获取列表*/
 	@RequestMapping("/getIssuesList")
 	@ResponseBody
@@ -74,14 +74,14 @@ public class IssuesListController extends BaseController{
 		//定义返回的msg
 		String msg = "msg";
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据
 			List<Issues> issuesList = issuesService.getIssuesList(data);
 			
 			//获取所有status == 1的数据条总数
 			counts = issuesService.selectCounts(count);
 			//返回接口的具体数据
-			jsonResult = jsonResult.build(0, issuesList, msg, counts);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, issuesList, msg, counts);
 			System.out.println("获得的数据："+data);
 			System.out.println("返回数据条数"+counts);
 		} catch (Exception e) {

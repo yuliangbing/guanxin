@@ -229,7 +229,7 @@
           s.parentNode.insertBefore(hm, s);
         })(); */
         
-        layui.use(['carousel', 'form'], function(){
+        layui.use(['carousel', 'form'], function(){//轮播图
         	  var carousel = layui.carousel
         	  ,form = layui.form;
         	  

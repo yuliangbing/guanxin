@@ -36,6 +36,38 @@ public class PatentController extends BaseController {
 	@Autowired
 	private PatentService patentService;
 	
+/*获得某专利类型数量数据统计的方法*/
+	
+	@RequestMapping("/patentCounts")
+	@ResponseBody
+	public JsonResult specialtyFilesCounts(HttpServletRequest request, HttpServletResponse responses) {
+		
+		JsonResult jsonResult = new JsonResult();
+		//获取请求参数
+		
+	    String name = ToolUtil.str("name", request);
+	
+		Map<String, Object> count = new HashMap<>();
+		//存入count,用于获取表格数据条总数
+		count.put("name", name);
+		count.put("status", 1);
+		//定义返回的数据条总数
+		int counts = 0;
+		//定义返回的msg
+		//String msg = "获取成功";
+		try {
+			//获取所有status == 1 和 name = name的数据条总数
+			counts = patentService.patentCounts(count);
+			//返回接口的具体数据
+			jsonResult = JsonResult.build(counts);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
+	
 	/**
 	 * 获取列表接口
 	 */

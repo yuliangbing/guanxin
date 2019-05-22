@@ -25,4 +25,6 @@ public interface PatentMapper {
 	
 	//根据status修改状态（删除）
 	int updateByPrimaryKeyDel(Patent patent);
+	//获得某专利类型数量数据统计的方法
+	int PCounts(Map<String, Object> count);
 }
