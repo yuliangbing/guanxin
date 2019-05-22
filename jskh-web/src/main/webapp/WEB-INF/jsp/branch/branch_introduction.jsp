@@ -27,7 +27,7 @@
 			<label class="layui-form-label my-label">设立时间</label>
 			<div class="layui-input-block my-input-block">
 				<input type="text" id="date" name="date" lay-verify="date"
-					placeholder="请选择设立时间" class="layui-input">
+					placeholder="请选择设立时间" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 	</div>
