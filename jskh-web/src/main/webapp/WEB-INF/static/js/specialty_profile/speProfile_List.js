@@ -174,13 +174,24 @@ layui.use(['form', 'table', 'laydate'], function() {
 			
 	//添加按钮点击事件
 	  $("#insert").click(function(){
+		var appendOption = getEnableSpecialtyList();
+		if (appendOption == '') {
+			layer.msg("没有可新增的相关专业！");
+			return false;
+		}
 	  	layer.open({
 	  		title:"添加",
 	  		type:2,
 	  		content:['/toPage?page=specialty_profile/speProfile_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['60%','75%'],
+			success : function(layero, index) {
+				// 获取子页面的iframe
+				var iframe = window['layui-layer-iframe' + index];
+				// 向子页面的全局函数child传参
+				iframe.initAdd(appendOption);
+			}
 	  	});
 	  });
 	  //批量删除
@@ -226,3 +237,33 @@ layui.use(['form', 'table', 'laydate'], function() {
 		  });
 });
 });
+
+function getEnableSpecialtyList() {
+	var option = "";
+	//获取下拉列表(公共方法)
+	$.ajax({
+		url : '/specialty/getEnableSpecialtyList',
+		type : "POST",
+		dataType : "json",
+		async: false,
+		success : function(data) {
+			console.log(data);
+			console.log(data.data.length);
+			if (data.code == 0) {
+				if (data.data.length > 0) {
+					for (let i = 0; i < data.data.length; i++) {
+						option += "<option value='"+data.data[i].id+"'>"
+								+ data.data[i].name + "</option>";
+					}
+				}
+			} else {
+				layer.msg("请检查网络连接！");
+			}
+
+		},
+		error : function(code) {
+			layer.alert("发生错误,请联系管理员");
+		}
+	});
+	return option;
+}
