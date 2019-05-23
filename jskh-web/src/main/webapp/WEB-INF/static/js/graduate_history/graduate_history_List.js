@@ -25,7 +25,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}
 		      ,{field:'graduateNum', title:'毕业人数', width:'15%',align:'center' }
 		      ,{field:'employedNum', title:'就业人数', width:'15%',align:'center' }

@@ -32,7 +32,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'5%'}
+	      ,{field:'id',title:'主键',align:'center',width:'8%'}
 	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
 	      ,{field:'planNum',title:'计划招生数',width:'15%',align:'center',}
 	      ,{field:'actualNum', title:'实际招生数',width:'15%',align:'center',}
