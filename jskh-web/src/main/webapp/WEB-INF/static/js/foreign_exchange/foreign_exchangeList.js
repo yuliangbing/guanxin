@@ -144,7 +144,6 @@
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
-			  
 			//批量删除
 			  table.on('toolbar(test)', function(obj){
 				    var checkStatus = table.checkStatus(obj.config.id);
