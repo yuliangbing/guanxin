@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${path}/static/js/patent/patent_modify.js"></script>
 </head>
  <body style="margin-left: 25%;">
-<form class="layui-form" action="">
+<form class="layui-form" action="" onsubmit="return false;">
 		  <div class="layui-form-item" style="margin-top:5%;" >
 				  <div class="layui-inline">
 			    <label for="job"class="layui-form-label" style="width:150px;">发表时间</label>
@@ -45,13 +45,15 @@
            
            <div>
 			 <div class="layui-inline">
-			    <label for="job"class="layui-form-label" style="width:150px;">专利类型</label>
-				<div class="layui-input-inline">
-					
-						<input type="text" id="type" name="type"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
-					
-				</div>
-			</div>	
+						<label class="layui-form-label" style="width:150px;">专利类型</label>
+						<div class="layui-input-inline">
+							<select type="text" id="type" lay-filter="type"
+								autocomplete="off" placeholder="" lay-verify="required"
+								class="layui-select" lay-search>
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
            </div>
            
            <div>
@@ -70,7 +72,7 @@
 			    <label class="layui-form-label" style="width:150px;">其他作者情况</label>
 				<div class="layui-input-inline">
 					
-						<input type="text" id="other_authors" name="other_authors"  class="layui-input" lay-verify="required" placeholder="请输入" autocomplete="off">
+						<input type="text" id="other_authors" name="other_authors"  class="layui-input"  placeholder="请输入" autocomplete="off">
 					
 				</div>
 			</div>	

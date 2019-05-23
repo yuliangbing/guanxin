@@ -46,13 +46,15 @@
            
           
 			 <div class="layui-inline">
-			    <label class="layui-form-label" style="width:150px;">专利类型</label>
-				<div class="layui-input-inline">
-					
-						<input type="text" id="type" name="type" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
-					
-				</div>
-			</div>	
+						<label class="layui-form-label" style="width:150px;">专利类型</label>
+						<div class="layui-input-inline">
+							<select type="text" id="type" lay-filter="type"
+								autocomplete="off" placeholder="" lay-verify="required"
+								class="layui-select" lay-search>
+								<option value="">请选择</option>
+							</select>
+						</div>
+					</div>
            </div>
            
            <div>
@@ -71,7 +73,7 @@
 			    <label class="layui-form-label" style="width:150px;">其他作者情况</label>
 				<div class="layui-input-inline">
 					
-						<input type="text" id="other_authors" name="other_authors" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
+						<input type="text" id="other_authors" name="other_authors"  placeholder="请输入" autocomplete="off" class="layui-input">
 					
 				</div>
 			</div>	

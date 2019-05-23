@@ -68,6 +68,66 @@
 		        }
 			});
 		}
+		//专利下拉列表
+		var id = 0;
+		var type ="";
+		function init(data) {
+			type = data.type;
+		}
+		function ajax_h1(form,names,url,object,ids)
+		{
+			$.ajax({
+				url:url,
+				type:"POST",
+				dataType:"json",
+				success:function(data){
+					//layer.msg("获取成功");
+					console.log("长度"+data.data.length);
+					console.log(names);
+					let option = "";
+					if (data.code == 0) {
+						if(ids == 'code'){
+							for (let i=0;i<data.data.length;i++)
+							{
+								if(data.data[i].name == names)
+								{
+									option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+								}
+								else
+								{
+									option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+								}
+							}
+							$("#"+object).append(option);
+							form.render('select');
+						}
+					 	else if(ids == 'id')
+					 	{
+							for (let j=0;j<data.data.length;j++)
+							{
+								if(data.data[j].name == names )
+								{
+									option += "<option value='"+data.data[j].id+"' selected='selected'>"+data.data[j].name+"</option>";
+								}
+								else
+								{
+									option += "<option value='"+data.data[j].id+"'>"+data.data[j].name+"</option>";
+								}
+							}
+							$("#"+object).append(option);
+							form.render('select');
+						} 
+						console.log("option:"+option);
+						
+					} else {
+						layer.msg(data.msg);
+					}
+					
+				} ,error:function(code){
+		           layer.alert("发生错误,请联系管理员");
+		        }
+			});
+		}
 		layui.use(['form', 'table', 'laydate'], function() {
 			var form = layui.form;
 			var laydate = layui.laydate;
@@ -84,10 +144,13 @@
 		object = 'specialty_id';
 		names= specialty_name;
 		ajax_h(form,names,url,object,ids);
-			laydate.render({
-				elem: '#date' //指定元素	
-			});
 			
+		//专利
+		ids = 'id';
+		url = '/patentType/PatentTypeList';
+		object = 'type';
+		names= type;
+		ajax_h1(form,names,url,object,ids);	
 		
 		layui.use('element', function() {
 			var element = layui.element;
@@ -112,7 +175,7 @@
 				params.date = $("#date").val();
 				params.code = $("#code").val();
 				params.name = $("#name").val();
-				params.type = $("#type").val();
+				params.type = $("#type option:checked").val();
 				params.first_author = $("#first_author").val();
 				params.other_authors = $("#other_authors").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
