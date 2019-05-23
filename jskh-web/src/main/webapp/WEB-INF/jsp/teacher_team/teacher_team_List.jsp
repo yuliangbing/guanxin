@@ -21,7 +21,13 @@
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
           <input type="text" name="director" id="director" placeholder="请输入团队总负责人" autocomplete="off" class="layui-input">
-          <input type="text" name="latest" id="latest" placeholder="请输入是否为最新" autocomplete="off" class="layui-input">
+          <div class="layui-inline">
+          <select name="latest" id="latest" autocomplete="off" class="layui-input" type="text">
+          <option value="">请选择是否最新</option>
+          <option value="1">是</option>
+          <option value="2">否</option>
+          </select>
+          </div>
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
         </form>
