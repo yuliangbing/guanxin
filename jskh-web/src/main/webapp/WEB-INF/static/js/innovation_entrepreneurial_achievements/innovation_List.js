@@ -50,10 +50,11 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,url:window.path +'/IEAchievements/ListIEAchievements'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
+		    ,method:'post'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'7%',sort: true, align:'center'}
+		      ,{field:'id', title:'主键', width:'10%',sort: true, align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
 		      ,{field:'content', title:'成果内容', width:'20%', align:'center'}
 		      ,{field:'participants', title:'参与人员', width:'19%',align:'center' } 
@@ -79,7 +80,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -119,7 +120,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -176,7 +177,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=innovation_entrepreneurial_achievements/innovation_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除

@@ -32,7 +32,7 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'8%'}
+	      ,{field:'id',title:'主键',align:'center',width:'10%'}
 	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
 	      ,{field:'content',title:'交流学习内容',width:'15%',align:'center',}
 	      ,{field:'units', title:'单位',width:'15%',align:'center',}
@@ -59,7 +59,7 @@
 			  		content:['/toPage?page=foreign_exchange/foreign_exchange_add'],
 			  		maxmin:true,
 			  		resize:false,
-			  		area:['60%','75%']
+			  		area:['80%','85%']
 			  	});
 			  });
 
@@ -74,7 +74,7 @@
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=foreign_exchange/foreign_exchange_check',
-			    		area:['60%','75%'],
+			    		area:['80%','85%'],
 			    		resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
@@ -115,7 +115,7 @@
 			    		content:['/toPage?page=foreign_exchange/foreign_exchange_modify'],
 			    		maxmin:true,
 			    		resize:false,
-			    		area:['60%','75%'],
+			    		area:['80%','85%'],
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];

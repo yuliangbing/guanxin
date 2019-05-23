@@ -40,7 +40,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 
 				//执行一个laydate实例
 				laydate.render({
-					elem: '#setup_date' //指定元素	
+					elem: '#setupDate' //指定元素	
 					,range: '~' //或 range: '~' 来自定义分割字符
 				});
 	//加载数据表格
@@ -54,15 +54,15 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,method:'post'
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
-		      ,{field:'setup_date', title:'设立时间', width:'15%',align:'center'}	     
+		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
+		      ,{field:'setupDate', title:'设立时间', width:'15%',align:'center'}	     
 		      ,{field:'code', title:'专业编码', width:'15%',align:'center'}
 		      ,{field:'name', title:'专业名称', width:'15%',align:'center'} 
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}
-		      ,{field:'create_time', title:'创建时间', width:'15%',}
-		      ,{field:'create_user', title:'创建人', width:'15%',}
-		      ,{field:'modify_time', title:'修改时间', width:'15%',}
-		      ,{field:'modify_user', title:'修改人', width:'15%',}
+		      ,{field:'createTime', title:'创建时间', width:'15%',}
+		      ,{field:'createUser', title:'创建人', width:'15%',}
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',}
+		      ,{field:'modifyUser', title:'修改人', width:'15%',}
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  
@@ -136,12 +136,12 @@ layui.use(['form', 'table', 'laydate'], function() {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-			if(arr.data != "" && arr.date != null){
-				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-				arr.date2 = data.field.date.split('~')[1];
+			if(arr.setupDate != "" && arr.setupDate != null){
+				arr.setup_date1 = data.field.setupDate.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+				arr.setup_date2 = data.field.setupDate.split('~')[1];
 			}
 			tableIns.reload({
-				where:{"units":"案"},
+				where:arr,
 				page: {
 					curr: 1
 				}

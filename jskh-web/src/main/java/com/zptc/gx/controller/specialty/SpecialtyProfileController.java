@@ -275,7 +275,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 			//获取所有status == 1的数据条总数
 			counts = specialtyProfileService.selectCounts(count);
 			//返回接口的具体数据
-			jsonResult = jsonResult.build(FLAG_SUCCESS, SpecialtyProfileList, msg, counts);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, SpecialtyProfileList, msg, counts);
 			System.out.println("获得的数据："+data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

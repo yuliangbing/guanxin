@@ -24,9 +24,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
+		    ,method:'post'
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
 		      ,{field:'date', title:'发表时间', width:'15%',align:'center'}
 		      ,{field:'published_journal', title:'发表期刊', width:'15%',align:'center' }
 		      ,{field:'name', title:'论文题目', width:'15%',align:'center' }
@@ -36,7 +37,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialty_id', title:'专业id', width:'15%',hide:true,align:'center' }
 		      ,{field:'specialty_name', title:'专业名称', width:'15%',align:'center'}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true,align:'center'}
-		      ,{field:'awards', title:'获奖情况', width:'18%',align:'center' }
+		      ,{field:'awards', title:'获奖情况', width:'25%',align:'center' }
 		      ,{field:'create_time', title:'创建时间', width:'15%',align:'center' }
 		      ,{field:'create_user', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modify_time', title:'修改时间', width:'15%',align:'center' }
@@ -54,7 +55,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				title:"查看",
 	    		type:2,
 	    		content:'/toPage?page=thesis/thesis_check',
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		resize:false,
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
@@ -96,7 +97,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=thesis/thesis_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -131,7 +132,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=thesis/thesis_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除

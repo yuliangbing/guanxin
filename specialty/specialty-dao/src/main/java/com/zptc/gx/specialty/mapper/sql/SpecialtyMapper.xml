@@ -167,10 +167,10 @@
     <include refid="Base_Column_List" />
     from specialty
      <where>
-    	<!--<i f test="setup_date1 != null and setup_date1 != ''and setup_date2 != null and setup_date2 !=''">
+    	<if test="setup_date1 != null and setup_date1 != ''and setup_date2 != null and setup_date2 !=''">
 			and setup_date between #{setup_date1,jdbcType=VARCHAR} and #{setup_date2,jdbcType=VARCHAR}
 		</if>
-		<if test="code != null and code != ''">
+		<!--<if test="code != null and code != ''">
 			and instr(code,#{code,jdbcType=VARCHAR})
 		</if>
 		<if test="name != null and name != ''">
@@ -189,10 +189,10 @@
 		from
 			specialty
 			<where>
-				<!-- <if test="setup_date1 != null and setup_date1 != ''and setup_date2 != null and setup_date2 !=''">
+				<if test="setup_date1 != null and setup_date1 != '' and setup_date2 != null and setup_date2 !=''">
 					and setup_date between #{setup_date1,jdbcType=VARCHAR} and #{setup_date2,jdbcType=VARCHAR}
 				</if>
-				<if test="code != null and code != ''">
+				<!-- <if test="code != null and code != ''">
 					and instr(code,#{code,jdbcType=VARCHAR})
 				</if>
 				<if test="name != null and name != ''">

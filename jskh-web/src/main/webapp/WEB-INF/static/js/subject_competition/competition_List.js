@@ -81,7 +81,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=subject_competition/competition_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -121,7 +121,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=subject_competition/competition_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -132,24 +132,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 			}
 		});
 
-		/* 搜索功能 */
-	  form.on('submit(search)', function(data) {
-			/*layer.alert(JSON.stringify(data.field));*/
-			let arr = {};
-			arr = data.field;
-			if(arr.data != "" && arr.date != null){
-				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-				arr.date2 = data.field.date.split('~')[1];
-			}
-			console.log(arr);
-			tableIns.reload({
-				where:arr,
-				page: {
-					curr: 1
-				}
-			});
-			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-		});
+		
 	  
 		
 		layui.use('element', function() {
@@ -170,6 +153,25 @@ layui.use(['form', 'table', 'laydate'], function() {
 				elem: '#date' //指定元素
 			});
 			
+			/* 搜索功能 */
+			  form.on('submit(search)', function(data) {
+					layer.alert(JSON.stringify(data.field));
+					let arr = {};
+					arr = data.field;
+					if(arr.data != "" && arr.date != null){
+						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+						arr.date2 = data.field.date.split('~')[1];
+					}
+					//console.log(arr);
+					tableIns.reload({
+						where:arr,
+						page: {
+							curr: 1
+						}
+					});
+					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+				});
+			
 	//添加按钮点击事件
 	  $("#insert").click(function(){
 	  	layer.open({
@@ -178,7 +180,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=subject_competition/competition_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除

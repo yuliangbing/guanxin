@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/js/foreign_exchange/foreign_exchange_add.js"></script>
 </head>
-<body style="margin-left: 15%;">
+<body style="margin-left: 10%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div>
@@ -69,7 +69,7 @@
        
           
           <div class="layui-inline">
-						<label class="layui-form-label" style="width:150px;">专业id</label>
+						<label class="layui-form-label" style="width:150px;">专业名称</label>
 						<div class="layui-input-inline">
 							<select type="text" id="specialty_id" lay-filter="specialty_id"
 								autocomplete="off" placeholder="" lay-verify="required"
@@ -81,7 +81,7 @@
             </div>
          
 			</div>
-			<div style="margin-left:20%; margin-top:10%;">
+			<div style="margin-left:26%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>

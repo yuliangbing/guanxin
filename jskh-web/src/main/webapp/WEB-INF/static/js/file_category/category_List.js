@@ -53,20 +53,20 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:100,sort: true , align:'center'}
-		      ,{field:'code', title:'类型编码', width:130,align:'center'}	     
-		      ,{field:'name', title:'类型名称', width:150, align:'center'}
-		      ,{field:'createTime', title:'创建时间', width:150,align:'center' } 
-		      ,{field:'createUser', title:'创建人', width:130, align:'center'}
-		      ,{field:'modifyTime', title:'修改时间', width:130, align:'center'}
-		      ,{field:'modifyUser', title:'修改人', width:130, align:'center'}
+		      ,{field:'id', title:'主键', width:'10%',sort: true , align:'center'}
+		      ,{field:'code', title:'类型编码', width:'12%',align:'center'}	     
+		      ,{field:'name', title:'类型名称', width:'12%', align:'center'}
+		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' } 
+		      ,{field:'createUser', title:'创建人', width:'12%', align:'center'}
+		      ,{field:'modifyTime', title:'修改时间', width:'15%', align:'center'}
+		      ,{field:'modifyUser', title:'修改人', width:'12%', align:'center'}
 		
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:150,  hide:true}
 		   //   ,{field:'create_user', title:'创建人', width:150, hide:true }
 		     // ,{field:'modify_time', title:'修改时间', width:150,  hide:true}
 		     // ,{field:'modify_user', title:'修改人', width:130, hide:true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:237, align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%', align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

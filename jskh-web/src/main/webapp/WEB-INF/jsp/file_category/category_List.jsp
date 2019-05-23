@@ -14,7 +14,7 @@
 </head>
 <body class="layui-layout-body">
 
-    <div style="height:20px;width:20px;margin-left: 1000px;">
+    <div style="height:6%;width:23%;margin-left: 76.5%;">
      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>

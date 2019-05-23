@@ -140,8 +140,9 @@ public class SpecialtyController extends BaseController {
 		Map<String, Object> data = new HashMap<>();
 		//获取请求参数
 		/*String code = ToolUtil.str("code", request);
-	    String name = ToolUtil.str("name", request);
-	    String setup_date = ToolUtil.str("setup_date", request);*/
+	    String name = ToolUtil.str("name", request);*/
+	    String setup_date1 = ToolUtil.str("setup_date1", request);
+	    String setup_date2 = ToolUtil.str("setup_date2", request);
 	  //  Integer status = ToolUtil.integer("status", request);
 		/*PageVO pageVO = new PageVO();
         Integer	limit = pageVO.getLimit();
@@ -158,17 +159,15 @@ public class SpecialtyController extends BaseController {
 		//用于分页的数据
 	    pages = pageVO.getBeginNum();
 		//存入data,用于获取表格数据
-	   /* data.put("code", code);
-	    data.put("name", name);
-	    data.put("setup_date", setup_date);*/
+	    data.put("setup_date1", setup_date1);
+	    data.put("setup_date2", setup_date2);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-	/*	count.put("code", code);
-		count.put("name", name);
-		count.put("setup_date", setup_date);*/
+		count.put("setup_date1", setup_date1);
+		count.put("setup_date2", setup_date2);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
@@ -183,7 +182,7 @@ public class SpecialtyController extends BaseController {
 			System.out.println("返回条数："+counts);
 			//返回接口的具体数据
 			//jsonResult = JsonResult.build(FLAG_SUCCESS, specialtyList);
-			jsonResult = jsonResult.build(0, specialtyList, msg, counts);
+			jsonResult = JsonResult.build(0, specialtyList, msg, counts);
 			System.out.println("获得的数据："+data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

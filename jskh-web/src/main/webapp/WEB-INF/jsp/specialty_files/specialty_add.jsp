@@ -17,28 +17,28 @@
 					<div class="layui-inline">
 						<label class="layui-form-label" for="date">文件时间</label>
 						<div class="layui-input-inline">
-							<input type="text" id="date" name="date" lay-verify="date"
+							<input type="text" id="date" name="date" lay-verify="date" autocomplete="off"
 								placeholder="请选择文件时间" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label" for="code">文件编号</label>
 						<div class="layui-input-inline">
-							<input type="text" id="code" name="code" lay-verify="required"
+							<input type="text" id="code" name="code" lay-verify="required" autocomplete="off"
 								placeholder="请输入文件编号" class="layui-input" value="">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label" for="name">文件名称</label>
 						<div class="layui-input-inline">
-							<input type="text" id="name" name="name" lay-verify="required"
+							<input type="text" id="name" name="name" lay-verify="required" autocomplete="off"
 								placeholder="请输入文件名称" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label" for="cate_name">文件类型</label>
 						<div class="layui-input-inline">
-							<select id="cate_name" lay-verify="required" class="layui-select"
+							<select id="cate_name" lay-verify="required" class="layui-select" autocomplete="off"
 								lay-search>
 								<option value="">请选择</option>
 							</select>
@@ -47,14 +47,14 @@
 					<div class="layui-inline">
 						<label class="layui-form-label" for="reviser">修订人</label>
 						<div class="layui-input-inline">
-							<input type="text" id="reviser" name="reviser"
+							<input type="text" id="reviser" name="reviser" autocomplete="off"
 								lay-verify="required" placeholder="请输入文件名称" class="layui-input">
 						</div>
 					</div>
 					<div class="layui-inline">
 						<label class="layui-form-label" for="specialty_id">专业</label>
 						<div class="layui-input-inline">
-							<select type="text" id="specialty_id" lay-filter="specialty_id"
+							<select type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off"
 								autocomplete="off" placeholder="" lay-verify="required"
 								class="layui-select" lay-search>
 								<option value="">请选择</option>
