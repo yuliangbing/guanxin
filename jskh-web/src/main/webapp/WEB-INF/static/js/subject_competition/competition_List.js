@@ -135,24 +135,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		
 	  
 		
-		layui.use('element', function() {
-			var element = layui.element;
-
-		});
-
-		layui.use(['form','laydate'], function() {
-			var form = layui.form;
-			
 		
-			/*
-			 实现文件时间选择
-			 */
-			var laydate = layui.laydate;
-			
-			laydate.render({
-				elem: '#date' //指定元素
-			});
-			
 			/* 搜索功能 */
 			  form.on('submit(search)', function(data) {
 					layer.alert(JSON.stringify(data.field));
@@ -225,4 +208,4 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    
 		  });
 });
-});
+

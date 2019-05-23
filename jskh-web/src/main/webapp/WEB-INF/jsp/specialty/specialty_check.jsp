@@ -24,7 +24,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">设立时间</label>
 					<div class="layui-input-inline">
-						<input name="setup_date" id="setup_date" disabled autocomplete="off" class="layui-input">
+						<input name="setup_date" id="setupDate" disabled autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				

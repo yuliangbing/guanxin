@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="${path}/static/js/outstanding_graduate_history/outstanding_graduate_history_List.js"></script>
+<%-- <script type="text/javascript" src="${path}/static/js/outstanding_graduate_history/outstanding_graduate_history_List.js"></script> --%>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
@@ -65,14 +65,14 @@
 				</div>
 				<label class="layui-form-label">照片 </label>
 				<div class="layui-upload" >
-  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 43%;top: 46%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
+  						<button type="button" class="layui-btn" id="test1" style="width: 130px;position:absolute;left: 43%;top: 56%;"  ><i class="layui-icon">&#xe67c;</i>上传图片</button>
   					<div class="layui-upload-list">
     					<img class="layui-upload-img" style="width: 130px;height: 170px;position: absolute;left: 29.1%;" id="image">
   					</div>
 				</div>
 			
 			</div>
-			<div style="text-align:center;margin-top: 18%;">
+			<div style="text-align:center;margin-top: 13%;">
 			<button class="layui-btn layui-right" lay-submit lay-filter="submit">保存</button>
 			<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 			</div>

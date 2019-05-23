@@ -32,7 +32,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'company', title:'公司', width:'15%',align:'center' }
 		      ,{field:'position', title:'岗位', width:'15%',align:'center' } 
 		      ,{field:'salary', title:'薪资', width:'15%',align:'center' }
-		      ,{field:'advancedDescription', title:'先进描述', width:220,align:'center' }
+		      ,{field:'advancedDescription', title:'先进描述', width:'25%',align:'center' }
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true }
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
@@ -55,7 +55,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -95,7 +95,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -132,7 +132,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=outstanding_graduate_history/outstanding_graduate_history_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除

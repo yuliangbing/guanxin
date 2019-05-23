@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script>
+<%-- <script type="text/javascript" src="${path}/static/js/graduate_history/graduate_history_List.js"></script> --%>
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">
 
-			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
+			<div class="layui-form-item" style="margin-left:25%;margin-top:2%">
 				
 				<div class="layui-inline">
 					<label class="layui-form-label">时间</label>
@@ -24,32 +24,32 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">毕业人数</label>
 					<div class="layui-input-inline">
-						<input name="graduate_num" id="graduate_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
+						<input name="graduate_num" id="graduateNum" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">就业人数</label>
 					<div class="layui-input-inline">
-						<input name="employed_num" id="employed_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
+						<input name="employed_num" id="employedNum" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 			
 				<div class="layui-inline">
 					<label class="layui-form-label">创业人数</label>
 					<div class="layui-input-inline">
-						<input name="entrepreneurs_num" id="entrepreneurs_num" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
+						<input name="entrepreneurs_num" id="entrepreneursNum" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">就业对口率</label>
 					<div class="layui-input-inline">
-						<input name="employment_rate" id="employment_rate" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
+						<input name="employment_rate" id="employmentRate" lay-verify="required|number" autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">专业</label>
 					<div class="layui-input-inline">
-						<select name="specialty_id"  id="specialty_id" lay-verify="required" autocomplete="off" class="layui-input" type="text">
+						<select name="specialty_id"  id="specialtyId" lay-verify="required" autocomplete="off" class="layui-input" type="text">
 							<option value="">请选择</option>
 						</select>
 					</div>
@@ -145,7 +145,7 @@
 	//专业
 	ids = 'id';
 	url = '/specialty/getSpecialtyList';
-	object = 'specialty_id';
+	object = 'specialtyId';
 	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
@@ -157,12 +157,13 @@
 			/*获取$值存入params */
 			var params = {};
 			params.date = $("#date").val();
-			params.graduate_num = $("#graduate_num").val();
-			params.employed_num = $("#employed_num").val();
-			params.entrepreneurs_num = $("#entrepreneurs_num").val();
-			params.employment_rate = $("#employment_rate").val();
-			params.specialty_id = $("#specialty_id option:checked").val();
-			params.specialty_name = $("#specialty_id option:checked").text();
+			params.graduate_num = $("#graduateNum").val();
+			params.employed_num = $("#employedNum").val();
+			params.entrepreneurs_num = $("#entrepreneursNum").val();
+			params.employment_rate = $("#employmentRate").val();
+			params.specialty_id = $("#specialtyId option:checked").val();
+			params.specialty_name = $("#specialtyId option:checked").text();
+			console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",
