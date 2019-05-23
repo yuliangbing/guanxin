@@ -40,6 +40,8 @@
 				var press=$("#press").val;
 				var first_author=$("#first_author").val;
 				var other_authors=$("#other_authors").val;
+				var specialty_id = $("#specialty_id option:checked").val();
+				var specialty_name = $("#specialty_id option:checked").text();
 				$.ajax({
 					url:"/TextbookOrMonograph/updateTextbookOrMonograph",
 					type:"post",

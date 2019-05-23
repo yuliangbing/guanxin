@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="${path}/static/js/enrollment_history/enrollment_history_modify.js"></script>
 </head>
-<body style="margin-left: 25%;">
+<body style="margin-left: 20%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  		   <div class="layui-inline">
