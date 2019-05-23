@@ -79,4 +79,9 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 		// TODO Auto-generated method stub
 		return specialtyMapper.dateCounts(count);
 	}
+	@Override
+	public List<Specialty> getEnableSpecialtyList() {
+		// TODO Auto-generated method stub
+		return specialtyMapper.getEnableSpecialtyList();
+	}
 }

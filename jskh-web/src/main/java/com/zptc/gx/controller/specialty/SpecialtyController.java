@@ -376,4 +376,22 @@ public class SpecialtyController extends BaseController {
 		return jsonResult;
 	}
 	
+	@RequestMapping("/getEnableSpecialtyList")
+	@ResponseBody
+	public JsonResult getEnableSpecialtyList(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("获取专业信息下拉列表数据口");
+		JsonResult jsonResult = new JsonResult();
+		//定义返回的msg
+		String msg = "success";
+		try {
+			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			List<Specialty> specialtyList = specialtyService.getEnableSpecialtyList();
+			jsonResult = jsonResult.build(FLAG_SUCCESS, specialtyList);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+		}
+		return jsonResult;
+	}
 }

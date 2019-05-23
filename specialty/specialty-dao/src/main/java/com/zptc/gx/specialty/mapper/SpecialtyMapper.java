@@ -30,4 +30,6 @@ public interface SpecialtyMapper {
 	int updateByPrimaryKeyDel(Specialty specialty);
 	//获取在这个时间之前包括该时间段中的专业数量
 	int dateCounts(Map<String, Object> count);
+	
+	List<Specialty> getEnableSpecialtyList();
 }

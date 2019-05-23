@@ -228,4 +228,19 @@
 				</if>
 			</where>
 	</select>
+	<select id="getEnableSpecialtyList" resultMap="BaseResultMap" parameterType="map">
+		SELECT
+			 <include refid="Base_Column_List" />
+		FROM
+			specialty
+		WHERE
+			id NOT IN (
+				SELECT
+					specialty_id
+				FROM
+					specialty_profile
+				WHERE
+					`status` = 1
+			)
+	</select>
 </mapper>

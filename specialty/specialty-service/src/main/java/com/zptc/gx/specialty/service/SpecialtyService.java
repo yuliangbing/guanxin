@@ -33,4 +33,7 @@ public interface SpecialtyService {
 	public int modifSpecialtyDel(Specialty specialty);
 	//获取在这个时间之前包括该时间段中的专业数量
 	public int datesCounts(Map<String, Object> count);
+	
+	//获取没有装也概况的专业列表
+	public List<Specialty> getEnableSpecialtyList();
 }
