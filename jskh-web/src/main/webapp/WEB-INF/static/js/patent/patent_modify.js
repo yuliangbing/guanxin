@@ -5,6 +5,7 @@
  */
 	// 初始化赋值
 	var specialty_name = "";
+	var namew = "";
 	function init(data) {
 		//$("#status").val(data.status);
 		id = data.id;
@@ -16,6 +17,8 @@
 		$("#other_authors").val(data.otherAuthors);
 		$("#specialty_id").val(data.specialtyId);
 		specialty_name = data.specialtyName;
+		namew = data.type;
+		console.log(namew);
 	}
 	
 	
@@ -34,8 +37,7 @@
 				dataType:"json",
 				success:function(data){
 					//layer.msg("获取成功");
-					console.log("长度"+data.data.length);
-					console.log(names);
+					//console.log(names);
 					let option = "";
 					if (data.code == 0) {
 						if(ids == 'code'){
@@ -69,7 +71,7 @@
 							$("#"+object).append(option);
 							form.render('select');
 						} 
-						console.log("option:"+option);
+						//console.log("option:"+option);
 						
 					} else {
 						layer.msg(data.msg);
@@ -89,7 +91,7 @@
 		var url ="";
 		var object="";
 		var ids="";
-		var name;
+		var names;
 		//专业
 		ids = 'id';
 		url = '/specialty/getSpecialtyList';
@@ -101,7 +103,7 @@
 		ids = 'id';
 		url = '/patentType/PatentTypeList';
 		object = 'type';
-		names= type;
+		names= namew;
 		ajax_h(form,names,url,object,ids);	
 		
 		layui.use('element', function() {
@@ -127,12 +129,13 @@
 				params.date = $("#date").val();
 				params.code = $("#code").val();
 				params.name = $("#name").val();
-				params.type = $("#type").val();
+				params.patent_type_id = $("#type option:checked").val();
+				params.type = $("#type option:checked").text();
 				params.first_author = $("#first_author").val();
 				params.other_authors = $("#other_authors").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
-				console.log(params);
+				//console.log(params);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
@@ -142,7 +145,7 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									console.log($.param(params));
+									//console.log($.param(params));
 									if (data.code == 0) {
 										layer.msg("成功");
 										setTimeout(function(){
