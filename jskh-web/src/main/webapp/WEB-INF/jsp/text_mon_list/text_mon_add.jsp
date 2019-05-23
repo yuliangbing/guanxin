@@ -11,7 +11,7 @@
 <%-- <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script> --%>
 <script type="text/javascript" src="${path}/static/js/text_mon_list/text_mon_add.js"></script>
 </head>
-<body style="margin-left: 15%;">
+<body style="margin-left: 18%;">
 		<form class="layui-form" action="" onsubmit="return false;">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div class="layui-inline">
@@ -67,7 +67,7 @@
 						</div>
 					</div>
 			
-			<div style="margin-left: 23%; margin-top:10%;">
+			<div style="margin-left: 10%; margin-top:10%;">
 				<div class="layui-form-item">
 					<div class="layui-input-block">
 						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
