@@ -44,6 +44,10 @@ public class ForeignExchangeController extends BaseController {
 	public JsonResult getForeignExchangeList(HttpServletRequest request, HttpServletResponse response) {
 		JsonResult jsonResult = new JsonResult();
 		System.out.println("列表信息");
+		String  date1 = ToolUtil.str("date1", request);
+		String  date2 = ToolUtil.str("date2", request);
+		String  units = ToolUtil.str("units", request);
+		String  participants = ToolUtil.str("participants", request);
 		Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 		Map<String, Object> data = new HashMap<>();
@@ -52,11 +56,19 @@ public class ForeignExchangeController extends BaseController {
 	    //用于分页的数据
 	    pages = pageVO.getBeginNum();
 	    //存入data,用于获取表格数据
+	    data.put("date1", date1);
+	    data.put("date2", date2);
+	    data.put("units",units);
+	    data.put("participants",participants);
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
   		data.put("status", 1);
   		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
+  		count.put("date1", date1);
+  		count.put("date2", date2);
+	    count.put("units",units);
+	    count.put("participants",participants);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;

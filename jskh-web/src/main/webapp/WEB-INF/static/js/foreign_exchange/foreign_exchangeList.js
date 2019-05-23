@@ -15,7 +15,7 @@
 				var laydate = layui.laydate;
 				laydate.render({
 				elem: '#date',
-				range: true //或 range: '~' 来自定义分割字符
+				range: '~' //或 range: '~' 来自定义分割字符
 				});
 			
 
