@@ -8,7 +8,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.zptc.gx.specialty.entity.Specialty;
+import com.zptc.gx.specialty.entity.SpecialtyProfile;
 import com.zptc.gx.specialty.mapper.SpecialtyMapper;
+import com.zptc.gx.specialty.mapper.SpecialtyProfileMapper;
 import com.zptc.gx.specialty.service.SpecialtyService;
 
 @Component
@@ -16,10 +18,26 @@ public class SpecialtyServiceImpl implements SpecialtyService {
 
 	@Autowired
 	private SpecialtyMapper specialtyMapper;
+	@Autowired
+	private SpecialtyProfileMapper specialtyProfileMapper;
 	//添加专业
 	@Override
+	@Transactional
 	public int addSpecialty(Specialty specialty){
-		return specialtyMapper.insertSelective(specialty);
+		int count = 0;
+		System.out.println("specialty=="+specialty);
+		count += specialtyMapper.insertSelective(specialty);
+		SpecialtyProfile specialtyProfile = new SpecialtyProfile();
+		specialtyProfile.setSpecialtyId(specialty.getId());
+		specialtyProfile.setSpecialtyName(specialty.getName());
+		specialtyProfile.setPosition("");
+		specialtyProfile.setCharacteristic("");
+		specialtyProfile.setStatus(1);
+		count += specialtyProfileMapper.insertSelective(specialtyProfile);
+		if (count > 0) {
+			System.out.println("添加专业概况成功");
+		}
+		return count;
 	}
 	//修改专业
 	//带if的修改

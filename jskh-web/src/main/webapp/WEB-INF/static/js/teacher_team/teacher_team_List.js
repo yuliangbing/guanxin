@@ -13,6 +13,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
+		    ,method:'post'
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}

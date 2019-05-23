@@ -35,7 +35,7 @@
       #{createUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, #{modifyUser,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.zptc.gx.specialty.entity.Specialty" >
+  <insert keyProperty="id" useGeneratedKeys="true" id="insertSelective" parameterType="com.zptc.gx.specialty.entity.Specialty" >
     insert into specialty
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

@@ -50,6 +50,13 @@ public class TeachersTeamController extends BaseController {
 		//获取请求参数
 		String latest = ToolUtil.str("latest", request);
 		String director = ToolUtil.str("director", request);
+		Integer lat = 0;
+		if(latest.equals("是")) {
+			lat = 1;
+		}else {
+			lat = 2;
+		}
+		
 		Integer limit = ToolUtil.integer("limit", request);
 		Integer page = ToolUtil.integer("page", request);
 		
@@ -58,7 +65,7 @@ public class TeachersTeamController extends BaseController {
 		//用于分页的方法
 		pages = pageVO.getBeginNum();
 		//把数据put进入data
-		data.put("latest", latest);
+		data.put("latest", lat);
 		data.put("director", director);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
