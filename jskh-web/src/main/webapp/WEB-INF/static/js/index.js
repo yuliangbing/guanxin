@@ -15,7 +15,8 @@ function getSystemName() {
 		dataType : "json",
 		success : function(result) {// 返回数据根据结果进行相应的处理
 			if (result.code == "0") {
-				$("#systemName").html(result.data.systemName);
+				//$("#systemName").html(result.data.systemName);
+				$("#systemName").html('专业发展平台');
 				$("#systemName").attr("href", result.data.systemLink);
 			} else {
 				layer.msg(result.msg);

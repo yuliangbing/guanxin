@@ -50,10 +50,10 @@ public class TeachersTeamController extends BaseController {
 		//获取请求参数
 		String latest = ToolUtil.str("latest", request);
 		String director = ToolUtil.str("director", request);
-		Integer lat = 0;
+		Integer lat = null;
 		if(latest.equals("是")) {
 			lat = 1;
-		}else {
+		}else if(latest.equals("否")) {
 			lat = 2;
 		}
 		

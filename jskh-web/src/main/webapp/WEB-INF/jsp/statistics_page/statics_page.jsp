@@ -76,13 +76,13 @@
 							 
 							<div class="layui-carousel" id="test10">
 							  <div carousel-item="">
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/1.jpg"></div>
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/2.jpg"></div>
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/3.jpg"></div>
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/5.jpg"></div>
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/6.jpeg"></div>
-							    <div><img style=" width:100%; height:100%;" src="/static/public/images/7.jpeg"></div>
-							    <div><img  style=" width:100%; height:100%;" src="/static/public/images/8.jpeg"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo1.png"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo2.png"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo3.png"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo4.png"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo5.png"></div>
+							    <div><img style=" width:100%; height:100%;" src="/static/public/images/logo1.png"></div>
+							    <div><img  style=" width:100%; height:100%;" src="/static/public/images/bg.png"></div>
 							  </div>
 							</div>
 

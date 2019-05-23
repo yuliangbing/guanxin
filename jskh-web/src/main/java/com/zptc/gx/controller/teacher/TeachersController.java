@@ -1,5 +1,6 @@
 package com.zptc.gx.controller.teacher;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +48,44 @@ public class TeachersController extends BaseController{
 	 @Autowired
 	 private SpecialtyService specialtyService;
 	 
+	 
+	 /**
+		 * 获取  name==教师 数据
+		 * @param request
+		 * @param responses
+		 * @return
+		 */
+		 @RequestMapping("/getTeachers")
+		 @ResponseBody
+		 public JsonResult getTeachers(HttpServletRequest request, HttpServletResponse responses) {
+			 	JsonResult jsonResult = new JsonResult();
+			 	Map<String , Object> map = new HashMap<>();
+			 	//获取请求参数
+			 	String name = ToolUtil.str("name",request);
+				//存入data,用于获取表格数据
+			    map.put("name", name);
+				map.put("status", 1);
+				Map<String, Object> count = new HashMap<>();
+				//存入count,用于获取表格数据条总数
+			    count.put("name", name);
+			    count.put("status", 1);
+				//定义返回的信息msg
+				String msg = "获取成功";
+				try {
+					//获取所有status == 1 的所有数据
+					Teachers teachers = teachersService.findTeachersByName(map);
+					List<Teachers> tList = new ArrayList<>();
+					tList.add(teachers);
+					//返回接口的具体数据
+					jsonResult = JsonResult.build(FLAG_SUCCESS, tList, msg, 1);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					jsonResult = JsonResult.build(FLAG_FAILED, e.getMessage());
+				}
+				return jsonResult;
+		 }
+	 
 	/**
 	 * 获取教师列表
 	 * @param request
@@ -55,7 +94,7 @@ public class TeachersController extends BaseController{
 	 */
 	 @RequestMapping("/getTeachersList")
 	 @ResponseBody
-	 public JsonResult getTeachers(HttpServletRequest request, HttpServletResponse responses) {
+	 public JsonResult getTeachersList(HttpServletRequest request, HttpServletResponse responses) {
 		 	JsonResult jsonResult = new JsonResult();
 		 	Map<String , Object> data = new HashMap<>();
 		 	//获取请求参数
@@ -89,7 +128,7 @@ public class TeachersController extends BaseController{
 				//获取所有status == 1的数据条总数
 				counts = teachersService.selectCounts(count);
 				//返回接口的具体数据
-				jsonResult = jsonResult.build(FLAG_SUCCESS, teachers, msg, counts);
+				jsonResult = JsonResult.build(FLAG_SUCCESS, teachers, msg, counts);
 				System.out.println("获得的数据："+data);
 				System.out.println("返回的数据："+teachers.toString());
 			} catch (Exception e) {
@@ -134,7 +173,7 @@ public class TeachersController extends BaseController{
 				 	Specialty specialty = specialtyService.findSpecialtyById(specialtyId);
 				 	if (specialty == null) {
 						System.out.println("没有该专业");
-						jsonResult = jsonResult.build(FLAG_FAILED, "该专业不存在");
+						jsonResult = JsonResult.build(FLAG_FAILED, "该专业不存在");
 						return jsonResult;
 					}
 				 	specialtyCode = specialty.getCode();
@@ -174,7 +213,7 @@ public class TeachersController extends BaseController{
 				    map.put("status", 1);
 				    Teachers teachers2 = teachersService.findTeachersByName(map);
 				    if (teachers2 != null) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "该老师已存在！");
+						jsonResult = JsonResult.build(FLAG_FAILED, "该老师已存在！");
 						return jsonResult;
 					}
 				    System.out.println("教师不存在，可以继续添加！");
@@ -183,13 +222,13 @@ public class TeachersController extends BaseController{
 					 */
 				    int rs = teachersService.addTeachers(teachers);
 				    if (rs == 1) {
-						jsonResult = jsonResult.build(FLAG_SUCCESS,"教师团队新增成功");
+						jsonResult = JsonResult.build(FLAG_SUCCESS,"教师团队新增成功");
 					}else if (rs <0){
-						jsonResult = jsonResult.build(FLAG_FAILED,"教师团队新增失败");
+						jsonResult = JsonResult.build(FLAG_FAILED,"教师团队新增失败");
 					}else if (rs == 404) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "找不到该团队负责人");
+						jsonResult = JsonResult.build(FLAG_FAILED, "找不到该团队负责人");
 					}else if (rs == 201) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
+						jsonResult = JsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
 					}
 				    /*//存放查询参数
 				    Map<String, Object> data =new HashMap<>();
@@ -838,15 +877,15 @@ public class TeachersController extends BaseController{
 					} else if(result < 0){
 						jsonResult = JsonResult.build(FLAG_FAILED,"修改失败");
 					}else if (result == 404) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "没有该教师");
+						jsonResult = JsonResult.build(FLAG_FAILED, "没有该教师");
 					}else if(result == 405) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "找不到该团队的负责人");
+						jsonResult = JsonResult.build(FLAG_FAILED, "找不到该团队的负责人");
 					}else if (result == 780) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "修改专业后，添加数据失败！");
+						jsonResult = JsonResult.build(FLAG_FAILED, "修改专业后，添加数据失败！");
 					}else if (result == 781) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
+						jsonResult = JsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
 					}else if (result == 881) {
-						jsonResult = jsonResult.build(FLAG_FAILED, "修改是否兼职后，添加数据失败!");
+						jsonResult = JsonResult.build(FLAG_FAILED, "修改是否兼职后，添加数据失败!");
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block

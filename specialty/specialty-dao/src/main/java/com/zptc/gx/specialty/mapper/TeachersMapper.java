@@ -24,7 +24,7 @@ public interface TeachersMapper {
     int selectCounts(Map<String, Object> count);
     
      List<Teachers> getTeachersList(Object data);
-
+   //获取到名为该教师的数据
 	Teachers selectByName(Map<String, Object> map);
 	//用于获取specialtyId相同的教师数据
 	List<String> getTeacherByList(Map<String, Object> tdata);
