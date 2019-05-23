@@ -81,7 +81,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=training_construction/traEnvCon_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -122,7 +122,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=training_construction/traEnvCon_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -143,7 +143,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date2 = data.field.date.split('~')[1];
 			}
 			tableIns.reload({
-				where:{"units":"案"},
+				where:arr,
 				page: {
 					curr: 1
 				}
@@ -178,7 +178,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=training_construction/traEnvCon_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除

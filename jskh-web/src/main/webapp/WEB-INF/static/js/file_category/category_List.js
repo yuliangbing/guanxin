@@ -81,7 +81,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=file_category/category_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -121,7 +121,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=file_category/category_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -178,7 +178,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=file_category/category_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	  //批量删除
