@@ -92,7 +92,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=main_courses/main_courses_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -130,7 +130,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=main_courses/main_courses_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -166,7 +166,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=main_courses/main_courses_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%']
+	  		area:['80%','85%']
 	  	});
 	  });
 	//批量删除

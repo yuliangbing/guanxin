@@ -58,7 +58,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=teacher_team/teacher_team_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];

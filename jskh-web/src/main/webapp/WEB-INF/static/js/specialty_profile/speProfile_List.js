@@ -53,7 +53,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true } 
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'} 
 		      ,{field:'date', title:'年份', width:'15%',align:'center'}	     
@@ -83,7 +83,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=specialty_profile/speProfile_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -124,7 +124,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=specialty_profile/speProfile_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -185,7 +185,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=specialty_profile/speProfile_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['60%','75%'],
+	  		area:['80%','85%'],
 			success : function(layero, index) {
 				// 获取子页面的iframe
 				var iframe = window['layui-layer-iframe' + index];
