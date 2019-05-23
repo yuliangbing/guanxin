@@ -21,7 +21,7 @@
     <div class="layui-col-md12 layui-content-white">
       <div class="layui-row" >
         <form class="layui-form-item layui-col-md12 x-so" onsubmit="return false;">
-          <input class="layui-input" placeholder="时间" name="date1" autocomplete="off" id="date1" style="width:200px;">
+          <input class="layui-input" placeholder="时间" name="date" autocomplete="off" id="date" style="width:200px;">
           <input type="text" name="award_level" id="award_level" placeholder="请输入获奖级别" autocomplete="off" class="layui-input">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>

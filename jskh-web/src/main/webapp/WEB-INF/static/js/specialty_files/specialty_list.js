@@ -59,7 +59,7 @@
 							{
 								field: 'id',
 								title: '主键',
-								width: '5%',
+								width: '8%',
 								sort: true,
 								align: 'center'
 							}, {

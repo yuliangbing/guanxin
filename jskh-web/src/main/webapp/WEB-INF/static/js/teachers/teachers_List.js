@@ -22,10 +22,11 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,url:window.path +'/teachers/getTeachersList'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
+		    ,method:'post'
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'name', title:'教师姓名', width:'15%',align:'center'}
 		      ,{field:'code', title:'教师编号', width:'15%',align:'center' }
 		      ,{field:'entryTime', title:'入职时间', width:'15%',align:'center' }

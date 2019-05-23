@@ -16,7 +16,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,method:'post'
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true,align:'center'}
+		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true}
 		      ,{field:'specialtyCode', title:'专业编码', width:'15%',align:'center' }
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }

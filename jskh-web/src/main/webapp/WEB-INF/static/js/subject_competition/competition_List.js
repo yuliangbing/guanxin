@@ -53,7 +53,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'5%',sort: true ,align:'center'}
+		      ,{field:'id', title:'主键', width:'8%',sort: true ,align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
 		      ,{field:'name', title:'竞赛名称', width:'15%', align:'center'}
 		      ,{field:'awardLevel', title:'获奖级别', width:'15%', align:'center'}
