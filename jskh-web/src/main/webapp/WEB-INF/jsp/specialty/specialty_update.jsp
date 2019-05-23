@@ -18,7 +18,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">设立时间</label>
 					<div class="layui-input-inline">
-						<input name="setup_date" id="setup_date"  autocomplete="off" class="layui-input" type="text">
+						<input name="setupDate" id="setupDate"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				
@@ -45,21 +45,19 @@
 	</body>
 	<script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <%-- 	<script src="${path}/static/public/lib/layui.js" type="text/javascript" charset="utf-8"></script> --%>
-		<script type="text/javascript" src="${path}/static/js/specialty/specialty_List.js"></script>
+		<%-- <script type="text/javascript" src="${path}/static/js/specialty/specialty_List.js"></script> --%>
 	<script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 	<script>
 	//表格数据传值
 	var id = 0;
-	var name = "";
+	var specialty_name = "";
 	function init(data) {
-		id= data.id;
-		$("#setup_date").val((data.setup_date.split(' '))[0]);
+
+		id = data.id;
+		$("#setupDate").val((data.setupDate.split(' '))[0]);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-		
-	//$("#specialtyName").val(data.specialtyName);
-
-
+		specialty_name = data.specialty_name;
 	}
 	
 	function ajax_h(form,names,url,object,ids)
@@ -69,11 +67,26 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				layer.msg("获取成功");
 				console.log("长度"+data.data.length);
 				console.log(names);
 				let option = "";
-				 if(ids == 'id')
+				if (data.code == 0) {
+					if(ids == 'code'){
+						for (let i=0;i<data.data.length;i++)
+						{
+							if(data.data[i].name == names)
+							{
+								option += "<option value='"+data.data[i].code+"' selected='selected'>"+data.data[i].name+"</option>";
+							}
+							else
+							{
+								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+							}
+						}
+						$("#"+object).append(option);
+						form.render('select');
+					}
+				 	else if(ids == 'id')
 				 	{
 						for (let j=0;j<data.data.length;j++)
 						{
@@ -90,6 +103,11 @@
 						form.render('select');
 					} 
 					console.log("option:"+option);
+					
+				} else {
+					layer.msg(data.msg);
+				}
+				
 			} ,error:function(code){
 	           layer.alert("发生错误,请联系管理员");
 	        }
@@ -108,23 +126,20 @@
 	//专业
 	ids = 'id';
 	url = '/specialty/getSpecialtyList';
-	object = 'name';
-	names = name;
+	object = 'specialty_id';
+	names= specialty_name;
 	ajax_h(form,names,url,object,ids);
 		laydate.render({
-			elem: '#setup_date' //指定元素	
+			elem: '#setupDate' //指定元素	
 		});
 		
 	/*提交功能*/
 	  form.on('submit(submit)', function(data) {
 			/*获取$值存入params */
 			var params = {};
-			params.setup_date = $("#setup_date").val();
+			params.setup_date = $("#setupDate").val();
 			params.code = $("#code").val();
 			params.name = $("#name").val();
-			
-console.log(params);
-
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

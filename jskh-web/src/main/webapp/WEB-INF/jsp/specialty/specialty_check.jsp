@@ -52,7 +52,7 @@
    	function init(data) {
 
    		$("#id").val(data.id);
-		$("#setupDate").val((data.setup_date.split(' '))[0]);
+		$("#setupDate").val((data.setupDate.split(' '))[0]);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
 	

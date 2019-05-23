@@ -10,7 +10,7 @@
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="${path}/static/public/layui/layui.js" type="text/javascript"></script>
 <script type="text/javascript" src="${path}/static/js/specialty/specialty_List.js"></script>
-<title>浙江邮电职业技术学院管理系统</title>
+<title></title>
 </head>
 <body class="layui-layout-body" style="position:absolute; height:400px; overflow:auto">
 
