@@ -5,7 +5,7 @@
 <html class="x-admin-sm">
 	</head>
 	        <meta charset="UTF-8">
-	        <title>统计页面</title>
+	        <title>首页面</title>
 	        <!-- <meta name="renderer" content="webkit">
 	        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
@@ -18,11 +18,11 @@
 	          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 	        <![endif]-->
 	</head>
-    <body style="position:absolute; height:400px; overflow:auto">
+    <body class="layui-anim layui-anim-up" style="position:absolute; height:400px; overflow:auto">
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
 
-                <div class="layui-col-sm12 layui-col-md12 layui-anim layui-anim-rotate">
+                <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">专业发展时间轴</div>
                         <div class="layui-card-body" style="min-height: 280px;">

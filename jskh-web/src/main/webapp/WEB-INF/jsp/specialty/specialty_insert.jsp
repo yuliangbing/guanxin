@@ -90,7 +90,7 @@
 	ajax_h(form,url,object,ids);
 	laydate.render({
 		
-	    elem: '#date'
+	    elem: '#setup_date'
 	  });
 	laydate.render({
 		elem: '#date1' //指定元素	

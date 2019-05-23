@@ -17,7 +17,7 @@
     	</div>
 				<div class="layui-col-md12 layui-content-white">
       				<div class="layui-row">
-						<!-- <form class="layui-form layui-col-md12 x-so" onsubmit="return false;">
+						<form class="layui-form layui-col-md12 x-so" onsubmit="return false;">
 							<div class="layui-form-item">
 								<div class="layui-inline">
 									<label class="layui-form-label" for="date">文件时间</label>
@@ -56,7 +56,7 @@
 							<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
 							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
 						    
-						</form> -->
+						</form>
 						<form class="layui-form" action="">
 						 <div class="layui-form-item" style="margin: 7px 0px 18px 44%;">
 						 	教师<a  id="name" style="color:red;"></a>的数据
