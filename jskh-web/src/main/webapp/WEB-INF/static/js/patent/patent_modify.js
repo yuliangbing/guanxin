@@ -16,7 +16,6 @@
 		$("#other_authors").val(data.otherAuthors);
 		$("#specialty_id").val(data.specialtyId);
 		specialty_name = data.specialtyName;
-    	
 	}
 	
 	
@@ -97,10 +96,13 @@
 		object = 'specialty_id';
 		names= specialty_name;
 		ajax_h(form,names,url,object,ids);
-			laydate.render({
-				elem: '#date' //指定元素	
-			});
 			
+		//专利
+		ids = 'id';
+		url = '/patentType/PatentTypeList';
+		object = 'type';
+		names= type;
+		ajax_h(form,names,url,object,ids);	
 		
 		layui.use('element', function() {
 			var element = layui.element;
