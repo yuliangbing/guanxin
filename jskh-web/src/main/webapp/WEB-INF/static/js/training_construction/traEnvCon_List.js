@@ -25,14 +25,41 @@
 //		        }
 //			});
 //		}
+function ajax_h(form, url, object, ids) {
+	// 获取下拉列表(公共方法)
+	$.ajax({
+		url : url,
+		type : "POST",
+		dataType : "json",
+		success : function(data) {
+					let option = "";
+					for (let i = 0; i < data.data.length; i++) {
+						option += "<option value='" + data.data[i].id + "'>"
+								+ data.data[i].name + "</option>";
+					}
+					$("#" + object).append(option);
+					form.render('select');
+		},
+		error : function(code) {
+			layer.alert("发生错误,请联系管理员");
+		}
+	});
+}
+
 layui.use('element', function() {
 				var element = layui.element;
+				
 
 			});
 layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
 				
+				// 专业
+				url = '/specialty/getSpecialtyList';
+				object = 'specialty_id';
+				ids = 'id';
+				ajax_h(form, url, object, ids);
 				/*
 				 实现时间选择
 				 */
@@ -81,7 +108,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=training_construction/traEnvCon_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['80%','85%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -122,7 +149,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=training_construction/traEnvCon_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['80%','85%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -151,11 +178,6 @@ layui.use(['form', 'table', 'laydate'], function() {
 			return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 		});
 	  
-		
-		layui.use('element', function() {
-			var element = layui.element;
-
-		});
 
 		layui.use(['form','laydate'], function() {
 			var form = layui.form;
@@ -178,7 +200,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=training_construction/traEnvCon_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['80%','85%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除

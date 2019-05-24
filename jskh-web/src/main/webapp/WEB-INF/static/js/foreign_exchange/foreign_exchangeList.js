@@ -129,7 +129,8 @@
 
 				/* 搜索功能 */
 			  form.on('submit(search)', function(data) {
-					/*layer.alert(JSON.stringify(data.field));*/
+					//layer.alert(JSON.stringify(data.field));
+				  console.log(data.field);
 					let arr = {};
 					arr = data.field;
 					if(arr.data != "" && arr.date != null){
@@ -144,6 +145,7 @@
 					});
 					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 				});
+			  
 			//批量删除
 			  table.on('toolbar(test)', function(obj){
 				    var checkStatus = table.checkStatus(obj.config.id);

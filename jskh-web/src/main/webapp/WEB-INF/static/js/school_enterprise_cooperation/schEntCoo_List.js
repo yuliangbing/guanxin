@@ -83,7 +83,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=school_enterprise_cooperation/schEntCoo_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['80%','85%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -98,7 +98,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 				//向服务端发送删除指令*/	
 	    		console.log(data.id);
 				$.ajax({
-					url:'/SchoolEnterpriseCooperation/delSchoolEnterpriseCooperation',
+					
+
+url:'/SchoolEnterpriseCooperation/delSchoolEnterpriseCooperation',
 					type:"POST",
 					data:{id:data.id},
 					dataType:"json",
@@ -124,7 +126,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	    		content:['/toPage?page=school_enterprise_cooperation/schEntCoo_update'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['80%','85%'],
+	    		area:['60%','75%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];
@@ -180,7 +182,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  		content:['/toPage?page=school_enterprise_cooperation/schEntCoo_insert'],
 	  		maxmin:true,
 	  		resize:false,
-	  		area:['80%','85%']
+	  		area:['60%','75%']
 	  	});
 	  });
 	  //批量删除
@@ -199,7 +201,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
-						url:'/SchoolEnterpriseCooperation/delSchoolEnterpriseCooperation',
+						
+
+url:'/SchoolEnterpriseCooperation/delSchoolEnterpriseCooperation',
 						type:"POST",
 						data:{id:param},
 						dataType:"json",
