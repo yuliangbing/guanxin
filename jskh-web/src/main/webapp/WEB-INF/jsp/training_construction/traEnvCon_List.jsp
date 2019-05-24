@@ -22,7 +22,16 @@
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="时间" name="date" id="date" autocomplete="off" style="width:200px;">
-          <input type="text" name="specialtyName" id="specialtyName" placeholder="请输入专业名称" autocomplete="off" class="layui-input">
+          <div class="layui-inline">
+			<label class="layui-form-label" for="specialty_id">专业</label>
+			<div class="layui-input-inline">
+				<select type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off"
+					autocomplete="off" placeholder="" lay-verify="required"
+					class="layui-select" lay-search>
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>

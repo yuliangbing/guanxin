@@ -51,9 +51,9 @@ public class TeachersTeamController extends BaseController {
 		String latest = ToolUtil.str("latest", request);
 		String director = ToolUtil.str("director", request);
 		Integer lat = null;
-		if(latest.equals("是")) {
+		if(latest.equals("1")) {
 			lat = 1;
-		}else if(latest.equals("否")) {
+		}else if(latest.equals("2")) {
 			lat = 2;
 		}
 		

@@ -165,7 +165,7 @@
 				date = #{date,jdbcType=DATE},
 			</if>
 			<if test="specialtyName != null">
-				#{specialty_name,jdbcType=VARCHAR},
+				specialty_name = #{specialtyName,jdbcType=VARCHAR},
 			</if>
 			<if test="position != null">
 				position = #{position,jdbcType=VARCHAR},

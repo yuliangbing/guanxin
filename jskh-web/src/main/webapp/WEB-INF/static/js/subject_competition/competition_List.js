@@ -43,11 +43,38 @@ layui.use(['form', 'table', 'laydate'], function() {
 					elem: '#date' //指定元素	
 					,range: '~' //或 range: '~' 来自定义分割字符
 				});
+				
+				
+				/* 搜索功能 */
+				  form.on('submit(searchH)', function(data) {
+						//layer.alert(JSON.stringify(data.field));
+						//arr = data.field;
+					  
+						let arr = {};
+						arr.date = $("#date").val();
+						//console.log("时间："+arr.date);
+						arr.award_level = $("#award_level").val();
+						if(arr.data != "" && arr.date != null){
+							arr.date1 = arr.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
+							arr.date2 = arr.date.split('~')[1];
+						}
+						//console.log(arr);
+						tableIns.reload({
+							where:arr,
+							page: {
+								curr: 1
+							}
+						});
+						return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+					});
+				
+				
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
-		     	,defaultToolbar:[]
-		    ,url:window.path +'/subjectCompetition/getSubjectCompetitionList'
+		    ,defaultToolbar:[]
+		    ,url:'/subjectCompetition/getSubjectCompetitionList'
+		    ,method:'post'
 		    ,title: '用户数据表'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
@@ -132,29 +159,6 @@ layui.use(['form', 'table', 'laydate'], function() {
 			}
 		});
 
-		
-	  
-		
-		
-			/* 搜索功能 */
-			  form.on('submit(search)', function(data) {
-					layer.alert(JSON.stringify(data.field));
-					let arr = {};
-					arr = data.field;
-					if(arr.data != "" && arr.date != null){
-						arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-						arr.date2 = data.field.date.split('~')[1];
-					}
-					//console.log(arr);
-					tableIns.reload({
-						where:arr,
-						page: {
-							curr: 1
-						}
-					});
-					return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
-				});
-			
 	//添加按钮点击事件
 	  $("#insert").click(function(){
 	  	layer.open({

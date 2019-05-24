@@ -181,21 +181,12 @@
 			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
-		<if test="content != null and content != ''">
-			and instr(content,#{content,jdbcType=VARCHAR})
-		</if>
-		<if test="participants != null and participants != ''">
-			and instr(participants,#{participants,jdbcType=VARCHAR})
-		</if>
-		<!-- <if test="specialtyId != null and specialtyId != ''">
-			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
-		</if> -->
-		<if test="specialtyName != null and specialtyName != ''">
-			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
+		<if test="specialty_name != null and specialty_name != ''">
+			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
 		</if>
 		<if test="status !=null and status != ''">
-					and status = #{status,jdbcType=INTEGER}
-				</if>
+			and status = #{status,jdbcType=INTEGER}
+		</if>
 	</where>
     limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
@@ -211,21 +202,12 @@
 			<!-- and datediff(day,date1,date2,#{date1,jdbcType=TIMESTAMP},#{date1,jdbcType=TIMESTAMP}) -->
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
-		<if test="content != null and content != ''">
-			and instr(content,#{content,jdbcType=VARCHAR})
-		</if>
-		<if test="participants != null and participants != ''">
-			and instr(participants,#{participants,jdbcType=VARCHAR})
-		</if>
-		<!-- <if test="specialtyId != null and specialtyId != ''">
-			and instr(specialtyId,#{specialtyId,jdbcType=BIGINT})
-		</if> -->
-		<if test="specialtyName != null and specialtyName != ''">
+		<if test="specialty_name != null and specialty_name != ''">
 			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
 		</if>
 		<if test="status !=null and status != ''">
-					and status = #{status,jdbcType=INTEGER}
-				</if>
+			and status = #{status,jdbcType=INTEGER}
+		</if>
 	</where>
 	</select>
 </mapper>

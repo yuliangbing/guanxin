@@ -193,7 +193,7 @@
     <where>
         <if test="date1 != null and date1 != '' and date2 != null and date2 !=''">
 			<!-- and date_format(create_time, '%Y-%m-%d') between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR} -->
-			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
+			date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
 		<if test="units != null and units != ''">
 			and instr(units,#{units,jdbcType=VARCHAR})

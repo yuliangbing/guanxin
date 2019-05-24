@@ -206,13 +206,13 @@ public class SubjectCompetitionController extends BaseController{
 		//定义返回的msg
 		String msg = "success";
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据
 			List<SubjectCompetition> SubjectCompetitionList = subjectCompetitionService.getSubjectCompetitionList(data);
 			//获取所有status == 1的数据条总数
 			counts = subjectCompetitionService.selectCounts(count);
 			//返回接口的具体数据
-			jsonResult = jsonResult.build(FLAG_SUCCESS, SubjectCompetitionList,msg,counts);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, SubjectCompetitionList,msg,counts);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

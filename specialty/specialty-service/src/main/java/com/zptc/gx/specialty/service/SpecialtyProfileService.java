@@ -10,7 +10,7 @@ public interface SpecialtyProfileService {
 
 	public int addSpecialtyProfile(SpecialtyProfile specialtyProfile);
 
-	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile, boolean changeFlag);
+	public int modifySpecialtyProfile(SpecialtyProfile specialtyProfile);
 
 	public void deleteSpecialtyProfileById(Long id);
 

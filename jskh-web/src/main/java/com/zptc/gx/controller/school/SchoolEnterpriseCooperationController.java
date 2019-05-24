@@ -46,15 +46,16 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		    String units = ToolUtil.str("units", request);
 		    String participants = ToolUtil.str("participants", request);
 		    String achievements = ToolUtil.str("achievements", request);
-		    //Long specialtyId = ToolUtil.lon("specialty_id", request);
+		    Long specialtyId = ToolUtil.lon("specialty_id", request);
 		    String specialtyName = ToolUtil.str("specialty_name", request);
-		    Integer status = ToolUtil.integer("status", request);
+		    //Integer status = ToolUtil.integer("status", request);
 		    
 		    SchoolEnterpriseCooperation schoolEnterpriseCooperation = new SchoolEnterpriseCooperation();
 		    schoolEnterpriseCooperation.setContent(content);
 		    schoolEnterpriseCooperation.setUnits(units);
 		    schoolEnterpriseCooperation.setParticipants(participants);
 		    schoolEnterpriseCooperation.setAchievements(achievements);
+		    schoolEnterpriseCooperation.setSpecialtyId(specialtyId);
 		    schoolEnterpriseCooperation.setSpecialtyName(specialtyName);
 		    schoolEnterpriseCooperation.setDate(date);
 		    schoolEnterpriseCooperation.setStatus(1);
@@ -170,12 +171,12 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		// Long id = ToolUtil.lon("id", request);
 		String date1 = ToolUtil.str("date1", request);
 		String date2 = ToolUtil.str("date2", request);
-		String content = ToolUtil.str("content", request);
+		//String content = ToolUtil.str("content", request);
 	    String units = ToolUtil.str("units", request);
-	    String participants = ToolUtil.str("participants", request);
+	   /* String participants = ToolUtil.str("participants", request);
 	    String achievements = ToolUtil.str("achievements", request);
 	    Long specialtyId = ToolUtil.lon("specialty_id", request);
-	    String specialtyName = ToolUtil.str("specialty_name", request);
+	    String specialtyName = ToolUtil.str("specialty_name", request);*/
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -185,12 +186,12 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 	  //存入data,用于获取表格数据
 	    data.put("date1", date1);
 	    data.put("date2", date2);
-	    data.put("content", content);
+	  //  data.put("content", content);
 	    data.put("units", units);
-	    data.put("participants", participants);
+	   /* data.put("participants", participants);
 	    data.put("achievements", achievements);
 	    data.put("specialtyId", specialtyId);
-	    data.put("specialtyName", specialtyName);
+	    data.put("specialtyName", specialtyName);*/
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
@@ -199,12 +200,12 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		//存入count,用于获取表格数据条总数
 		count.put("date1", date1);
 		count.put("date2", date2);
-		count.put("content", content);
+		//count.put("content", content);
 		count.put("units", units);
-		count.put("participants", participants);
+		/*count.put("participants", participants);
 		count.put("achievements", achievements);
 		count.put("specialtyId", specialtyId);
-		count.put("specialtyName", specialtyName);
+		count.put("specialtyName", specialtyName);*/
 		count.put("limit", pageVO.getLimit());
 		count.put("pages", pages);
 		count.put("status", 1);
@@ -213,13 +214,13 @@ public class SchoolEnterpriseCooperationController extends BaseController{
 		//定义返回的msg
 		String msg = "success";
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据
 			List<SchoolEnterpriseCooperation> schoolEnterpriseCooperationList = schoolEnterpriseCooperationService.getSchoolEnterpriseCooperationList(data);
 			//获取所有status == 1的数据条总数
 			counts = schoolEnterpriseCooperationService.selectCounts(count);
 			//返回接口的具体数据
-			jsonResult = jsonResult.build(FLAG_SUCCESS, schoolEnterpriseCooperationList, msg, counts);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, schoolEnterpriseCooperationList, msg, counts);
 			System.out.println("获得的数据："+data);
 		} catch (Exception e) {
 			// TODO: handle exception
