@@ -23,9 +23,10 @@
 	<div class="container">
 		<div class="header">
 			<div class="logo">
-				<img src="${path}/static/public/images/logo.png"/>
+				<%-- <img src="${path}/static/public/images/logo.png"/> --%>
 				<div style="font-size:35px;margin-left:10px;display:inline-block">
-					<div style="position: relative;top: 8px;">${systemName}</div>
+					<%-- <div style="position: relative;top: 8px;">${systemName}</div> --%>
+					<div style="position: relative;top: 22px;">专业发展平台</div>
 				</div>	
 			</div>
 			
@@ -50,7 +51,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="footer">Copyright © 2018 浙江邮电职业技术学院${systemName} v1.0.0</div>
+		<%-- <div class="footer">Copyright © 2018 浙江邮电职业技术学院${systemName} v1.0.0</div> --%>
 	
 	</div>
 </body>
