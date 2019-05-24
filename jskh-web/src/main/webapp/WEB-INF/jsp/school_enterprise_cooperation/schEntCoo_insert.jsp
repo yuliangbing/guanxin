@@ -41,7 +41,7 @@
 					</div>
 				</div>
 				<div class="layui-inline">
-					<label class="layui-form-label">主持人</label>
+					<label class="layui-form-label">取得成果</label>
 					<div class="layui-input-inline">
 						<input name="achievements" id="achievements"  autocomplete="off" class="layui-input" type="text">
 					</div>
