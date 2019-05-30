@@ -56,6 +56,9 @@ public class MainCoursesController extends BaseController {
 	    //存入data,用于获取表格数据
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
+  		if (specialtyId == -1) {
+			specialtyId = null;
+		}
   		data.put("specialty_id",specialtyId);
   		data.put("status", 1);
   		Map<String, Object> count = new HashMap<>();

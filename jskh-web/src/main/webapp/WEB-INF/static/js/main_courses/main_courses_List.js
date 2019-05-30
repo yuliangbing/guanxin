@@ -13,7 +13,7 @@ function ajax_h(form)
 							
 							let option = "";
 							for (let i=0;i<data.data.length;i++) {
-								option += "<option value='"+data.data[i].code+"'>"+data.data[i].name+"</option>";
+								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
 							}
 							$("#specialtyId").append(option);
 							form.render('select');
@@ -145,11 +145,8 @@ layui.use(['form', 'table', 'laydate'], function() {
 	  form.on('submit(search)', function(data) {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
-			arr = data.field;
-			if(arr.data != "" && arr.date != null){
-				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
-				arr.date2 = data.field.date.split('~')[1];
-			}
+			arr.specialty_id = $("#specialtyId option:checked").val();
+			//alert(JSON.stringify(arr));
 			tableIns.reload({
 				where:arr,
 				page: {
