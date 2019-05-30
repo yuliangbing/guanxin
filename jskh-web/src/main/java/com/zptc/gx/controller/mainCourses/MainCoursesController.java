@@ -56,7 +56,7 @@ public class MainCoursesController extends BaseController {
 	    //存入data,用于获取表格数据
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
-  		data.put("specialty_name", specialtyName);
+  		data.put("specialty_name",specialtyName);
   		data.put("status", 1);
   		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
