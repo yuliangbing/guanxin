@@ -18,24 +18,21 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
       <div class="layui-row">
-						<form class="layui-form" style="padding: 9px;" onsubmit="return false;">
-							<div class="layui-form-item">
-								<div class="layui-inline">
-									<label class="layui-form-label" for="date">年级</label>
-									<div class="layui-input-inline">
-										<input type="text" id="date" name="date"  placeholder="请选择年级" autocomplete="off" class="layui-input">
-									</div>
-								</div>
-								<div class="layui-inline">
-									<label class="layui-form-label alignment">专业</label>
-									<div class="layui-input-inline">
-										<select name="specialtyId"  id="specialtyId"  autocomplete="off" class="layui-input" type="text">
-											<option value="">请选择</option>
-										</select>
-									</div>
-								</div>
-							<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
-							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+			<form class="layui-form" style="padding: 9px;" onsubmit="return false;">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label alignment">专业</label>
+							<div class="layui-input-inline">
+								<select name="specialtyId"  id="specialtyId"  autocomplete="off" class="layui-input" type="text">
+									<option value="">请选择</option>
+								</select>
+							</div>
+					</div>
+					<div class="layui-inline">
+						<button class="layui-btn layui-right" lay-submit lay-filter="search"><i class="layui-icon">&#xe615;</i>搜索</button>
+						<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+					</div>
+				</div>
         </form>
       </div>
        <table class="layui-hide" id="test" lay-filter="test"></table>
