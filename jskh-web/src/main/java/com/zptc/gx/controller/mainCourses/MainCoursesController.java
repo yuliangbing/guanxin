@@ -47,7 +47,7 @@ public class MainCoursesController extends BaseController {
 		System.out.println("列表信息");
 		Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
-	    String specialtyName = ToolUtil.str("specialtyName", request);
+	    Long specialtyId = ToolUtil.lon("specialty_id", request);
 		Map<String, Object> data = new HashMap<>();
 	    PageVO pageVO = new PageVO(page, limit);
 	    Integer pages = 0;
@@ -56,11 +56,11 @@ public class MainCoursesController extends BaseController {
 	    //存入data,用于获取表格数据
   		data.put("limit", pageVO.getLimit());
   		data.put("pages", pages);
-  		data.put("specialty_name",specialtyName);
+  		data.put("specialty_id",specialtyId);
   		data.put("status", 1);
   		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-  		data.put("specialty_name", specialtyName);
+  		count.put("specialty_id",specialtyId);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;

@@ -156,8 +156,8 @@
     <include refid="Base_Column_List" />
     from main_courses
     <where>
-		<if test="specialty_name != null and specialty_name != ''">
-			and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+		<if test="specialty_id != null">
+			specialty_id = #{specialty_id,jdbcType=BIGINT}
 		</if>
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}
@@ -172,8 +172,8 @@
 		from
 			main_courses
 			<where>
-				<if test="specialty_name != null and specialty_name != ''">
-					and instr(specialty_name,#{specialty_name,jdbcType=VARCHAR})
+				<if test="specialty_id != null">
+					specialty_id = #{specialty_id,jdbcType=BIGINT}
 				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}
