@@ -21,9 +21,6 @@
 				type:"POST",
 				dataType:"json",
 				success:function(data){
-					//layer.msg("获取成功");
-					/*console.log("长度"+data.data.length);
-					console.log(names);*/
 					let option = "";
 					if (data.code == 0) {
 						if(ids == 'code'){

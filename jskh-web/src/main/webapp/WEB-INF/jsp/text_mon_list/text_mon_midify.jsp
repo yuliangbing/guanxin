@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/js/text_mon_list/text_mon_modify.js"></script>
+<script src="${path}/static/js/text_mon_list/text_mon_modify.js" type="text/javascript"></script>
 </head>
 <body style="margin-left: 18%;">
 		<form class="layui-form" action="">
@@ -16,7 +16,7 @@
 		   <div class="layui-inline">
 			    <label for="job"class="layui-form-label" style="width:150px;">出版时间</label>
 				<div class="layui-input-inline">
-					
+					<input id="id" type="hidden"/>
 						<input type="text" id="date" name="date" lay-verify="required" placeholder="请输入" autocomplete="off" class="layui-input">
 					
 				</div>

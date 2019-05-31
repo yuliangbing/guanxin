@@ -7,10 +7,10 @@
 		$("#status").val(data.status);
 		$("#code").val(data.code);
 		$("#name").val(data.name);
-		$("#create_time").val(data.create_time);
-		$("#create_user").val(data.create_user);
-		$("#modify_time").val(data.modify_time);
-		$("#modify_user").val(data.modify_user);
+		$("#create_time").val(data.createTime);
+		$("#create_user").val(data.createUser);
+		$("#modify_time").val(data.modifyTime);
+		$("#modify_user").val(data.modifyUser);
 	}
 
 		//关闭监听

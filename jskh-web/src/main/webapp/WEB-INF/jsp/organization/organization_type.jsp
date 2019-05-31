@@ -20,7 +20,7 @@
     <div class="layui-col-md12 layui-content-white">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input type="text" name="name" id="name" placeholder="请输入组织机构类别名称" autocomplete="off" class="layui-input" style="width: 14%;">
+          <input type="text" name="name" id="name" placeholder="请输入组织机构类别名称" autocomplete="off" class="layui-input" style="width: 16%;">
           <!-- <button class="layui-btn"  lay-submit="" lay-filter="sreach" id="sreach"><i class="layui-icon">&#xe615;</i></button> -->
           <button  class="layui-btn"  lay-submit lay-filter="search" id="search"><i class="layui-icon">&#xe615;</i>搜索</button>
           <button type="reset" class="layui-btn layui-btn-danger">重置</button>
@@ -38,7 +38,7 @@
     <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="dels"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
      
   </body>

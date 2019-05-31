@@ -90,8 +90,6 @@
 							success:function(data){
 								var nowPage = tableIns.config.page.curr;//返回当前页数
 					        	var reloadPage = (nowPage-1) > 0? nowPage:1;
-					        	//console.log((nowPage-1));
-					        	//console.log(reloadPage);
 								layer.msg("删除成功");
 								layer.close(index);
 				    			tableIns.reload({
@@ -115,6 +113,11 @@
 							var iframe = window['layui-layer-iframe' + index];
 							// 向子页面的全局函数child传参
 							iframe.init(data);
+							tableIns.reload({
+			    				page:{
+			    					curr:reloadPage
+			    				}
+			    			});
 						} 
 					});
 					}
