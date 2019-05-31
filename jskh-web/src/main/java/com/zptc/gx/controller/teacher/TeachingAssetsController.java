@@ -158,8 +158,8 @@ public class TeachingAssetsController extends BaseController{
    String status_code = ToolUtil.str("status_code", request);
    String training_room = ToolUtil.str("training_room", request);
    String remark = ToolUtil.str("remark", request);
-   Long specialty_id = ToolUtil.lon("specialty_id", request);
-   String specialty_name = ToolUtil.str("specialty_name", request);
+   Long specialtyId = ToolUtil.lon("specialty_id", request);
+   String specialtyName = ToolUtil.str("specialty_name", request);
    
    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
   TeachingAssets teachingAssets = teachingAssetsService.findTeachingAssetsById(id);
@@ -180,6 +180,8 @@ public class TeachingAssetsController extends BaseController{
   teachingAssets.setUsePerson(use_person);
   teachingAssets.setTrainingRoom(training_room);
   teachingAssets.setStatusCode(status_code);
+  teachingAssets.setSpecialtyId(specialtyId);
+  teachingAssets.setSpecialtyName(specialtyName);
   teachingAssets.setModifyTime(new Date());
   teachingAssets.setModifyUser(user.getTeaName());
 //  判断是否缺少数据
@@ -187,7 +189,7 @@ public class TeachingAssetsController extends BaseController{
 			&&ToolUtil.equalBool(model_num)&&ToolUtil.equalBool(sources)&&ToolUtil.equalBool(total_amount)
 			&&ToolUtil.equalBool(manufacturer)&&ToolUtil.equalBool(use_person)&&ToolUtil.equalBool(specification)&&ToolUtil.equalBool(training_room)
 			&&ToolUtil.equalBool(status_code)&&ToolUtil.equalBool(remark)
-			&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(specialty_id)&&ToolUtil.equalBool(specialty_name)) == false) {
+			&&ToolUtil.equalBool(date)&&ToolUtil.equalBool(specialtyId)&&ToolUtil.equalBool(specialtyName)) == false) {
 		   jsonResult = JsonResult.build(FLAG_FAILED,"数据缺少");
 			return jsonResult;
 		  }
