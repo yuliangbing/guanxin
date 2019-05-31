@@ -202,15 +202,28 @@
 								success:function(data){
 									var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
 									var nowPage = tableIns.config.page.curr;//返回当前总页数
+									var limits = $(".layui-laypage-limits").find("option:selected").val();//获取当前条数10/ye
+									var countstr = $(".layui-laypage-count").text();//总数据条数
+									var count = countstr.replace(/[^0-9]/ig,"");
+									//alert(count);
 									//console.log(page);
 						        	var reloadPage = (page-1) > 0? page:1;
+						        	if(count > (limits*(page-1))){//有分页		12>10*1
+						        		if(count-1 <= (limits*(page-1))){//判断在当前页是否还有数据  11-1<=10*1
+							        		reloadPage = reloadPage-1;		// 1
+							        	}
+						        	}
+						        	//alert(reloadPage);
 									layer.msg("删除成功");
 									//layer.close(index);
+					    			
+					    					
 					    			tableIns.reload({
 					    				page:{
 					    					curr:reloadPage
 					    				}
 					    			});
+					    			
 								}
 							});
 							});
@@ -285,14 +298,23 @@
 											data:{specialtyFilesId:param},
 											dataType:"json",
 											success:function(data){
-												/*var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
+												var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
 												var nowPage = tableIns.config.page.curr;//返回当前总页数
-									        	var reloadPage = (page-1) > 0? page:1;*/
-									        	//console.log(reloadPage);
+												var limits = $(".layui-laypage-limits").find("option:selected").val();//获取当前条数10/ye
+												var countstr = $(".layui-laypage-count").text();//总数据条数
+												var count = countstr.replace(/[^0-9]/ig,"");
+												var lengths = checkStatus.data.length;
+												//alert(lengths);
+												var reloadPage = (page-1) > 0? page:1;
+									        	if(count > (limits*(page-lengths))){//有分页		12>10*1
+									        		if(count-1 <= (limits*(page-lengths))){//判断在当前页是否还有数据  11-1<=10*1
+										        		reloadPage = reloadPage-1;		// 1
+										        	}
+									        	}
 												layer.msg("删除成功");
 								    			tableIns.reload({
 								    				page:{
-								    					curr:1
+								    					curr:reloadPage
 								    				}
 								    			});
 											},error:function(code){
