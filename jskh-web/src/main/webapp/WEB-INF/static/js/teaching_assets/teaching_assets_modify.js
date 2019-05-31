@@ -23,7 +23,6 @@
 		$("#remark").val(data.remark);
 		$("#specialty_id").val(data.specialtyId);
 		$("#specialty_name").val(data.specialtyName);
-		
 		specialty_name = data.specialtyName;
 	}
 	//获取下拉列表(公共方法)
@@ -150,7 +149,7 @@
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
-					        url:'/TeachingAssets/updateTeachingAssets?id='+id,
+					        url:'/TeachingAssets/updateTeachingAssets',
 							data:$.param(params),
 					        //预期服务器返回数据的类型
 					        dataType:"json", 

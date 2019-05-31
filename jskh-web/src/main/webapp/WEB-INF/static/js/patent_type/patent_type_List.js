@@ -89,11 +89,19 @@
 							data:{id:data.id},
 							dataType:"json",
 							success:function(data){
+								var page = $(".layui-laypage-skip").find("input").val();//获取当前页
+								var limits = $(".layui-laypage-limits").find("option:selected").val();//获取当前页条数
+								var countstr = $(".layui-laypage-count").text();//获取总数据
+								var count = countstr.replace(/[^0-9]/ig,"");
 								var nowPage = tableIns.config.page.curr;//返回当前页数
 					        	var reloadPage = (nowPage-1) > 0? nowPage:1;
-					        	//console.log((nowPage-1));
-					        	//console.log(reloadPage);
-								layer.msg("删除成功");
+					        	if(count > (limits*(page-1))){
+					        		if(count-1 <= (limits*(page-1))){
+					        			reloadPage = reloadPage-1;
+					        		}
+					        	}
+					        	
+					        	layer.msg("删除成功");
 								layer.close(index);
 				    			tableIns.reload({
 				    				page:{
