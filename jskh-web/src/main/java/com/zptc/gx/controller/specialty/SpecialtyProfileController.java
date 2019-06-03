@@ -228,10 +228,6 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		String date1 = ToolUtil.str("date1", request);
 		String date2 = ToolUtil.str("date2", request);
 		String specialty_name = ToolUtil.str("specialty_name", request);
-	    String position = ToolUtil.str("position", request);
-	    String characteristic = ToolUtil.str("characteristic", request);
-	    String director_name = ToolUtil.str("director_name", request);
-	  //  Integer status = ToolUtil.integer("status", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -242,9 +238,6 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    data.put("date1", date1);
 	    data.put("date2", date2);
 	    data.put("specialty_name", specialty_name);
-	    data.put("position", position);
-	    data.put("characteristic", characteristic);
-	    data.put("director_name", director_name);
 	    
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
@@ -256,16 +249,13 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		count.put("date1", date1);
 		count.put("date2", date2);
 		count.put("specialty_name", specialty_name);
-		count.put("position", position);
-		count.put("characteristic", characteristic);
-		count.put("director_name", director_name);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
 		//定义返回的msg
 		String msg = "msg";
 		try {
-			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
+			//ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			//获取所有status == 1 的所有数据
 			List<SpecialtyProfile> SpecialtyProfileList = specialtyProfileService.getSpecialtyProfileList(data);
 			//获取所有status == 1的数据条总数
