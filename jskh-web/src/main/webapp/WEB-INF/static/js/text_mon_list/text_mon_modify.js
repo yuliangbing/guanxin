@@ -114,10 +114,6 @@ function init(data) {
 				params.other_authors=$("#other_authors").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
-			//	console.log();
-				alert(JSON.stringify(params));
-				//console.log(params.other_authors);
-				//console.log(date,name,press,first_author,other_authors,specialty_id,specialty_name);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				$.ajax({
 					url:"/TextbookOrMonograph/updateTextbookOrMonograph",
