@@ -2,16 +2,17 @@
  * 修改页面的js
  */
 	// 初始化赋值
-	function init(data) {
+	var id ;
+function init(data) {
 		//$("#status").val(data.status);
-		$("#id").val(data.id);
-		$("#date").val(data.date);
+		id = data.id;
+		$("#date").val(data.date.split(' ')[0]);
 		$("#name").val(data.name);
 		$("#press").val(data.press);
 		$("#first_author").val(data.firstAuthor);
 		$("#other_authors").val(data.otherAuthors);
 		$("#specialty_id").val(data.specialtyId);
-		$("#specialty_name").val(data.specialtyName);
+		//$("#specialty_name").val(data.specialtyName);
 		specialty_name = data.specialtyName;
 	}
 	
@@ -105,15 +106,17 @@
 			 //提交
 			form.on('submit(submit)', function(data) {
 				var params = {};
-				params.id=$("#id").val;
-				params.date=$("#date").val;
-				params.name=$("#name").val;
-				params.press=$("#press").val;
-				params.first_author=$("#first_author").val;
-				params.other_authors=$("#other_authors").val;
+				params.id=id;
+				params.date=$("#date").val();
+				params.name=$("#name").val();
+				params.press=$("#press").val();
+				params.first_author=$("#first_author").val();
+				params.other_authors=$("#other_authors").val();
 				params.specialty_id = $("#specialty_id option:checked").val();
 				params.specialty_name = $("#specialty_id option:checked").text();
-				console.log(params);
+			//	console.log();
+				alert(JSON.stringify(params));
+				//console.log(params.other_authors);
 				//console.log(date,name,press,first_author,other_authors,specialty_id,specialty_name);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				$.ajax({
@@ -122,7 +125,7 @@
 					//发送的数据
 					data:$.param(params),
 					//发送请求的数据的格式为JSON字符串
-					contentType:"application/json;charset=UTF-8",
+//					contentType:"application/json;charset=UTF-8",
 					dataType:"json",
 					success:function(data){
 						        	if(data){

@@ -11,7 +11,7 @@
 <script src="${path}/static/js/text_mon_list/text_mon_modify.js" type="text/javascript"></script>
 </head>
 <body style="margin-left: 18%;">
-		<form class="layui-form" action="">
+		<form class="layui-form" action="" onsubmit="return false;">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		   <div class="layui-inline">
 			    <label for="job"class="layui-form-label" style="width:150px;">出版时间</label>
