@@ -28,8 +28,8 @@ function save() {
 	// 获取富文本框内容
 	var situationUEStr = situationUE.getContent();
 	var characteristicUEStr = characteristicUE.getContent();
-	console.log("situationUEStr==" + situationUEStr);//控制台打印富文本框内容
-	console.log("characteristicUEStr==" + characteristicUEStr);
+	//console.log("situationUEStr==" + situationUEStr);//控制台打印富文本框内容
+	//console.log("characteristicUEStr==" + characteristicUEStr);
 	var params = {};
 	params.specialtyInfo = situationUEStr
 	params.date = $("#date").val();
