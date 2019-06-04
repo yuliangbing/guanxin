@@ -27,15 +27,15 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}
-		      ,{field:'measures', title:'举措', width:'15%',align:'center'}
+		      ,{field:'measures', title:'举措', width:'25%',align:'center'}
 		      ,{field:'specialtyId', title:'专业id', width:'15%',align:'center',hide:true}
-		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'}
-		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}
+		      ,{field:'specialtyName', title:'专业名称', width:'25%',align:'center'}
+		  /*    ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}
 		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' }
 		      ,{field:'createUser', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' }
-		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }*/
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

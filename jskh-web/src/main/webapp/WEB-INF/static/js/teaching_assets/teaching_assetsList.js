@@ -48,10 +48,10 @@
 					      ,{field:'remark', title:'备注', width:'15%',align:'center', }
 					      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',}
 					      ,{field:'specialtyName', title:'专业名称',width:'15%',align:'center',}
-					      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' ,}
+					      /*,{field:'createTime', title:'创建时间', width:'15%',align:'center' ,}
 					      ,{field:'createUser', title:'创建人', width:'15%',align:'center' ,}
 					      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' ,}
-					      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' ,}
+					      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' ,}*/
 					      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center',}
 					    ]]
 					  });  

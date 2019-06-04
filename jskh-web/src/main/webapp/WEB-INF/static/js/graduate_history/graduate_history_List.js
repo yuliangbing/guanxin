@@ -34,10 +34,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true }
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center' }
+		      /*,{field:'createTime', title:'创建时间', width:'15%',align:'center' }
 		      ,{field:'createUser', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' }
-		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center' }*/
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  

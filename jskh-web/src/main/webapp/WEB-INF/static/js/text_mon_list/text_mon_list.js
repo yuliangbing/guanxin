@@ -40,10 +40,10 @@
 				      ,{field:'otherAuthors', title:'其他作者情况',align:'center',width:'15%',}
 				      ,{field:'specialtyId', title:'专业id',width:100,hide:true,align:'center',width:'15%',}
 				      ,{field:'specialtyName', title:'专业名称',width:150,align:'center',width:'15%',}
-				      ,{field:'createUser', title:'创建人',align:'center',width:'15%',}
+				     /* ,{field:'createUser', title:'创建人',align:'center',width:'15%',}
 				      ,{field:'createTime', title:'创建时间',align:'center',width:'15%',}
 				      ,{field:'modifyUser', title:'修改人',align:'center',width:'15%',}
-				      ,{field:'modifyTime', title:'修改时间',align:'center',width:'15%',}
+				      ,{field:'modifyTime', title:'修改时间',align:'center',width:'15%',}*/
 				      ,{align:'center',fixed: 'right',toolbar: '#barDemo',title:'操作',align:'center',width:'19%',}
 				      ]]
 				  });

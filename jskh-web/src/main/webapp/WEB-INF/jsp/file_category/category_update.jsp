@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label">创建时间</label>
 					<div class="layui-input-inline">
 						<input name="create_time" id="create_time"  autocomplete="off" class="layui-input" type="text">
@@ -51,7 +51,7 @@
 					<div class="layui-input-inline">
 						<input name="modify_user" id="modify_user"  autocomplete="off" class="layui-input" type="text">
 					</div>
-				</div>
+				</div> -->
 			
 			</div>
 				

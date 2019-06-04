@@ -120,24 +120,28 @@
 								width: '15%',
 								sort: true,
 								align: 'center'
+								,hide:true
 							},{
 								field: 'createTime',
 								title: '创建时间',
 								width: '15%',
 								sort: true,
 								align: 'center'
+								,hide:true
 							},{
 								field: 'modifyUser',
 								title: '修改人',
 								width: '15%',
 								sort: true,
 								align: 'center'
+								,hide:true
 							},{
 								field: 'modifyTime',
 								title: '修改时间',
 								width: '15%',
 								sort: true,
-								align: 'center'
+								align: 'center',
+								hide:true
 							},{
 								fixed: 'right',
 								title: '操作',

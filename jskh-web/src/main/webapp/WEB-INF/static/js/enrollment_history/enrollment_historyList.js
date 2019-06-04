@@ -39,10 +39,10 @@
 	      ,{field:'rate',title:'报到率',width:'15%',align:'center',}
 	      ,{field:'specialtyId', title:'专业id',width:'15%',hide:true,align:'center',}
 	      ,{field:'specialtyName', title:'专业名称',width:'15%',align:'center',}
-	      ,{field:'createUser', title:'创建人',width:'15%',align:'center',}
-	      ,{field:'createTime', title:'创建时间',width:'15%',align:'center',}
-	      ,{field:'modifyUser', title:'修改人',width:'15%',align:'center',}
-	      ,{field:'modifyTime', title:'修改时间',width:'15%',align:'center',}
+//	      ,{field:'createUser', title:'创建人',width:'15%',align:'center',}
+//	      ,{field:'createTime', title:'创建时间',width:'15%',align:'center',}
+//	      ,{field:'modifyUser', title:'修改人',width:'15%',align:'center',}
+//	      ,{field:'modifyTime', title:'修改时间',width:'15%',align:'center',}
 	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'19%',align:'center',}
 	      ]]
 	  });
@@ -164,7 +164,7 @@
 				        for(var i=0;i< data.length;i++){
 				        	param = data[i].id;
 //				        	layer.alert(JSON.stringify(data[i].id));
-				        	console.log(param);
+				        	//console.log(param);
 				        	//向服务端发送删除指令*/		
 							$.ajax({
 								url:'/EnrollmentHistory/delEnrollmentHistory',

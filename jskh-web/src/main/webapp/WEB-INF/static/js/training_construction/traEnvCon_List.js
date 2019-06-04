@@ -39,19 +39,19 @@ function ajax_h(form) {
 					}
 					$("#specialty_id").append(option);
 					form.render('select');
-		},
-		error : function(code) {
-			layer.alert("发生错误,请联系管理员");
+				},
+				error : function(code) {
+					layer.alert("发生错误,请联系管理员");
+				}
+			});
 		}
-	});
-}
 
-layui.use('element', function() {
+		layui.use('element', function() {
 				var element = layui.element;
 				
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+		layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
 				
@@ -67,7 +67,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 					elem: '#date' //指定元素	
 					,range: '~' //或 range: '~' 来自定义分割字符
 				});
-	//加载数据表格
+	  //加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
 		    	,defaultToolbar: ['print', 'exports']
@@ -80,16 +80,16 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
-		      ,{field:'content', title:'建设内容', width:'15%',align:'center'}
+		      ,{field:'content', title:'建设内容', width:'25%',align:'center'}
 		      ,{field:'participants', title:'参与人员', width:'15%',align:'center'}
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'}
-		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true }
+		      ,{field:'specialtyId', title:'专业id', width:'10%',hide:true }
 		     // ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		     // ,{field:'create_time', title:'创建时间', width:'15%',  hide:true}
 		   //   ,{field:'create_user', title:'创建人', width:'15%', hide:true }
 		     // ,{field:'modify_time', title:'修改时间', width:'15%',  hide:true}
 		     // ,{field:'modify_user', title:'修改人', width:'15%', hide:true }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

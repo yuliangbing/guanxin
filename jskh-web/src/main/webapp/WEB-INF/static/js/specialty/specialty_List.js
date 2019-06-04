@@ -59,10 +59,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'code', title:'专业编码', width:'15%',align:'center'}
 		      ,{field:'name', title:'专业名称', width:'15%',align:'center'} 
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}
-		      ,{field:'createTime', title:'创建时间', width:'15%',}
-		      ,{field:'createUser', title:'创建人', width:'15%',}
-		      ,{field:'modifyTime', title:'修改时间', width:'15%',}
-		      ,{field:'modifyUser', title:'修改人', width:'15%',}
+		      ,{field:'createTime', title:'创建时间', width:'15%',hide:true}
+		      ,{field:'createUser', title:'创建人', width:'15%',hide:true}
+		      ,{field:'modifyTime', title:'修改时间', width:'15%',hide:true}
+		      ,{field:'modifyUser', title:'修改人', width:'15%',hide:true}
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  

@@ -37,10 +37,10 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialty_name', title:'专业名称', width:'15%',align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		      ,{field:'awards_construction', title:'获奖及建设情况', width:'25%',align:'center' }
-		      ,{field:'create_time', title:'创建时间', width:'15%',align:'center' }
+		     /* ,{field:'create_time', title:'创建时间', width:'15%',align:'center' }
 		      ,{field:'create_user', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modify_time', title:'修改时间', width:'15%',align:'center' }
-		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }
+		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }*/
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  

@@ -53,7 +53,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,page: true
 		    ,method:'post'
 		    ,cols: [[
-		      {type: 'checkbox', fixed: 'left'}
+		       {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
 		      ,{field:'content', title:'合作内容', width:'15%',align:'center'}

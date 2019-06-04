@@ -28,14 +28,14 @@ layui.use('element', function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'id', width:'5%',sort: true,align:'center',}
-		      ,{field:'code', title:'分类号', width:'15%',align:'center',}
-		      ,{field:'name', title:'分类名称', width:'15%',align:'center' ,}
-		      ,{field:'createTime', title:'创建时间', width:'15%',align:'center', }
+		      ,{field:'id', title:'id', width:'10%',sort: true,align:'center',}
+		      ,{field:'code', title:'分类号', width:'25%',align:'center',}
+		      ,{field:'name', title:'分类名称', width:'25%',align:'center' ,}
+		     /* ,{field:'createTime', title:'创建时间', width:'15%',align:'center', }
 		      ,{field:'createUser', title:'创建人', width:'15%',align:'center', }
 		      ,{field:'modifyTime', title:'修改时间', width:'15%',align:'center' ,}
-		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center', }
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center',}
+		      ,{field:'modifyUser', title:'修改人', width:'15%',align:'center', }*/
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center',}
 		    ]]
 		  });  
 	  
