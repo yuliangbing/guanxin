@@ -85,9 +85,9 @@
             tooltip : {
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            //color:['#31b0d5','pink'],
-            legend: {
+            }
+           , color: ['#37A2DA', '#32C5E9', '#67E0E3', '#9FE6B8', '#FFDB5C','#ff9f7f', '#fb7293', '#E062AE', '#E690D1', '#e7bcf3', '#9d96f5', '#8378EA', '#96BFFF']
+           , legend: {
                 orient: 'vertical',
                 left: 'left',
                 data: asd
@@ -96,19 +96,12 @@
                 {
                     name: '专业文件',
                     type: 'pie',
-                    radius : '55%',//
-                    center: ['50%', '65%'],//图所在的位置
+                    radius : '78%',//图的大小
+                    center: ['50%', '60%'],//图所在的位置
                     data:a,
-                  /*   data:[
-                        {value:335, name:'直接1访问'},
-                        {value:310, name:'邮件营销'},
-                        {value:234, name:'联盟广告'},
-                        {value:135, name:'视频广告'},
-                        {value:1548, name:'搜索引擎'}
-                    ], */
                     itemStyle: {
                         emphasis: {
-                            shadowBlur: 10,//外阴影大小
+                            shadowBlur: 10,//图形阴影的模糊大小
                             shadowOffsetX: 0,
                             shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }

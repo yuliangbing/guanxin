@@ -83,12 +83,12 @@ public class TeachersTeamController extends BaseController {
 			List<TeacherTeam> tList = teacherTeamService.getTeacherTeamList(data);
 			//获取数据总条数
 			counts = teacherTeamService.selectCounts(count);
-			jsonResult = jsonResult.build(FLAG_SUCCESS, tList, msg, counts);
+			jsonResult = JsonResult.build(FLAG_SUCCESS, tList, msg, counts);
 			System.out.println("查询到的数据为="+tList);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			jsonResult = jsonResult.build(FLAG_FAILED, e.getMessage());
+			//jsonResult = jsonResult.build(FLAG_FAILED, e.getMessage());
 		}
 		return jsonResult;
 	}

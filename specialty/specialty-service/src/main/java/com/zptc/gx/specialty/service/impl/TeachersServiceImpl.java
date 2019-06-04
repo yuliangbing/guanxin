@@ -311,7 +311,8 @@ public class TeachersServiceImpl implements TeachersService {
 					// 将其改为不是团队负责人
 					tDire.setDirector("2");
 					//int tD = teachersService.modifyTeachers(tDire);
-					int tD = modifyTeachers(tDire);
+					//int tD = modifyTeachers(tDire);
+					int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
 					if (tD < 0) {
 						System.out.println("修改团队负责人状态失败");
 						//jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
@@ -383,7 +384,8 @@ public class TeachersServiceImpl implements TeachersService {
 							//将其改为不是团队负责人
 				    		tDire.setDirector("2");
 				    		//int tD = teachersService.modifyTeachers(tDire);
-				    		int tD = modifyTeachers(tDire);
+				    		//int tD = modifyTeachers(tDire);
+				    		int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
 				    		if (tD < 0) {
 				    			System.out.println("修改团队负责人状态失败");
 				    			System.out.println("还原团队原数据");
@@ -493,7 +495,8 @@ public class TeachersServiceImpl implements TeachersService {
 								//将其改为不是团队负责人
 					    		tDire.setDirector("2");
 					    		//int tD = teachersService.modifyTeachers(tDire);
-					    		int tD = modifyTeachers(tDire);
+					    	//	int tD = modifyTeachers(tDire);
+					    		int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
 					    		if (tD < 0) {
 					    			System.out.println("修改团队负责人状态失败");
 									//jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
@@ -587,7 +590,8 @@ public class TeachersServiceImpl implements TeachersService {
 								//将其改为不是团队负责人
 					    		tDire.setDirector("2");
 					    		//int tD = teachersService.modifyTeachers(tDire);
-					    		int tD = modifyTeachers(tDire);
+					    		//int tD = modifyTeachers(tDire);
+					    		int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
 					    		if (tD < 0) {
 					    			System.out.println("修改团队负责人状态失败");
 									//jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
@@ -606,7 +610,7 @@ public class TeachersServiceImpl implements TeachersService {
 			    	teacherTeam.setLatest("1");//设置最新
 //				 	teacherTeam.setDate(new Date());
 //					teacherTeam.setId(null);
-			    	teacherTeam.setDate(teachers.getModifyTime());
+			    	teacherTeam.setDate(new Date());
 					teacherTeam.setId(null);
 					teacherTeam.setModifyTime(new Date());
 					teacherTeam.setModifyUser(teachers.getModifyUser());
@@ -634,13 +638,29 @@ public class TeachersServiceImpl implements TeachersService {
 						//专业教师//teacherTeam.setPartTimeTeachers(teacherTeam.getPartTimeTeachers()+","+name);
 						teacherTeam.setSpecialtyTeachers(null);//设置专业教师团队为空
 						//teacherTeam.setSpecialtyTeachers(teacherNames+","+name);
-						teacherTeam.setSpecialtyTeachers(teacherNames+","+teas.getName());
+						if("".equals(teacherNames)) {//判断teacherNames是否为空字符串
+							teacherTeam.setSpecialtyTeachers(teas.getName());
+						}else {
+							teacherTeam.setSpecialtyTeachers(teacherNames+","+teas.getName());
+						}
+						
 					}else {
 						
 						//兼职教师//teacherTeam.setSpecialtyTeachers(teacherTeam.getSpecialtyTeachers()+","+name);
 						teacherTeam.setPartTimeTeachers(null);//设置兼职教师团队为空
 						//teacherTeam.setPartTimeTeachers(teacherNames+","+name);//新的兼职教师团队
-						teacherTeam.setSpecialtyTeachers(teacherNames+","+teas.getName());
+						
+						if ("".equals(teacherNames)) {//判断teacherNames是否为空字符串
+							teacherTeam.setPartTimeTeachers(teas.getName());
+						}else {
+							teacherTeam.setPartTimeTeachers(teacherNames+","+teas.getName());
+						}
+					}
+					//判断初始是否为团队总负责人(判断教师)
+					if ("1".equals(teachers.getDirector())) {//是团队总负责人
+						if ("2".equals(teas.getDirector())) {//判断是否修改团队负责人
+							teacherTeam.setDirector(null);//清空团队负责人为null
+						}
 					}
 					int	addTName = teacherTeamService.addTeacherTeam(teacherTeam);//新增团队新数据
 			}				
@@ -682,6 +702,13 @@ public class TeachersServiceImpl implements TeachersService {
 		Teachers teachers = teachersMapper.selectByName(map);
 		return teachers;
 	}
+	//查询专业团队负责人
+/*	@Override
+	public Teachers findTeachersByDirector(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		Teachers teachers = teachersMapper.getTeacherByDirector(map);
+		return teachers;
+	}*/
 	//用于获取specialtyId相同的教师数据
 	@Override
 	public List<String> getTeachersByIdList(Map<String, Object> Tdata) {

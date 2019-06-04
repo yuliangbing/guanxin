@@ -149,7 +149,7 @@
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
-            color:['#31b0d5','pink','red','yellow','blue','black','#d2ffa7','#ffe7ce','#f0f0f0'],
+            color:['#31b0d5','#ff20ff','#ff1e41','#fff7b2','#7cd8fb','#594567','#d2ffa7','#ffe7ce', '#9FE6B8', '#FFDB5C','#ff9f7f','#f0f0f0'],
             legend: {
                 orient: 'vertical',
                 left: 'left',
@@ -160,7 +160,7 @@
                 {
                     name: '科研成果',
                     type: 'pie',
-                    radius : '55%',//图的大小
+                    radius : '78%',//图的大小
                     center: ['50%', '60%'],//图所在的位置
                     data:a,
 //                    data:[

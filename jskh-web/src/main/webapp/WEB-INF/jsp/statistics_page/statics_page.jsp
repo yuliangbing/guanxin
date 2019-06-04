@@ -36,8 +36,8 @@
                 <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">科研成果</div>
-                        <div class="layui-card-body" style="min-height: 280px;">
-                            <div id="main5" class="layui-col-sm12" style="height: 300px;"></div>
+                        <div class="layui-card-body" style="min-height: 70%;">
+                            <div id="main5" class="layui-col-sm12" style="height: 55%;;"></div>
 									<!-- index2.js -->
                         </div>
                     </div>
