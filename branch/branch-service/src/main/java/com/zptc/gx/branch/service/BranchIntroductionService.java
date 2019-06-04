@@ -16,6 +16,8 @@ public interface BranchIntroductionService {
 	public BranchIntroduction findBranchIntroductionById(Long id);
 //获取文本信息
 	public List<BranchIntroduction> getBranchText(Map<String, Object> data);
+//status查询
+	List<BranchIntroduction> getBranchStatus(Map<String, Object> data);
 
 
 }

@@ -47,16 +47,16 @@ public class BrachController extends BaseController {
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
-			String code = ToolUtil.str("code", request);
-		    String name = ToolUtil.str("name", request);
+			/*String code = ToolUtil.str("code", request);
+		    String name = ToolUtil.str("name", request);*/
 		    String specialtyInfo = ToolUtil.str("specialtyInfo", request);
 		    String branchCharacteristic = ToolUtil.str("branchCharacteristic", request);
 		    Date date = ToolUtil.date2("date", request);
 		    Integer status = ToolUtil.integer("status", request);
 		    
 		    BranchIntroduction branch = new BranchIntroduction();
-		    branch.setCode(code);
-		    branch.setName(name);
+		    /*branch.setCode(code);
+		    branch.setName(name)*/;
 		    branch.setSpecialtyInfo(specialtyInfo);
 		    branch.setBranchCharacteristic(branchCharacteristic);
 			branch.setDate(date);
@@ -90,12 +90,12 @@ public class BrachController extends BaseController {
 		try {
 			ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
 			
-			Long Id = ToolUtil.lon("Id", request);
+			Long Id = ToolUtil.lon("Id", request);/*
 			String code = ToolUtil.str("code", request);
-		    String name = ToolUtil.str("name", request);
+		    String name = ToolUtil.str("name", request);*/
 		    String specialtyInfo = ToolUtil.str("specialtyInfo", request);
 		    String branchCharacteristic = ToolUtil.str("branchCharacteristic", request);
-		    Date date = ToolUtil.date1("date ", request);
+		    Date date = ToolUtil.date2("date ", request);
 		    
 		    BranchIntroduction branch = branchIntroductionService.findBranchIntroductionById(Id);
 		    if (branch == null) {
@@ -103,8 +103,8 @@ public class BrachController extends BaseController {
 				return jsonResult;
 			}
 		    
-		    branch.setCode(code);
-		    branch.setName(name);
+		    /*branch.setCode(code);
+		    branch.setName(name);*/
 		    branch.setSpecialtyInfo(specialtyInfo);
 		    branch.setBranchCharacteristic(branchCharacteristic);
 		    branch.setDate(date);
@@ -144,7 +144,7 @@ public class BrachController extends BaseController {
 			return jsonResult;
 		}
 //		   改变stauts
-		   branchIntroduction.setStatus(2);
+		  // branchIntroduction.setStatus(2);
 		    int result = branchIntroductionService.deleteBranchIntroductionById(branchIntroduction);
 		    if (result > 0) {
 		    	jsonResult = JsonResult.build(FLAG_SUCCESS);

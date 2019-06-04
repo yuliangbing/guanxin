@@ -112,4 +112,13 @@ public class BranchIntroduction {
     public void setModifyUser(String modifyUser) {
         this.modifyUser = modifyUser == null ? null : modifyUser.trim();
     }
+
+	@Override
+	public String toString() {
+		return "BranchIntroduction [id=" + id + ", code=" + code + ", name=" + name + ", specialtyInfo=" + specialtyInfo
+				+ ", branchCharacteristic=" + branchCharacteristic + ", date=" + date + ", status=" + status
+				+ ", createTime=" + createTime + ", createUser=" + createUser + ", modifyTime=" + modifyTime
+				+ ", modifyUser=" + modifyUser + "]";
+	}
+    
 }

@@ -21,4 +21,6 @@ public interface BranchIntroductionMapper {
 	int deleteBranchIntroductionById(BranchIntroduction branchIntroduction);
 //获取文本数据
 	List<BranchIntroduction> getBranchText(Map<String, Object> data);
+//	status查询
+	List<BranchIntroduction> getBranchStatus(Map<String, Object> data);
 }
