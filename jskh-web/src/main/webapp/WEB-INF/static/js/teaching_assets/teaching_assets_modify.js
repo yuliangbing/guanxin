@@ -34,8 +34,8 @@
 			dataType:"json",
 			success:function(data){
 				//layer.msg("获取成功");
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+			//	console.log(names);
 				let option = "";
 				if (data.code == 0) {
 					if(ids == 'code'){
@@ -69,7 +69,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+				//	console.log("option:"+option);
 					
 				} else {
 					layer.msg(data.msg);
@@ -155,7 +155,7 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									console.log($.param(params));
+								//	console.log($.param(params));
 									if (data.code == 0) {
 										layer.msg("成功");
 										setTimeout(function(){

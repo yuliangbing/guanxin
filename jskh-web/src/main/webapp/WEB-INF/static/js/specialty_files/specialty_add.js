@@ -16,9 +16,9 @@ function ajax_h(form, url, object, ids) {
 		type : "POST",
 		dataType : "json",
 		success : function(data) {
-			console.log(data);
+			//console.log(data);
 			// layer.msg("获取成功");
-			console.log(data.data.length);
+			//console.log(data.data.length);
 			if (data.code == 0) {
 				if (ids == 'id') {
 					let option = "";
@@ -61,7 +61,7 @@ layui.use(['element','upload'], function() {
 	    accept: 'file',
 		auto : true,
 		done : function(res) {
-			console.log(res);
+			//console.log(res);
 			fileUrl = res.url;
 			urlFileName = res.original;
 			$("#showFile").text(res.original);

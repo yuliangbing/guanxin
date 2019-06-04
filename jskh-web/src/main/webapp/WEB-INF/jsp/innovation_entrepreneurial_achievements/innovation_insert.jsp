@@ -62,8 +62,8 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				console.log(data);
-				console.log(data.data.length);
+				//console.log(data);
+				//console.log(data.data.length);
 				if (data.code == 0) {
 						let option = "";
 						for (let i=0;i<data.data.length;i++) {
@@ -112,7 +112,7 @@
 		/* 	params.cate_name = $("#cate_name").val(); */
 			params.specialty_name = $("#specialtyName option:checked").text();
 			params.specialty_id = $("#specialtyName option:checked").val();
-		console.log(params);
+		//console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

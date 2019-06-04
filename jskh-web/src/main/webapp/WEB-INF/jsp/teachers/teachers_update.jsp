@@ -267,7 +267,7 @@
 			params.director = $("input[name='director']:checked").val();
 			params.specialty_id = $("#specialtyId option:checked").val();
 			params.specialty_name = $("#specialtyId option:checked").text();
-			console.log(params);
+			//console.log(params);
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({
 				        type:"POST",

@@ -61,7 +61,7 @@
         				}
         			}
         			/* split_array(param); */
-        			console.log("获得的专业date.name="+param);
+        			//console.log("获得的专业date.name="+param);
         		},
         		error : function(code) {
         			layer.alert("发生错误,请联系管理员");

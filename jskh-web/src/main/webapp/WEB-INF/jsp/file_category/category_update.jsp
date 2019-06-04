@@ -90,8 +90,8 @@
 			dataType:"json",
 			success:function(data){
 				
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+				//console.log(names);
 				let option = "";
 				if (data.code == 0) {
 					if(ids == 'code'){
@@ -125,7 +125,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+					//console.log("option:"+option);
 					
 				} else {
 					layer.msg(data.msg);

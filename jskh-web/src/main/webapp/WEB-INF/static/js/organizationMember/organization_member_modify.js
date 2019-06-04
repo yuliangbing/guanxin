@@ -46,7 +46,7 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									console.log($.param(params));
+									//console.log($.param(params));
 									if (data.code == 0) {
 										layer.msg("成功");
 										setTimeout(function(){

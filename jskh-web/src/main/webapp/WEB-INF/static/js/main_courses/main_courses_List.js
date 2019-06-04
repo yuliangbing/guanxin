@@ -7,8 +7,8 @@ function ajax_h(form)
 					type:"POST",
 					dataType:"json",
 					success:function(data){
-						console.log(data);
-						console.log(data.data.length);
+						//console.log(data);
+						//console.log(data.data.length);
 						if (data.code == 0) {
 							
 							let option = "";
@@ -189,7 +189,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
-		        	console.log(param);
+		        	//console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
 						url:'/MainCourses/delMainCourses',

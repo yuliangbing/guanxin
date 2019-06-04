@@ -120,7 +120,7 @@ layui.use('element', function() {
 				/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 				layer.close(index);
 				//向服务端发送删除指令*/	
-	    		console.log(data.id);
+	    	//	console.log(data.id);
 				$.ajax({
 					url:'/specialtyProfile/delSpecialtyProfile',
 					type:"POST",
@@ -177,7 +177,7 @@ layui.use('element', function() {
 				arr.date2 = data.field.date.split('~')[1];
 			}
 			arr.specialty_name = $("#specialtyName option:checked").text();
-			console.log(JSON.stringify(arr));
+		//	console.log(JSON.stringify(arr));
 			tableIns.reload({
 				where:arr,
 				page: {

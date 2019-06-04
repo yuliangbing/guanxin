@@ -152,7 +152,7 @@ layui.use('element', function() {
 					        for(var i=0;i< data.length;i++){
 					        	param = data[i].id;
 //					        	layer.alert(JSON.stringify(data[i].id));
-					        	console.log(param);
+					        	//console.log(param);
 					        	//向服务端发送删除指令*/		
 								$.ajax({
 									url:'/teachingAssetsCategory/delTeachingAssetsCategory',

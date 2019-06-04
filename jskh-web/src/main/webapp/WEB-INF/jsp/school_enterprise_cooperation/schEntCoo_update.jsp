@@ -92,8 +92,8 @@
 			type:"POST",
 			dataType:"json",
 			success:function(data){
-				console.log("长度"+data.data.length);
-				console.log(names);
+				//console.log("长度"+data.data.length);
+				//console.log(names);
 				let option = "";
 				 if(ids == 'id')
 				 	{
@@ -111,7 +111,7 @@
 						$("#"+object).append(option);
 						form.render('select');
 					} 
-					console.log("option:"+option);
+					//console.log("option:"+option);
 			} ,error:function(code){
 	           layer.alert("发生错误,请联系管理员");
 	        }
@@ -148,7 +148,7 @@
 			params.achievements = $("#achievements").val();
 			params.specialty_id = $("#specialtyName option:checked").val();
 			params.specialty_name = $("#specialtyName option:checked").text();
-console.log(params);
+//console.log(params);
 
 			layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 			    $.ajax({

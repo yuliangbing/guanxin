@@ -35,7 +35,7 @@
 				var params = {};
 				params.id = $("#id").val();
 				params.name = $("#name").val();
-				console.log(params);
+				//console.log(params);
 				layer.confirm('确定提交吗?', {icon: 3, title:'提示'}, function(index){
 				    $.ajax({
 					        type:"POST",
@@ -45,7 +45,7 @@
 					        dataType:"json", 
 					        success:function(data){
 					        	if(data){
-									console.log($.param(params));
+									//console.log($.param(params));
 									if (data.code == 0) {
 										layer.msg("成功");
 										setTimeout(function(){

@@ -64,7 +64,7 @@
     	       					ajax_date(rows[i].setupDate.split(' ')[0]);
             				}
             				
-            				console.log(rows[i].setupDate.split(' ')[0]);
+            				//console.log(rows[i].setupDate.split(' ')[0]);
             			}
             			
             			//console.log(param);

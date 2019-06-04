@@ -18,7 +18,7 @@
 		$("#specialty_id").val(data.specialtyId);
 		specialty_name = data.specialtyName;
 		namew = data.type;
-		console.log(namew);
+		//console.log(namew);
 	}
 	
 	

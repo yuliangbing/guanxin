@@ -84,7 +84,7 @@
 			params.director_name = $("#director_name").val();
 			params.specialty_id = $("#specialty_name option:checked").val();
 
-			console.log(params);
+			//console.log(params);
 			layer.confirm('确定提交吗?', {
 				icon : 3,
 				title : '提示'

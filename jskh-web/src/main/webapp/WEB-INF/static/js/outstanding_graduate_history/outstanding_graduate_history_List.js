@@ -123,7 +123,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 				arr.date2 = data.field.date.split('~')[1];
 			}
-			console.log(arr);
+		//	console.log(arr);
 			tableIns.reload({
 				where:arr,
 				page: {
@@ -156,7 +156,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
-		        	console.log(param);
+		        //	console.log(param);
 		        	//向服务端发送删除指令*/		
 					$.ajax({
 						url:'/outstandingGraduateHistory/delOutstandingGraduateHistory',
