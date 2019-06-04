@@ -25,10 +25,10 @@
 //		        }
 //			});
 //		}
-function ajax_h(form, url, object, ids) {
+function ajax_h(form) {
 	// 获取下拉列表(公共方法)
 	$.ajax({
-		url : url,
+		url : 'specialty/getSpecialtyList',
 		type : "POST",
 		dataType : "json",
 		success : function(data) {
@@ -37,7 +37,7 @@ function ajax_h(form, url, object, ids) {
 						option += "<option value='" + data.data[i].id + "'>"
 								+ data.data[i].name + "</option>";
 					}
-					$("#" + object).append(option);
+					$("#specialty_id").append(option);
 					form.render('select');
 		},
 		error : function(code) {
@@ -56,10 +56,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 				var table = layui.table;
 				
 				// 专业
-				url = '/specialty/getSpecialtyList';
-				object = 'specialty_id';
-				ids = 'id';
-				ajax_h(form, url, object, ids);
+				ajax_h(form);
 				/*
 				 实现时间选择
 				 */
@@ -165,10 +162,12 @@ layui.use(['form', 'table', 'laydate'], function() {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-			if(arr.data != "" && arr.date != null){
+			if(arr.date != "" && arr.date != null){
 				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 				arr.date2 = data.field.date.split('~')[1];
 			}
+			arr.specialty_name = $("#specialty_id option:checked").text();
+			console.log(JSON.stringify(arr));
 			tableIns.reload({
 				where:arr,
 				page: {

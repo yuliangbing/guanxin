@@ -203,7 +203,7 @@
 			and date between #{date1,jdbcType=VARCHAR} and #{date2,jdbcType=VARCHAR}
 		</if>
 		<if test="specialty_name != null and specialty_name != ''">
-			and instr(specialtyName,#{specialtyName,jdbcType=VARCHAR})
+			and instr(specialty_name,#{specialtyName,jdbcType=VARCHAR})
 		</if>
 		<if test="status !=null and status != ''">
 			and status = #{status,jdbcType=INTEGER}

@@ -29,10 +29,39 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+			function ajax_h(form)
+			{
+				//获取文件类型
+				$.ajax({
+					url:'specialty/getSpecialtyList',
+					type:"POST",
+					dataType:"json",
+					success:function(data){
+						/*console.log(data);
+						layer.msg("获取成功");
+						console.log(data.data.length);*/
+						if (data.code == 0) {
+							
+							let option = "";
+							for (let i=0;i<data.data.length;i++) {
+								option += "<option value='"+data.data[i].id+"'>"+data.data[i].name+"</option>";
+							}
+							$("#specialtyName").append(option);
+							form.render('select');
+						} else {
+							layer.msg("网络错误，请检查网络！");
+						}
+						
+					} ,error:function(code){
+			           layer.alert("发生错误,请联系管理员");
+			        }
+				});
+			}
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				//获取下拉列表
+				ajax_h(form);
 				/*
 				 实现时间选择
 				 */
@@ -49,6 +78,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,defaultToolbar: ['print', 'exports']
 		    ,url:window.path +'/specialtyProfile/getSpecialtyProfileList'
 		    ,title: '用户数据表'
+		    ,method:'POST'
 		    ,toolbar:'#toolbarDemo'
 		    ,page: true
 		    ,cols: [[
@@ -59,14 +89,8 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'date', title:'年份', width:'15%',align:'center'}	     
 		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
 		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
-		      //,{field:'directorId', title:'专业负责人Id', width:'15%',align:'center'}
 		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center'}
-		      //,{field:'branchIntroduction', title:'学院id', width:'15%',align:'center' }
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      //,{field:'create_time', title:'创建时间', width:'15%',align:'center'}
-		      //,{field:'create_user', title:'创建人', width:'15%',align:'center'}
-		      //,{field:'modify_time', title:'修改时间', width:'15%',align:'center'}
-		      //,{field:'modify_user', title:'修改人', width:'15%',align:'center'}
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
 		  });  
@@ -105,8 +129,6 @@ layui.use(['form', 'table', 'laydate'], function() {
 					success:function(data){
 						var nowPage = tableIns.config.page.curr;//返回当前页数
 			        	var reloadPage = (nowPage-1) > 0? nowPage:1;
-			        	//console.log((nowPage-1));
-			        	//console.log(reloadPage);
 						layer.msg("删除成功");
 						layer.close(index);
 		    			tableIns.reload({
@@ -140,10 +162,12 @@ layui.use(['form', 'table', 'laydate'], function() {
 			/*layer.alert(JSON.stringify(data.field));*/
 			let arr = {};
 			arr = data.field;
-			if(arr.data != "" && arr.date != null){
+			if(arr.date != "" && arr.date != null){
 				arr.date1 = data.field.date.split('~')[0].replace(/(^\s*)|(\s*$)/g, "");
 				arr.date2 = data.field.date.split('~')[1];
 			}
+			arr.specialty_name = $("#specialtyName option:checked").text();
+			console.log(JSON.stringify(arr));
 			tableIns.reload({
 				where:arr,
 				page: {
@@ -237,33 +261,3 @@ layui.use(['form', 'table', 'laydate'], function() {
 		  });
 });
 });
-
-function getEnableSpecialtyList() {
-	var option = "";
-	//获取下拉列表(公共方法)
-	$.ajax({
-		url : '/specialty/getEnableSpecialtyList',
-		type : "POST",
-		dataType : "json",
-		async: false,
-		success : function(data) {
-			console.log(data);
-			console.log(data.data.length);
-			if (data.code == 0) {
-				if (data.data.length > 0) {
-					for (let i = 0; i < data.data.length; i++) {
-						option += "<option value='"+data.data[i].id+"'>"
-								+ data.data[i].name + "</option>";
-					}
-				}
-			} else {
-				layer.msg("请检查网络连接！");
-			}
-
-		},
-		error : function(code) {
-			layer.alert("发生错误,请联系管理员");
-		}
-	});
-	return option;
-}

@@ -169,9 +169,6 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 			// Long id = ToolUtil.lon("id", request);
 			 String date1 = ToolUtil.str("date1", request);
 			 String date2 = ToolUtil.str("date2", request);
-			/*String content = ToolUtil.str("content", request);
-		    String participants = ToolUtil.str("participants", request);
-		    Long specialtyId = ToolUtil.lon("specialty_id", request);*/
 		    String specialtyName = ToolUtil.str("specialty_name", request);
 		    Integer limit = ToolUtil.integer("limit", request);
 		    Integer page = ToolUtil.integer("page", request);
@@ -182,10 +179,7 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 		  //存入data,用于获取表格数据
 		    data.put("date1", date1);
 		    data.put("date2", date2);
-		   /* data.put("content", content);
-		    data.put("participants", participants);
-		    data.put("specialtyId", specialtyId);*/
-		    data.put("specialtyName", specialtyName);
+		    data.put("specialty_name", specialtyName);
 			data.put("limit", pageVO.getLimit());
 			data.put("pages", pages);
 			data.put("status", 1);
@@ -194,10 +188,7 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 			Map<String, Object> count = new HashMap<>();
 			count.put("date1", date1);
 			count.put("date2", date2);
-			/*count.put("content", content);
-			count.put("participants", participants);
-			count.put("specialtyId", specialtyId);*/
-			count.put("specialtyName", specialtyName);
+			count.put("specialty_name", specialtyName);
 			count.put("limit", pageVO.getLimit());
 			count.put("pages", pages);
 			count.put("status", 1);

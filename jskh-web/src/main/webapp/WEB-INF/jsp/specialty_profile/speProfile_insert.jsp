@@ -16,9 +16,7 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
-						<select type="text" id="specialty_name"
-							lay-filter="specialty_name" autocomplete="off" placeholder=""
-							lay-verify="required" class="layui-select" lay-search>
+						<select type="text" id="specialty_name"lay-filter="specialty_name" autocomplete="off" placeholder=""lay-verify="required" class="layui-select" lay-search>
 							<option value="">请选择</option>
 						</select>
 					</div>
@@ -26,30 +24,25 @@
 				<div class="layui-inline">
 					<label class="layui-form-label">年份</label>
 					<div class="layui-input-inline">
-						<input name="date" id="date" autocomplete="off"
-							class="layui-input" type="text">
+						<input name="date" id="date" autocomplete="off"class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">专业定位</label>
 					<div class="layui-input-inline">
-						<input name="position" id="position" autocomplete="off"
-							class="layui-input" type="text">
+						<input name="position" id="position" autocomplete="off"class="layui-input" type="text">
 					</div>
 				</div>
-
 				<div class="layui-inline">
 					<label class="layui-form-label">专业特色</label>
 					<div class="layui-input-inline">
-						<input name="characteristic" id="characteristic"
-							autocomplete="off" class="layui-input" type="text">
+						<input name="characteristic" id="characteristic"autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
 				<div class="layui-inline">
 					<label class="layui-form-label">专业负责人</label>
 					<div class="layui-input-inline">
-						<input name="director_name" id="director_name" autocomplete="off"
-							class="layui-input" type="text">
+						<input name="director_name" id="director_name" autocomplete="off"class="layui-input" type="text">
 					</div>
 				</div>
 
@@ -61,15 +54,11 @@
 		</div>
 	</form>
 </body>
-<script src="${path}/static/public/jquery/jquery-3.3.1.min.js"
-	type="text/javascript" charset="utf-8"></script>
-<script src="${path}/static/public/layui/layui.js"
-	type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript"
-	src="${path}/static/js/specialty_profile/speProfile_List.js"></script>
-<script src="${path}/static/public/layui/layui.js"
-	type="text/javascript"></script>
-<script type="text/javascript">
+  <script src="${path}/static/public/jquery/jquery-3.3.1.min.js"type="text/javascript" charset="utf-8"></script>
+  <script src="${path}/static/public/layui/layui.js"type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript"src="${path}/static/js/specialty_profile/speProfile_List.js"></script>
+  <script src="${path}/static/public/layui/layui.js"type="text/javascript"></script>
+  <script type="text/javascript">
 	//时间控件
 	layui.use([ 'form', 'laydate' ], function() {
 		var form = layui.form;

@@ -227,7 +227,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		//获取请求参数
 		String date1 = ToolUtil.str("date1", request);
 		String date2 = ToolUtil.str("date2", request);
-		String specialty_name = ToolUtil.str("specialty_name", request);
+		String specialtyName = ToolUtil.str("specialty_name", request);
 	    Integer limit = ToolUtil.integer("limit", request);
 	    Integer page = ToolUtil.integer("page", request);
 	    PageVO pageVO = new PageVO(page, limit);
@@ -237,7 +237,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		//存入data,用于获取表格数据
 	    data.put("date1", date1);
 	    data.put("date2", date2);
-	    data.put("specialty_name", specialty_name);
+	    data.put("specialty_name", specialtyName);
 	    
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
@@ -248,7 +248,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		//存入count,用于获取表格数据条总数
 		count.put("date1", date1);
 		count.put("date2", date2);
-		count.put("specialty_name", specialty_name);
+		count.put("specialty_name", specialtyName);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;
