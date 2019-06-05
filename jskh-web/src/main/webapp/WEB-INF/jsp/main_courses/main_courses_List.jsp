@@ -21,10 +21,9 @@
 			<form class="layui-form" style="padding: 9px;" onsubmit="return false;">
 				<div class="layui-form-item">
 					<div class="layui-inline">
-						<label class="layui-form-label alignment">专业</label>
 							<div class="layui-input-inline">
-								<select name="specialtyId"  id="specialtyId"  autocomplete="off" class="layui-input" type="text">
-									<option value="">请选择</option>
+								<select name="specialtyId"  id="specialtyId" placeholder="请输入专业名称"  autocomplete="off" class="layui-input" type="text">
+									<option value="">请选择专业</option>
 								</select>
 							</div>
 					</div>
