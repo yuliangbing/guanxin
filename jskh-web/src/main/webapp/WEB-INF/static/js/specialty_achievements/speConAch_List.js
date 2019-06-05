@@ -238,7 +238,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        	
 		        }
 		    }else{
-		      	layer.msg("请选择要删除的用户");
+		      	layer.msg("请选择要删除的专业建设成果");
 		 }
 		        
 		      break;

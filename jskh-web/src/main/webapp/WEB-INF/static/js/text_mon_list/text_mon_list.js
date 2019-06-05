@@ -192,7 +192,7 @@
 				        	
 				        }
 				    }else{
-				      	layer.msg("请选择要删除的用户");
+				      	layer.msg("请选择要删除的教材或专著");
 				 }
 				        
 				      break;

@@ -176,7 +176,7 @@ layui.use('element', function() {
 					        	
 					        }
 					        }else{
-					          	layer.msg("请选择要删除的用户");
+					          	layer.msg("请选择要删除的教学资产类别");
 					     }
 					        
 					      break;

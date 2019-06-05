@@ -258,7 +258,7 @@ function ajax_h(form) {
 		        }
 		        }
 		        else{
-		        	layer.msg("请选择要删除的用户");
+		        	layer.msg("请选择要删除的实训环境建设");
 		        }
 		        
 		      break;

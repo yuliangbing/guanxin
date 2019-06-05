@@ -185,7 +185,7 @@
 				        	
 				        }
 				    }else{
-				      	layer.msg("请选择要删除的用户");
+				      	layer.msg("请选择要删除的专利类型");
 				 }
 				        
 				      break;

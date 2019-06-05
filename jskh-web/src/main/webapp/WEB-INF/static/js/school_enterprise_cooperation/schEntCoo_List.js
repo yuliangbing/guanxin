@@ -240,7 +240,7 @@ url:'/SchoolEnterpriseCooperation/delSchoolEnterpriseCooperation',
 		        	
 		        }
 		        }else{
-		        	layer.msg("请选择要删除的用户");
+		        	layer.msg("请选择要删除的校企合作");
 		        }
 		        
 		      break;

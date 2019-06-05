@@ -270,7 +270,7 @@ layui.use('element', function() {
 		        	
 		        }
 		        }else{
-		        	layer.msg("请选择要删除的用户");
+		        	layer.msg("请选择要删除的专业概况");
 		        }    
 		      break;
 		    };
