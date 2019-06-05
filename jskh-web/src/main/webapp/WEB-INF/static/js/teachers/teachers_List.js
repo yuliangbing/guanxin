@@ -157,6 +157,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		        var data = checkStatus.data;
 		        var ids = "";
 		       // layer.alert(JSON.stringify(data));
+		        if(data.length > 0){
 		        for(var i=0;i< data.length;i++){
 		        	if (i == 0) {
 						ids = data[i].id;
@@ -192,7 +193,9 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    			});
 					}
 				});
-		       //layer.alert(JSON.stringify(param));
+		        }else{
+		          	layer.msg("请选择要删除的用户");
+		     }
 		        
 		      break;
 		    };
