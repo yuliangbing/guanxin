@@ -43,6 +43,18 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }*/
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]
+	  ,done: function(res, page, count){
+			//如果是异步请求数据方式，res即为你接口返回的信息。
+			//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
+			
+			//分类显示中文名称
+			$("[data-field='date']").children().each(function(){
+				if($(this).text()!="时间"){
+				$(this).text(res.data[0].date.split(" ")[0])
+				}
+				//console.log($(this).text()!="时间");
+			})
+}       
 		  });  
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
