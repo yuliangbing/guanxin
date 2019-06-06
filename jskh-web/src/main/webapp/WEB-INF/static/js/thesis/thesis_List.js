@@ -42,7 +42,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'create_user', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modify_time', title:'修改时间', width:'15%',align:'center' }
 		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }*/
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'20%',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

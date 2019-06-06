@@ -83,13 +83,13 @@ layui.use('element', function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
-		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true } 
-		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'} 
+		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
+		      ,{field:'specialtyId', title:'专业id', width:'12%',hide:true } 
+		      ,{field:'specialtyName', title:'专业名称', width:'13%',align:'center'} 
 		      ,{field:'date', title:'年份', width:'15%',align:'center'}	     
-		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
-		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
-		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center'}
+		      ,{field:'position', title:'专业定位', width:'12%',align:'center'}
+		      ,{field:'characteristic', title:'专业特色', width:'18%',align:'center'}
+		      ,{field:'directorName', title:'专业负责人姓名', width:'12%',align:'center'}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
 		    ]]

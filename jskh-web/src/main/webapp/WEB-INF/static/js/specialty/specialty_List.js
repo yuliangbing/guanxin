@@ -63,7 +63,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'createUser', title:'创建人', width:'15%',hide:true}
 		      ,{field:'modifyTime', title:'修改时间', width:'15%',hide:true}
 		      ,{field:'modifyUser', title:'修改人', width:'15%',hide:true}
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件

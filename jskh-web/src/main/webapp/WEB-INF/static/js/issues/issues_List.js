@@ -41,7 +41,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'create_user', title:'创建人', width:'15%',align:'center' }
 		      ,{field:'modify_time', title:'修改时间', width:'15%',align:'center' }
 		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }*/
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'20%',align:'center'}
 		    ]]
 	  ,done: function(res, page, count){
 			//如果是异步请求数据方式，res即为你接口返回的信息。

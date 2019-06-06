@@ -32,14 +32,14 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'8%'}
-	      ,{field:'code',title:'类型编号',align:'center',width:'15%'}
-	      ,{field:'name', title:'类型名称',align:'center',width:'15%'}
+	      ,{field:'id',title:'主键',align:'center',width:'10%'}
+	      ,{field:'code',title:'类型编号',align:'center',width:'20%'}
+	      ,{field:'name', title:'类型名称',align:'center',width:'25%'}
 	     /* ,{field:'createUser', title:'创建人',align:'center',width:'15%'}
 	      ,{field:'createTime', title:'创建时间',align:'center',width:'15%'}
 	      ,{field:'modifyUser', title:'修改人',align:'center',width:'15%'}
 	      ,{field:'modifyTime', title:'修改时间',align:'center',width:'15%'}*/
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'19%',align:'center'}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',align:'center'}
 	      ]]
 	  });
 	
