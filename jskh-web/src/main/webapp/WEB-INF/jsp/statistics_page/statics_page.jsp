@@ -11,7 +11,7 @@
 	        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
 	        <link rel="stylesheet" href="${path}/static/public/css/font.css">
 	        <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
-	         <link rel="stylesheet" href="${path}/static/public/zuixindelayui/layui/css/2layui.css">
+	         <link rel="stylesheet" href="${path}/static/public/zuixindelayui/layui/css/layui.css">
 	        <!--[if lt IE 9]>
 	          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
