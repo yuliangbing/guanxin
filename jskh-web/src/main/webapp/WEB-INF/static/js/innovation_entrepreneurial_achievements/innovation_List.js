@@ -29,10 +29,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				/*
 				 实现时间选择
 				 */
@@ -55,7 +55,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'10%',sort: true, align:'center'}
-		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
+		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date, 'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'content', title:'成果内容', width:'20%', align:'center'}
 		      ,{field:'participants', title:'参与人员', width:'19%',align:'center' } 
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'}

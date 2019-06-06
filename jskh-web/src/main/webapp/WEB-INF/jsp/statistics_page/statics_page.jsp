@@ -34,7 +34,7 @@
                         </div>
                     </div> -->
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-					  <legend>无连接线风格</legend>
+					  <legend>专业发展线</legend>
 					</fieldset>
 					<div id="test13" class="demo-tree-more"></div>
                 </div>
@@ -96,11 +96,13 @@
         </div>
     
         <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
-        <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/public/zuixindelayui/layui/layui.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index1.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index2.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+        
+        
         <script type="text/javascript">
         
         /**
