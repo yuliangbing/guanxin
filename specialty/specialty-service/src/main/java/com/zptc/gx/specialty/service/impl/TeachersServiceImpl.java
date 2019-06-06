@@ -282,76 +282,105 @@ public class TeachersServiceImpl implements TeachersService {
 	    	map.put("specialty_id", teas.getSpecialtyId());
 			map.put("latest", "1");
 			TeacherTeam teacherT = teacherTeamService.findTeacherTeamByIdAndLatest(map);//查询到的最新的教师团队
-			int updtT = 0;//当前教师团队是否为最新的返回值
-		    int addtT = 0;//当前教师团队新增团队的返回值
-		    String tTNames = "";
-		    teacherT.setLatest("2");//设置不是最新
-	    	updtT = teacherTeamService.modifyTeacherTeam(teacherT);//修改数据为旧数据
-			teacherT.setLatest("1");//设置最新
-//			teacherT.setId(null);
-//			teacherTeam.setDate(new Date());
-			teacherT.setDate(teachers.getModifyTime());
-			teacherT.setId(null);
-			teacherT.setModifyTime(new Date());
-			teacherT.setModifyUser(teachers.getModifyUser());	
-//			if (director.equals("1")) {
-			if (teas.getDirector().equals("1")) {
-				// 是团队负责人
-				if (teacherT.getDirector() != null && !"".equals(teacherT.getDirector())) {// 当有团队负责人时
-					// 找到负责人的教师信息
-					Map<String, Object> mDrie = new HashMap<>();
-					mDrie.put("name", teacherT.getDirector());
-					mDrie.put("status", 1);
-					//Teachers tDire = teachersService.findTeachersByName(mDrie);
-					Teachers tDire = findTeachersByName(mDrie);
-					if (tDire == null) {
-						System.out.println("找不到该团队负责人");
-						return 405;
-					}
-					// 将其改为不是团队负责人
-					tDire.setDirector("2");
-					//int tD = teachersService.modifyTeachers(tDire);
-					//int tD = modifyTeachers(tDire);
-					int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
-					if (tD < 0) {
-						System.out.println("修改团队负责人状态失败");
-						//jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
-						return 781;
-					}
-					//teacherT.setDirector(name);
-					teacherT.setDirector(teas.getName());
-				} else {// 没有团队负责人时
-					System.out.println("没有团队负责人，可以直接存入。。。");
-					//teacherT.setDirector(name);
-					teacherT.setDirector(teas.getName());
+			//判断是否有这个教师团队
+			if (null == teacherT) {//教师团队不存在，新增教师团队
+				TeacherTeam teacherTeam2 = new TeacherTeam();
+				System.out.println("专业团队不存在，将创建新团队");
+				
+			    //判断是不是团队负责人
+			    if ("1".equals(teachers.getDirector())) {
+					//是团队负责人
+		    		teacherTeam2.setDirector(teachers.getName());
 				}
-			}
-
-			//if (isPartTime == 1) {//判断是否兼职
-			if (teas.getIsPartTime() == 1) {//判断是否兼职
-				//专业教师团队
+				//新增团队
+				teacherTeam2.setSpecialtyId(teachers.getSpecialtyId());
+				teacherTeam2.setLatest("1");
+				teacherTeam2.setDate(new Date());
+				teacherTeam2.setSpecialtyName(teachers.getSpecialtyName());
+				teacherTeam2.setSpecialtyCode(teachers.getSpecialtyCode());
+				teacherTeam2.setCreateTime(new Date());
+				teacherTeam2.setCreateUser(teachers.getCreateUser());
+				if (teachers.getIsPartTime() == 1) {//不兼职
+					teacherTeam2.setSpecialtyTeachers(teachers.getName());
+					teacherTeam2.setPartTimeTeachers(null);
+				}else {//兼职
+					teacherTeam2.setSpecialtyTeachers(null);
+					teacherTeam2.setPartTimeTeachers(teachers.getName());
+				}
+				int rs1 = teacherTeamService.addTeacherTeam(teacherTeam2);
+				if (rs1 > 0) {
+					 System.out.println("教师团队新增成功！教师团队为空时...impl...");
+				}
 				
-				tTNames = teacherT.getSpecialtyTeachers();
-				//teacherT.setSpecialtyTeachers(tTNames+","+name);
-				teacherT.setSpecialtyTeachers(tTNames+","+teas.getName());
-			}else {
+			}else {//教师团队
 				
-				//兼职教师团队
-				
-				tTNames = teacherT.getPartTimeTeachers();
-				//teacherT.setPartTimeTeachers(tTNames+","+name);
-				teacherT.setPartTimeTeachers(tTNames+","+teas.getName());
-			}
-			addtT = teacherTeamService.addTeacherTeam(teacherT);//新增团队新数据
-			if (addT < 0) {
-				System.out.println("修改专业后，添加数据失败！");
-				//jsonResult = jsonResult.build(FLAG_FAILED, "修改专业后，添加数据失败！");
-				return 780;
-			}
+				int updtT = 0;//当前教师团队是否为最新的返回值
+			    int addtT = 0;//当前教师团队新增团队的返回值
+			    String tTNames = "";
+			    teacherT.setLatest("2");//设置不是最新
+		    	updtT = teacherTeamService.modifyTeacherTeam(teacherT);//修改数据为旧数据
+				teacherT.setLatest("1");//设置最新
+				teacherT.setDate(teachers.getModifyTime());
+				teacherT.setId(null);
+				teacherT.setModifyTime(new Date());
+				teacherT.setModifyUser(teachers.getModifyUser());	
+				if ("1".equals(teas.getDirector())) {
+					// 是团队负责人
+					if (teacherT.getDirector() != null && !"".equals(teacherT.getDirector())) {// 当有团队负责人时
+						// 找到负责人的教师信息
+						Map<String, Object> mDrie = new HashMap<>();
+						mDrie.put("name", teacherT.getDirector());
+						mDrie.put("status", 1);
+						//Teachers tDire = teachersService.findTeachersByName(mDrie);
+						Teachers tDire = findTeachersByName(mDrie);
+						if (tDire == null) {
+							System.out.println("找不到该团队负责人");
+							return 405;
+						}
+						// 将其改为不是团队负责人
+						tDire.setDirector("2");
+						//int tD = teachersService.modifyTeachers(tDire);
+						//int tD = modifyTeachers(tDire);
+						int tD = teachersMapper.updateByPrimaryKeySelective(tDire);
+						if (tD < 0) {
+							System.out.println("修改团队负责人状态失败");
+							//jsonResult = jsonResult.build(FLAG_FAILED, "修改团队负责人状态失败");
+							return 781;
+						}
+						//teacherT.setDirector(name);
+						teacherT.setDirector(teas.getName());
+					} else {// 没有团队负责人时
+						System.out.println("没有团队负责人，可以直接存入。。。");
+						//teacherT.setDirector(name);
+						teacherT.setDirector(teas.getName());
+					}
+				}
+	
+				if (teas.getIsPartTime() == 1) {//判断是否兼职
+					//专业教师团队
+					
+					tTNames = teacherT.getSpecialtyTeachers();
+					//teacherT.setSpecialtyTeachers(tTNames+","+name);
+					teacherT.setSpecialtyTeachers(tTNames+","+teas.getName());
+				}else {
+					
+					//兼职教师团队
+					
+					tTNames = teacherT.getPartTimeTeachers();
+					//teacherT.setPartTimeTeachers(tTNames+","+name);
+					teacherT.setPartTimeTeachers(tTNames+","+teas.getName());
+				}
+				addtT = teacherTeamService.addTeacherTeam(teacherT);//新增团队新数据
+				if (addT < 0) {
+					System.out.println("修改专业后，添加数据失败！");
+					//jsonResult = jsonResult.build(FLAG_FAILED, "修改专业后，添加数据失败！");
+					return 780;
+				}
+			
+			}//存在教师团队,且加入新教师数据结束  (**专业变更修改结束)
 			
 		}else {//没有变更专业
 			
-			//if (isPartTime != teachers.getIsPartTime()) {//变更教师团队
 			if (teas.getIsPartTime() != teachers.getIsPartTime()) {//变更教师团队
 				//先存下团队负责人数据，避免修改失败
 				String Dire = teacherTeam.getDirector();
@@ -414,8 +443,6 @@ public class TeachersServiceImpl implements TeachersService {
 		    	
 		    	//新增最新团队
 		    	teacherTeam.setLatest("1");//设置最新
-//			 	teacherTeam.setDate(new Date());
-//				teacherTeam.setId(null);
 				teacherTeam.setDate(teachers.getModifyTime());
 				teacherTeam.setId(null);
 				teacherTeam.setModifyTime(new Date());
@@ -458,7 +485,6 @@ public class TeachersServiceImpl implements TeachersService {
 				addT = teacherTeamService.addTeacherTeam(teacherTeam);//新增团队新数据
 				if (addT<0) {
 					System.out.println("修改是否兼职后，添加数据失败！");
-					//jsonResult = jsonResult.build(FLAG_FAILED, "修改是否兼职后，添加数据失败！");
 					return 881;
 				}
 			}else {//不变更教师团队
