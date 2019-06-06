@@ -6,9 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate'], function() {
+			layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				var laytpl = layui.laytpl;
 				
 				
 				//时间控件
@@ -33,7 +34,7 @@
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
 	      ,{field:'id',title:'主键',align:'center',width:'8%'}
-	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
+	      ,{field:'date',title:'发表时间',width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date, 'yyyy-MM-dd')}}</div>"}
 	      ,{field:'planNum',title:'计划招生数',width:'15%',align:'center',}
 	      ,{field:'actualNum', title:'实际招生数',width:'15%',align:'center',}
 	      ,{field:'rate',title:'报到率',width:'15%',align:'center',}

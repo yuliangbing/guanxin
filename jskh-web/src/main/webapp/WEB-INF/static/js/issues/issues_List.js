@@ -2,9 +2,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				var laytpl = layui.laytpl;
 				/*
 				 实现时间选择
 				 */
@@ -27,7 +28,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:'15%',align:'center'}
+		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date, 'yyyy-MM-dd')}}</div>"}
 		      ,{field:'code', title:'立项编号', width:'15%',align:'center' }
 		      ,{field:'name', title:'课题名称', width:'15%',align:'center' }
 		      ,{field:'sources', title:'课题来源', width:'15%',align:'center' } 
@@ -43,18 +44,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'modify_user', title:'修改人', width:'15%',align:'center' }*/
 		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'20%',align:'center'}
 		    ]]
-	  ,done: function(res, page, count){
-			//如果是异步请求数据方式，res即为你接口返回的信息。
-			//如果是直接赋值的方式，res即为：{data: [], count: 99} data为当前页数据、count为数据总长度
-			
-			//分类显示中文名称
-			$("[data-field='date']").children().each(function(){
-				if($(this).text()!="时间"){
-				$(this).text(res.data[0].date.split(" ")[0])
-				}
-				//console.log($(this).text()!="时间");
-			})
-}       
+	  
 		  });  
 	  //监听列工具事件
 	  table.on('tool(test)', function(obj){
