@@ -284,32 +284,32 @@ public class TeachersServiceImpl implements TeachersService {
 			TeacherTeam teacherT = teacherTeamService.findTeacherTeamByIdAndLatest(map);//查询到的最新的教师团队
 			//判断是否有这个教师团队
 			if (null == teacherT) {//教师团队不存在，新增教师团队
-				TeacherTeam teacherTeam2 = new TeacherTeam();
+				TeacherTeam team = new TeacherTeam();
 				System.out.println("专业团队不存在，将创建新团队");
 				
 			    //判断是不是团队负责人
-			    if ("1".equals(teachers.getDirector())) {
+			    if ("1".equals(teas.getDirector())) {
 					//是团队负责人
-		    		teacherTeam2.setDirector(teachers.getName());
+			    	team.setDirector(teas.getName());
 				}
 				//新增团队
-				teacherTeam2.setSpecialtyId(teachers.getSpecialtyId());
-				teacherTeam2.setLatest("1");
-				teacherTeam2.setDate(new Date());
-				teacherTeam2.setSpecialtyName(teachers.getSpecialtyName());
-				teacherTeam2.setSpecialtyCode(teachers.getSpecialtyCode());
-				teacherTeam2.setCreateTime(new Date());
-				teacherTeam2.setCreateUser(teachers.getCreateUser());
+			    team.setSpecialtyId(teas.getSpecialtyId());
+			    team.setLatest("1");
+			    team.setDate(new Date());
+			    team.setSpecialtyName(teas.getSpecialtyName());
+			    team.setSpecialtyCode(teas.getSpecialtyCode());
+			    team.setCreateTime(new Date());
+			    team.setCreateUser(teas.getCreateUser());
 				if (teachers.getIsPartTime() == 1) {//不兼职
-					teacherTeam2.setSpecialtyTeachers(teachers.getName());
-					teacherTeam2.setPartTimeTeachers(null);
+					team.setSpecialtyTeachers(teas.getName());
+					team.setPartTimeTeachers(null);
 				}else {//兼职
-					teacherTeam2.setSpecialtyTeachers(null);
-					teacherTeam2.setPartTimeTeachers(teachers.getName());
+					team.setSpecialtyTeachers(null);
+					team.setPartTimeTeachers(teas.getName());
 				}
-				int rs1 = teacherTeamService.addTeacherTeam(teacherTeam2);
+				int rs1 = teacherTeamService.addTeacherTeam(team);
 				if (rs1 > 0) {
-					 System.out.println("教师团队新增成功！教师团队为空时...impl...");
+					 System.out.println("教师团队新增成功！");
 				}
 				
 			}else {//教师团队

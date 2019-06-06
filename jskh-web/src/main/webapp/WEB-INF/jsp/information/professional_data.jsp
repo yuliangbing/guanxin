@@ -35,7 +35,7 @@
 				<fieldset class="layui-elem-field">
 				  <legend>专业数据分析</legend>
 				  <div class="layui-field-box">
-					 <div id="main" style="width: 600px;height:500px;"></div>
+					 <div id="main" style="width: 700px;height:500px;"></div>
 				  </div>
 				</fieldset>
 			</form>
@@ -132,6 +132,12 @@
         	    tooltip: {},
         	    legend: {
         	        //data: ['教师技能', '平均技能']
+       	    	    type: 'scroll',
+       	            orient: 'vertical',
+       	            right: -10,
+       	            top: 10,
+       	            bottom: 10,
+       	        	left:10,
         	    	data:asd
         	    },
         	    color:['#31b0d5','pink','red','yellow','blue','black','#d2ffa7','#ffe7ce','#f0f0f0'],

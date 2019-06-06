@@ -96,12 +96,13 @@
                 {
                     name: '专业文件',
                     type: 'pie',
-                    radius : '78%',//图的大小
-                    center: ['50%', '60%'],//图所在的位置
+                    radius : '70%',//图的大小
+                    center: ['50%', '50%'],//图所在的位置
+                    selectedMode: 'single',
                     data:a,
                     itemStyle: {
                         emphasis: {
-                            shadowBlur: 10,//图形阴影的模糊大小
+                            shadowBlur: 30,//图形阴影的模糊大小
                             shadowOffsetX: 0,
                             shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }

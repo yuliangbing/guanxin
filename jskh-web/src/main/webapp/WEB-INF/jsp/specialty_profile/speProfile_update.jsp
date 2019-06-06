@@ -17,7 +17,7 @@
 	       <div class="layui-inline">
 					<label class="layui-form-label">专业名称</label>
 					<div class="layui-input-inline">
-						<select  type="text" id="specialtyId" disabled="disabled" lay-filter="specialtyId" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" lay-search>
+						<select  type="text" id="specialtyId" disabled="disabled" lay-filter="specialtyId" autocomplete="off" placeholder="" lay-verify="required" class="layui-select" >
 							<option value="">请选择</option>
 						</select>
 					</div>
