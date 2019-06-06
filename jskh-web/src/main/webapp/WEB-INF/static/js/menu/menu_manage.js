@@ -122,7 +122,7 @@ function del(id){
 
 function edit(id) {
 	layer.open({
-		title : '新增父菜单',
+		title : '编辑菜单',
 		type : 2,
 		content : 'toPage?page=menu/menu_edit',
 		area : [ ($(window).width() * 0.9) + "px",

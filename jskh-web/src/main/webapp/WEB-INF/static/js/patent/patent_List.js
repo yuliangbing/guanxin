@@ -45,7 +45,7 @@
 	      ,{field:'createTime', title:'创建时间',width:'15%',align:'center',}
 	      ,{field:'modifyUser', title:'修改人',width:'15%',align:'center',}
 	      ,{field:'modifyTime', title:'修改时间',width:'15%',align:'center',}*/
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'19%',align:'center',}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'25%',align:'center',}
 	      ]]
 	  });
 	

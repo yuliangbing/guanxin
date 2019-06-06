@@ -32,13 +32,13 @@
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
 	      ,{field:'id',title:'主键',align:'center',width:'8%',sort: true}
-	      ,{field:'position',title:'职务',align:'center',width:'15%'}
-	      ,{field:'name', title:'成员姓名',align:'center',width:'15%'}
+	      ,{field:'position',title:'职务',align:'center',width:'25%'}
+	      ,{field:'name', title:'成员姓名',align:'center',width:'25%'}
 	     /* ,{field:'create_user', title:'创建人',align:'center',width:'15%'}
 	      ,{field:'create_time', title:'创建时间',align:'center',width:'15%'}
 	      ,{field:'modify_user', title:'修改人',align:'center',width:'15%'}
 	      ,{field:'modify_time', title:'修改时间',align:'center',width:'15%'}*/
-	      ,{fixed:'right', toolbar: '#barDemo',title:'操作',align:'center',width:'19%'}
+	      ,{fixed:'right', toolbar: '#barDemo',title:'操作',align:'center'}
 	      ]]
 	  });
 	
@@ -181,7 +181,7 @@
 		        	
 		        	
 		        }
-		      layer.alert(JSON.stringify(param));
+		      //layer.alert(JSON.stringify(param));
 		        
 		      break;
 		    };

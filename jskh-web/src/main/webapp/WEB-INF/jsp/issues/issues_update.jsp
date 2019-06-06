@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
 <script type="text/javascript" src="${path}/static/public/layui/layui.js"></script>
 <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-	<script type="text/javascript" src="${path}/static/js/issues/issues_List.js"></script>
+	
 </head>
 <body>
 		<form class="layui-form" onsubmit="return false;">

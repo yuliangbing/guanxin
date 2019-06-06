@@ -160,8 +160,9 @@
                 {
                     name: '科研成果',
                     type: 'pie',
-                    radius : '78%',//图的大小
-                    center: ['50%', '60%'],//图所在的位置
+                    radius : '70%',//图的大小
+                    center: ['50%', '50%'],//图所在的位置
+                    selectedMode: 'single',
                     data:a,
 //                    data:[
 //                        {value:335, name:'课题'},
@@ -172,7 +173,7 @@
 //                    ],
                     itemStyle: {
                         emphasis: {
-                            shadowBlur: 10,//外阴影大小
+                            shadowBlur: 30,//外阴影大小
                             shadowOffsetX: 0,
                             shadowColor: 'rgba(0, 0, 0, 0.5)'
                         }

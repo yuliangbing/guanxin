@@ -5,6 +5,8 @@
 <html>
 <head>
 	<!-- <title>浙江邮电职业技术学院管信分院</title> -->
+	
+<link rel="icon" href="${path}/static/public/images/wuyecao.png" type="image/x-icon" />
 	<title>专业发展平台</title>
 	<meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -13,6 +15,7 @@
 
     <link rel="stylesheet" href="/static/public/css/font.css">
 	<link rel="stylesheet" href="/static/public/css/xadmin.css">
+	<!-- <link rel="stylesheet" href="/static/public/css/theme362.min.css"> -->
 </head>
 <body>
     <!-- 顶部开始 -->

@@ -32,14 +32,14 @@
 	    ,toolbar:"#toolbarDemo"
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
-	      ,{field:'id',title:'主键',align:'center',width:'8%'}
-	      ,{field:'code',title:'类型编号',align:'center',width:'15%'}
-	      ,{field:'name', title:'类型名称',align:'center',width:'15%'}
+	      ,{field:'id',title:'主键',align:'center',width:'10%'}
+	      ,{field:'code',title:'类型编号',align:'center',width:'25%'}
+	      ,{field:'name', title:'类型名称',align:'center',width:'25%'}
 	     /* ,{field:'createUser', title:'创建人',align:'center',width:'15%'}
 	      ,{field:'createTime', title:'创建时间',align:'center',width:'15%'}
 	      ,{field:'modifyUser', title:'修改人',align:'center',width:'15%'}
 	      ,{field:'modifyTime', title:'修改时间',align:'center',width:'15%'}*/
-	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',width:'19%',align:'center'}
+	      ,{fixed:'right',toolbar: '#barDemo',title:'操作',align:'center'}
 	      ]]
 	  });
 	
@@ -79,7 +79,7 @@
 						} 
 			    	});
 			    }else if(layEvent === 'dels'){//删除
-			    	layer.confirm('真的删除行么', function(index) {
+			    	layer.confirm('真的删除本专利类型么?', function(index) {
 						/*obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
 						layer.close(index);
 						//向服务端发送删除指令*/		
@@ -91,7 +91,7 @@
 							success:function(data){
 								var page = $(".layui-laypage-skip").find("input").val();//获取当前页
 								var limits = $(".layui-laypage-limits").find("option:selected").val();//获取当前页条数
-								var countstr = $(".layui-laypage-count").text();//获取总数据
+								var countstr = $(".layui-laypage-count").text();//获取总数据条数
 								var count = countstr.replace(/[^0-9]/ig,"");
 								var nowPage = tableIns.config.page.curr;//返回当前页数
 					        	var reloadPage = (nowPage-1) > 0? nowPage:1;

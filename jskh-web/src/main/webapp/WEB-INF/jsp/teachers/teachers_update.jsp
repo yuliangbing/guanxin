@@ -128,8 +128,8 @@
 		$("#finalDegree").val(data.finalDegree);
 		$("#politicalStatus").val(data.politicalStatus);
 		//$("#specialtyCode").val(data.specialtyCode);
-		$("#specialtyName").val(data.specialtyId);
-		$("#specialtyName").val(data.specialtyName);
+		$("#specialtyId").val(data.specialtyId);
+		$("#specialtyId").text(data.specialtyName);
 		$("#researchDirection").val(data.researchDirection);
 		
 		if(data.isPartTime == "1"){//非兼职

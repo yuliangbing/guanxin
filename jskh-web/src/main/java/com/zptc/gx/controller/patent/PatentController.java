@@ -45,11 +45,11 @@ public class PatentController extends BaseController {
 		JsonResult jsonResult = new JsonResult();
 		//获取请求参数
 		
-	    String name = ToolUtil.str("name", request);
+	    String type = ToolUtil.str("type", request);
 	
 		Map<String, Object> count = new HashMap<>();
 		//存入count,用于获取表格数据条总数
-		count.put("name", name);
+		count.put("type", type);
 		count.put("status", 1);
 		//定义返回的数据条总数
 		int counts = 0;

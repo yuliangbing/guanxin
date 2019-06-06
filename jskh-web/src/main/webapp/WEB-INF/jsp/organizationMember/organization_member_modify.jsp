@@ -11,7 +11,7 @@
 <script src="${path}/static/js/organizationMember/organization_member_modify.js"></script>
 </head>
 <body style="margin-left: 20%;">
-		<form class="layui-form" action="">
+		<form class="layui-form" onsubmit="return false;">
 		  <div class="layui-form-item" style="margin-top:5%;">
 		  <div class="layui-inline">
 			    <label for="job"class="layui-form-label" style="width:150px;">职务</label>

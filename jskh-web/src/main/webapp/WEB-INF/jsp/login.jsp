@@ -7,8 +7,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" type="text/css" href="${path}/static/public/css/login.css" />
-<title>浙江邮电职业技术学院${systemName}</title>
-<link rel="icon" href="${path}/static/public/images/title.ico" type="image/x-icon" />
+<%-- <title>浙江邮电职业技术学院${systemName}</title> --%>
+<title>专业发展平台</title>
+<%-- <link rel="icon" href="${path}/static/public/images/title.ico" type="image/x-icon" /> --%>
+<link rel="icon" href="${path}/static/public/images/wuyecao.png" type="image/x-icon" />
 <style type="text/css">
 	.layui-form-radio * {
 	    font-size: 20px;
@@ -25,7 +27,7 @@
 			<div class="logo">
 				<%-- <img src="${path}/static/public/images/logo.png"/> --%>
 				<div style="font-size:35px;margin-left:10px;display:inline-block">
-					<%-- <div style="position: relative;top: 8px;">${systemName}</div> --%>
+				<%-- 	<div style="position: relative;top: 8px;">${systemName}</div> --%>
 					<div style="position: relative;top: 22px;">专业发展平台</div>
 				</div>	
 			</div>
@@ -51,7 +53,7 @@
 				</div>
 			</div>
 		</div>
-		<%-- <div class="footer">Copyright © 2018 浙江邮电职业技术学院${systemName} v1.0.0</div> --%>
+		 <div class="footer">Copyright © 2018 浙江邮电职业技术学院${systemName} v1.0.0</div>
 	
 	</div>
 </body>

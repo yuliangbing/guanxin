@@ -260,8 +260,8 @@
 		from
 			patent
 			<where>
-				<if test="name != null and name != ''">
-					and name = #{name,jdbcType=VARCHAR}
+				<if test="type != null and type != ''">
+					and type = #{type,jdbcType=VARCHAR}
 				</if>
 				<if test="status !=null and status != ''">
 					and status = #{status,jdbcType=INTEGER}

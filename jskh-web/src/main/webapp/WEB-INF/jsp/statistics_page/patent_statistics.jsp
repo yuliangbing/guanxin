@@ -36,7 +36,7 @@
             </div>
         </div>
     
-        <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
+        <script src="${path}/static/js/echarts.min.js"></script>
         <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
         <script type="text/javascript">
         
@@ -80,7 +80,7 @@
         		url :'/patent/patentCounts',
         		type : "POST",
         		dataType : "json",
-        		data:{name:names},
+        		data:{type:names},
         		async:false,
         		success : function(data) {
         			
@@ -121,7 +121,7 @@
                 trigger: 'item',
                 formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
-            color:['#ff2431','#f000ff','#0fff00','#ffff20'],
+            color:['#a1e2fb','#c9f0ff','#68b6d4','#55ccfa','#68b6d3','#33c9ff','#02bbfc'],
             legend: {
                 orient: 'vertical',
                 left: 'left',
