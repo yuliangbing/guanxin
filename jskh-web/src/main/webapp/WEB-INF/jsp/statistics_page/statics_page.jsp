@@ -11,6 +11,9 @@
 	        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" /> -->
 	        <link rel="stylesheet" href="${path}/static/public/css/font.css">
 	        <link rel="stylesheet" href="${path}/static/public/css/xadmin.css">
+	        <link rel="stylesheet" href="${path}/static/public/layui/css/layui.css">
+	        <link rel="stylesheet" href="${path}/static/dtree/dtree/font/dtreefont.css">
+	        <link rel="stylesheet" href="${path}/static/dtree/dtree/dtree.css">
 	        <!--[if lt IE 9]>
 	          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 	          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -19,20 +22,32 @@
     <body class="layui-anim layui-anim-up" style="position:absolute; height:400px; overflow:auto">
         <div class="layui-fluid">
             <div class="layui-row layui-col-space15">
+            
+            
+            <ul id="demoTree1" class="dtree" data-id="0"></ul>
+            <iframe src="/toPage?page=iframeContent" id="iframe_content" name="iframe_content" frameborder="0" style="width:60%; height: 99%; position:absolute; top:0px;right: 10%;"></iframe>
+            
+            
 
-                <div class="layui-col-sm12 layui-col-md12">
+                <!-- <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">专业发展时间轴</div>
                         <div class="layui-card-body" style="min-height: 280px;">
-                            <!--  <div id="main1" class="layui-col-sm12" style="height: 300px;"></div> -->
+                             <div id="main1" class="layui-col-sm12" style="height: 300px;"></div>
 							<ul class="layui-timeline">
 							  <li class="layui-timeline-item" id="Timeline">
-							 	 <!-- 时间轴主体，index1.js生成代码 -->
+							 	 时间轴主体，index1.js生成代码
 							  </li>
 							</ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
+                
+                
+                
+                
+                
+                
                 <div class="layui-col-sm12 layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-header">科研成果</div>
@@ -86,11 +101,143 @@
         <script src="${path}/static/js/index/index1.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index2.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${path}/static/dtree/dtree/dtree.js" type="text/javascript" charset="utf-8"></script>
+        <script src="${path}/static/public/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+    
         <script type="text/javascript">
-        
-      
-        
-        
+        var datas=[];
+		var dataDATE="";
+    	var url = "";
+    	var param = "";
+    	var counts = "";
+    	var  rows = "";
+    	var names='';
+    	var positions ='';
+    	var characteristics = '';
+    	url = '/specialty/getSpecialtyList';
+    	ajax_hx(url);
+    	
+    	//获取到专业设立时间
+    	function ajax_hx(url) {
+            	$.ajax({
+            		url : url,
+            		type : "POST",
+            		dataType : "json",
+            		async:false,
+            		success : function(data) {
+            			sort(data);
+            			//console.log(JSON.stringify(data));
+            			for(var i=0;i < rows.length;i++){
+            				if(param == ""){//取出所有排序好的时间
+            					param  = rows[i].setupDate.split(' ')[0];
+            				}else{
+    	       					param += ","+rows[i].setupDate.split(' ')[0];
+            				}
+            				ajax_profile(rows[i].id,rows[i].setupDate.split(' ')[0],rows[i].name,i);//去拿该专业里的各种数据
+            				//console.log(rows[i]);
+            			}
+            			
+            			//console.log(param);
+            		},
+            		error : function(code) {
+            			layer.alert("发生错误,请联系管理员");
+            		}
+            	});
+            }
+    	
+    	//时间升序
+    	function sort(data){
+    		  	rows = data.data;  //
+    		    rows.sort(function(a,b){
+    		        return Date.parse(a.setupDate.split(' ')[0]) - Date.parse(b.setupDate.split(' ')[0]);//时间倒叙 如果是从小到大交换啊a ,b位置即可
+    		    });
+    		   /* for(var i =0,l=rows.length;i<l;i++){
+    		        console.log(" | " + rows[i].setupDate.split(' ')[0]); //输出
+    		    }
+    		    console.log("rows:"+JSON.stringify(rows));//输出
+    		*/
+    		}
+    	
+    	
+        layui.config({
+        	  base: '../static/dtree/dtree/' //配置 layui 第三方扩展组件存放的基础目录
+        	}).extend({
+        	  dtree: 'dtree' //定义该组件模块名
+        	}).use(['element','layer', 'dtree'], function(){
+        		var layer = layui.layer,
+        		    dtree = layui.dtree,
+        		    $ = layui.$;
+        		var dateList = dataDATE.split(',');
+        		var nameList = names.split(',');
+        		var positionList = positions.split(',');
+        		var characteristicList = characteristics.split(',');
+        			//alert(characteristicList);
+        			
+        		dtree.render({
+        		  elem: "#demoTree1",  //绑定元素
+        		  data: datas,//异步接口
+        		  useIframe: true,////启用iframe
+        		  nodeIconArray:{"3":{"open":"dtree-icon-pulldown","close":"dtree-icon-pullup"}},  // 自定扩展的二级非最后一级图标，从1开始
+        		  leafIconArray:{"11":"dtree-icon-star"},  // 自定义扩展的二级最后一级图标，从11开始
+        		  icon: ["3","11"],// 使用
+        		  iframe: {
+        			    iframeElem: "#iframe_content",  // iframe的ID
+        			    iframeUrl: "/toPage?page=iframeContent", // iframe路由到的地址
+        			    iframeLoad: "all",// 表示点击任意节点加载iframe
+        			    iframeRequest: {date: dateList,name:nameList,position:positionList,characteristic:characteristicList}//自定义参数
+        			  }
+        		
+        		});
+        		
+        	        //单击节点 监听事件
+        	        dtree.on("node('demoTree1')" ,function(param){
+        		  layer.msg(JSON.stringify(param));
+        		 
+        		});
+        	        
+        	});
+
+ 		function ajax_profile(ids,date,name,i) {
+     	// 获取下拉列表(公共方法)
+     	$.ajax({
+     		url :'specialtyProfile/ByIdSpecialtyProfile',
+     		type : "POST",
+     		dataType : "json",
+     		data:{specialty_id:ids},
+     		async:false,
+     		success : function(data) {
+     			var obj2 = eval(data); //使用eval方法
+     			//console.log(JSON.stringify(obj2.data[0].characteristic));
+     			//dataDATE += date;
+     			if (dataDATE == '') {
+     				dataDATE = date;
+     				names = obj2.data[0].specialtyName;//
+     				positions = obj2.data[0].position;
+     				characteristics = obj2.data[0].characteristic;
+				}else{
+					dataDATE+=','+date;
+					names += ','+obj2.data[0].specialtyName;
+					positions +=','+obj2.data[0].position;
+					characteristics +=','+obj2.data[0].characteristic;
+				}
+     			
+     				
+     				  datas[i]  =  {
+     		    		"id":"00"+i+1,
+     		    		"title":obj2.data[0].specialtyName,
+     		    		"isLast": false,
+     		    		"level": "1",
+     		    		"parentId":i+1
+     		    	};
+     		      
+     				
+     				
+     		},
+     		error : function(code) {
+     			layer.alert("发生错误,请联系管理员");
+     		}
+     	});
+ 		}
         layui.use(['carousel', 'form'], function(){//轮播图
         	  var carousel = layui.carousel
         	  ,form = layui.form;
@@ -142,6 +289,7 @@
         	    active[type] ? active[type].call(this, othis) : '';
         	  }); */
         	});
+       
         </script>
     </body>
 </html>

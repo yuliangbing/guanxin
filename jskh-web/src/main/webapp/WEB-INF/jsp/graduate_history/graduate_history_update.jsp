@@ -14,7 +14,6 @@
 		<form class="layui-form" onsubmit="return false;">
 
 			<div class="layui-form-item" style="margin-left:18%;margin-top:2%">
-				
 				<div class="layui-inline">
 					<label class="layui-form-label">时间</label>
 					<div class="layui-input-inline">
