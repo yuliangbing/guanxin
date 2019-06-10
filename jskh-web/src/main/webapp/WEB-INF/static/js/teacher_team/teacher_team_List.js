@@ -2,10 +2,9 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate','laytpl'], function() {
+layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
@@ -21,7 +20,7 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true}
 		      ,{field:'specialtyCode', title:'专业编码', width:'15%',align:'center' }
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
-		      ,{field:'date', title:'团队变更时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>" } 
+		      ,{field:'date', title:'团队变更时间', width:'15%',align:'center' } 
 		      ,{field:'specialtyTeachers', title:'专业教师团队', width:'15%',align:'center' }
 		      ,{field:'partTimeTeachers', title:'兼职教师团队', width:'15%',align:'center' }
 		      ,{field:'director', title:'团队总负责人', width:'15%',align:'center' }
@@ -156,6 +155,7 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		        var data = checkStatus.data;
 		        var param = [{}];
 		       // layer.alert(JSON.stringify(data));
+		        if(data.length > 0){
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
@@ -191,8 +191,9 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		        	
 		        	
 		        }
-		       //layer.alert(JSON.stringify(param));
-		        
+		        }else{
+		          	layer.msg("请选择要删除的教师团队");
+		     }
 		      break;
 		    };
 		    

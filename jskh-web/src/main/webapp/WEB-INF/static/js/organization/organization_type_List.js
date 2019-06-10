@@ -6,10 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate','laytpl'], function() {
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
+				
 				
 				//时间控件
 				var laydate = layui.laydate;
@@ -163,6 +163,7 @@
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));
+				        if(data.length > 0){
 				        for(var i=0;i< data.length;i++){
 				        	param = data[i].id;
 //				        	layer.alert(JSON.stringify(data[i].id));
@@ -188,8 +189,9 @@
 				        	
 				        	
 				        }
-				    //  layer.alert(JSON.stringify(param));
-				        
+				        }else{
+				          	layer.msg("请选择要删除的组织机构类别");
+				     }
 				      break;
 				    };
 				    

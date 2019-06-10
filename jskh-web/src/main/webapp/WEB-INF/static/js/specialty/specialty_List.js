@@ -29,10 +29,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate','laytpl'], function() {
+layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
+				
 				/*
 				 实现时间选择
 				 */
@@ -55,7 +55,7 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
-		      ,{field:'setupDate', title:'设立时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.setupDate,'yyyy-MM-dd')}}</div>"}	     
+		      ,{field:'setupDate', title:'设立时间', width:'15%',align:'center'}	     
 		      ,{field:'code', title:'专业编码', width:'15%',align:'center'}
 		      ,{field:'name', title:'专业名称', width:'15%',align:'center'} 
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}
@@ -197,6 +197,7 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		        var data = checkStatus.data;
 		        var param = [{}];
 		       // layer.alert(JSON.stringify(data));
+		        if(data.length > 0){
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
@@ -232,8 +233,10 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		        	
 		        	
 		        }
-		       //layer.alert(JSON.stringify(param));
-		        
+
+		    }else{
+		          	layer.msg("请选择要删除的专业信息");
+		     }
 		      break;
 		    };
 		    

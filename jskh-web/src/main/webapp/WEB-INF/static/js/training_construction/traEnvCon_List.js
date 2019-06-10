@@ -51,10 +51,10 @@ function ajax_h(form) {
 				
 
 			});
-		layui.use(['form', 'table', 'laydate','laytpl'], function() {
+		layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
+				
 				// 专业
 				ajax_h(form);
 				/*
@@ -79,7 +79,7 @@ function ajax_h(form) {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
+		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
 		      ,{field:'content', title:'建设内容', width:'25%',align:'center'}
 		      ,{field:'participants', title:'参与人员', width:'15%',align:'center'}
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'}
@@ -220,6 +220,7 @@ function ajax_h(form) {
 		        var data = checkStatus.data;
 		        var param = [{}];
 		       // layer.alert(JSON.stringify(data));
+		        if(data.length > 0){
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
@@ -255,7 +256,10 @@ function ajax_h(form) {
 		        	
 		        	
 		        }
-		       //layer.alert(JSON.stringify(param));
+
+		        }else{
+		              	layer.msg("请选择要删除的实训环境建设");
+		         }
 		        
 		      break;
 		    };

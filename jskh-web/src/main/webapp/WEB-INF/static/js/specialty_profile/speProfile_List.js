@@ -57,10 +57,9 @@ layui.use('element', function() {
 			        }
 				});
 			}
-			layui.use(['form', 'table', 'laydate','laytpl'], function() {
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
 				//获取下拉列表
 				ajax_h(form);
 				/*
@@ -87,7 +86,7 @@ layui.use('element', function() {
 		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true } 
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'} 
-		      ,{field:'date', title:'年份', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
+		      ,{field:'date', title:'年份', width:'15%',align:'center'}	     
 		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
 		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
 		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center'}
@@ -234,6 +233,7 @@ layui.use('element', function() {
 		        var data = checkStatus.data;
 		        var param = [{}];
 		       // layer.alert(JSON.stringify(data));
+		        if(data.length > 0){
 		        for(var i=0;i< data.length;i++){
 		        	param = data[i].id;
 //		        	layer.alert(JSON.stringify(data[i].id));
@@ -269,8 +269,9 @@ layui.use('element', function() {
 		        	
 		        	
 		        }
-		       //layer.alert(JSON.stringify(param));
-		        
+		        }else{
+		          	layer.msg("请选择要删除的专业概况");
+		     }
 		      break;
 		    };
 		    

@@ -6,10 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate','laytpl'], function() {
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
+				
 				
 				//时间控件
 				var laydate = layui.laydate;
@@ -33,7 +33,7 @@
 				    ,cols: [[ //表头
 				       {type:'checkbox', fixed: 'left'}
 				      ,{field:'id',title:'ID',align:'center',width:'5%'}
-				      ,{field:'date',title:'出版时间',align:'center',width:'15%',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}
+				      ,{field:'date',title:'出版时间',align:'center',width:'15%',}
 				      ,{field:'name', title:'教材或专著名称',align:'center',width:'15%',}
 				      ,{field:'press', title:'出版社',align:'center',width:'15%',}
 				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:'15%',}
@@ -165,6 +165,7 @@
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));
+				        if(data.length > 0){
 				        for(var i=0;i< data.length;i++){
 				        	param = data[i].id;
 //				        	layer.alert(JSON.stringify(data[i].id));
@@ -190,8 +191,9 @@
 				        	
 				        	
 				        }
-				      layer.alert(JSON.stringify(param));
-				        
+				        }else{
+				          	layer.msg("请选择要删除的教材或专著");
+				     }
 				      break;
 				    };
 				    

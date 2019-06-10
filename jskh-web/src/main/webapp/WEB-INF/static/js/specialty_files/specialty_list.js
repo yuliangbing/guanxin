@@ -28,10 +28,9 @@
 			        }
 				});
 			}
-			layui.use(['form', 'table', 'laydate','laytpl'], function() {
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
 				//获取下拉列表
 				ajax_h(form);
 				
@@ -67,8 +66,7 @@
 								field: 'date',
 								title: '文件时间',
 								width: '15%',
-								align: 'center',
-								templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"
+								align: 'center'
 							}, {
 								field: 'code',
 								title: '文件编号',
@@ -330,7 +328,7 @@
 							      
 							        }
 					        }else{
-					        	layer.msg("请选择要删除的用户");
+					        	layer.msg("请选择要删除的专业文件");
 					        }
 					       
 					      break;

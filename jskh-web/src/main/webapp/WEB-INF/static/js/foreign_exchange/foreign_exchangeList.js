@@ -6,10 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate','laytpl'], function() {
+			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				var laytpl = layui.laytpl;
+				
 				
 				//时间控件
 				var laydate = layui.laydate;
@@ -33,7 +33,7 @@
 	    ,cols: [[ //表头
 	       {type:'checkbox', fixed: 'left'}
 	      ,{field:'id',title:'主键',align:'center',width:'10%'}
-	      ,{field:'date',title:'发表时间',width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}
+	      ,{field:'date',title:'发表时间',width:'15%',align:'center',}
 	      ,{field:'content',title:'交流学习内容',width:'15%',align:'center',}
 	      ,{field:'units', title:'单位',width:'15%',align:'center',}
 	      ,{field:'participants',title:'参与人员',width:'15%',align:'center',}
@@ -164,6 +164,7 @@
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));
+				        if(data.length > 0){
 				        for(var i=0;i< data.length;i++){
 				        	param = data[i].id;
 //				        	layer.alert(JSON.stringify(data[i].id));
@@ -189,8 +190,9 @@
 				        	
 				        	
 				        }
-				      layer.alert(JSON.stringify(param));
-				        
+				    }else{
+				      	layer.msg("请选择要删除的对外学习交流");
+				 }
 				      break;
 				    };
 				    

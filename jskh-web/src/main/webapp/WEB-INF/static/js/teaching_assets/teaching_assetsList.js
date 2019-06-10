@@ -169,6 +169,7 @@
 				        var data = checkStatus.data;
 				        var param = [{}];
 				       // layer.alert(JSON.stringify(data));
+				        if(data.length > 0){
 				        for(var i=0;i< data.length;i++){
 				        	param = data[i].id;
 //				        	layer.alert(JSON.stringify(data[i].id));
@@ -194,7 +195,9 @@
 				        	
 				        	
 				        }
-				      layer.alert(JSON.stringify(param));
+				        }else{
+				          	layer.msg("请选择要删除的教学资产");
+				     }
 				        
 				      break;
 				    };
