@@ -13,12 +13,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-
+	
     <link rel="stylesheet" href="/static/public/css/font.css">
 	<link rel="stylesheet" href="/static/public/css/xadmin.css">
 	
 </head>
-<body>
+<body onload="f1()">
     <!-- 顶部开始 -->
     <div class="container">
         <div class="logo"><a href="#" id="systemName"></a></div>
@@ -81,37 +81,128 @@
     <script src="${path}/static/js/index.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
     <!-- <link rel="stylesheet" href="/static/public/css/theme362.min.css"> -->
-	
+    function f1() {
+    	var storage=window.localStorage;
+    	//alert('页面加载完毕,window.onload发动!');
+    	
+    	 var json1=storage.getItem("data");
+         var jsonObj1=JSON.parse(json1);
+         
+     	 var link = document.createElement("link");
+     	 link.rel = "stylesheet";
+     	 link.type = "text/css";
+     	 link.href = jsonObj1.Url;
+     	 document.getElementsByTagName("head")[0].appendChild(link);
+	}
+   /*  window.onload = function(){
+    	var storage=window.localStorage;
+    	//alert('页面加载完毕,window.onload发动!');
+    	
+    	 var json1=storage.getItem("data");
+         var jsonObj1=JSON.parse(json1);
+         
+     	 var link = document.createElement("link");
+     	 link.rel = "stylesheet";
+     	 link.type = "text/css";
+     	 link.href = jsonObj1.Url;
+     	 document.getElementsByTagName("head")[0].appendChild(link);
+    } */
+   /*  window.onload(){
+    	alert(1);
+    	window.onunload = function() {
+    	                if(flag){
+    	                    console.log('关闭操作');
+    	                }
+    	                else {
+    	                    console.log('刷新操作');
+    	                }
+    	            };
+
+	            window.onbeforeunload = function () {
+    	                if(!flag){
+    	                    console.log('关闭操作');
+    	                }
+    	                else{
+    	                	 var json1=storage.getItem("data");
+    	                     var jsonObj1=JSON.parse(json);
+    	                     console.log(jsonObj1);
+    	                 	 var link = document.createElement("link");
+    	                 	 link.rel = "stylesheet";
+    	                 	 link.type = "text/css";
+    	                 	 link.href = jsonObj.Url;
+    	                 	 document.getElementsByTagName("head")[0].appendChild(link);
+    	                }
+    	            };
+    	       }  */
     
+    var ur;
     function ash(){//灰色主题
-    	 var link = document.createElement("link");
-    	 link.rel = "stylesheet";
-    	 link.type = "text/css";
-    	 link.href = "/static/public/css/themeStyle/ash.min.css";
-    	 document.getElementsByTagName("head")[0].appendChild(link);
+
+    	
+    	var storage=window.localStorage;
+        var data={
+            Url:'/static/public/css/themeStyle/ash.min.css'
+        };
+        var d=JSON.stringify(data);
+        storage.setItem("data",d);
+        //将JSON字符串转换成为JSON对象输出
+        var json=storage.getItem("data");
+        var jsonObj=JSON.parse(json);
+    	var link = document.createElement("link");
+    	link.rel = "stylesheet";
+    	link.type = "text/css";
+    	link.href = jsonObj.Url;
+    	document.getElementsByTagName("head")[0].appendChild(link);
     }
     
     function green(){//绿色主题
-   	 var link = document.createElement("link");
-   	 link.rel = "stylesheet";
-   	 link.type = "text/css";
-   	 link.href = "/static/public/css/themeStyle/green.min.css";
-   	 document.getElementsByTagName("head")[0].appendChild(link);
+    	var storage=window.localStorage;
+        var data={
+            Url:"/static/public/css/themeStyle/green.min.css"
+        };
+        var d=JSON.stringify(data);
+        storage.setItem("data",d);
+        //将JSON字符串转换成为JSON对象输出
+        var json=storage.getItem("data");
+        var jsonObj=JSON.parse(json);
+   	    var link = document.createElement("link");
+   	    link.rel = "stylesheet";
+   	    link.type = "text/css";
+   	    link.href = jsonObj.Url;
+   	    document.getElementsByTagName("head")[0].appendChild(link);
    }
     function blue(){//蓝色主题
+    	var storage=window.localStorage;
+        var data={
+            Url: "/static/public/css/themeStyle/blue.min.css"
+        };
+        var d=JSON.stringify(data);
+        storage.setItem("data",d);
+        //将JSON字符串转换成为JSON对象输出
+        var json=storage.getItem("data");
+        var jsonObj=JSON.parse(json);
       	 var link = document.createElement("link");
       	 link.rel = "stylesheet";
       	 link.type = "text/css";
-      	 link.href = "/static/public/css/themeStyle/blue.min.css";
+      	 link.href = jsonObj.Url;
       	 document.getElementsByTagName("head")[0].appendChild(link);
       }
   
     function brown(){//棕色主题
-     	 var link = document.createElement("link");
-     	 link.rel = "stylesheet";
-     	 link.type = "text/css";
-     	 link.href = "/static/public/css/themeStyle/brown.min.css";
-     	 document.getElementsByTagName("head")[0].appendChild(link);
+    	var storage=window.localStorage;
+        var data={
+            Url: "/static/public/css/themeStyle/brown.min.css"
+        };
+        var d=JSON.stringify(data);
+        storage.setItem("data",d);
+        //将JSON字符串转换成为JSON对象输出
+        var json=storage.getItem("data");
+        var jsonObj=JSON.parse(json);
+     	var link = document.createElement("link");
+     	link.rel = "stylesheet";
+     	link.type = "text/css";
+     	link.href = jsonObj.Url;
+     	document.getElementsByTagName("head")[0].appendChild(link);
      }
     function remove(){
 	    var box = document.getElementById("box");  
