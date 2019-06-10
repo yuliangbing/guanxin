@@ -28,9 +28,10 @@
 			        }
 				});
 			}
-			layui.use(['form', 'table', 'laydate'], function() {
+			layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				var laytpl = layui.laytpl;
 				//获取下拉列表
 				ajax_h(form);
 				
@@ -66,7 +67,8 @@
 								field: 'date',
 								title: '文件时间',
 								width: '15%',
-								align: 'center'
+								align: 'center',
+								templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"
 							}, {
 								field: 'code',
 								title: '文件编号',

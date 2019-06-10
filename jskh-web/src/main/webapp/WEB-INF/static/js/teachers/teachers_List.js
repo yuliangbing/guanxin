@@ -2,9 +2,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				var laytpl = layui.laytpl;
 				/*
 				 实现时间选择
 				 */
@@ -29,8 +30,8 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
 		      ,{field:'name', title:'教师姓名', width:'15%',align:'center'}
 		      ,{field:'code', title:'教师编号', width:'15%',align:'center' }
-		      ,{field:'entryTime', title:'入职时间', width:'15%',align:'center' }
-		      ,{field:'birthday', title:'出生时间', width:'15%',align:'center' } 
+		      ,{field:'entryTime', title:'入职时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.entryTime,'yyyy-MM-dd')}}</div>" }
+		      ,{field:'birthday', title:'出生时间', width:'15%',align:'center' ,templet:"<div>{{layui.util.toDateString(d.birthday,'yyyy-MM-dd')}}</div>"} 
 		      ,{field:'graduateSchool', title:'毕业院校', width:'15%',align:'center' }
 		      ,{field:'finalDegree', title:'最终学历学位', width:'15%',align:'center' }
 		      ,{field:'politicalStatus', title:'政治面貌', width:'15%',align:'center' }

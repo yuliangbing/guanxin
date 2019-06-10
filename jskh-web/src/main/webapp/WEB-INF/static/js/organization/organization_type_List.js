@@ -6,10 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate'], function() {
+			layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				
 				//时间控件
 				var laydate = layui.laydate;
