@@ -25,6 +25,7 @@
             
             
             <ul id="demoTree1" class="dtree" data-id="0"></ul>
+            <!-- 路由页面 -->
             <iframe src="/toPage?page=iframeContent" id="iframe_content" name="iframe_content" frameborder="0" style="width:60%; height: 99%; position:absolute; top:0px;right: 10%;"></iframe>
             
             
@@ -98,7 +99,7 @@
     
         <script src="https://cdn.bootcss.com/echarts/4.2.1-rc1/echarts.min.js"></script>
         <script src="${path}/static/public/jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="${path}/static/js/index/index1.js" type="text/javascript" charset="utf-8"></script>
+<%--         <script src="${path}/static/js/index/index1.js" type="text/javascript" charset="utf-8"></script> --%>
         <script src="${path}/static/js/index/index2.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/js/index/index.js" type="text/javascript" charset="utf-8"></script>
         <script src="${path}/static/dtree/dtree/dtree.js" type="text/javascript" charset="utf-8"></script>
@@ -147,15 +148,10 @@
     	
     	//时间升序
     	function sort(data){
-    		  	rows = data.data;  //
+    		  	rows = data.data;  
     		    rows.sort(function(a,b){
     		        return Date.parse(a.setupDate.split(' ')[0]) - Date.parse(b.setupDate.split(' ')[0]);//时间倒叙 如果是从小到大交换啊a ,b位置即可
     		    });
-    		   /* for(var i =0,l=rows.length;i<l;i++){
-    		        console.log(" | " + rows[i].setupDate.split(' ')[0]); //输出
-    		    }
-    		    console.log("rows:"+JSON.stringify(rows));//输出
-    		*/
     		}
     	
     	
@@ -208,18 +204,19 @@
      		async:false,
      		success : function(data) {
      			var obj2 = eval(data); //使用eval方法
-     			//console.log(JSON.stringify(obj2.data[0].characteristic));
-     			//dataDATE += date;
+     			
      			if (dataDATE == '') {
      				dataDATE = date;
-     				names = obj2.data[0].specialtyName;//获取返回数据的专业名称
+     				names = obj2.data[0].specialtyName !=''?obj2.data[0].specialtyName:'';//获取返回数据的专业名称
      				positions = obj2.data[0].position;
      				characteristics = obj2.data[0].characteristic;
+     				
 				}else{
 					dataDATE+=','+date;
-					names += ','+obj2.data[0].specialtyName;
+					names += ','+(obj2.data[0].specialtyName !=''?obj2.data[0].specialtyName:'');
 					positions +=','+obj2.data[0].position;
 					characteristics +=','+obj2.data[0].characteristic;
+					
 				}
      			
      				
@@ -243,37 +240,12 @@
         	  var carousel = layui.carousel
         	  ,form = layui.form;
         	  
-        	  //图片轮播
         	  carousel.render({
         	    elem: '#test10'
         	    ,width: '90%'
         	    ,height: '80%'
         	    ,interval: 5000
         	  });
-        	  
-        	 /*  //事件
-        	  carousel.on('change(test4)', function(res){
-        	    console.log(res)
-        	  }); */
-        	/*   
-        	  var $ = layui.$, active = {
-        	    set: function(othis){
-        	      var THIS = 'layui-bg-normal'
-        	      ,key = othis.data('key')
-        	      ,options = {};
-        	      
-        	      othis.css('background-color', '#5FB878').siblings().removeAttr('style'); 
-        	      options[key] = othis.data('value');
-        	      ins3.reload(options);
-        	    }
-        	  }; */
-        	  
-        	/*   //监听开关
-        	  form.on('switch(autoplay)', function(){
-        	    ins3.reload({
-        	      autoplay: this.checked
-        	    });
-        	  }); */
         	  
         	   $('.demoSet').on('keyup', function(){
         	    var value = this.value
@@ -284,11 +256,6 @@
         	    ins3.reload(options);
         	  }); 
         	  
-        	 /*  //其它示例
-        	  $('.demoTest .layui-btn').on('click', function(){
-        	    var othis = $(this), type = othis.data('type');
-        	    active[type] ? active[type].call(this, othis) : '';
-        	  }); */
         	});
        
         </script>

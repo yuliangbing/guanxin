@@ -11,7 +11,8 @@
 <script src="${path}/static/public/icon/iconfont.js"></script>
 <script type="text/javascript">
 	window.onbeforeunload = function(event) {
-		ws.onclose = function(){
+	var ws;
+	 ws.onclose = function(){
 		};
 		ws.close();
 	}</script>
