@@ -173,10 +173,20 @@
 								data:{id:param},
 								dataType:"json",
 								success:function(data){
-									var nowPage = tableIns.config.page.curr;//返回当前页数
-						        	var reloadPage = (nowPage-1) > 0? nowPage:1;
+									var page = $(".layui-laypage-skip").find("input").val();//返回当前页数
+									var nowPage = tableIns.config.page.curr;//返回当前总页数
+									var limits = $(".layui-laypage-limits").find("option:selected").val();//获取当前条数10/ye
+									var countstr = $(".layui-laypage-count").text();//总数据条数
+									var count = countstr.replace(/[^0-9]/ig,"");
+									var lengths = checkStatus.data.length;
+									//alert(lengths);
+									var reloadPage = (page-1) > 0? page:1;
+						        	if(count > (limits*(page-lengths))){//有分页		12>10*1
+						        		if(count-1 <= (limits*(page-lengths))){//判断在当前页是否还有数据  11-1<=10*1
+							        		reloadPage = reloadPage-1;		// 1
+							        	}
+						        	}
 									layer.msg("删除成功");
-									//layer.close(index);
 					    			tableIns.reload({
 					    				page:{
 					    					curr:reloadPage
