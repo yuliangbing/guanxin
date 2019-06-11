@@ -72,7 +72,7 @@
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=enrollment_history/enrollment_history_check',
-			    		area:['60%','75%'],
+			    		area:['80%','85%'],
 			    		resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe

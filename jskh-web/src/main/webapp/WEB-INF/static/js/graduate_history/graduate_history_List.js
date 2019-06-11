@@ -54,7 +54,7 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 	    		content:['/toPage?page=graduate_history/graduate_history_check'],
 	    		maxmin:true,
 	    		resize:false,
-	    		area:['60%','75%'],
+	    		area:['80%','85%'],
 	    		success : function(layero, index) {
 					// 获取子页面的iframe
 					var iframe = window['layui-layer-iframe' + index];

@@ -106,7 +106,7 @@
         					//console.log(counts);
         				} 
         				//console.log("全部的counts:"+counts);
-        			console.log(JSON.stringify(data));
+        			//console.log(JSON.stringify(data));
         		},
         		error : function(code) {
         			layer.alert("发生错误,请联系管理员");

@@ -13,7 +13,6 @@
 <body style="margin-left: 18%;">
 		<form class="layui-form" action="">
 		  <div class="layui-form-item" style="margin-top:5%;">
-		  <div>
 		  <div class="layui-inline">
 			    <label class="layui-form-label" style="width:150px;">发表时间</label>
 				<div class="layui-input-inline">
@@ -88,17 +87,16 @@
 							</select>
 						</div>
 					</div>
-           
-         
-			</div>
-			<div style="margin-left: 8%; margin-top:10%;">
-				<div class="layui-form-item">
-					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
-						<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+	           <div style="margin-left: 12%; margin-top:6%;">
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="submit">保存</button>
+							<button type="reset" class="layui-btn layui-btn-danger">重置</button>
+						</div>
 					</div>
 				</div>
-			</div>
+         
+			
 			
 		</div>
 	</form>

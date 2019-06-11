@@ -23,12 +23,11 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="时间" name="date" id="date" autocomplete="off" style="width:200px;">
           <div class="layui-inline">
-			<label class="layui-form-label" for="specialty_id">专业</label>
 			<div class="layui-input-inline">
 				<select type="text" id="specialty_id" lay-filter="specialty_id" autocomplete="off"
-					autocomplete="off" placeholder="" lay-verify="required"
+					autocomplete="off" placeholder="" 
 					class="layui-select" lay-search>
-					<option value="">请选择</option>
+					<option value="">请选择专业</option>
 				</select>
 			</div>
 		</div>

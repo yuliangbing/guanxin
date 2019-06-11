@@ -42,12 +42,12 @@
 						<input name="characteristic" id="characteristic"  autocomplete="off" class="layui-input" type="text">
 					</div>
 				</div>
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label">专业负责人</label>
 					<div class="layui-input-inline"  >
 						<input name="directorName" id="directorName"  autocomplete="off" class="layui-input" type="text">
 					</div>
-				</div>
+				</div> -->
 			
 				
 			</div>

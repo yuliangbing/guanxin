@@ -66,7 +66,7 @@
 					  		content:['/toPage?page=teaching_assets/teaching_assets_add'],
 					  		maxmin:true,
 					  		resize:false,
-					  		area:['60%','75%']
+					  		area:['80%','85%']
 					  	});
 					  });
 
@@ -80,7 +80,7 @@
 						title:"查看",
 			    		type:2,
 			    		content:'/toPage?page=teaching_assets/teaching_assets_check',
-			    		area:['60%','75%'],
+			    		area:['80%','85%'],
 			    		resize:false,
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
@@ -129,7 +129,7 @@
 			    		content:['/toPage?page=teaching_assets/teaching_assets_modify'],
 			    		maxmin:true,
 			    		resize:false,
-			    		area:['60%','75%'],
+			    		area:['80%','85%'],
 			    		success : function(layero, index) {
 							// 获取子页面的iframe
 							var iframe = window['layui-layer-iframe' + index];

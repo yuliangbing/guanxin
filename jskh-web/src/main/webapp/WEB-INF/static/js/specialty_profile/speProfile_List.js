@@ -90,9 +90,9 @@ layui.use('element', function() {
 		      ,{field:'date', title:'年份', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
 		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
-		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center'}
+		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center',hide:true}
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:180,hide:true}
-		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:'19%',align:'center'}
+		      ,{fixed: 'right', title:'操作', toolbar: '#barDemo',align:'center'}
 		    ]]
 		  });  
 	  //监听列工具事件
