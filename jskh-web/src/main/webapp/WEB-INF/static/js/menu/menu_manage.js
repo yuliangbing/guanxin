@@ -46,6 +46,7 @@ function appendMenu(html_, menuList) {
 		html_ += "</td>";
 		html_ += "<td>" + menu.menuNum + "</td>";
 		html_ += "<td>" + menu.url + "</td>";
+		html_ += "<td><span class='icon iconfont'>" + menu.icon + "</span></td>";
 		html_ += "<td class=\"td-manage\">";
 		html_ += "<button class=\"layui-btn layui-btn layui-btn-xs\" onclick=\"edit("+menu.id+")\"><i class=\"layui-icon\">&#xe642;</i>编辑</button>";
 		html_ += "<button class=\"layui-btn layui-btn-warm layui-btn-xs\" onclick=\"add("+menu.id+",'"+menu.menuStr+"')\"> <i class=\"layui-icon\">&#xe642;</i>添加子菜单 </button>";

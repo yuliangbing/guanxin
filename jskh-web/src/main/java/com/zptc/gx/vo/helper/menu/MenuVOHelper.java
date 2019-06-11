@@ -20,6 +20,7 @@ public class MenuVOHelper {
 		menuVO1.setParentNum(menu.getParentNum());
 		menuVO1.setParentStr(menu.getParentStr());
 		menuVO1.setLevel(menu.getLevel());
+		menuVO1.setIcon(menu.getIcon());
 		return menuVO1;
 	}
 	

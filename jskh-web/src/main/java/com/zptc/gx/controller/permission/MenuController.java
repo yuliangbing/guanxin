@@ -86,6 +86,7 @@ public class MenuController extends BaseController {
 			Integer menuOrder = ToolUtil.intWithNull("menuOrder", request);
 			String url = ToolUtil.str("url", request);
 			String remark = ToolUtil.str("remark", request);
+			String icon = ToolUtil.str("icon", request);
 
 			Menu menu = new Menu();
 			menu.setMenuStr(menuStr);
@@ -96,6 +97,7 @@ public class MenuController extends BaseController {
 			menu.setMenuOrder(menuOrder);
 			menu.setUrl(url);
 			menu.setRemark(remark);
+			menu.setIcon(icon);
 			// 显示
 			menu.setShowType(1);
 			menu.setCreateId(user.getId());
@@ -146,6 +148,7 @@ public class MenuController extends BaseController {
 			Integer menuOrder = ToolUtil.intWithNull("menuOrder", request);
 			String url = ToolUtil.str("url", request);
 			String remark = ToolUtil.str("remark", request);
+			String icon = ToolUtil.str("icon", request);
 
 			Menu menu = menuService.findMenuById(menuId);
 			if (menu == null) {
@@ -158,6 +161,7 @@ public class MenuController extends BaseController {
 			menu.setMenuOrder(menuOrder);
 			menu.setUrl(url);
 			menu.setRemark(remark);
+			menu.setIcon(icon);
 			menu.setModifyId(user.getId());
 			menu.setModifyTime(new Date());
 			menu.setModifyUser(user.getTeaName());

@@ -96,15 +96,15 @@ function appendMenu(html_, menuList) {
 		var menu = menuList[i];
 		if (!menu.hasSubMenu) {
 			html_ += "<li><a _href='" + pageUrl_ + menu.url + "'>";
-			html_ += "<i class='iconfont'>&#xe6b8;</i>";
-			html_ += "<cite>" + menu.menuStr + "</cite>";
+			html_ += "<span class='icon iconfont'>"+menu.icon+"</span>";
+			html_ += "<cite style='margin-left:10px;'>" + menu.menuStr + "</cite>";
 			html_ += "</a>";
 			html_ += "</li>";
 		} else {
 			var subMenuList = menu.subMenuList;
 			html_ += "<li><a href='javascript:;'>";
-			html_ += "<i class='iconfont'>&#xe6b8;</i>";
-			html_ += "<cite>" + menu.menuStr + "</cite>";
+			html_ += "<span class='icon iconfont'>"+menu.icon+"</span>";
+			html_ += "<cite style='margin-left:10px;'>" + menu.menuStr + "</cite>";
 			html_ += "<i class='iconfont nav_right'>&#xe697;</i></a>";
 			html_ += "<ul class='sub-menu'>";
 			html_ = appendMenu(html_,subMenuList);

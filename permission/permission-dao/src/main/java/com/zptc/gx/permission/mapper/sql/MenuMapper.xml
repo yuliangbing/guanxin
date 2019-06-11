@@ -21,11 +21,12 @@
     <result column="modify_user" property="modifyUser" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
     <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     id, menu_str, menu_num, parent_id, parent_str, parent_num, menu_order, url, remark, 
     status, show_type, is_init, create_id, create_user, create_time, modify_id, modify_user, 
-    modify_time, level
+    modify_time, level, icon
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
@@ -44,14 +45,14 @@
       status, show_type, is_init, 
       create_id, create_user, create_time, 
       modify_id, modify_user, modify_time, 
-      level)
+      level, icon)
     values (#{id,jdbcType=BIGINT}, #{menuStr,jdbcType=VARCHAR}, #{menuNum,jdbcType=VARCHAR}, 
       #{parentId,jdbcType=BIGINT}, #{parentStr,jdbcType=VARCHAR}, #{parentNum,jdbcType=VARCHAR}, 
       #{menuOrder,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{showType,jdbcType=INTEGER}, #{isInit,jdbcType=INTEGER}, 
       #{createId,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{modifyId,jdbcType=BIGINT}, #{modifyUser,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{level,jdbcType=INTEGER})
+      #{level,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.zptc.gx.permission.entity.Menu" >
     insert into menu
@@ -113,6 +114,9 @@
       <if test="level != null" >
         level,
       </if>
+      <if test="icon != null" >
+        icon,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -171,6 +175,9 @@
       </if>
       <if test="level != null" >
         #{level,jdbcType=INTEGER},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -231,6 +238,9 @@
       <if test="level != null" >
         level = #{level,jdbcType=INTEGER},
       </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -253,7 +263,8 @@
       modify_id = #{modifyId,jdbcType=BIGINT},
       modify_user = #{modifyUser,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      level = #{level,jdbcType=INTEGER}
+      level = #{level,jdbcType=INTEGER},
+      icon = #{icon,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   
@@ -261,7 +272,7 @@
   <select id="findUserMenu" resultMap="BaseResultMap" parameterType="map" >
     select 
     m.id, m.menu_str, m.menu_num, m.parent_id, m.parent_str, m.parent_num, m.menu_order, 
-    m.url, m.remark, m.show_type
+    m.url, m.remark, m.show_type, m.icon
     from menu m
     LEFT JOIN role_menu_rel rm ON rm.menu_id = m.id
     LEFT JOIN role r ON rm.role_id = r.id

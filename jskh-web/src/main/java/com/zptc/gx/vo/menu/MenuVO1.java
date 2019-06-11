@@ -27,6 +27,8 @@ public class MenuVO1 {
     
     private boolean isChecked;
     
+    private String icon;
+    
 	public Long getId() {
 		return id;
 	}
@@ -113,5 +115,13 @@ public class MenuVO1 {
 
 	public void setChecked(boolean isChecked) {
 		this.isChecked = isChecked;
+	}
+
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 }

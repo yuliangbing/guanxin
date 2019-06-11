@@ -24,6 +24,7 @@ function addConfirm() {
 	params.menuOrder = $("#menuOrder").val();
 	params.showType = $("#showType").val();
 	params.remark = $("#remark").val();
+	params.icon = $("#icon").val();
 	
 	if (params.menuStr == '') {
 		layer.alert("菜单名称不能为空");

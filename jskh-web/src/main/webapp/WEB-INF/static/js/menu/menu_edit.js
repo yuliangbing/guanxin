@@ -28,6 +28,7 @@ function editInit(id){
 				$("#menuOrder").val(menu.menuOrder);
 				$("#showType").val(menu.showType);
 				$("#remark").val(menu.remark);
+				$("#icon").val(menu.icon);
 			}else{
 				layer.msg("初始化失败!");
 			}
@@ -50,6 +51,7 @@ function editConfirm() {
 	params.menuOrder = $("#menuOrder").val();
 	params.showType = $("#showType").val();
 	params.remark = $("#remark").val();
+	params.icon = $("#icon").val();
 	
 	if (params.menuStr == '') {
 		layer.alert("菜单名称不能为空");

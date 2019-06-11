@@ -62,9 +62,16 @@
 						<option value="2">否</option>
 					</select>
 				</div>
-				<label for="remark" class="layui-form-label">备注 </label>
+				<label for="icon" class="layui-form-label">图标 </label>
 				<div class="layui-input-inline">
-					<input type="password" id="remark" name="remark" required=""
+					<input type="icon" id="icon" name="icon" required=""
+						lay-verify="" autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label for="remark" class="layui-form-label">备注 </label>
+				<div class="layui-input-block">
+					<input type="text" id="remark" name="remark" required=""
 						lay-verify="repass" autocomplete="off" class="layui-input">
 				</div>
 			</div>

@@ -23,6 +23,7 @@
 					<th style="min-width: 150px;">菜单名称</th>
 					<th>菜单编号</th>
 					<th>菜单地址</th>
+					<th>图标</th>
 					<th style="width: 220px">操作</th>
 				</tr>
 			</thead>

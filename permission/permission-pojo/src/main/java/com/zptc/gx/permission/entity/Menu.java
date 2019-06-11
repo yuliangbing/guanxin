@@ -40,6 +40,8 @@ public class Menu {
     private Date modifyTime;
 
     private Integer level;
+    
+    private String icon;
 
     public Long getId() {
         return id;
@@ -191,5 +193,13 @@ public class Menu {
 
     public void setLevel(Integer level) {
         this.level = level;
+    }
+    
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon == null ? null : icon.trim();
     }
 }
