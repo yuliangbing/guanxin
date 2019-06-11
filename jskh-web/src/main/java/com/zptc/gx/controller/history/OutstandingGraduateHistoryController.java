@@ -49,6 +49,8 @@ public class OutstandingGraduateHistoryController extends BaseController {
 		Map<String, Object> data = new HashMap<>();
 		Map<String, Object> count = new HashMap<>();
 		//获取请求参数
+		String date1 = ToolUtil.str("date1", request);
+		String date2 = ToolUtil.str("date2", request);
 		String name = ToolUtil.str("name", request);
 		Integer limit = ToolUtil.integer("limit", request);
 		Integer page = ToolUtil.integer("page", request);
@@ -58,11 +60,15 @@ public class OutstandingGraduateHistoryController extends BaseController {
 		//用于分页的方法
 		pages = pageVO.getBeginNum();
 		//把数据put进入data
+		data.put("date1", date1);
+	    data.put("date2", date2);
 		data.put("name", name);
 		data.put("limit", pageVO.getLimit());
 		data.put("pages", pages);
 		data.put("status", 1);
 		System.out.println("获取到的数据="+data);
+		count.put("date1", date1);
+		count.put("date2", date2);
 		count.put("name", name);
 		count.put("status", 1);
 		//定义返回的数据条总数

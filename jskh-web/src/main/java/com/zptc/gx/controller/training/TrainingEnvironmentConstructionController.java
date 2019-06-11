@@ -170,6 +170,9 @@ public class TrainingEnvironmentConstructionController extends BaseController{
 			 String date1 = ToolUtil.str("date1", request);
 			 String date2 = ToolUtil.str("date2", request);
 		    String specialtyName = ToolUtil.str("specialty_name", request);
+		    if ("请选择专业".equals(specialtyName) ) {
+		    	specialtyName = null;
+			}
 		    Integer limit = ToolUtil.integer("limit", request);
 		    Integer page = ToolUtil.integer("page", request);
 		    PageVO pageVO = new PageVO(page, limit);

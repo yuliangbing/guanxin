@@ -23,10 +23,9 @@
         <form class="layui-form layui-col-md12 x-so">
           <input class="layui-input" placeholder="时间" name="date" id="date" autocomplete="off" style="width:200px;">
           <div class="layui-inline">
-						<label class="layui-form-label alignment">专业</label>
 							<div class="layui-input-inline">
 								<select name="specialtyName"  id="specialtyName"  autocomplete="off" class="layui-input" type="text">
-									<option value="">请选择</option>
+									<option value="">请选择专业</option>
 								</select>
 							</div>
 					</div>
@@ -48,6 +47,11 @@
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
+	</script>
+	<script type="text/javascript" id="">
+	
+	
+	
 	</script>
      
   </body>
