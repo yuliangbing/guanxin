@@ -16,7 +16,6 @@
 	
     <link rel="stylesheet" href="/static/public/css/font.css">
 	<link rel="stylesheet" href="/static/public/css/xadmin.css">
-	
 </head>
 <body onload="f1()">
     <!-- 顶部开始 -->
@@ -26,13 +25,13 @@
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
         <ul class="layui-nav right" lay-filter="">
-          <li class="layui-nav-item">更换主题
+          <li class="layui-nav-item"><a>更换主题</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="green()">绿色渐变</a></dd>
               <dd><a onclick="ash()">灰色渐变</a></dd>
               <dd><a onclick="blue()">蓝色渐变</a></dd>
               <dd><a onclick="brown()">棕色渐变</a></dd>
-             
+              <dd><a onclick="defau()">默认主体</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item">
@@ -49,7 +48,7 @@
     <!-- 顶部结束 -->
     <!-- 中部开始 -->
      <!-- 左侧菜单开始 -->
-    <div class="left-nav">
+    <div class="left-nav" style="height: 100%;">
       <div id="side-nav">
         <ul id="nav"></ul>
       </div>
@@ -57,10 +56,10 @@
     <!-- <div class="x-slide_left"></div> -->
     <!-- 左侧菜单结束 -->
     <!-- 右侧主体开始 -->
-    <div class="page-content">
+    <div class="page-content" style="z-index: 0;height: 100%">
         <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
           <ul class="layui-tab-title">
-            <li class="home"><i class="layui-icon">&#xe68e;</i>首页</li>
+            <li class="home"><i class="layui-icon">&#xe68e;</i>首页</li><!-- <i class="layui-icon">&#xe68e;</i>首页</li> -->
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
@@ -68,78 +67,38 @@
             </div>
           </div>
         </div>
+	    <!-- 中部底部开始 -->
+	    <div class="footer">
+	      <!--   <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>   -->
+	        <div class="copyright" id="box" title="点击隐藏"  style="text-align: center;z-index: -1" onclick="remove();">五叶草小组出品</div>  
+	    </div>
+	    <!-- 中部底部结束 -->
     </div>
     <div class="page-content-bg"></div>
     <!-- 右侧主体结束 -->
     <!-- 中部结束 -->
-    <!-- 底部开始 -->
-    <div class="footer">
-      <!--   <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>   -->
-        <div class="copyright" id="box" title="点击隐藏"  style="text-align: center;" onclick="remove();">五叶草小组出品</div>  
-    </div>
-    <!-- 底部结束 -->
+    
     <script src="${path}/static/js/index.js" type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript">
-    <!-- <link rel="stylesheet" href="/static/public/css/theme362.min.css"> -->
-    function f1() {
-    	var storage=window.localStorage;
-    	//alert('页面加载完毕,window.onload发动!');
-    	
+    var storage=window.localStorage;//获取localStorage对象
+    
+    function f1() {//找到持久化上的主题,并加载到head上
+ 
     	 var json1=storage.getItem("data");
          var jsonObj1=JSON.parse(json1);
-         
-     	 var link = document.createElement("link");
-     	 link.rel = "stylesheet";
-     	 link.type = "text/css";
-     	 link.href = jsonObj1.Url;
-     	 document.getElementsByTagName("head")[0].appendChild(link);
+         if (jsonObj1 != null) {
+        	 var link = document.createElement("link");
+         	 link.rel = "stylesheet";
+         	 link.type = "text/css";
+         	 link.href = jsonObj1.Url;
+         	 document.getElementsByTagName("head")[0].appendChild(link);
+ 		}
+     	
 	}
-   /*  window.onload = function(){
-    	var storage=window.localStorage;
-    	//alert('页面加载完毕,window.onload发动!');
-    	
-    	 var json1=storage.getItem("data");
-         var jsonObj1=JSON.parse(json1);
-         
-     	 var link = document.createElement("link");
-     	 link.rel = "stylesheet";
-     	 link.type = "text/css";
-     	 link.href = jsonObj1.Url;
-     	 document.getElementsByTagName("head")[0].appendChild(link);
-    } */
-   /*  window.onload(){
-    	alert(1);
-    	window.onunload = function() {
-    	                if(flag){
-    	                    console.log('关闭操作');
-    	                }
-    	                else {
-    	                    console.log('刷新操作');
-    	                }
-    	            };
-
-	            window.onbeforeunload = function () {
-    	                if(!flag){
-    	                    console.log('关闭操作');
-    	                }
-    	                else{
-    	                	 var json1=storage.getItem("data");
-    	                     var jsonObj1=JSON.parse(json);
-    	                     console.log(jsonObj1);
-    	                 	 var link = document.createElement("link");
-    	                 	 link.rel = "stylesheet";
-    	                 	 link.type = "text/css";
-    	                 	 link.href = jsonObj.Url;
-    	                 	 document.getElementsByTagName("head")[0].appendChild(link);
-    	                }
-    	            };
-    	       }  */
     
     var ur;
     function ash(){//灰色主题
 
-    	
-    	var storage=window.localStorage;
         var data={
             Url:'/static/public/css/themeStyle/ash.min.css'
         };
@@ -156,7 +115,7 @@
     }
     
     function green(){//绿色主题
-    	var storage=window.localStorage;
+    	
         var data={
             Url:"/static/public/css/themeStyle/green.min.css"
         };
@@ -172,7 +131,7 @@
    	    document.getElementsByTagName("head")[0].appendChild(link);
    }
     function blue(){//蓝色主题
-    	var storage=window.localStorage;
+    	
         var data={
             Url: "/static/public/css/themeStyle/blue.min.css"
         };
@@ -189,7 +148,7 @@
       }
   
     function brown(){//棕色主题
-    	var storage=window.localStorage;
+    	
         var data={
             Url: "/static/public/css/themeStyle/brown.min.css"
         };
@@ -204,6 +163,12 @@
      	link.href = jsonObj.Url;
      	document.getElementsByTagName("head")[0].appendChild(link);
      }
+
+    function defau(){//默认主题
+    	localStorage.clear();//清空持久化的主题
+    	window.location.reload();
+     }
+    
     function remove(){
 	    var box = document.getElementById("box");  
 	    if(box){  
@@ -213,6 +178,7 @@
 	        alert("没有这个div");  
 	    }  
     }
+            
     </script>
 </body>
 </html>
