@@ -29,10 +29,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				/*
 				 实现时间选择
 				 */
@@ -55,7 +55,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
-		      ,{field:'setupDate', title:'设立时间', width:'15%',align:'center'}	     
+		      ,{field:'setupDate', title:'设立时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.setupDate,'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'code', title:'专业编码', width:'15%',align:'center'}
 		      ,{field:'name', title:'专业名称', width:'15%',align:'center'} 
 		      ,{field:'status', title:'状态(1=正常，2=删除)', width:'15%',hide:true}

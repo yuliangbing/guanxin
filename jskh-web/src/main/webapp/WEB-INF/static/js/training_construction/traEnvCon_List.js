@@ -51,10 +51,10 @@ function ajax_h(form) {
 				
 
 			});
-		layui.use(['form', 'table', 'laydate'], function() {
+		layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				// 专业
 				ajax_h(form);
 				/*
@@ -79,7 +79,7 @@ function ajax_h(form) {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true,align:'center'}
-		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
+		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'content', title:'建设内容', width:'25%',align:'center'}
 		      ,{field:'participants', title:'参与人员', width:'15%',align:'center'}
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'}

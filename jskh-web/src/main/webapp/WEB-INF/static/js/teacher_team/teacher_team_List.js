@@ -2,9 +2,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
+				var laytpl = layui.laytpl;
 	//加载数据表格
 	  var tableIns = table.render({
 		    elem: '#test'
@@ -20,7 +21,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true}
 		      ,{field:'specialtyCode', title:'专业编码', width:'15%',align:'center' }
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center' }
-		      ,{field:'date', title:'团队变更时间', width:'15%',align:'center' } 
+		      ,{field:'date', title:'团队变更时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>" } 
 		      ,{field:'specialtyTeachers', title:'专业教师团队', width:'15%',align:'center' }
 		      ,{field:'partTimeTeachers', title:'兼职教师团队', width:'15%',align:'center' }
 		      ,{field:'director', title:'团队总负责人', width:'15%',align:'center' }

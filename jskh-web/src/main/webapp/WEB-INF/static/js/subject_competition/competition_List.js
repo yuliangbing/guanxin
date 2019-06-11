@@ -29,10 +29,10 @@ layui.use('element', function() {
 				var element = layui.element;
 
 			});
-layui.use(['form', 'table', 'laydate'], function() {
+layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				/*
 				 实现时间选择
 				 */
@@ -81,7 +81,7 @@ layui.use(['form', 'table', 'laydate'], function() {
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
 		      ,{field:'id', title:'主键', width:'8%',sort: true ,align:'center'}
-		      ,{field:'date', title:'时间', width:'15%',align:'center'}	     
+		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'name', title:'竞赛名称', width:'15%', align:'center'}
 		      ,{field:'awardLevel', title:'获奖级别', width:'15%', align:'center'}
 		      ,{field:'students', title:'获奖学生', width:'15%', align:'center'}

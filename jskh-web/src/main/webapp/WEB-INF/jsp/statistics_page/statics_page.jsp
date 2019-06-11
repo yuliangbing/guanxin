@@ -167,6 +167,7 @@
         		var layer = layui.layer,
         		    dtree = layui.dtree,
         		    $ = layui.$;
+        		//分割数组
         		var dateList = dataDATE.split(',');
         		var nameList = names.split(',');
         		var positionList = positions.split(',');
@@ -211,7 +212,7 @@
      			//dataDATE += date;
      			if (dataDATE == '') {
      				dataDATE = date;
-     				names = obj2.data[0].specialtyName;//
+     				names = obj2.data[0].specialtyName;//获取返回数据的专业名称
      				positions = obj2.data[0].position;
      				characteristics = obj2.data[0].characteristic;
 				}else{

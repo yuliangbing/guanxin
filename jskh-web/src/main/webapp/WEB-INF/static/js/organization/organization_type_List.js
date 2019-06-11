@@ -9,8 +9,6 @@
 			layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
-				
 				//时间控件
 				var laydate = layui.laydate;
 				laydate.render({

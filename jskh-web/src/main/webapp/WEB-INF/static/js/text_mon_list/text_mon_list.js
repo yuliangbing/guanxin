@@ -6,11 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate'], function() {
+			layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
-				
+				var laytpl = layui.laytpl;
 				//时间控件
 				var laydate = layui.laydate;
 				laydate.render({
@@ -33,7 +32,7 @@
 				    ,cols: [[ //表头
 				       {type:'checkbox', fixed: 'left'}
 				      ,{field:'id',title:'ID',align:'center',width:'5%'}
-				      ,{field:'date',title:'出版时间',align:'center',width:'15%',}
+				      ,{field:'date',title:'出版时间',align:'center',width:'15%',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}
 				      ,{field:'name', title:'教材或专著名称',align:'center',width:'15%',}
 				      ,{field:'press', title:'出版社',align:'center',width:'15%',}
 				      ,{field:'firstAuthor', title:'第一作者',align:'center',width:'15%',}

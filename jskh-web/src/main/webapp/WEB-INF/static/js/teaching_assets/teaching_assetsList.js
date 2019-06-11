@@ -6,10 +6,10 @@
 		
 			});
 	
-			layui.use(['form', 'table', 'laydate'], function() {
+			layui.use(['form', 'table', 'laydate','laytpl'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
+				var laytpl = layui.laytpl;
 				
 				//时间控件
 				var laydate = layui.laydate;
@@ -37,7 +37,7 @@
 					      ,{field:'modelNum', title:'型号', width:'15%',align:'center', }
 					      ,{field:'specification', title:'规格', width:'15%',align:'center', }
 					      ,{field:'sources', title:'仪器来源', width:'15%',align:'center', }
-					      ,{field:'date', title:'购置日期', width:'15%',align:'center', }
+					      ,{field:'date', title:'购置日期', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}
 					      ,{field:'totalAmount', title:'总金额', width:'15%',align:'center', }
 					      ,{field:'countryCode', title:'国别码', width:'15%',align:'center', }
 					      ,{field:'code', title:'资产编号', width:'15%',align:'center', }

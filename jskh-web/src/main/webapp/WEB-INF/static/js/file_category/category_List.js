@@ -32,7 +32,6 @@ layui.use('element', function() {
 layui.use(['form', 'table', 'laydate'], function() {
 				var form = layui.form;
 				var table = layui.table;
-				
 				/*
 				 实现时间选择
 				 */
