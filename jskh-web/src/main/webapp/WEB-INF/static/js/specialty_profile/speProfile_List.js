@@ -87,7 +87,7 @@ layui.use('element', function() {
 		      ,{field:'id', title:'主键', width:'10%',sort: true,align:'center'}
 		      ,{field:'specialtyId', title:'专业id', width:'15%',hide:true } 
 		      ,{field:'specialtyName', title:'专业名称', width:'15%',align:'center'} 
-		      ,{field:'date', title:'年份', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
+		      ,{field:'date', title:'年份', width:'15%',align:'center',templet:'#dateE'}	     
 		      ,{field:'position', title:'专业定位', width:'15%',align:'center'}
 		      ,{field:'characteristic', title:'专业特色', width:'15%',align:'center'}
 		      ,{field:'directorName', title:'专业负责人姓名', width:'15%',align:'center',hide:true}

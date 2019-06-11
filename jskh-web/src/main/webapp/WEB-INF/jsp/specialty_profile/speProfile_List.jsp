@@ -48,9 +48,13 @@
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
   	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
-	<script type="text/javascript" id="">
+	<script type="text/javascript" id=dateE>
 	
-	
+			  {{#  if(d.date != ""){ }}
+			{{d.date = d.date.split(' ')[0]}}
+			{{#  } }} 
+			
+			 
 	
 	</script>
      
