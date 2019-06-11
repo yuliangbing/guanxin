@@ -38,16 +38,18 @@
     
     <script type="text/html" id="toolbarDemo">
 		<div style="margin:-5px -1px;">
-			<button class="layui-btn layui-btn-danger" lay-event="delData"><i class="layui-icon"></i>批量删除</button>
+			
 			
 		</div>
 	</script> 
+	<!-- <button class="layui-btn layui-btn-danger" lay-event="delData"><i class="layui-icon"></i>批量删除</button> -->
 	<!--<button class="layui-btn" lay-submit lay-filter="insertAdd" id="insert"><i class="layui-icon"></i>添加</button>  -->
+	<!--  不可删除 	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a> -->
     <script type="text/html" id="barDemo">
 	<a class="layui-btn layui-btn-xs" lay-event="detail"><i class="layui-icon">&#xe615;</i>查看</a>
   	<a class="layui-btn layui-btn-warm layui-btn-xs" lay-event="edit"> <i class="layui-icon">&#xe642;</i>编辑 </a>
-  	<a class="layui-btn-danger layui-btn layui-btn-xs" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>
 	</script>
+	
 	<script type="text/javascript" id=dateE>
 	
 			  {{#  if(d.date != ""){ }}
