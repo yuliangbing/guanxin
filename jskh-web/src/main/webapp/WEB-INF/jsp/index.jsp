@@ -31,6 +31,7 @@
               <dd><a onclick="ash()">灰色渐变</a></dd>
               <dd><a onclick="blue()">蓝色渐变</a></dd>
               <dd><a onclick="brown()">棕色渐变</a></dd>
+            <!--   <dd><a onclick="blueViolet()">蓝紫渐变</a></dd> -->
               <dd><a onclick="defau()">默认主体</a></dd>
             </dl>
           </li>
@@ -56,7 +57,7 @@
     <!-- <div class="x-slide_left"></div> -->
     <!-- 左侧菜单结束 -->
     <!-- 右侧主体开始 -->
-    <div class="page-content" style="z-index: 0;height: 100%">
+    <div class="page-content" style="z-index: 0; height: 100%;">
         <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
           <ul class="layui-tab-title">
             <li class="home"><i class="layui-icon">&#xe68e;</i>首页</li><!-- <i class="layui-icon">&#xe68e;</i>首页</li> -->
@@ -67,11 +68,6 @@
             </div>
           </div>
         </div>
-	    <!-- 中部底部开始 -->
-	    <div class="footer">
-	      <!--   <div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved</div>   -->
-	        <div class="copyright" id="box" title="点击隐藏"  style="text-align: center;z-index: -1" onclick="remove();">五叶草小组出品</div>  
-	    </div>
 	    <!-- 中部底部结束 -->
     </div>
     <div class="page-content-bg"></div>
@@ -164,20 +160,28 @@
      	document.getElementsByTagName("head")[0].appendChild(link);
      }
 
+    function blueViolet(){//蓝紫主题
+    	 var data={
+    	            Url: "/static/public/css/themeStyle/blue_violet.min.css"
+    	        };
+    	        var d=JSON.stringify(data);
+    	        storage.setItem("data",d);
+    	        //将JSON字符串转换成为JSON对象输出
+    	        var json=storage.getItem("data");
+    	        var jsonObj=JSON.parse(json);
+    	     	var link = document.createElement("link");
+    	     	link.rel = "stylesheet";
+    	     	link.type = "text/css";
+    	     	link.href = jsonObj.Url;
+    	     	document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    
     function defau(){//默认主题
     	localStorage.clear();//清空持久化的主题
     	window.location.reload();
      }
     
-    function remove(){
-	    var box = document.getElementById("box");  
-	    if(box){  
-	        box.parentNode.removeChild(box);  
-	    }  
-	    else{  
-	        alert("没有这个div");  
-	    }  
-    }
+ 
             
     </script>
 </body>
