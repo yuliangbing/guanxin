@@ -195,7 +195,7 @@
         	});
 
  		function ajax_profile(ids,date,name,i) {
-     	// 获取下拉列表(公共方法)
+     	// 
      	$.ajax({
      		url :'specialtyProfile/ByIdSpecialtyProfile',
      		type : "POST",
@@ -212,10 +212,10 @@
      				characteristics = obj2.data[0].characteristic;
      				
 				}else{
-					dataDATE+=','+date;
-					names += ','+(obj2.data[0].specialtyName !=''?obj2.data[0].specialtyName:'');
-					positions +=','+obj2.data[0].position;
-					characteristics +=','+obj2.data[0].characteristic;
+					dataDATE+='|'+date;
+					names += '|'+(obj2.data[0].specialtyName !=''?obj2.data[0].specialtyName:'');
+					positions +='|'+obj2.data[0].position;
+					characteristics +='|'+obj2.data[0].characteristic;
 					
 				}
      			

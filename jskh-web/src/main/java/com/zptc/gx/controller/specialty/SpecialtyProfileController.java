@@ -163,11 +163,11 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		Long id = ToolUtil.lon("id", request);
 		String position = ToolUtil.str("position", request);
 	    String characteristic = ToolUtil.str("characteristic", request);
-	    String director_name = ToolUtil.str("director_name", request);
+	 /*   String director_name = ToolUtil.str("director_name", request);*/
 	    Long specialty_id = ToolUtil.lon("specialty_id", request);
 	    String specialty_name = ToolUtil.str("specialty_name",request);
-	    Long director_id = ToolUtil.lon("director_id", request);
-	    Long branch_introduction = ToolUtil.lon("branch_introduction", request); 
+	  /*  Long director_id = ToolUtil.lon("director_id", request);*/
+	   /* Long branch_introduction = ToolUtil.lon("branch_introduction", request); */
 	    Date date = ToolUtil.date2("date", request);
 	   // System.out.println("判断返回的值"+(ToolUtil.equalBool(position)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)));
 	    ZptcUser user = (ZptcUser) request.getSession().getAttribute(Constant.USER_SESSION);
@@ -179,10 +179,10 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 		}
 	    specialtyProfile.setDate(date);
 	    System.out.println(date);
-	    specialtyProfile.setBranchIntroduction(branch_introduction);
-	    specialtyProfile.setCharacteristic(characteristic);
+//	    specialtyProfile.setBranchIntroduction(branch_introduction);
+	    specialtyProfile.setCharacteristic(characteristic);/*
 	    specialtyProfile.setDirectorId(director_id);
-	    specialtyProfile.setDirectorName(director_name);
+	    specialtyProfile.setDirectorName(director_name);*/
 	    specialtyProfile.setSpecialtyId(specialty_id);
 	    specialtyProfile.setSpecialtyName(specialty_name);
 	    specialtyProfile.setPosition(position);
@@ -191,7 +191,7 @@ public JsonResult delSpecialtyProfile(HttpServletRequest request, HttpServletRes
 	    specialtyProfile.setModifyUser(user.getTeaName());
 	   
 //	    判断传入的值是否为空或""
-	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(director_name)&&ToolUtil.equalBool(director_id)&&ToolUtil.equalBool(branch_introduction)&&ToolUtil.equalBool(date)) == false) {
+	    if ((ToolUtil.equalBool(position)&&ToolUtil.equalBool(specialty_name)&&ToolUtil.equalBool(characteristic)&&ToolUtil.equalBool(date)) == false) {
 	    	jsonResult = JsonResult.build(FLAG_FAILED, "必填数据缺少！");
 	    	System.out.println("错误，传入数据错误");
 	    	 //接口拿到的数据

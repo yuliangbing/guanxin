@@ -82,11 +82,13 @@ var getUrlParam = function(name) {
 		positions = decodeURI(getUrlParam("position")), //对中文进行转码，不然会出现乱码
 		characteristics = decodeURI(getUrlParam("characteristic")),
 	    names = decodeURI(getUrlParam("name"));
+	console.log(positions);
 	//分割数组
-		var asd = date.split(','); 
-		var nsd = names.split(',');
-		var psd = positions.split(',');
-		var csd = characteristics.split(',');
+		var asd = date.split('|'); 
+		var nsd = names.split('|');
+		var psd = positions.split('|');
+		
+		var csd = characteristics.split('|');
 		var date2;
 		var name2;
 		var position2;

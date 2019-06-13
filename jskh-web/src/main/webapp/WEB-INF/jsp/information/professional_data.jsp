@@ -101,13 +101,12 @@
         var myChart = echarts.init(document.getElementById('main'));
       
 		var asd = params.split(',');
-		//console.log(asd);
-		//var psd = counts.split(',');
         var a=new Array();
         for(var i=0;i<asd.length;i++){
         	var b={};
         	b.value= new Array();
-        	if(i==1){
+        	
+        	/* if(i==1){
 	       		for(let j=0;j<6;j++){
 	           		b.value[j]=Math.round(Math.random()*1500)+1024;
 	           	}
@@ -119,9 +118,180 @@
         		for(let j=0;j<6;j++){
 	           		b.value[j]=Math.round(Math.random()*3000)+1500;
 	           	}
-        	}
+        	} */
+        	switch (i) {
+			case 0:
+				b.value[0]=400;
+				b.value[1]=420;
+				b.value[2]=430;
+				b.value[3]=440;
+				b.value[4]=450;
+				b.value[5]=500;
+				break;
+			case 1:
+				b.value[0]=300;
+				b.value[1]=420;
+				b.value[2]=430;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 2:
+				b.value[0]=300;
+				b.value[1]=420;
+				b.value[2]=430;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 3:
+				b.value[0]=500;
+				b.value[1]=420;
+				b.value[2]=330;
+				b.value[3]=400;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 4:
+				b.value[0]=500;
+				b.value[1]=500;
+				b.value[2]=330;
+				b.value[3]=500;
+				b.value[4]=350;
+				b.value[5]=350;
+				break;
+			case 5:
+				b.value[0]=300;
+				b.value[1]=300;
+				b.value[2]=500;
+				b.value[3]=400;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 5:
+				b.value[0]=400;
+				b.value[1]=450;
+				b.value[2]=5400;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=350;
+				break;
+			case 6:
+				b.value[0]=500;
+				b.value[1]=450;
+				b.value[2]=400;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=500;
+				break;
+			case 7:
+				b.value[0]=460;
+				b.value[1]=470;
+				b.value[2]=480;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=350;
+				break;
+			case 8:
+				b.value[0]=400;
+				b.value[1]=450;
+				b.value[2]=500;
+				b.value[3]=500;
+				b.value[4]=500;
+				b.value[5]=450;
+				break;
+			case 9:
+				b.value[0]=400;
+				b.value[1]=500;
+				b.value[2]=450;
+				b.value[3]=470;
+				b.value[4]=450;
+				b.value[5]=500;
+				break;
+			case 10:
+				b.value[0]=480;
+				b.value[1]=350;
+				b.value[2]=500;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 11:
+				b.value[0]=500;
+				b.value[1]=350;
+				b.value[2]=500;
+				b.value[3]=400;
+				b.value[4]=490;
+				b.value[5]=450;
+				break;
+			case 12:
+				b.value[0]=300;
+				b.value[1]=450;
+				b.value[2]=390;
+				b.value[3]=490;
+				b.value[4]=450;
+				b.value[5]=450;
+				break;
+			case 13:
+				b.value[0]=400;
+				b.value[1]=450;
+				b.value[2]=300;
+				b.value[3]=200;
+				b.value[4]=370;
+				b.value[5]=440;
+				break;
+			case 14:
+				b.value[0]=500;
+				b.value[1]=470;
+				b.value[2]=440;
+				b.value[3]=460;
+				b.value[4]=450;
+				b.value[5]=480;
+				break;
+			case 15:
+				b.value[0]=400;
+				b.value[1]=450;
+				b.value[2]=500;
+				b.value[3]=300;
+				b.value[4]=490;
+				b.value[5]=350;
+				break;
+			case 16:
+				b.value[0]=430;
+				b.value[1]=420;
+				b.value[2]=410;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=500;
+				break;
+			case 17:
+				b.value[0]=430;
+				b.value[1]=420;
+				b.value[2]=500;
+				b.value[3]=500;
+				b.value[4]=450;
+				b.value[5]=250;
+				break;
+			case 18:
+				b.value[0]=420;
+				b.value[1]=410;
+				b.value[2]=580;
+				b.value[3]=500;
+				b.value[4]=490;
+				b.value[5]=350;
+				break;
+			
+			default:
+				b.value[0]=4000;
+				b.value[1]=4200;
+				b.value[2]=4300;
+				b.value[3]=4400;
+				b.value[4]=4500;
+				b.value[5]=5000;
+				break;
+			}
         	
-        		
+        	
         	b.name=asd[i];
         	a.push(b);
         }
@@ -140,7 +310,7 @@
        	        	left:10,
         	    	data:asd
         	    },
-        	    color:['#31b0d5','pink','red','yellow','blue','black','#d2ffa7','#ffe7ce','#f0f0f0'],
+        	    color:['#7ddd2f','#ba00f6','#fa9a98','#d84c29','#dadee3','#ffcd41','#09b0c3','#31b0d5','pink','red','yellow','blue','black','#d2ffa7','#ffe7ce','#f0f0f0'],
         	    radar: {
         	        // shape: 'circle',
         	        name: {
@@ -152,12 +322,12 @@
         	           }
         	        },
         	        indicator: [
-        	           { name: '师资建设', max: 4500},
-        	           { name: '人才培养', max: 4500},
-        	           { name: '教学改革', max: 4500},
-        	           { name: '校企合作', max: 4500},
-        	           { name: '科研和社会服务', max: 4500},
-        	           { name: '开放办学', max: 4500}
+        	           { name: '师资建设', max: 500},
+        	           { name: '人才培养', max: 500},
+        	           { name: '教学改革', max: 500},
+        	           { name: '校企合作', max: 500},
+        	           { name: '科研和社会服务', max: 500},
+        	           { name: '开放办学', max: 500}
         	        ]
         	    },
         	    series: [{
