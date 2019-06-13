@@ -286,6 +286,7 @@
     <if test="parentIsNull != null and parentIsNull == 1">
     	And m.parent_id is null
     </if>
+    order by m.menu_order
   </select>
   
   <select id="queryMenuList" resultMap="BaseResultMap" parameterType="map" >
@@ -299,6 +300,7 @@
     <if test="parentIsNull != null and parentIsNull == 1">
     	And parent_id is null
     </if>
+    order by menu_order
   </select>
   
   <delete id="deleteByParentId" parameterType="java.lang.Long" >
