@@ -44,6 +44,7 @@
 			and status = #{status,jdbcType=INTEGER}
 		</if>
 	</where>
+	order by id desc
     limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
   </select>
   <!--统计数据条数-->

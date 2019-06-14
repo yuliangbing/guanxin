@@ -261,7 +261,11 @@
 			and modify_user = #{modify_user,jdbcType=VARCHAR}
 		</if>
 	</where>
+	order by id desc
+	
     limit #{pages,jdbcType=INTEGER},#{limit,jdbcType=INTEGER};
+    
+    
   </select>
   <!--统计数据条数-->
   <select id="selectCounts" resultType="int" parameterType="map">

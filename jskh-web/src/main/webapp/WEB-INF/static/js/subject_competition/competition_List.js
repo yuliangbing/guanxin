@@ -80,7 +80,8 @@ layui.use(['form', 'table', 'laydate','laytpl'], function() {
 		    ,page: true
 		    ,cols: [[
 		      {type: 'checkbox', fixed: 'left'}
-		      ,{field:'id', title:'主键', width:'8%',sort: true ,align:'center'}
+		    /*  ,{field:'id', title:'主键', width:'8%',sort: true ,align:'center'}*/
+		      ,{type:'numbers', title:'序号', width:'8%',align:'center'}
 		      ,{field:'date', title:'时间', width:'15%',align:'center',templet:"<div>{{layui.util.toDateString(d.date,'yyyy-MM-dd')}}</div>"}	     
 		      ,{field:'name', title:'竞赛名称', width:'15%', align:'center'}
 		      ,{field:'awardLevel', title:'获奖级别', width:'15%', align:'center'}
