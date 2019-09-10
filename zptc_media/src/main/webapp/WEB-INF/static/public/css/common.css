@@ -1,0 +1,9 @@
+.my-body{
+	position: static;
+	left: auto;
+}
+
+.my-center-div{
+	margin: 0 auto;
+	width: max-content;
+}
